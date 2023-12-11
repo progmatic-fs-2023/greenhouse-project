@@ -1,29 +1,16 @@
 import './App.css';
-import { useEffect, useState } from 'react';
-import { API_URL } from './constants';
+import AdminLogin from './components/AdminLogin';
+import Home from './components/Home';
+import { Routes, Route } from 'react-router-dom';
+import QuizModuls from './components/QuizModuls/QuizModuls';
 
 function App() {
-  const [isConnect, setIsConnect] = useState(false);
-
-  useEffect(() => {
-    fetch(`${API_URL}`).then((response) => {
-      if (response.ok) setIsConnect(true);
-    });
-  }, []);
-
-  useEffect(() => {
-    console.log(isConnect);
-  }, []);
-
   return (
-    <div>
-      Hello project!
-      <ul>
-        <li>
-          {isConnect ? '✅' : '️❗️'} Connect to backend {!isConnect && 'failed'}
-        </li>
-      </ul>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />}></Route>
+      <Route path="/admin" element={<AdminLogin />}></Route>
+      <Route path='/quizmoduls' element={<QuizModuls/>}></Route>
+    </Routes>
   );
 }
 

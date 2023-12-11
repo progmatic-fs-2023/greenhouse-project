@@ -2,7 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import logger from './middlewares/logger.middleware';
 import errorHandler from './middlewares/errorHandler.middleware';
-import apiRouter from './routes/api.route';
+import apiRouter from './routes/api.route.js';
+
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(logger);
 
 app.use('/api', apiRouter);
+
 
 app.use(errorHandler);
 export default app;
