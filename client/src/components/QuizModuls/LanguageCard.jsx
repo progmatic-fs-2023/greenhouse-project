@@ -9,7 +9,7 @@ const LanguageCard = ({ language }) => {
   };
 
   const handleNumQuestionsChange = (e) => {
-    setNumQuestions(e.target.value);
+    setNumQuestions(Number(e.target.value));
   };
 
   return (
