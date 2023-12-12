@@ -9,6 +9,8 @@
   align-items: center;
   background-color: #b9d40b;
   text-align: center;
+  position: sticky;
+  top: 0;
 }
 
 .footer {
@@ -24,7 +26,7 @@
 .body {
   background-color: white;
   width: 100%;
-  height: 60%;
+  height: 80%;
   margin: 0px;
   padding: 0px;
   display: flex;
