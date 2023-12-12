@@ -6,7 +6,6 @@ function Body() {
   return (
     <div className="body">
       <Intro />
-      <Tutorial />
     </div>
   );
 }

@@ -4,7 +4,7 @@ function NavBar() {
       <a class="active" href="javascript:void(0)">
         Home
       </a>
-      <a href="javascript:void(0)">Game</a>
+      <a href="javascript:void(0)">Start Quiz</a>
       <a href="javascript:void(0)">Profile</a>
       <a href="javascript:void(0)">Sign up</a>
       <a href="javascript:void(0)">Log in</a>

@@ -39,16 +39,18 @@
 }
 
 .body_main_div {
-  width: 70%;
-  height: 150px;
-  border: 2px solid black;
+  width: 90%;
+  height: calc(fit-content + 30px);
+  border: 0px solid black;
   border-radius: 10px;
-  background-color: rgb(168, 168, 230);
+  background-color: rgb(168, 247, 172);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 10px;
+  text-align: center;
+  line-height: 30px;
 }
 
 .navbar {
@@ -83,4 +85,9 @@
 .navbar a.active {
   background-color: #04aa6d;
   color: white;
+}
+
+.hr {
+  width: 80%;
+  margin: 20px;
 }
