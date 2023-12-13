@@ -1,6 +1,6 @@
 import LanguageCard from './LanguageCard';
 
-const QuizModuls = () => {
+function QuizModuls() {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-around' }}>
       <LanguageCard language="HTML" />
@@ -8,6 +8,6 @@ const QuizModuls = () => {
       <LanguageCard language="JavaScript" />
     </div>
   );
-};
+}
 
 export default QuizModuls;

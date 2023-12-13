@@ -1,9 +1,9 @@
 import Header from './Header/Header';
 import Body from './Body/Body';
 import Footer from './Footer/Footer';
-import "./style.css"
+import './style.css';
 
-const AppDiv = () => {
+function AppDiv() {
   return (
     <div className="appDiv">
       <Header />
@@ -11,6 +11,6 @@ const AppDiv = () => {
       <Footer />
     </div>
   );
-};
+}
 
-export default AppDiv
+export default AppDiv;

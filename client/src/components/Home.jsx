@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { API_URL } from '../constants';
 
-const Home = () => {
+function Home() {
   const [isConnect, setIsConnect] = useState(false);
 
   useEffect(() => {
@@ -24,6 +24,6 @@ const Home = () => {
       </ul>
     </div>
   );
-};
+}
 
 export default Home;
