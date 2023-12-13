@@ -1,4 +1,4 @@
-import logo from '../../assets/flower.svg';
+import logo from '../../../assets/flower.svg';
 
 function Logo() {
   return (

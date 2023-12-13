@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import AdminLogin from './components/AdminLogin';
-import QuizModuls from './components/QuizModuls/QuizModuls';
-import Home from './components/Home';
+import AdminLogin from './components/AdminLoginComponents/AdminLogin';
+import QuizModuls from './components/QuizModulsComponents/QuizModuls/QuizModuls';
+import Home from './components/HomeComponents/Home';
 
 function App() {
   return (

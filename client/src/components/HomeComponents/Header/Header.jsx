@@ -1,4 +1,4 @@
-import '../style.css';
+import '../../style.css';
 import Logo from './Logo';
 import NavBar from './NavBar';
 
