@@ -4,14 +4,6 @@ function AdminLogin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = async () => {
-    try {
-      console.log('Bejelentkezés...');
-    } catch (error) {
-      console.error('Bejelentkezési hiba:', error);
-    }
-  };
-
   return (
     <div>
       <h2>Admin Login</h2>
@@ -36,9 +28,7 @@ function AdminLogin() {
           />
         </label>
         <br />
-        <button type="button" onClick={handleLogin}>
-          Login
-        </button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );
