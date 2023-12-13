@@ -1,29 +1,27 @@
 import QuizAnswer from './QuizAnswer';
 import QuizQuestion from './QuizQuestion';
-import '../components/quizpage.css';
+import "./quizpage.css";
 
 export default function QuizQuestionCard() {
   return (
-    <>
-      <div className="quizquestioncard">
+    <div className="quizquestioncard">
         <div className="quizquestion">
-          <QuizQuestion></QuizQuestion>
+          <QuizQuestion />
         </div>
         <div className="quizanswercontainer">
           <div className="quizanswer">
-            <QuizAnswer></QuizAnswer>
+            <QuizAnswer />
           </div>
           <div className="quizanswer">
-            <QuizAnswer></QuizAnswer>
+            <QuizAnswer />
           </div>
           <div className="quizanswer">
-            <QuizAnswer></QuizAnswer>
+            <QuizAnswer />
           </div>
           <div className="quizanswer">
-            <QuizAnswer></QuizAnswer>
+            <QuizAnswer />
           </div>
         </div>
       </div>
-    </>
   );
 }

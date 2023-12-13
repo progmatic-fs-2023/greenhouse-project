@@ -1,4 +1,4 @@
-import QuizQuestionCard from '../components/quizQuestionCard';
+import QuizQuestionCard from '../components/QuizQuestionCard';
 import QuizHandler from '../components/QuizHandler';
 import '../components/quizpage.css';
 
@@ -7,11 +7,11 @@ export default function QuizPage() {
     <div className="container">
       <div className="handlerside">
         <p>quiz Handler</p>
-        <QuizHandler></QuizHandler>
+        <QuizHandler />
       </div>
       <div className="quizside">
         <p>quiz itself</p>
-        <QuizQuestionCard></QuizQuestionCard>
+        <QuizQuestionCard />
       </div>
     </div>
   );

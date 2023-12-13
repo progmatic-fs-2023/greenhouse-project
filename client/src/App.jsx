@@ -12,13 +12,9 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(isConnect);
-  }, []);
-
   return (
     <div>
-      <QuizPage></QuizPage>
+      <QuizPage />
       <ul>
         <li>
           {isConnect ? '✅' : '️❗️'} Connect to backend {!isConnect && 'failed'}

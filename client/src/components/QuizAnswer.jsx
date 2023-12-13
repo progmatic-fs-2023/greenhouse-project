@@ -1,4 +1,4 @@
-import '../components/quizpage.css';
+import "./quizpage.css";
 
 export default function QuizAnswer() {
   return (
