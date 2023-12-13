@@ -2,8 +2,7 @@ import '../style.css';
 
 function Intro() {
   return (
-    <>
-      <div className="body_main_div">
+    <div className="body_main_div">
         <h2>
           Welcome to the <b>Greenhouse!</b> 🌟
         </h2>
@@ -17,7 +16,6 @@ function Intro() {
           quizzing! 🚀✨
         </p>
       </div>
-    </>
   );
 }
 

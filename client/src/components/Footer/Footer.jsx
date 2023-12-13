@@ -55,7 +55,7 @@ function Footer() {
           </ul>
         </div>
 
-        <div className="clearfix"></div>
+        <div className="clearfix" />
       </div>
     </div>
   );
