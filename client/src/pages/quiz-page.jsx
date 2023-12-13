@@ -1,6 +1,6 @@
-import QuizQuestionCard from '../components/QuizQuestionCard';
-import QuizHandler from '../components/QuizHandler';
-import '../components/quizpage.css';
+import QuizQuestionCard from '../components/Quizcomponents/QuizQuestionCard';
+import QuizHandler from '../components/Quizcomponents/QuizHandler';
+import '../components/Quizcomponents/quizpage.css';
 
 export default function QuizPage() {
   return (
