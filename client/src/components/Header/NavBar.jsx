@@ -1,13 +1,11 @@
 function NavBar() {
   return (
     <div className="navbar">
-      <a className="active" href="javascript:void(0)">
-        Home
-      </a>
-      <a href="javascript:void(0)">Start Quiz</a>
-      <a href="javascript:void(0)">Profile</a>
-      <a href="javascript:void(0)">Sign up</a>
-      <a href="javascript:void(0)">Log in</a>
+      <button type="button">Home</button>
+      <button type="button">Start Game</button>
+      <button type="button">Profile</button>
+      <button type="button">Register</button>
+      <button type="button">Sign up</button>
     </div>
   );
 }

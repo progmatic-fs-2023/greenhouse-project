@@ -1,6 +1,5 @@
 import '../style.css';
 import Intro from './Intro';
-import Tutorial from './Tutorial';
 
 function Body() {
   return (
