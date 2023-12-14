@@ -1,10 +1,19 @@
+:root {
+  --primary-color: #F5DEB3;
+  --secondary-color: #00401A;
+  --accent-color: #FF3800;
+  --smokey-black: #100C08;
+}
+
 .footer {
   width: 100%;
   position: relative;
   height: auto;
-  background-color: #070617;
+  background-color: var(--secondary-color);
+  border-bottom: 10px solid var(--smokey-black);
 }
 .footer .col {
+  background-color: var(--secondary-color);
   width: 190px;
   height: auto;
   float: left;

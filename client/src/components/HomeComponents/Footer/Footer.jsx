@@ -1,4 +1,3 @@
-import '../../style.css';
 import './footer.css';
 
 function Footer() {

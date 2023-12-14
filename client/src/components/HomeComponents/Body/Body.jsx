@@ -1,4 +1,4 @@
-import '../../style.css';
+import './body.css';
 import Intro from './Intro';
 
 function Body() {
