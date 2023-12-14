@@ -3,6 +3,7 @@ import './App.css';
 import AdminLogin from './components/AdminLoginComponents/AdminLogin';
 import QuizModuls from './components/QuizModulsComponents/QuizModuls/QuizModuls';
 import Home from './components/HomeComponents/Home';
+import QuizPage from './pages/Quizpage';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/admin" element={<AdminLogin />} />
       <Route path="/quizmoduls" element={<QuizModuls />} />
+      <Route path="/quizpage" element={<QuizPage />} />
     </Routes>
   );
 }
