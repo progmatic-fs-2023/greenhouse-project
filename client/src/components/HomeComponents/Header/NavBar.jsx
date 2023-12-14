@@ -4,7 +4,9 @@ function NavBar() {
       <button type="button">Home</button>
       <button type="button">Start Quiz</button>
       <button type="button">Profile</button>
-      <button type="button" id="signinBtn">Sign in</button>
+      <button type="button" id="signinBtn">
+        Sign in
+      </button>
     </div>
   );
 }

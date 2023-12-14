@@ -3,7 +3,7 @@ import './body.css';
 function Intro() {
   return (
     <div className="body_main_div">
-      <div id='body_text'>
+      <div id="body_text">
         <h2>
           Welcome to the <b>Greenhouse!</b>
         </h2>
@@ -17,7 +17,7 @@ function Intro() {
           it&apos;s a journey of discovery. Happy quizzing! 🚀✨
         </p>
       </div>
-      <div id='body_img'>
+      <div id="body_img">
         <img src="https://picsum.photos/400?grayscale" alt="placeholder_img" />
       </div>
     </div>
