@@ -1,6 +1,4 @@
-import './body.css';
-
-function Intro() {
+function Home() {
   return (
     <div className="body_main_div">
       <div id="body_text">
@@ -24,4 +22,4 @@ function Intro() {
   );
 }
 
-export default Intro;
+export default Home;
