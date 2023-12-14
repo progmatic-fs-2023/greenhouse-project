@@ -1,16 +1,22 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function NavBar() {
   return (
     <div className="navbar">
-      <Link>
+      <NavLink to="">
         <button type="button">Home</button>
-      </Link>
-      <button type="button">Start Quiz</button>
-      <button type="button">Profile</button>
-      <button type="button" id="signinBtn">
-        Sign in
-      </button>
+      </NavLink>
+      <NavLink to="/quizmoduls">
+        <button type="button">Start Quiz</button>
+      </NavLink>
+      <NavLink to="">
+        <button type="button">Profile</button>
+      </NavLink>
+      <NavLink to="">
+        <button type="button" id="signinBtn">
+          Sign in
+        </button>
+      </NavLink>
     </div>
   );
 }
