@@ -2,10 +2,9 @@ function NavBar() {
   return (
     <div className="navbar">
       <button type="button">Home</button>
-      <button type="button">Start Game</button>
+      <button type="button">Start Quiz</button>
       <button type="button">Profile</button>
-      <button type="button">Register</button>
-      <button type="button">Sign up</button>
+      <button type="button" id="signinBtn">Sign in</button>
     </div>
   );
 }
