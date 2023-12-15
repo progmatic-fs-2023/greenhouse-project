@@ -18,7 +18,8 @@
 .cards_container {
     display: flex;
     justify-content: space-between;
-    margin-left: 10%;
+    width: 80%;
+    margin: auto;
 }
   
 .card {
@@ -63,7 +64,7 @@
     margin-bottom: -5px;
 }
   
-.card_content h3{
+.card_content h3 {
     padding-top: 10px;
     font-size: 22px;
     letter-spacing: 0.5px;
