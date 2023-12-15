@@ -34,6 +34,7 @@
     border-left: 5px solid var(--smokey-black);
     border-radius: 10px;
     background-color: #066f3037;
+    box-shadow: 5px 5px var(--smokey-black);
 }
   
 #card_header {

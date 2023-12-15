@@ -1,8 +1,10 @@
+import './quizmodul.css';
+import '../../HomepageComponents/card.css';
 import LanguageCard from './LanguageCard';
 
 function QuizModuls() {
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+    <div className="quizmodul_main_container">
       <LanguageCard language="HTML" />
       <LanguageCard language="CSS" />
       <LanguageCard language="JavaScript" />

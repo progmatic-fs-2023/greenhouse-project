@@ -1,4 +1,4 @@
-import '../components/HomepageComponents/welcome.css'
+import '../components/HomepageComponents/welcome.css';
 import WelcomeText from '../components/HomepageComponents/WelcomeText';
 import WelcomeImg from '../components/HomepageComponents/WelcomeImg';
 import InstructionCards from '../components/HomepageComponents/InstructionCards';
