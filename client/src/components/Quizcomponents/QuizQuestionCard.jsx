@@ -1,25 +1,25 @@
 import QuizAnswer from './QuizAnswer';
-import QuizQuestion from './QuizQuestion';
+import QuizHandler from './QuizHandler';
 import './quizpage.css';
 
 export default function QuizQuestionCard() {
   return (
-    <div className="quizquestioncard">
-      <div className="quizquestion">
-        <QuizQuestion />
-      </div>
-      <div className="quizanswercontainer">
-        <div className="quizanswer">
+    <div className="quiz_question_card">
+      <div className="quiz_answer_container">
+        <div className="quiz_answer">
           <QuizAnswer />
         </div>
-        <div className="quizanswer">
+        <div className="quiz_answer">
           <QuizAnswer />
         </div>
-        <div className="quizanswer">
+        <div className="quiz_answer">
           <QuizAnswer />
         </div>
-        <div className="quizanswer">
+        <div className="quiz_answer">
           <QuizAnswer />
+        </div>
+        <div className="handler_side">
+          <QuizHandler />
         </div>
       </div>
     </div>

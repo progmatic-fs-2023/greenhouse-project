@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import CardHeader from '../../HomepageComponents/CardHeader';
 
 function LanguageCard({ language }) {
   const [difficulty, setDifficulty] = useState('easy');
@@ -14,11 +15,20 @@ function LanguageCard({ language }) {
   };
 
   return (
-    <div style={{ textAlign: 'center', padding: '20px', border: '1px solid #ddd', margin: '10px' }}>
-      <h3>{language}</h3>
-      <div>
+    <div className="card">
+      <CardHeader />
+      <div className="language_card_content">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png"
+          alt="html-img"
+          className="card_img"
+        />
+        <h3>{language}</h3>
+      </div>
+      <div className="language_card_options">
         <label htmlFor="difficulty">
           Select Difficulty:
+          <br />
           <select id="difficulty" value={difficulty} onChange={handleDifficultyChange}>
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
@@ -29,6 +39,7 @@ function LanguageCard({ language }) {
       <div>
         <label htmlFor="numberOfQuestions">
           Number of Questions:
+          <br />
           <input
             id="numberOfQuestions"
             type="number"

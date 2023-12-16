@@ -1,17 +1,17 @@
 import QuizQuestionCard from '../components/Quizcomponents/QuizQuestionCard';
-import QuizHandler from '../components/Quizcomponents/QuizHandler';
+import QuizQuestion from '../components/Quizcomponents/QuizQuestion';
 import '../components/Quizcomponents/quizpage.css';
 
 export default function QuizPage() {
   return (
-    <div className="container">
-      <div className="handlerside">
-        <p>quiz Handler</p>
-        <QuizHandler />
-      </div>
-      <div className="quizside">
-        <p>quiz itself</p>
-        <QuizQuestionCard />
+    <div className="main_container">
+      <div className="quiz_container">
+        <div className="quiz_question">
+          <QuizQuestion />
+        </div>
+        <div className="quiz_side">
+          <QuizQuestionCard />
+        </div>
       </div>
     </div>
   );
