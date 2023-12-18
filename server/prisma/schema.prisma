@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Question {
+  id               String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  description      String
+  level            Level
+  isTypingQuestion Boolean  @map("is_typing_question") @default(false)
+  topicId          Int      @map("topic_id")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+  topic            Topic    @relation(fields: [topicId], references: [id])
+  answers          Answer[]
+
+  @@map("question")
+}
+
+model Answer {
+  id         Int      @id @default(autoincrement())
+  questionId String   @db.Uuid @map("question_id")
+  name       String
+  isCorrect  Boolean  @map("is_correct")
+  question   Question @relation(fields: [questionId], references: [id])
+
+  @@map("answer")
+}
+
+model Topic {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String?
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt @map("updated_at")
+  question    Question[]
+
+  @@map("topic")
+}
+
+enum Level {
+  EASY
+  MEDIUM
+  HARD
+}
