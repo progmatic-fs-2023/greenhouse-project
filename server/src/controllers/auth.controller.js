@@ -2,7 +2,6 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import 'dotenv/config';
 import { findUserByUsername, createUser } from '../services/users.service';
-import HttpError from '../utils/HttpError';
 
 const register = async (req, res) => {
   const { username, password } = req.body;
@@ -26,13 +25,10 @@ const register = async (req, res) => {
   }
 };
 
-const login = async (req, res, next) => {
+const login = async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    
-    return next(new HttpError('Failed to login',400))
-    
     return res.status(400).json({
       message: 'Failed to login',
       error: 'Username or password not present',
