@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import AdminLogin from './pages/AdminLogin';
+import Login from './pages/Login';
 import QuizModuls from './components/QuizModulsComponents/QuizModuls/QuizModuls';
 import Home from './pages/Home';
 import QuizPage from './pages/Quizpage';
@@ -11,7 +11,7 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/quizmoduls" element={<QuizModuls />} />
         <Route path="/quizpage" element={<QuizPage />} />
       </Route>

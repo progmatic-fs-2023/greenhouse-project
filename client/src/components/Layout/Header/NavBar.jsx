@@ -12,7 +12,7 @@ function NavBar() {
       <NavLink to="">
         <button type="button">Profile</button>
       </NavLink>
-      <NavLink to="">
+      <NavLink to="/login">
         <button type="button" id="signinBtn">
           Sign in
         </button>
