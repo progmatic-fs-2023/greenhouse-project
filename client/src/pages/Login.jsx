@@ -10,22 +10,15 @@ function AdminLogin() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch('http://localhost:3030/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-      if (response.ok) {
-        navigate('/');
-        console.log('Sikeres bejelentkezés');
-      } else {
-        console.error('Hibás felhasználónév vagy jelszó');
-      }
-    } catch (error) {
-      console.error('Hiba a bejelentkezés során', error);
+    const response = await fetch('http://localhost:3030/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    });
+    if (response.ok) {
+      navigate('/');
     }
   };
 
