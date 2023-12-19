@@ -45,6 +45,17 @@ model Topic {
   @@map("topic")
 }
 
+model User {
+  id       String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  username String
+  password String
+  role     String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("user")
+}
+
 enum Level {
   EASY
   MEDIUM
