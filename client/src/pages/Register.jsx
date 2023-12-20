@@ -1,5 +1,6 @@
 import '../admin.css';
 import { useState, useEffect } from 'react';
+/* For Hotfix */
 
 function Register() {
   const [username, setUsername] = useState('');
