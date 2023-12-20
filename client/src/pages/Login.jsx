@@ -1,7 +1,6 @@
 import '../admin.css';
 import { useState } from 'react';
-import { useNavigate , NavLink } from 'react-router-dom';
-
+import { useNavigate, NavLink } from 'react-router-dom';
 
 function AdminLogin() {
   const [username, setUsername] = useState('');
