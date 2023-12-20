@@ -1,9 +1,9 @@
 import '../admin.css';
 import { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
 import { useNavigate, NavLink } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
-const Login = () => {
+function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -61,6 +61,6 @@ const Login = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Login;
