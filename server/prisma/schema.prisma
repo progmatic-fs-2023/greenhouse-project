@@ -47,8 +47,9 @@ model Topic {
 
 model User {
   id       String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  username String
+  username String   @unique
   password String
+  email    String   @unique
   role     String
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")

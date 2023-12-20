@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import { AuthProvider } from "./contexts/AuthContext";
 import Login from './pages/Login';
 import QuizModuls from './pages/QuizModuls';
 import Home from './pages/Home';
@@ -8,14 +9,16 @@ import Layout from './components/Layout/Body/LayoutBody';
 
 function App() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/quizmoduls" element={<QuizModuls />} />
-        <Route path="/quizpage" element={<QuizPage />} />
-      </Route>
-    </Routes>
+    <AuthProvider>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/quizmoduls" element={<QuizModuls />} />
+          <Route path="/quizpage" element={<QuizPage />} />
+        </Route>
+      </Routes>
+    </AuthProvider>
   );
 }
 

@@ -18,6 +18,7 @@ export const createUser = async newUser => {
       username: newUser.username,
       password: newUser.password,
       role: newUser.role,
+      email: newUser.email,
     },
   });
 

@@ -1,11 +1,13 @@
 import '../admin.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
-function AdminLogin() {
+function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,7 +19,10 @@ function AdminLogin() {
       },
       body: JSON.stringify({ username, password }),
     });
+    const responseData = await response.json();
+
     if (response.ok) {
+      login(responseData.user.username);
       navigate('/');
     }
   };
@@ -54,4 +59,4 @@ function AdminLogin() {
   );
 }
 
-export default AdminLogin;
+export default Login;

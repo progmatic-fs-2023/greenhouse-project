@@ -1,10 +1,9 @@
-import jwt from 'jsonwebtoken';
 import 'dotenv/config';
 import { findUserByUsername, createUser } from '../services/users.service';
-import { hashPassword, comparePassword } from '../services/auth.services';
+import { hashPassword, comparePassword, createToken } from '../services/auth.services';
 
 const register = async (req, res) => {
-  const { username, password, role } = req.body;
+  const { username, password, role, email } = req.body;
 
   try {
     const passwordHash = await hashPassword(password);
@@ -12,6 +11,7 @@ const register = async (req, res) => {
       username,
       password: passwordHash,
       role,
+      email,
     });
     res.status(201).json({
       message: 'User created',
@@ -53,9 +53,7 @@ const login = async (req, res) => {
         role: user.role,
       };
 
-      const token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: '3h',
-      });
+      const token = await createToken(payload);
 
       res.cookie('jwt', token, {
         maxAge: 3 * 60 * 60 * 1000,
