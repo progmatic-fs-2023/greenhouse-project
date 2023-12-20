@@ -1,10 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login';
-import QuizModuls from './components/QuizModulsComponents/QuizModuls/QuizModuls';
+import QuizModuls from './pages/QuizModuls';
 import Home from './pages/Home';
 import QuizPage from './pages/Quizpage';
-import Layout from './components/Layout/Layout';
+import Layout from './components/Layout/Body/LayoutBody';
 
 function App() {
   return (

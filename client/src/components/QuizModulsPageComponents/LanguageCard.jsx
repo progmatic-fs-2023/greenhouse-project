@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import CardHeader from '../../HomepageComponents/CardHeader';
+import CardHeader from '../HomePageComponents/CardHeader';
 
 function LanguageCard({ language }) {
   const [difficulty, setDifficulty] = useState('easy');
