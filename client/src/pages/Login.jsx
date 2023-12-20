@@ -1,7 +1,7 @@
 import '../admin.css';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { useNavigate, NavLink } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -53,6 +53,10 @@ const Login = () => {
           </label>
           <br />
           <button type="submit">Login</button>
+          <h3>OR</h3>
+          <NavLink to="/register">
+            <button type="button">Create account</button>
+          </NavLink>
         </form>
       </div>
     </div>
