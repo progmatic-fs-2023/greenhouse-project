@@ -1,6 +1,6 @@
 import '../admin.css';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 
 function AdminLogin() {
   const [username, setUsername] = useState('');
@@ -48,6 +48,10 @@ function AdminLogin() {
           </label>
           <br />
           <button type="submit">Login</button>
+          <h3>OR</h3>
+          <NavLink to="/register">
+            <button type="button">Create account</button>
+          </NavLink>
         </form>
       </div>
     </div>
