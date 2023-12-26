@@ -17,10 +17,8 @@ export const createUser = async newUser => {
     data: {
       username: newUser.username,
       password: newUser.password,
-      role: newUser.role,
       email: newUser.email,
     },
   });
-
   return createdUser;
 };

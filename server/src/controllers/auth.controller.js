@@ -3,14 +3,13 @@ import { findUserByUsername, createUser } from '../services/users.service';
 import { hashPassword, comparePassword, createToken } from '../services/auth.services';
 
 const register = async (req, res) => {
-  const { username, password, role, email } = req.body;
+  const { username, password, email } = req.body;
 
   try {
     const passwordHash = await hashPassword(password);
     const createdUser = await createUser({
       username,
       password: passwordHash,
-      role,
       email,
     });
     res.status(201).json({
