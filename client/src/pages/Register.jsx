@@ -1,5 +1,6 @@
 import '../admin.css';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -8,9 +9,21 @@ function Register() {
   const [password2, setPassword2] = useState('');
   const [error, setError] = useState('');
   const [showButton, setShowButton] = useState('false');
+  const navigate = useNavigate();
 
   const handleReg = async (e) => {
     e.preventDefault();
+
+    const response = await fetch('http://localhost:3030/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password, email }),
+    });
+    if (response.ok) {
+      navigate('/login');
+    }
   };
 
   useEffect(() => {

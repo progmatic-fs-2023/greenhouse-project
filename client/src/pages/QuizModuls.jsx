@@ -1,6 +1,6 @@
-import './quizmodul.css';
-import '../../HomepageComponents/card.css';
-import LanguageCard from './LanguageCard';
+import '../components/QuizModulsPageComponents/quizmodul.css';
+import '../components/HomePageComponents/card.css';
+import LanguageCard from '../components/QuizModulsPageComponents/LanguageCard';
 
 function QuizModuls() {
   return (

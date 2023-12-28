@@ -1,16 +1,24 @@
-import * as db from './db.services';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 export const findUserByUsername = async username => {
-  const result = await db.query('SELECT * FROM users WHERE username = $1', [username]);
+  const user = await prisma.user.findUnique({
+    where: {
+      username,
+    },
+  });
 
-  return result.rows[0];
+  return user;
 };
 
 export const createUser = async newUser => {
-  const result = await db.query(
-    'INSERT INTO users (username, password, role) VALUES ($1, $2, $3) RETURNING *',
-    [newUser.username, newUser.password, newUser.role],
-  );
-
-  return result.rows[0];
+  const createdUser = await prisma.user.create({
+    data: {
+      username: newUser.username,
+      password: newUser.password,
+      email: newUser.email,
+    },
+  });
+  return createdUser;
 };
