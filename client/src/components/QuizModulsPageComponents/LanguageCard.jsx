@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import CardHeader from '../../HomepageComponents/CardHeader';
+import CardHeader from '../HomePageComponents/CardHeader';
 
 // eslint-disable-next-line react/prop-types
 function LanguageCard({ title, language }) {

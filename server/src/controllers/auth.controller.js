@@ -1,17 +1,16 @@
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import 'dotenv/config';
 import { findUserByUsername, createUser } from '../services/users.service';
+import { hashPassword, comparePassword, createToken } from '../services/auth.services';
 
 const register = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, email } = req.body;
 
   try {
-    const passwordHash = await bcrypt.hash(password, 10);
+    const passwordHash = await hashPassword(password);
     const createdUser = await createUser({
       username,
       password: passwordHash,
-      role: 'admin',
+      email,
     });
     res.status(201).json({
       message: 'User created',
@@ -44,7 +43,7 @@ const login = async (req, res) => {
         error: 'Username is invalid',
       });
     }
-    const result = await bcrypt.compare(password, user.password);
+    const result = await comparePassword(password, user.password);
 
     if (result) {
       const payload = {
@@ -53,9 +52,7 @@ const login = async (req, res) => {
         role: user.role,
       };
 
-      const token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: '3h',
-      });
+      const token = await createToken(payload);
 
       res.cookie('jwt', token, {
         maxAge: 3 * 60 * 60 * 1000,
