@@ -17,6 +17,7 @@ const register = async (req, res) => {
       user: createdUser,
     });
   } catch (err) {
+    console.log(err.message)
     res.status(400).json({
       message: 'Failed to create user',
       error: err.message,
