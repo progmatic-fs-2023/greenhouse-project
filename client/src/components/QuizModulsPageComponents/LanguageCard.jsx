@@ -19,7 +19,7 @@ function LanguageCard({ title, language }) {
     <div className="card">
       <CardHeader />
       <div className="language_card_content">
-        <p className='title_text'>{title}</p>
+        <p className="title_text">{title}</p>
         <h3>{language}</h3>
       </div>
       <div className="language_card_options">

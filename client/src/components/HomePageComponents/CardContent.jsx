@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { TitleContext, DescriptionContext } from "../../contexts/CardContext";
+import { useContext } from 'react';
+import { TitleContext, DescriptionContext } from '../../contexts/CardContext';
 
 function CardContent() {
-
   const title = useContext(TitleContext);
   const description = useContext(DescriptionContext);
 

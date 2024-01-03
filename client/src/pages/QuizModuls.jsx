@@ -7,10 +7,10 @@ function QuizModuls() {
   return (
     <div className="quizmodul_main_container">
       <Description />
-      <div className='language_card_container'>
-      <LanguageCard title='< / >' language="HTML" />
-      <LanguageCard title='{ }' language="CSS" />
-      <LanguageCard title='JS' language="JavaScript" />
+      <div className="language_card_container">
+        <LanguageCard title="< / >" language="HTML" />
+        <LanguageCard title="{ }" language="CSS" />
+        <LanguageCard title="JS" language="JavaScript" />
       </div>
     </div>
   );
