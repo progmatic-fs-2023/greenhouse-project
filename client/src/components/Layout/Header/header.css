@@ -52,7 +52,7 @@
     text-align: center;
     border: none;
     offset: none;
-    margin: 0 20px;
+    margin: 0 15px;
     height: 70px;
     text-transform: uppercase;
     font-weight: bold;
@@ -83,8 +83,6 @@
 #signinBtn:hover {
     background-color:#fc5021;
     color: #291f15;
-    width: 100px;
-    height: 40px;
     letter-spacing: 0.3px;
     transition-timing-function: 0.3s ease-in-out;
     margin: 0 50px 0 20px;
