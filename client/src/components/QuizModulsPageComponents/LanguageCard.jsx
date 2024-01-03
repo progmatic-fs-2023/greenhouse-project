@@ -2,7 +2,8 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import CardHeader from '../HomePageComponents/CardHeader';
 
-function LanguageCard({ language }) {
+// eslint-disable-next-line react/prop-types
+function LanguageCard({ title, language }) {
   const [difficulty, setDifficulty] = useState('easy');
   const [numQuestions, setNumQuestions] = useState(5);
 
@@ -18,11 +19,7 @@ function LanguageCard({ language }) {
     <div className="card">
       <CardHeader />
       <div className="language_card_content">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png"
-          alt="html-img"
-          className="card_img"
-        />
+        <p className="title_text">{title}</p>
         <h3>{language}</h3>
       </div>
       <div className="language_card_options">

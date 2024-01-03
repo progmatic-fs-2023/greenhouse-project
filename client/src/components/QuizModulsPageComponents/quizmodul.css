@@ -3,13 +3,38 @@
     --secondary-color: #00401A;
     --accent-color: #FF3800;
     --smokey-black: #100C08;
+    --off-white: #ffffffd7;
+}
+
+.description_container {
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    text-align: center;
+    margin: 0 10% 3% 10%;
+    padding: 5% 0;
+}
+
+.description_container h1 {
+    font-size: 42pt;
+}
+
+.description_container p {
+    font-size: large;
+    font-weight: bold;
+    margin: 0 10%;
 }
 
 .quizmodul_main_container {
     display: flex;
     justify-content: space-between;
-    flex-flow: row nowrap;
-    padding: 10%;
+    flex-flow: column;
+    padding: 0 10% 10% 10%;
+}
+
+.language_card_container {
+    display: flex;
+    justify-content: space-between;
 }
 
 .language_card_content{
@@ -17,23 +42,23 @@
 }
 
 .language_card_content img {
-    border-bottom: 5px solid var(--smokey-black);
+    border-bottom: 3px solid var(--smokey-black);
 }
 
 .language_card_content h3 {
-    padding: 20px 0;
+    padding: 10px 0;
     margin-bottom: 20px;
     text-transform: uppercase;
     font-style: normal;
     font-size: x-large;
-    border-bottom: 5px solid var(--smokey-black);
+    border-bottom: 3px solid var(--smokey-black);
 }
 
 .card button {
     background-color: var(--accent-color);
     border-radius: 10px;
     border: none;
-    width: 100px;
+    width: 150px;
     height: 40px;
     margin: 10px 0 20px;
     font-weight: bold;
@@ -43,21 +68,39 @@
 }
 
 .card button:hover {
+    background-color:#fc5021;
+    color: #291f15;
+    letter-spacing: 0.3px;
+    transition-timing-function: 0.3s ease-in-out;
     cursor: pointer;
 }
 
 .card label {
     font-style: normal;
-    padding: 10px 0;
     font-size: large;
     font-weight: bold;
 }
 
 .card select, .card input  {
-    margin: 10px 0;
+    margin: 0 0 10px;
     padding: 2px;
     inset: 0;
     border: 2px solid var(--smokey-black);
     border-radius: 5px;
     width: 80px;
 }
+
+.title_text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+    background-color: var(--off-white);
+    height: 5rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 45px;
+    font-weight: bolder;
+    text-align: center;
+    border-bottom: 3px solid var(--smokey-black);
+}
+
