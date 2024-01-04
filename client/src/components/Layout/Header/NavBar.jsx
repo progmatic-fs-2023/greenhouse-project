@@ -11,7 +11,7 @@ function NavBar() {
       <NavLink to="/quizmoduls">
         <button type="button">Start Quiz</button>
       </NavLink>
-      <NavLink to="">
+      <NavLink to="/profile">
         <button type="button">Profile</button>
       </NavLink>
       <NavLink to="/login">
