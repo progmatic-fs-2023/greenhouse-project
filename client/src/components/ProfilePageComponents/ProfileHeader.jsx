@@ -1,14 +1,18 @@
 import Profilepic from '../../assets/profilepic.svg';
+import Plant from '../../assets/plant.svg';
 
 function ProfileHeader() {
-    return (
-        <div>
-            <img src={Profilepic} alt="Profile" />
-            <h2>Username</h2>
-            <h5>Member since: 2024. 01. 04.</h5>
-            <h4>Newbie</h4>
-        </div>
-    )
+  return (
+    <div className="profile_header_container">
+      <img src={Profilepic} alt="Profile" className="user_pic" />
+      <h1>Username</h1>
+      <h4>Member since: yyyy. mm. dd.</h4>
+      <h2>
+        <img src={Plant} alt="rank-icon" className="rank_pic" />
+        Newbie
+      </h2>
+    </div>
+  );
 }
 
 export default ProfileHeader;
