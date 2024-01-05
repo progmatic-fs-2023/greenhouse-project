@@ -8,6 +8,7 @@
 .footer {
   width: 100%;
   position: relative;
+  bottom: 0;
   height: auto;
   background-color: var(--secondary-color);
   border-bottom: 10px solid var(--smokey-black);

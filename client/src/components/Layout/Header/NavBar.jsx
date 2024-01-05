@@ -3,6 +3,7 @@ import { useAuth } from '../../../contexts/AuthContext';
 
 function NavBar() {
   const { isLoggedIn, username } = useAuth();
+  const { logout } = useAuth();
   return (
     <div className="navbar">
       <NavLink to="">
@@ -11,7 +12,7 @@ function NavBar() {
       <NavLink to="/quizmoduls">
         <button type="button">Start Quiz</button>
       </NavLink>
-      <NavLink to="/login">
+      <NavLink to={isLoggedIn ? '/profile' : '/login'}>
         {isLoggedIn ? (
           <p>{username}</p>
         ) : (
@@ -20,9 +21,9 @@ function NavBar() {
           </button>
         )}
       </NavLink>
-      <NavLink>
+      <NavLink to="/">
         {isLoggedIn ? (
-          <button type="button" id="signinBtn">
+          <button type="button" id="signinBtn" onClick={() => logout()}>
             Logout
           </button>
         ) : (
