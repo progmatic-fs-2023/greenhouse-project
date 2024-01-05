@@ -3,7 +3,6 @@ import cors from 'cors';
 import logger from './middlewares/logger.middleware';
 import errorHandler from './middlewares/errorHandler.middleware';
 import apiRouter from './routes/api.route';
-import authRouter from './routes/auth.route';
 
 const app = express();
 
@@ -13,7 +12,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(logger);
 
 app.use('/api', apiRouter);
-app.use('/auth', authRouter);
 
 app.use(errorHandler);
 export default app;

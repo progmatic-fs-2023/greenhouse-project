@@ -7,21 +7,24 @@ import Home from './pages/Home';
 import QuizPage from './pages/Quizpage';
 import Layout from './components/Layout/Body/LayoutBody';
 import Register from './pages/Register';
+import QuizProvider from './contexts/QuizContext';
 import Profile from './pages/Profile';
 
 function App() {
   return (
     <AuthProvider>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/quizmoduls" element={<QuizModuls />} />
-          <Route path="/quizpage" element={<QuizPage />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
-        </Route>
-      </Routes>
+      <QuizProvider>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/quizmoduls" element={<QuizModuls />} />
+            <Route path="/quizpage" element={<QuizPage />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/profile" element={<Profile />} />
+          </Route>
+        </Routes>
+      </QuizProvider>
     </AuthProvider>
   );
 }
