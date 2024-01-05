@@ -14,7 +14,7 @@ function Register() {
   const handleReg = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('http://localhost:3030/auth/register', {
+    const response = await fetch('http://localhost:3030/api/auth/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

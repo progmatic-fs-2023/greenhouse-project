@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import CardHeader from '../HomePageComponents/CardHeader';
 
-// eslint-disable-next-line react/prop-types
 function LanguageCard({ title, language }) {
   const [difficulty, setDifficulty] = useState('easy');
   const [numQuestions, setNumQuestions] = useState(5);
@@ -46,11 +46,16 @@ function LanguageCard({ title, language }) {
           />
         </label>
       </div>
-      <button type="button" style={{ marginTop: '20px' }}>
-        Start Quiz
-      </button>
+      <NavLink to="/quizpage">
+        <button type="button" style={{ marginTop: '20px' }}>
+          Start Quiz
+        </button>
+      </NavLink>
     </div>
   );
 }
-LanguageCard.propTypes = { language: PropTypes.string.isRequired };
+LanguageCard.propTypes = {
+  language: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
 export default LanguageCard;
