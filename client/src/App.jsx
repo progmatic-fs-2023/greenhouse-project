@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import QuizPage from './pages/Quizpage';
 import Layout from './components/Layout/Body/LayoutBody';
 import Register from './pages/Register';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/quizmoduls" element={<QuizModuls />} />
           <Route path="/quizpage" element={<QuizPage />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
     </AuthProvider>
