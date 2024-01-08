@@ -1,9 +1,17 @@
+:root {
+  --primary-color: #EDC9AF;
+  --secondary-color: #88B183;
+  --accent-color: #BF5700;
+  --button-hover-color: #af4128;
+  --smokey-black: #100C08;
+}
+
 * {
   margin: 0;
   padding: 0;
 }
 
 .appDiv {
-  height: 100%;
+  height: 100vh;
   width: 100%;
 }

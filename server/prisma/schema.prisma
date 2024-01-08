@@ -17,6 +17,7 @@ model Question {
   isTypingQuestion Boolean  @default(false) @map("is_typing_question")
   answers          Answer[]
   topic            Topic    @relation(fields: [topicId], references: [id])
+  isActive         Boolean @default(true)
 
   @@map("question")
 }
