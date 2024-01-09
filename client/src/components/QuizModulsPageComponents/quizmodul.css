@@ -72,9 +72,10 @@
     font-style: normal;
     font-size: 17pt;
     font-weight: bold;
+    width: 100%;
 }
 
-.card select, .card input  {
+.card select, .card input {
     margin: 0 0 10px;
     padding: 2px;
     border: 2px solid var(--smokey-black);

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import logo from '../../../assets/potted_plant.svg';
+import logo from '../../../../assets/potted_plant.svg';
 
 function Logo() {
   return (

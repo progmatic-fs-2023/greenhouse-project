@@ -10,6 +10,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  background-color: var(--primary-color);
   border: 5px solid var(--smokey-black);
   border-radius: 10px;
   box-shadow: 5px 5px var(--smokey-black);

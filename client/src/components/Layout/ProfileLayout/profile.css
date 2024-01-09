@@ -16,7 +16,7 @@
     margin-top: 2rem;
     padding: 5%;
     width: 100%;
-    background-color: #066f3037;
+    background-color: var(--secondary-color);
     border-left: 3px solid var(--smokey-black);
     border-top: 3px solid var(--smokey-black);
     border-right: 3px solid var(--smokey-black);
@@ -29,7 +29,7 @@
     height: 110px;
     border: 8px solid var(--smokey-black);
     border-radius: 50%;
-    background-color: var(--off-white);
+    background-color: white;
 }
 
 .profile_header_container h2 {
@@ -51,24 +51,27 @@
     background-color: #fdfaf3;
 }
 
-
 .profile_navbar {
+    display: flex;
+    flex-flow: column;
     width: 20%;
     margin: 0 auto;
     padding: 20px;
     border-right: 3px solid var(--smokey-black);
 }
 
-.profile_navbar li {
+.profile_navbar .navlink {
     list-style: none;
     font-size: larger;
     padding: 5px 0;
     font-weight: bold;
     transition-duration: 0.3s;
     letter-spacing: 0.2px;
+    text-decoration: none;
+    color: var(--smokey-black);
 }
 
-.profile_navbar li:hover {
+.profile_navbar .navlink:hover {
     list-style: none;
     width: max-content;
     font-size: larger;

@@ -55,6 +55,7 @@ function Register() {
           <br />
           <label htmlFor="email">
             E-mail:
+            <br />
             <input
               id="email"
               type="text"

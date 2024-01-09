@@ -6,52 +6,59 @@
 
 .admin_login_container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   text-align: center;
   flex-flow: column;
-  padding: 20px;
-  width: 280px;
-  height: fit-content;
-  border: 5px solid var(--smokey-black);
+  width: 300px;
+  height: 100%;
+  border-right: 3px solid var(--smokey-black);
+  border-bottom: 3px solid var(--smokey-black);
+  border-left: 3px solid var(--smokey-black);
   border-radius: 10px;
-  background-color: var(--accent-color);
-  box-shadow: 5px 5px var(--smokey-black);
+  background-color: var(--secondary-color);
+  box-shadow: 8px 8px var(--smokey-black);
 }
 
 .admin_login_container h2 {
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+  border: 3px solid var(--smokey-black);
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  padding: 10px 0;
   text-transform: uppercase;
   font-style: normal;
   font-size: x-large;
-  border-bottom: 5px solid var(--smokey-black);
+}
+
+.admin_login_container form {
+  padding: 20px 0;
 }
 
 .admin_login_container label {
   font-style: normal;
-  padding: 10px 0;
-  font-size: large;
+  font-size: 17pt;
   font-weight: bold;
 }
 
 .admin_login_container input {
-  margin: 10px;
-  padding: 2px 5px;
-  inset: 0;
+  margin-bottom: 15px;
+  padding: 5px;
   border: 2px solid var(--smokey-black);
   border-radius: 5px;
-  width: 80px;
+  width: 200px;
+  font-size: 13pt;
+  font-weight: bold;
 }
 
 .admin_login_container button {
-  background-color: #cdcdcd;
+  background-color: var(--accent-color);
   border-radius: 10px;
   border: none;
-  width: 140px;
+  width: 215px;
   height: 40px;
-  margin: 10px 70px;
-  padding: 0 10px;
+  padding: 5px;
+  margin: 10px 0;
+  font-size: 13pt;
   font-weight: bold;
   text-transform: uppercase;
   transition-duration: 0.3s;
@@ -59,6 +66,10 @@
 }
 
 .admin_login_container button:hover {
+  background-color: var(--button-hover-color);
+  color: #2c2c2c;
+  letter-spacing: 0.3px;
+  transition-timing-function: 0.3s ease-in-out;
   cursor: pointer;
 }
 
