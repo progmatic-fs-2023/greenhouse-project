@@ -17,7 +17,7 @@ model Question {
   isTypingQuestion Boolean  @default(false) @map("is_typing_question")
   answers          Answer[]
   topic            Topic    @relation(fields: [topicId], references: [id])
-  isActive         Boolean @default(true)
+  isActive         Boolean  @default(true)
 
   @@map("question")
 }
@@ -44,11 +44,11 @@ model Topic {
 }
 
 model User {
-  id       String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  username String   @unique
-  password String
-  email    String   @unique
-  role     String   @default("user")
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  username  String   @unique
+  password  String
+  email     String   @unique
+  role      String   @default("user")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 

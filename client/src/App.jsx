@@ -16,6 +16,9 @@ import Leaderboard from './components/ProfilePageComponents/Leaderboard';
 import Friends from './components/ProfilePageComponents/Friends';
 import Premium from './components/ProfilePageComponents/Premium';
 import Privacy from './components/ProfilePageComponents/Privacy';
+import AdminPage from './pages/AdminPage';
+import NewQuestion from './components/AdminPageComponents/NewQuestion';
+/* import EditQuestion from './components/AdminPageComponents/EditQuestion'; */
 
 function App() {
   return (
@@ -37,6 +40,9 @@ function App() {
                 <Route path="premium" element={<Premium />} />
                 <Route path="privacy" element={<Privacy />} />
             </Route>
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin/new" element={<NewQuestion />} />
+            {/* <Route path="/admin/edit" element={<EditQuestion />} /> */}
           </Route>
         </Routes>
       </QuizProvider>

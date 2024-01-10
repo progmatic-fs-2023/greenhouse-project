@@ -8,8 +8,8 @@ function QuizProvider({ children }) {
   useEffect(() => {
     const getQuiz = async () => {
       try {
-        const respone = await fetch('http://localhost:3030/api/game');
-        const quiz = await respone.json();
+        const response = await fetch('http://localhost:3030/api/game');
+        const quiz = await response.json();
         setQuizQuestions(quiz.questions);
       } catch (error) {
         throw new Error();
