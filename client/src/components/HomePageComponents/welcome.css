@@ -2,19 +2,19 @@
   display: flex;
   justify-content: space-between;
   flex-flow: column;
-  padding: 50px;
-  height: calc(fit-content + 30px);
+  padding: 100px 50px;
+  height: 100%;
   font-style: normal;
 }
 
 .welcome_text {
-  width: 52%;
+  width: 610px;
   text-align: justify;
   margin-left: 10%;
 }
 
 .welcome_text h1 {
-  margin-top: 1.5rem;
+  margin-top: -24px;
   font-size: 45pt;
   text-align: right;
   border-bottom: 10px solid #066f3037;
@@ -22,7 +22,7 @@
 
 .welcome_text h3 {
   margin-top: -1.5rem;
-  text-align: right;
+  text-align: center;
   font-size: 17pt;
 }
 

@@ -1,4 +1,4 @@
-import '../admin.css';
+import '../login.css';
 import "../components/HomePageComponents/card.css"
 
 import { useState } from 'react';
