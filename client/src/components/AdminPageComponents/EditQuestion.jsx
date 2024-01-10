@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+/* import React, { useState, useEffect } from 'react';
 
 function EditPage() {
   const [topic, setTopic] = useState('');
@@ -19,7 +19,8 @@ function EditPage() {
       }
 
       const data = await response.json();
-      return data.questions;
+      console.log(data.description);
+      return data.description;
     } catch (error) {
       console.error('Error fetching questions:', error.message);
       throw new Error('Failed to fetch questions. Please try again.');
@@ -38,15 +39,15 @@ function EditPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }; */
 
-  useEffect(() => {
+/*   useEffect(() => {
     if (topic && difficulty) {
       fetchQuestions();
     }
-  }, [topic, difficulty]);
+  }, [topic, difficulty]); */
 
-  return (
+/* return (
     <div>
       <h2>Edit Page</h2>
 
@@ -96,4 +97,4 @@ function EditPage() {
   );
 }
 
-export default EditPage;
+export default EditPage; */

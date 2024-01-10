@@ -23,7 +23,7 @@ export const createAnswers = async (questionId, answers) => {
   try {
     const createdAnswers = await prisma.answer.createMany({
       data: answers.map(answer => ({
-        questionId: questionId,
+        questionId,
         name: answer.text,
         isCorrect: answer.isCorrect,
       })),
@@ -34,4 +34,14 @@ export const createAnswers = async (questionId, answers) => {
     console.error('Error in createAnswers:', error);
     throw new Error('Failed to create answers. Please try again.');
   }
+};
+
+export const findAnswers = async (topic, difficulty) => {
+  const questions = await prisma.question.findMany({
+    where: {
+      topicId: Number(topic),
+      level: difficulty,
+    },
+  });
+  return questions;
 };

@@ -75,7 +75,7 @@ function QuestionForm() {
       setFormError('');
     } catch (error) {
       // Handle errors from the fetch request
-      console.error('Fetch error:', error);
+      /* console.error('Fetch error:', error); */
       setFormError('Failed to add question. Please try again.');
     }
   };
@@ -88,9 +88,13 @@ function QuestionForm() {
       {formError && <p className="error-message">{formError}</p>}
 
       <form className="quiz-form" onSubmit={handleSubmit}>
-        <label>
+        <label htmlFor="difficulty">
           Difficulty:
-          <select value={difficulty} onChange={(e) => setDifficulty(e.target.value)}>
+          <select
+            id="difficulty"
+            value={difficulty}
+            onChange={(e) => setDifficulty(e.target.value)}
+          >
             <option value="" disabled>
               Select Difficulty
             </option>
@@ -100,9 +104,9 @@ function QuestionForm() {
           </select>
         </label>
 
-        <label>
+        <label htmlFor="topic">
           Topic:
-          <select value={topic} onChange={(e) => setTopic(e.target.value)}>
+          <select id="topic" value={topic} onChange={(e) => setTopic(e.target.value)}>
             <option value="" disabled>
               Select Topic
             </option>
@@ -112,33 +116,42 @@ function QuestionForm() {
           </select>
         </label>
 
-        <label>
+        <label htmlFor="question">
           Question:
-          <input type="text" value={question} onChange={(e) => setQuestion(e.target.value)} />
+          <input
+            id="question"
+            type="text"
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+          />
         </label>
 
-        <label>
+        <label htmlFor="answers">
           Answers:
-          {answers.map((answer, index) => (
-            <div key={index} className="answer-group">
-              <label>
-                Answer {index + 1}:
-                <input
-                  type="text"
-                  value={answer.text}
-                  onChange={(e) => handleAnswerChange(index, e.target.value)}
-                />
-              </label>
-              <label>
-                Correct:
-                <input
-                  type="checkbox"
-                  checked={answer.isCorrect}
-                  onChange={() => handleCheckboxChange(index)}
-                />
-              </label>
-            </div>
-          ))}
+          {answers
+            .map((a, index) => ({ key: `a-${index}`, ...a }))
+            .map((answer, index) => (
+              <div id="answers" key={answer.key} className="answer-group">
+                <label htmlFor="answer">
+                  Answer {index + 1}:
+                  <input
+                    id="answer"
+                    type="text"
+                    value={answer.text}
+                    onChange={(e) => handleAnswerChange(index, e.target.value)}
+                  />
+                </label>
+                <label htmlFor="checkbox">
+                  Correct:
+                  <input
+                    id="checkbox"
+                    type="checkbox"
+                    checked={answer.isCorrect}
+                    onChange={() => handleCheckboxChange(index)}
+                  />
+                </label>
+              </div>
+            ))}
         </label>
 
         <button type="submit">Submit</button>

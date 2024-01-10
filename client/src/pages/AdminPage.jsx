@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function AdminPage() {
-  const { isLoggedIn, username } = useAuth();
+  const { username } = useAuth();
 
   return (
     <div>

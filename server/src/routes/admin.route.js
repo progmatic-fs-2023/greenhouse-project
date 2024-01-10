@@ -5,6 +5,6 @@ const router = Router();
 
 router.post('/new', adminController.newQuestion);
 
-router.post('/edit', adminController.editQuestion);
+/* router.post('/edit', adminController.editQuestion); */
 
 export default router;

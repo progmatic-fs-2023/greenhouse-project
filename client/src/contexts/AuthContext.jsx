@@ -19,7 +19,7 @@ export function AuthProvider({ children }) {
   };
 
   const roleCheck = (role) => {
-    if (role == 'admin') {
+    if (role === 'admin') {
       setIsAdmin(true);
     } else {
       setIsAdmin(false);
