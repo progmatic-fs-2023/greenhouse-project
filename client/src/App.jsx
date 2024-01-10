@@ -9,6 +9,9 @@ import Layout from './components/Layout/Body/LayoutBody';
 import Register from './pages/Register';
 import QuizProvider from './contexts/QuizContext';
 import Profile from './pages/Profile';
+import AdminPage from './pages/AdminPage';
+import NewQuestion from './components/AdminPageComponents/NewQuestion';
+import EditQuestion from './components/AdminPageComponents/EditQuestion';
 
 function App() {
   return (
@@ -22,6 +25,9 @@ function App() {
             <Route path="/quizpage" element={<QuizPage />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin/new" element={<NewQuestion />} />
+            <Route path="/admin/edit" element={<EditQuestion />} />
           </Route>
         </Routes>
       </QuizProvider>
