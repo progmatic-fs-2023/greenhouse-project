@@ -22,7 +22,7 @@ function Login() {
     const responseData = await response.json();
 
     if (response.ok) {
-      login(responseData.user.username);
+      login(responseData);
       navigate('/');
     }
   };
