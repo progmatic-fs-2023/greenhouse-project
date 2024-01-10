@@ -39,9 +39,9 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
     setUsername('');
+    setUserRole('')
   };
 
-  // Memoize the context value to avoid unnecessary re-renders
   const authContextValue = useMemo(
     () => ({ isLoggedIn, login, logout, username, userRole }),
     [isLoggedIn, username, userRole],
