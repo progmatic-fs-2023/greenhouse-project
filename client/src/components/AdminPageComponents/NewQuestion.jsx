@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './QuestionForm.css';
 
-const QuestionForm = () => {
+function QuestionForm() {
   const [difficulty, setDifficulty] = useState('');
   const [topic, setTopic] = useState('');
   const [question, setQuestion] = useState('');
@@ -145,6 +145,6 @@ const QuestionForm = () => {
       </form>
     </div>
   );
-};
+}
 
 export default QuestionForm;

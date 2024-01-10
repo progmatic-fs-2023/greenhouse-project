@@ -12,7 +12,7 @@ function NavBar() {
       <NavLink to="/quizmoduls">
         <button type="button">Start Quiz</button>
       </NavLink>
-      <NavLink to={'/admin'}>{isAdmin ? <button type="button">Admin</button> : ''}</NavLink>
+      <NavLink to="/admin">{isAdmin ? <button type="button">Admin</button> : ''}</NavLink>
       <NavLink to={isLoggedIn ? '/profile' : '/login'}>
         {isLoggedIn ? (
           <p>{username}</p>

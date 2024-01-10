@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const EditPage = () => {
+function EditPage() {
   const [topic, setTopic] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [questions, setQuestions] = useState([]);
@@ -94,6 +94,6 @@ const EditPage = () => {
       )}
     </div>
   );
-};
+}
 
 export default EditPage;
