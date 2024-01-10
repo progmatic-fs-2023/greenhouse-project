@@ -1,62 +1,22 @@
 import './footer.css';
+import fb from '../../../../assets/fb.svg';
+import x from '../../../../assets/x.svg';
+import ig from '../../../../assets/insta.svg';
+import linkedIn from '../../../../assets/linkedin.svg';
 
 function Footer() {
   return (
-    <div className="footer">
-      <div className="contain">
-        <div className="col">
-          <h1>Company</h1>
-          <ul>
-            <li>About</li>
-            <li>Mission</li>
-            <li>Services</li>
-            <li>Social</li>
-            <li>Get in touch</li>
-          </ul>
-        </div>
-        <div className="col">
-          <h1>Products</h1>
-          <ul>
-            <li>About</li>
-            <li>Mission</li>
-            <li>Services</li>
-            <li>Social</li>
-            <li>Get in touch</li>
-          </ul>
-        </div>
-        <div className="col">
-          <h1>Accounts</h1>
-          <ul>
-            <li>About</li>
-            <li>Mission</li>
-            <li>Services</li>
-            <li>Social</li>
-            <li>Get in touch</li>
-          </ul>
-        </div>
-        <div className="col">
-          <h1>Resources</h1>
-          <ul>
-            <li>Webmail</li>
-            <li>Redeem code</li>
-            <li>WHOIS lookup</li>
-            <li>Site map</li>
-            <li>Web templates</li>
-            <li>Email templates</li>
-          </ul>
-        </div>
-        <div className="col">
-          <h1>Support</h1>
-          <ul>
-            <li>Contact us</li>
-            <li>Web chat</li>
-            <li>Open ticket</li>
-          </ul>
-        </div>
-
-        <div className="clearfix" />
+    <footer className="footer">
+      <div className='text_container'>
+        <p>© 2023 Greenhouse Code — All rights reserved.</p>
       </div>
-    </div>
+      <div className='icons_container'>
+        <img src={fb} alt="Facebook" />
+        <img src={x} alt="X" />
+        <img src={ig} alt="Instagram" />
+        <img src={linkedIn} alt="Linked In" />
+      </div>
+    </footer>
   );
 }
 
