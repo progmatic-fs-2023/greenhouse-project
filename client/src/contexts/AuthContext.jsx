@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
     setUsername('');
-    setUserRole('')
+    setUserRole('');
   };
 
   const authContextValue = useMemo(
