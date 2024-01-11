@@ -36,17 +36,6 @@ export const createAnswers = async (questionId, answers) => {
   }
 };
 
-/* export const findAnswers = async (topic, difficulty) => {
-  const questions = await prisma.question.findMany({
-    where: {
-      topicId: Number(topic),
-      level: difficulty,
-    },
-  });
-  return questions;
-};
- */
-
 export const getQuestions = async (topic, difficulty, search) => {
   const questions = await prisma.question.findMany({
     where: {

@@ -27,7 +27,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin/new" element={<NewQuestion />} />
-            {<Route path="/admin/edit" element={<EditQuestion />} />}
+            <Route path="/admin/edit" element={<EditQuestion />} />
           </Route>
         </Routes>
       </QuizProvider>

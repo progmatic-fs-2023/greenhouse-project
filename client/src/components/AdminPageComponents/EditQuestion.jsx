@@ -8,7 +8,7 @@ function EditPage() {
   const [search, setSearch] = useState('');
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [errorState, setErrorState] = useState('');
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [updatedQuestion, setUpdatedQuestion] = useState('');
@@ -16,7 +16,7 @@ function EditPage() {
   const fetchQuestions = async () => {
     try {
       setLoading(true);
-      setError('');
+      setErrorState('');
 
       const response = await fetch(
         `http://localhost:3030/api/admin/edit?topic=${topic}&difficulty=${difficulty}&search=${search}`,
@@ -27,10 +27,10 @@ function EditPage() {
         throw new Error(errorData.error || 'Failed to fetch questions.');
       }
 
-      const questions = await response.json();
-      setQuestions(questions);
+      const fetchedQuestions = await response.json();
+      setQuestions(fetchedQuestions);
     } catch (error) {
-      setError(error.message);
+      setErrorState(error.message);
     } finally {
       setLoading(false);
     }
@@ -38,20 +38,8 @@ function EditPage() {
 
   const handleQuestionClick = (question) => {
     setSelectedQuestion(question);
-    setUpdatedQuestion(question.description); // Initialize the textarea with the current question's description
+    setUpdatedQuestion(question.description);
     setIsModalOpen(true);
-  };
-
-  const handleInputChange = (e) => {
-    setSelectedQuestion({
-      ...selectedQuestion,
-      description: e.target.value,
-    });
-  };
-
-  const handleSaveChanges = () => {
-    // Add logic to save changes to the backend or perform other actions
-    setIsModalOpen(false);
   };
 
   const handleUpdateQuestion = async () => {
@@ -68,22 +56,18 @@ function EditPage() {
         throw new Error('Failed to update question. Please try again.');
       }
 
-      // Assuming the backend returns the updated question object
       const updatedQuestionFromBackend = await response.json();
 
-      // Update the local questions state with the updated question
       setQuestions((prevQuestions) =>
         prevQuestions.map((question) =>
           question.id === selectedQuestion.id ? updatedQuestionFromBackend : question,
         ),
       );
 
-      // Handle success, e.g., close the modal, reset state, etc.
       setIsModalOpen(false);
       setUpdatedQuestion('');
     } catch (error) {
       console.error('Error updating question:', error.message);
-      // Handle error, e.g., show an error message to the user
     }
   };
 
@@ -98,9 +82,9 @@ function EditPage() {
       <h2>Edit Page</h2>
 
       <div>
-        <label>
+        <label htmlFor="topicSearch">
           Select Topic:
-          <select value={topic} onChange={(e) => setTopic(e.target.value)}>
+          <select id="topicSearch" value={topic} onChange={(e) => setTopic(e.target.value)}>
             <option value="" disabled>
               Select Topic
             </option>
@@ -110,9 +94,13 @@ function EditPage() {
           </select>
         </label>
 
-        <label>
+        <label htmlFor="diffSearch">
           Select Difficulty:
-          <select value={difficulty} onChange={(e) => setDifficulty(e.target.value)}>
+          <select
+            id="diffSearch"
+            value={difficulty}
+            onChange={(e) => setDifficulty(e.target.value)}
+          >
             <option value="" disabled>
               Select Difficulty
             </option>
@@ -122,16 +110,23 @@ function EditPage() {
           </select>
         </label>
 
-        <label>
+        <label htmlFor="textSearch">
           Search:
-          <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+          <input
+            id="textSearch"
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
         </label>
 
-        <button onClick={fetchQuestions}>Search</button>
+        <button type="button" onClick={fetchQuestions}>
+          Search
+        </button>
       </div>
 
       {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {errorState && <p style={{ color: 'red' }}>{errorState}</p>}
 
       {questions.length > 0 && (
         <div>
@@ -139,6 +134,7 @@ function EditPage() {
           <ul>
             {questions.map((question) => (
               <li
+                role="presentation"
                 key={question.id}
                 className="question-item"
                 onClick={() => handleQuestionClick(question)}
@@ -154,9 +150,10 @@ function EditPage() {
         {selectedQuestion && (
           <div>
             <h2>Edit Question</h2>
-            <label>
+            <label htmlFor="questionTextarea">
               Question Description:
               <textarea
+                id="questionTextarea"
                 value={updatedQuestion}
                 onChange={(e) => setUpdatedQuestion(e.target.value)}
                 rows={3}
@@ -164,9 +161,12 @@ function EditPage() {
                 style={{ resize: 'none' }}
               />
             </label>
-            {/* Add additional form fields and update logic as needed */}
-            <button onClick={handleUpdateQuestion}>Update Question</button>
-            <button onClick={() => setIsModalOpen(false)}>Close Modal</button>
+            <button type="button" onClick={handleUpdateQuestion}>
+              Update Question
+            </button>
+            <button type="button" onClick={() => setIsModalOpen(false)}>
+              Close Modal
+            </button>
           </div>
         )}
       </Modal>

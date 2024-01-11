@@ -35,10 +35,10 @@ const getSelectedQuestions = async (req, res) => {
     }
 
     const foundedQuestions = await getQuestions(topic, difficulty, search);
-    res.status(200).json(foundedQuestions);
+    return res.status(200).json(foundedQuestions);
   } catch (error) {
     console.error('Error in getQuestionsByTopicAndDifficulty:', error);
-    res.status(500).json({ error: 'Failed to fetch questions.' });
+    return res.status(500).json({ error: 'Failed to fetch questions.' });
   }
 };
 

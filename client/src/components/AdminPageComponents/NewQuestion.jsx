@@ -28,20 +28,17 @@ function QuestionForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate form inputs
     if (!difficulty || !topic || !question || answers.some((answer) => answer.text.trim() === '')) {
       setFormError('Please fill in all required fields.');
       return;
     }
 
-    // Check if at least one correct answer is selected
     if (!answers.some((answer) => answer.isCorrect)) {
       setFormError('Please select at least one correct answer.');
       return;
     }
 
     try {
-      // Send the data to the backend API endpoint using fetch
       const response = await fetch('http://localhost:3030/api/admin/new', {
         method: 'POST',
         headers: {
@@ -56,13 +53,11 @@ function QuestionForm() {
       });
 
       if (!response.ok) {
-        // Handle error responses
         const errorData = await response.json();
         setFormError(errorData.error || 'Failed to add question.');
         return;
       }
 
-      // Clear the form fields and error message after successful submission
       setDifficulty('');
       setTopic('');
       setQuestion('');
@@ -74,8 +69,6 @@ function QuestionForm() {
       ]);
       setFormError('');
     } catch (error) {
-      // Handle errors from the fetch request
-      /* console.error('Fetch error:', error); */
       setFormError('Failed to add question. Please try again.');
     }
   };
