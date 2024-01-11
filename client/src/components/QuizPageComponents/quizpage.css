@@ -19,7 +19,7 @@
   flex-flow: column;
   justify-content: center;
   width: 400px;
-  height: 425px;
+  height: 426px;
 }
 
 .quiz_question_title {
@@ -91,7 +91,7 @@
 }
 
 .quiz_answer button:hover {
-  background-color: lightgray;
+  background-color: rgb(156, 156, 156);
   cursor: pointer;
   transition-timing-function: 0.4s ease-in-out;
 }
