@@ -37,6 +37,7 @@ const login = async (req, res) => {
 
   try {
     const user = await findUserByUsername(username);
+    const { password: passwordHash, ...userWithoutPassword } = user;
 
     if (!user) {
       return res.status(401).json({
@@ -61,7 +62,8 @@ const login = async (req, res) => {
 
       return res.status(200).json({
         message: 'Login successful',
-        user,
+        user: userWithoutPassword,
+        token,
       });
     }
     return res.status(401).json({
