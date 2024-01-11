@@ -41,9 +41,10 @@ function App() {
                 <Route path="premium" element={<Premium />} />
                 <Route path="privacy" element={<Privacy />} />
             </Route>
-            <Route path="/admin" element={<AdminPage />} />
-            <Route path="/admin/new" element={<NewQuestion />} />
-            <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
+            <Route element={<ProtectedRoute allowedRoles={['admin']}/>}>
+              <Route path="/admin" element={<AdminPage />} />
+              <Route path="/admin/new" element={<NewQuestion />}/>
+            </Route>
             {/* <Route path="/admin/edit" element={<EditQuestion />} /> */}
           </Route>
         </Routes>

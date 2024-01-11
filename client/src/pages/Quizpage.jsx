@@ -4,7 +4,7 @@ import '../components/QuizPageComponents/quizpage.css';
 import useQuestion from '../hooks/useQuestion';
 
 export default function QuizPage() {
-  const { question, nextQuestion, correctAnswer } = useQuestion();
+  const { question, nextQuestion } = useQuestion();
 
   if (!question) return <div>Loading...</div>;
   return (
@@ -17,7 +17,7 @@ export default function QuizPage() {
           <QuizQuestionCard answers={question.answers} nextQuestion={nextQuestion} />
         </div>
       </div>
-      <p>{`Előző válaszod:${correctAnswer}`}</p>
+
     </div>
   );
 }
