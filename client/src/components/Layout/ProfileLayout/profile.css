@@ -3,8 +3,8 @@
     justify-content: center;
     align-items: center;
     flex-flow: column;
-    margin: 0 auto;
-    padding: 30px;
+    margin: auto;
+    padding: 3px 0 5%;
     width: 60%;
 }
 
@@ -32,12 +32,23 @@
     background-color: white;
 }
 
+.profile_header_container h1 {
+    font-size: 40pt;
+}
+
 .profile_header_container h2 {
+    font-size: 25pt;
     margin-top: 15px;
 }
 
+.profile_header_container h4 {
+    font-size: 17pt;
+}
+
 .rank_pic {
-    margin-bottom: -2px;
+    width: 30px;
+    height: 30px;
+    margin-bottom: -4px;
 }
 
 .profile_body {
@@ -62,7 +73,7 @@
 
 .profile_navbar .navlink {
     list-style: none;
-    font-size: larger;
+    font-size: 17pt;
     padding: 5px 0;
     font-weight: bold;
     transition-duration: 0.3s;
@@ -74,7 +85,6 @@
 .profile_navbar .navlink:hover {
     list-style: none;
     width: max-content;
-    font-size: larger;
     padding: 5px 0;
     font-weight: bold;
     color: #100c08a7;

@@ -46,24 +46,25 @@
     border-bottom: 3px solid var(--smokey-black);
 }
 
-.card button {
+.card button, .handler button {
     background-color: var(--accent-color);
     border-radius: 10px;
     border: none;
-    width: 150px;
+    width: 165px;
     height: 40px;
     margin: 10px 0 20px;
+    padding: 5px;
     font-size: 13pt;
     font-weight: bold;
     text-transform: uppercase;
     transition-duration: 0.3s;
-    box-shadow: 3px 5px var(--smokey-black);
+    box-shadow: 5px 5px var(--smokey-black);
 }
 
-.card button:hover {
+.card button:hover, .handler button:hover {
     background-color: var(--button-hover-color);
     color: #2c2c2c;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
     transition-timing-function: 0.3s ease-in-out;
     cursor: pointer;
 }
@@ -77,10 +78,10 @@
 
 .card select, .card input {
     margin: 0 0 10px;
-    padding: 2px;
+    padding: 5px;
     border: 2px solid var(--smokey-black);
     border-radius: 5px;
-    width: 80px;
+    width: 130px;
     font-size: 13pt;
     font-weight: bold;
 }

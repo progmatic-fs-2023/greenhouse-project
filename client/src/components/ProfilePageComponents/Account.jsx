@@ -1,7 +1,14 @@
-export default function Account(){
-    return(
-        <div>
-            <h2>Account details</h2>
-        </div>
-    )
+import PropTypes from 'prop-types';
+
+export default function Account({ userEmail }){
+
+  return (
+    <div>
+      <h1>{userEmail}</h1>
+    </div>
+  );
 }
+
+Account.propTypes = {
+  userEmail: PropTypes.string.isRequired,
+};

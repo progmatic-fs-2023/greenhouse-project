@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import QuizAnswer from './QuizAnswer';
 import QuizHandler from './QuizHandler';
 import './quizpage.css';
+import '../QuizModulsPageComponents/quizmodul.css'
 
 export default function QuizQuestionCard({ answers, nextQuestion }) {
   return (

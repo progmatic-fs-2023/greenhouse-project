@@ -5,7 +5,7 @@ export default function AdminPage() {
   const { username } = useAuth();
 
   return (
-    <div>
+    <div className='admin'>
       <h1>Hello {username}</h1>
       <h3>Want you want to do?</h3>
       <NavLink to="/admin/new">
