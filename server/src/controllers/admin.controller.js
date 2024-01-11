@@ -1,4 +1,9 @@
-import { createQuestion, /* findAnswers */ createAnswers } from '../services/admin.services';
+import {
+  createQuestion,
+  getQuestions,
+  createAnswers,
+  editQuestions,
+} from '../services/admin.services';
 
 const newQuestion = async (req, res) => {
   try {
@@ -21,24 +26,38 @@ const newQuestion = async (req, res) => {
   }
 };
 
-/* const editQuestion = async (req, res) => {
+const getSelectedQuestions = async (req, res) => {
   try {
-    const { topic, difficulty } = req.query;
+    const { topic, difficulty, search } = req.query;
 
     if (!topic || !difficulty) {
       return res.status(400).json({ error: 'Both topic and difficulty are required parameters.' });
     }
 
-    const foundedQuestions = await findAnswers(topic, difficulty);
-
-    res.status(200).json({ foundedQuestions });
+    const foundedQuestions = await getQuestions(topic, difficulty, search);
+    res.status(200).json(foundedQuestions);
   } catch (error) {
     console.error('Error in getQuestionsByTopicAndDifficulty:', error);
     res.status(500).json({ error: 'Failed to fetch questions.' });
   }
-}; */
+};
+
+const editQuestionChanges = async (req, res) => {
+  try {
+    const questionId = req.params.id;
+    const editedQuestion = req.body.updatedQuestion;
+    console.log(questionId, editedQuestion);
+    const updatedQuestion = await editQuestions(questionId, editedQuestion);
+
+    res.status(200).json(updatedQuestion);
+  } catch (error) {
+    console.error('Error updating question:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
 
 export default {
   newQuestion,
-  /* editQuestion, */
+  getSelectedQuestions,
+  editQuestionChanges,
 };

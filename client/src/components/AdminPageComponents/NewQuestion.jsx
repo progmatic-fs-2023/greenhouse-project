@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './QuestionForm.css';
+import './AdminPageComponents.css';
 
 function QuestionForm() {
   const [difficulty, setDifficulty] = useState('');

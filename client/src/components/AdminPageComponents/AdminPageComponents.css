@@ -33,3 +33,19 @@ button {
 button:hover {
   background-color: #45a049;
 }
+
+.question-item {
+  cursor: pointer;
+  padding: 3px;
+  margin-bottom: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.question-item:hover {
+  background-color: #e0e0e0;
+}
+
+.modalDiv {
+  display: flex;
+  flex-direction: column;
+}
