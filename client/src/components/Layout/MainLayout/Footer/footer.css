@@ -1,0 +1,25 @@
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row;
+  width: auto;
+  height: auto;
+  position: relative;
+  bottom: 0;
+  padding: 10px;
+  background-color: var(--secondary-color);
+  border-top: 2px solid var(--smokey-black);
+  box-shadow: 0 -5px 10px var(--smokey-black);
+  font-size: 14pt;
+  font-weight: bold;
+}
+
+footer img {
+  width: 40px;
+  height: 40px;
+  margin: 5px 5px 0 5px;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 80%;
+}

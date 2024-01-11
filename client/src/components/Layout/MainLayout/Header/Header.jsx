@@ -4,10 +4,10 @@ import NavBar from './NavBar';
 
 function Header() {
   return (
-    <div className="header">
+    <header className="header">
       <Logo />
       <NavBar />
-    </div>
+    </header>
   );
 }
 

@@ -37,7 +37,7 @@ const login = async (req, res) => {
 
   try {
     const user = await findUserByUsername(username);
-
+    const { password: passwordHash, ...userWithoutPassword } = user;
     if (!user) {
       return res.status(401).json({
         message: 'Failed to login',
@@ -51,6 +51,8 @@ const login = async (req, res) => {
         id: user.id,
         username: user.username,
         role: user.role,
+        email: user.email,
+        createdAt: user.createdAt,
       };
 
       const token = await createToken(payload);
@@ -61,7 +63,8 @@ const login = async (req, res) => {
 
       return res.status(200).json({
         message: 'Login successful',
-        user,
+        user: userWithoutPassword,
+        token,
       });
     }
     return res.status(401).json({

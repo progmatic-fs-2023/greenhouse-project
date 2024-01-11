@@ -1,22 +1,15 @@
-:root {
-    --primary-color: #F5DEB3;
-    --secondary-color: #00401A;
-    --accent-color: #FF3800;
-    --smokey-black: #100C08;
-}
-
 .header {
     background-color: var(--primary-color);
     display: flex;
     justify-content: space-between;
     height: 70px;
     border-bottom: 2px solid var(--smokey-black);
+    box-shadow: 0 5px 10px var(--smokey-black);
     text-transform: uppercase;
     font-weight: bold;
     position: sticky;
     top: 0;
     font-style: normal;
-    font-size: large;
 }
 
 .logo_navlink {
@@ -24,18 +17,18 @@
     justify-content: space-between;
     align-items: center;
     margin: 10px 20px;
-    height: 40px;
+    height: 50px;
     text-decoration: none;
     color: var(--smokey-black);
 }
 
 .logo img {
-    height: 30px;
+    height: 40px;
 }
 
 .logo p {
-    margin: 10px 0 0 5px;
-    font-size: larger;
+    margin: 15px 0 0 5px;
+    font-size: 19pt;
     letter-spacing: -1px;
 }
 
@@ -43,7 +36,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px;
+    padding: 20px;
     color: var(--smokey-black);
 }
   
@@ -52,17 +45,17 @@
     text-align: center;
     border: none;
     offset: none;
-    margin: 0 15px;
+    margin: 10px;
     height: 70px;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 15pt;
     cursor: pointer;
     transition-duration: 0.3s;
 }
   
 .navbar button:hover {
-    color:#af3918;
+    color: #2c2c2c;
     transition-duration: 0.3s;
     letter-spacing: 0.2px;
 }
@@ -73,7 +66,6 @@
     border: none;
     width: 100px;
     height: 40px;
-    margin: 0 50px 0 20px;
     font-weight: bold;
     text-transform: uppercase;
     transition-duration: 0.3s;
@@ -81,9 +73,8 @@
 }
 
 #signinBtn:hover {
-    background-color:#fc5021;
-    color: #291f15;
+    background-color: var(--button-hover-color);
+    color: #2c2c2c;
     letter-spacing: 0.3px;
     transition-timing-function: 0.3s ease-in-out;
-    margin: 0 50px 0 20px;
 }

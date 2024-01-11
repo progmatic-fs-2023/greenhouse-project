@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import gameRouter from './game.route';
 import authRouter from './auth.route';
+import adminRouter from './admin.route';
+import profileRouter from './profile.route';
 
 const router = Router();
 
@@ -10,5 +12,9 @@ router.get('/', (req, res) => {
 router.use('/game', gameRouter);
 
 router.use('/auth', authRouter);
+
+router.use('/admin', adminRouter);
+
+router.use('/profile', profileRouter);
 
 export default router;

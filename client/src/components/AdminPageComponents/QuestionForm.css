@@ -1,0 +1,35 @@
+.quiz-form .answer-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.quiz-form select,
+.quiz-form input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  margin-right: 10px;
+}
+
+.quiz-form .answer-group input[type='checkbox'] {
+  margin-right: 10px;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.admin button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.admin button:hover {
+  background-color: #45a049;
+}
