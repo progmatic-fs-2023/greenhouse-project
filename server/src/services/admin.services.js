@@ -36,12 +36,27 @@ export const createAnswers = async (questionId, answers) => {
   }
 };
 
-export const findAnswers = async (topic, difficulty) => {
+export const getQuestions = async (topic, difficulty, search) => {
   const questions = await prisma.question.findMany({
     where: {
       topicId: Number(topic),
       level: difficulty,
+      description: {
+        contains: search || '',
+      },
     },
   });
   return questions;
+};
+
+export const editQuestions = async (questionId, updatedQuestion) => {
+  const editedQuestions = await prisma.question.update({
+    where: {
+      id: questionId,
+    },
+    data: {
+      description: updatedQuestion,
+    },
+  });
+  return editedQuestions;
 };

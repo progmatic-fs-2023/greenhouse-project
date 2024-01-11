@@ -1,16 +1,27 @@
-/* import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import Modal from 'react-modal';
+import './AdminPageComponents.css';
+
+//! Admit that, only God knows what's in this code.
 
 function EditPage() {
   const [topic, setTopic] = useState('');
   const [difficulty, setDifficulty] = useState('');
+  const [search, setSearch] = useState('');
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [errorState, setErrorState] = useState('');
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [updatedQuestion, setUpdatedQuestion] = useState('');
 
-  const fetchData = async (topic, difficulty) => {
+  const fetchQuestions = async () => {
     try {
+      setLoading(true);
+      setErrorState('');
+
       const response = await fetch(
-        `http://localhost:3030/api/admin/edit?topic=${topic}&difficulty=${difficulty}`,
+        `http://localhost:3030/api/admin/edit?topic=${topic}&difficulty=${difficulty}&search=${search}`,
       );
 
       if (!response.ok) {
@@ -18,43 +29,64 @@ function EditPage() {
         throw new Error(errorData.error || 'Failed to fetch questions.');
       }
 
-      const data = await response.json();
-      console.log(data.description);
-      return data.description;
-    } catch (error) {
-      console.error('Error fetching questions:', error.message);
-      throw new Error('Failed to fetch questions. Please try again.');
-    }
-  };
-
-  const fetchQuestions = async () => {
-    try {
-      setLoading(true);
-      setError('');
-
-      const fetchedQuestions = await fetchData(topic, difficulty);
+      const fetchedQuestions = await response.json();
       setQuestions(fetchedQuestions);
     } catch (error) {
-      setError(error.message);
+      setErrorState(error.message);
     } finally {
       setLoading(false);
     }
-  }; */
+  };
 
-/*   useEffect(() => {
+  const handleQuestionClick = (question) => {
+    setSelectedQuestion(question);
+    setUpdatedQuestion(question.description);
+    setIsModalOpen(true);
+  };
+
+  const handleUpdateQuestion = async () => {
+    try {
+      const response = await fetch(`http://localhost:3030/api/admin/edit/${selectedQuestion.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ updatedQuestion }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update question. Please try again.');
+      }
+
+      const updatedQuestionFromBackend = await response.json();
+
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((question) =>
+          question.id === selectedQuestion.id ? updatedQuestionFromBackend : question,
+        ),
+      );
+
+      setIsModalOpen(false);
+      setUpdatedQuestion('');
+    } catch (error) {
+      throw new Error('Error updating question:', error.message);
+    }
+  };
+
+  useEffect(() => {
     if (topic && difficulty) {
       fetchQuestions();
     }
-  }, [topic, difficulty]); */
+  }, [topic, difficulty, search]);
 
-/* return (
+  return (
     <div>
       <h2>Edit Page</h2>
 
       <div>
-        <label>
+        <label htmlFor="topicSearch">
           Select Topic:
-          <select value={topic} onChange={(e) => setTopic(e.target.value)}>
+          <select id="topicSearch" value={topic} onChange={(e) => setTopic(e.target.value)}>
             <option value="" disabled>
               Select Topic
             </option>
@@ -64,9 +96,13 @@ function EditPage() {
           </select>
         </label>
 
-        <label>
+        <label htmlFor="diffSearch">
           Select Difficulty:
-          <select value={difficulty} onChange={(e) => setDifficulty(e.target.value)}>
+          <select
+            id="diffSearch"
+            value={difficulty}
+            onChange={(e) => setDifficulty(e.target.value)}
+          >
             <option value="" disabled>
               Select Difficulty
             </option>
@@ -76,25 +112,68 @@ function EditPage() {
           </select>
         </label>
 
-        <button onClick={fetchQuestions}>Search</button>
+        <label htmlFor="textSearch">
+          Search:
+          <input
+            id="textSearch"
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </label>
+
+        <button type="button" onClick={fetchQuestions}>
+          Search
+        </button>
       </div>
 
       {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {errorState && <p style={{ color: 'red' }}>{errorState}</p>}
 
       {questions.length > 0 && (
         <div>
           <h3>Questions:</h3>
           <ul>
             {questions.map((question) => (
-              <li key={question.id}>{question.description}</li>
-              // Add additional details or components to display the questions as needed
+              <li
+                role="presentation"
+                key={question.id}
+                className="question-item"
+                onClick={() => handleQuestionClick(question)}
+              >
+                {question.description}
+              </li>
             ))}
           </ul>
         </div>
       )}
+
+      <Modal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)}>
+        {selectedQuestion && (
+          <div>
+            <h2>Edit Question</h2>
+            <label htmlFor="questionTextarea">
+              Question Description:
+              <textarea
+                id="questionTextarea"
+                value={updatedQuestion}
+                onChange={(e) => setUpdatedQuestion(e.target.value)}
+                rows={3}
+                cols={40}
+                style={{ resize: 'none' }}
+              />
+            </label>
+            <button type="button" onClick={handleUpdateQuestion}>
+              Update Question
+            </button>
+            <button type="button" onClick={() => setIsModalOpen(false)}>
+              Close Modal
+            </button>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 }
 
-export default EditPage; */
+export default EditPage;

@@ -5,6 +5,8 @@ const router = Router();
 
 router.post('/new', adminController.newQuestion);
 
-/* router.post('/edit', adminController.editQuestion); */
+router.get('/edit', adminController.getSelectedQuestions);
+
+router.put('/edit/:id', adminController.editQuestionChanges);
 
 export default router;

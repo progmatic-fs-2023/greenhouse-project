@@ -19,7 +19,7 @@ import Privacy from './components/ProfilePageComponents/Privacy';
 import ProtectedRoute from './components/ProtectedPageComponents/ProtectedRoute';
 import AdminPage from './pages/AdminPage';
 import NewQuestion from './components/AdminPageComponents/NewQuestion';
-/* import EditQuestion from './components/AdminPageComponents/EditQuestion'; */
+import EditQuestion from './components/AdminPageComponents/EditQuestion';
 
 function App() {
   return (
@@ -44,6 +44,7 @@ function App() {
             <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
               <Route path="/admin" element={<AdminPage />} />
               <Route path="/admin/new" element={<NewQuestion />} />
+              <Route path="/admin/edit" element={<EditQuestion />} />
             </Route>
             {/* <Route path="/admin/edit" element={<EditQuestion />} /> */}
           </Route>
