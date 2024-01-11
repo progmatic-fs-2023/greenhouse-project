@@ -3,7 +3,9 @@ import * as gameController from '../controllers/game.controller';
 
 const router = Router();
 
-router.get('/', gameController.quizQuestions);
+router.post('/', gameController.quizQuestions);
 
 router.post('/:id/answers', gameController.handleAnswer);
+
+router.get('/quizmoduls', gameController.getTopics);
 export default router;
