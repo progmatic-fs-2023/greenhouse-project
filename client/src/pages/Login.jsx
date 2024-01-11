@@ -1,4 +1,6 @@
-import '../admin.css';
+import '../login.css';
+import '../components/HomePageComponents/card.css';
+
 import { useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -8,7 +10,6 @@ function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { login } = useAuth();
-  const { roleCheck } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -23,8 +24,7 @@ function Login() {
     const responseData = await response.json();
 
     if (response.ok) {
-      login(responseData.user.username);
-      roleCheck(responseData.user.role);
+      login(responseData);
       navigate('/');
     }
   };
@@ -36,6 +36,7 @@ function Login() {
         <form onSubmit={handleLogin}>
           <label htmlFor="username">
             Username:
+            <br />
             <input
               id="username"
               type="text"
@@ -46,6 +47,7 @@ function Login() {
           <br />
           <label htmlFor="password">
             Password:
+            <br />
             <input
               id="password"
               type="password"

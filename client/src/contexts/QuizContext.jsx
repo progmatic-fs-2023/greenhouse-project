@@ -1,24 +1,26 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { API_URL } from '../constants';
 
 export const QuizContext = createContext({});
+
 function QuizProvider({ children }) {
   const [quizQuestions, setQuizQuestions] = useState('');
-
-  useEffect(() => {
-    const getQuiz = async () => {
-      try {
-        const response = await fetch('http://localhost:3030/api/game');
-        const quiz = await response.json();
-        setQuizQuestions(quiz.questions);
-      } catch (error) {
-        throw new Error();
-      }
-    };
-    getQuiz();
-  }, []);
-
-  return <QuizContext.Provider value={{ quizQuestions }}>{children}</QuizContext.Provider>;
+  const getQuiz = async (language, difficulty, numberOfQuestions) => {
+    try {
+      const respone = await fetch(`${API_URL}/game`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ language, difficulty, numberOfQuestions }),
+      });
+      const quiz = await respone.json();
+      setQuizQuestions(quiz.questions);
+    } catch (error) {
+      throw new Error();
+    }
+  };
+  const QuizContextValue = useMemo(() => ({ quizQuestions, getQuiz }), [quizQuestions]);
+  return <QuizContext.Provider value={QuizContextValue}>{children}</QuizContext.Provider>;
 }
 QuizProvider.propTypes = {
   children: PropTypes.node.isRequired,

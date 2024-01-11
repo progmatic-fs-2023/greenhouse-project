@@ -1,41 +1,35 @@
-:root {
-  --primary-color: #F5DEB3;
-  --secondary-color: #00401A;
-  --accent-color: #FF3800;
-  --smokey-black: #100C08;
-}
-
 .welcome_div {
   display: flex;
   justify-content: space-between;
   flex-flow: column;
-  padding: 50px;
-  height: calc(fit-content + 30px);
+  padding: 100px 50px;
+  height: 100%;
   font-style: normal;
 }
 
 .welcome_text {
-  width: 47%;
+  width: 610px;
   text-align: justify;
   margin-left: 10%;
 }
 
 .welcome_text h1 {
-  margin-top: 1.5rem;
-  font-size: 40pt;
+  margin-top: -24px;
+  font-size: 45pt;
   text-align: right;
-  border-bottom: 8px solid #066f3037;
+  border-bottom: 10px solid #066f3037;
 }
 
 .welcome_text h3 {
-  margin-top: -1.2rem;
-  text-align: right;
-  font-size: large;
+  margin-top: -1.5rem;
+  text-align: center;
+  font-size: 17pt;
 }
 
 .welcome_text p {
   margin: 2.5rem 0;
-  font-size: 13pt;
+  font-size: 15pt;
+  font-weight: bold;
 }
 
 .welcome_img {

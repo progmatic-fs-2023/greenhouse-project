@@ -1,0 +1,83 @@
+.admin_login_main_container {
+  display: flex;
+  justify-content: center;
+  padding: 5rem 0;
+}
+
+.admin_login_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-flow: column;
+  width: 300px;
+  height: 100%;
+  border-right: 3px solid var(--smokey-black);
+  border-bottom: 3px solid var(--smokey-black);
+  border-left: 3px solid var(--smokey-black);
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  box-shadow: 8px 8px var(--smokey-black);
+}
+
+.admin_login_container h2 {
+  border: 3px solid var(--smokey-black);
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  padding: 10px 0;
+  text-transform: uppercase;
+  font-style: normal;
+  font-size: x-large;
+}
+
+.admin_login_container form {
+  padding: 20px 0;
+}
+
+.admin_login_container label {
+  font-style: normal;
+  font-size: 17pt;
+  font-weight: bold;
+}
+
+.admin_login_container input {
+  margin-bottom: 15px;
+  padding: 5px;
+  border: 2px solid var(--smokey-black);
+  border-radius: 5px;
+  width: 200px;
+  font-size: 13pt;
+  font-weight: bold;
+}
+
+.admin_login_container button {
+  background-color: var(--accent-color);
+  border-radius: 10px;
+  border: none;
+  width: 215px;
+  height: 40px;
+  padding: 5px;
+  margin: 10px 0;
+  font-size: 13pt;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition-duration: 0.3s;
+  box-shadow: 3px 5px var(--smokey-black);
+}
+
+.admin_login_container button:hover {
+  background-color: var(--button-hover-color);
+  color: #2c2c2c;
+  letter-spacing: 0.3px;
+  transition-timing-function: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.admin_login_container h3 {
+  padding-top: 10px;
+  padding-bottom: 0px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-style: normal;
+  font-size: x-large;
+}

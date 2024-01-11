@@ -1,4 +1,4 @@
-import '../admin.css';
+import '../login.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -55,6 +55,7 @@ function Register() {
           <br />
           <label htmlFor="email">
             E-mail:
+            <br />
             <input
               id="email"
               type="text"

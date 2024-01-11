@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAuth } from '../../../../contexts/AuthContext';
 
 function NavBar() {
-  const { isLoggedIn, username, isAdmin } = useAuth();
+  const { isLoggedIn, username, userRole } = useAuth();
   const { logout } = useAuth();
   return (
     <div className="navbar">
@@ -12,13 +12,15 @@ function NavBar() {
       <NavLink to="/quizmoduls">
         <button type="button">Start Quiz</button>
       </NavLink>
-      <NavLink to="/admin">{isAdmin ? <button type="button">Admin</button> : ''}</NavLink>
+      <NavLink to="/admin">
+        {userRole === 'admin' ? <button type="button">Admin</button> : ''}
+      </NavLink>
       <NavLink to={isLoggedIn ? '/profile' : '/login'}>
         {isLoggedIn ? (
-          <p>{username}</p>
+          <button type="button">{username}</button>
         ) : (
           <button type="button" id="signinBtn">
-            Sign up
+            Sign in
           </button>
         )}
       </NavLink>

@@ -1,6 +1,6 @@
-import ProfileHeader from '../components/ProfilePageComponents/ProfileHeader';
-import ProfileBody from '../components/ProfilePageComponents/ProfileBody';
-import '../components/ProfilePageComponents/profile.css';
+import ProfileHeader from '../components/Layout/ProfileLayout/ProfileHeader';
+import ProfileBody from '../components/Layout/ProfileLayout/ProfileBody';
+import '../components/Layout/ProfileLayout/profile.css';
 
 function Profile() {
   return (
