@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import './AdminPageComponents.css';
 
+//! Admit that, only God knows what's in this code.
+
 function EditPage() {
   const [topic, setTopic] = useState('');
   const [difficulty, setDifficulty] = useState('');
