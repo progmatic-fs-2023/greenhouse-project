@@ -69,7 +69,7 @@ function EditPage() {
       setIsModalOpen(false);
       setUpdatedQuestion('');
     } catch (error) {
-      console.error('Error updating question:', error.message);
+      throw new Error('Error updating question:', error.message);
     }
   };
 
