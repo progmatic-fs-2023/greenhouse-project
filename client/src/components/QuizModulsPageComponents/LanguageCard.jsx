@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import CardHeader from '../HomePageComponents/CardHeader';
+import { QuizContext } from '../../contexts/QuizContext';
 
 function LanguageCard({ title, language }) {
-  const [difficulty, setDifficulty] = useState('easy');
+  const [difficulty, setDifficulty] = useState('EASY');
   const [numQuestions, setNumQuestions] = useState(5);
-
+  const { getQuiz } = useContext(QuizContext);
   const handleDifficultyChange = (e) => {
     setDifficulty(e.target.value);
   };
@@ -27,9 +28,9 @@ function LanguageCard({ title, language }) {
           Select Difficulty:
           <br />
           <select id="difficulty" value={difficulty} onChange={handleDifficultyChange}>
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
+            <option value="EASY">Easy</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="HARD">Hard</option>
           </select>
         </label>
       </div>
@@ -47,7 +48,13 @@ function LanguageCard({ title, language }) {
         </label>
       </div>
       <NavLink to="/quizpage">
-        <button type="button" style={{ marginTop: '20px' }}>
+        <button
+          type="button"
+          style={{ marginTop: '20px' }}
+          onClick={() => {
+            getQuiz(language, difficulty, numQuestions);
+          }}
+        >
           Start Quiz
         </button>
       </NavLink>
