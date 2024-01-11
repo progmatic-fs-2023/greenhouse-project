@@ -10,7 +10,6 @@ function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { login } = useAuth();
-  const { roleCheck } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,8 +24,7 @@ function Login() {
     const responseData = await response.json();
 
     if (response.ok) {
-      login(responseData.user.username);
-      roleCheck(responseData.user.role);
+      login(responseData);
       navigate('/');
     }
   };

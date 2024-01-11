@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 export const QuizContext = createContext({});
@@ -18,7 +18,9 @@ function QuizProvider({ children }) {
     getQuiz();
   }, []);
 
-  return <QuizContext.Provider value={{ quizQuestions }}>{children}</QuizContext.Provider>;
+  const QuizContextValue = useMemo(() => ({ quizQuestions }), [quizQuestions]);
+
+  return <QuizContext.Provider value={QuizContextValue}>{children}</QuizContext.Provider>;
 }
 QuizProvider.propTypes = {
   children: PropTypes.node.isRequired,
