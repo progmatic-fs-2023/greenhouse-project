@@ -7,6 +7,6 @@ export const getUserEmail = async (req, res) => {
 };
 
 export const getUserCreationDate = async (req, res) => {
-    const createdAt = await findUserCreationDate();
-    res.status(200).json({ createdAt });
-  };
+  const createdAt = await findUserCreationDate();
+  res.status(200).json({ createdAt });
+};
