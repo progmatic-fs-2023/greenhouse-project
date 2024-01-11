@@ -52,7 +52,7 @@ const login = async (req, res) => {
         username: user.username,
         role: user.role,
         email: user.email,
-        createdAt: user.createdAt
+        createdAt: user.createdAt,
       };
 
       const token = await createToken(payload);

@@ -4,7 +4,6 @@ import Plant from '../../../assets/plant.svg';
 
 function ProfileHeader() {
   const { username, userCreationDate } = useAuth();
-  console.log(userCreationDate)
 
   const dateString = [userCreationDate];
   const formattedDate = dateString[0].slice(0, 10);

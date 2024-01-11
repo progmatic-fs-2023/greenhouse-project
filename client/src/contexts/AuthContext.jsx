@@ -33,7 +33,6 @@ export function AuthProvider({ children }) {
   const [userCreationDate, setuserCreationDate] = useState(initUserCreationDate(token));
 
   useEffect(() => {
-
     if (token) {
       localStorage.setItem('token', token);
       const decodedToken = jwtDecode(token);

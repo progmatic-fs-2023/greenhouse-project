@@ -1,5 +1,5 @@
 import '../login.css';
-import "../components/HomePageComponents/card.css"
+import '../components/HomePageComponents/card.css';
 
 import { useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';

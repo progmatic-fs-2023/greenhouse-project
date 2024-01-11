@@ -17,7 +17,6 @@ export default function QuizPage() {
           <QuizQuestionCard answers={question.answers} nextQuestion={nextQuestion} />
         </div>
       </div>
-
     </div>
   );
 }

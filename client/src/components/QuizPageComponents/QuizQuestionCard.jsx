@@ -4,7 +4,7 @@ import useQuestion from '../../hooks/useQuestion';
 import QuizAnswer from './QuizAnswer';
 import QuizHandler from './QuizHandler';
 import './quizpage.css';
-import '../QuizModulsPageComponents/quizmodul.css'
+import '../QuizModulsPageComponents/quizmodul.css';
 
 export default function QuizQuestionCard({ answers, nextQuestion }) {
   const { correctAnswer } = useQuestion();
