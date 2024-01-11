@@ -1,4 +1,6 @@
-import '../admin.css';
+import '../login.css';
+import '../components/HomePageComponents/card.css';
+
 import { useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -34,6 +36,7 @@ function Login() {
         <form onSubmit={handleLogin}>
           <label htmlFor="username">
             Username:
+            <br />
             <input
               id="username"
               type="text"
@@ -44,6 +47,7 @@ function Login() {
           <br />
           <label htmlFor="password">
             Password:
+            <br />
             <input
               id="password"
               type="password"

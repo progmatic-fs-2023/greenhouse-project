@@ -1,8 +1,5 @@
-:root {
-  --primary-color: #F5DEB3;
-}
-
 .body {
   background-color: var(--primary-color);
   width: 100%;
+  height: 100%;
 }
