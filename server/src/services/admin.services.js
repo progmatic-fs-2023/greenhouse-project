@@ -52,18 +52,6 @@ export const getQuestions = async (topic, difficulty, search) => {
   return questions;
 };
 
-/* export const editQuestions = async (questionId, updatedQuestion) => {
-  const editedQuestions = await prisma.question.update({
-    where: {
-      id: questionId,
-    },
-    data: {
-      description: updatedQuestion,
-    },
-  });
-  return editedQuestions;
-}; */
-
 export const editQuestions = async (questionId, updatedQuestion) => {
   const editedQuestion = await prisma.question.update({
     where: {
