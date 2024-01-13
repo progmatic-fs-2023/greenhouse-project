@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './AdminPageComponents.css';
 import '../../login.css';
 
-const QuestionForm = ({ QuestionProps, AnswersProps, DifficultyProps, TopicProps, IdProps }) => {
+function QuestionForm({ QuestionProps, AnswersProps, DifficultyProps, TopicProps, IdProps }) {
   const [difficulty, setDifficulty] = useState('');
   const [topic, setTopic] = useState('');
   const [question, setQuestion] = useState('');
@@ -20,7 +21,7 @@ const QuestionForm = ({ QuestionProps, AnswersProps, DifficultyProps, TopicProps
     setTopic(TopicProps || '');
     setId(IdProps || '');
     if (Array.isArray(AnswersProps) && AnswersProps.length === answers.length) {
-      const processedAnswers = AnswersProps.map((answer, index) => ({
+      const processedAnswers = AnswersProps.map((answer) => ({
         text: answer.name || '',
         isCorrect: answer.isCorrect || false,
       }));
@@ -177,6 +178,27 @@ const QuestionForm = ({ QuestionProps, AnswersProps, DifficultyProps, TopicProps
       </form>
     </div>
   );
+}
+
+QuestionForm.propTypes = {
+  QuestionProps: PropTypes.string,
+  AnswersProps: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string,
+      isCorrect: PropTypes.bool,
+    }),
+  ),
+  DifficultyProps: PropTypes.string,
+  TopicProps: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  IdProps: PropTypes.string,
+};
+
+QuestionForm.defaultProps = {
+  QuestionProps: '',
+  AnswersProps: '',
+  DifficultyProps: '',
+  TopicProps: '',
+  IdProps: '',
 };
 
 export default QuestionForm;

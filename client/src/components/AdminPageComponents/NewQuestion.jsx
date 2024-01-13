@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import './AdminPageComponents.css';
 import NewQuestionForm from './QuestionForm';
 

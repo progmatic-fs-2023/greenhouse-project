@@ -50,7 +50,7 @@ const editQuestionChanges = async (req, res) => {
     const updatedQuestionData = req.body;
     console.log(updatedQuestionData);
     const updatedQuestion = await editQuestions(questionId, updatedQuestionData);
-    const updatedAnswer = await editAnswers(questionId, updatedQuestionData);
+    await editAnswers(questionId, updatedQuestionData);
 
     res.status(201).json(updatedQuestion);
   } catch (error) {
