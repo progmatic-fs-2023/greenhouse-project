@@ -1,3 +1,7 @@
+.wrapper {
+  height: 100vh;
+}
+
 .admin_login_main_container {
   display: flex;
   justify-content: center;
@@ -20,37 +24,37 @@
   box-shadow: 8px 8px var(--smokey-black);
 }
 
-.admin_login_container h2 {
+.admin_login_container h2, .question-form-container h2, .edit_question_container h2, .admin h1 {
   border: 3px solid var(--smokey-black);
   width: 100%;
   border-radius: 10px 10px 0 0;
   padding: 10px 0;
   text-transform: uppercase;
   font-style: normal;
-  font-size: x-large;
+  font-size: 30pt;
 }
 
 .admin_login_container form {
   padding: 20px 0;
 }
 
-.admin_login_container label {
+.admin_login_container label, .quiz-form label, .edit_question_form label {
   font-style: normal;
   font-size: 17pt;
   font-weight: bold;
 }
 
-.admin_login_container input {
+.admin_login_container input, .quiz-form select, .quiz-form input {
   margin-bottom: 15px;
   padding: 5px;
-  border: 2px solid var(--smokey-black);
+  border: 3px solid var(--smokey-black);
   border-radius: 5px;
   width: 200px;
   font-size: 13pt;
   font-weight: bold;
 }
 
-.admin_login_container button {
+.admin_login_container button, .admin-button, .edit_question_form button, .admin button {
   background-color: var(--accent-color);
   border-radius: 10px;
   border: none;
@@ -62,10 +66,10 @@
   font-weight: bold;
   text-transform: uppercase;
   transition-duration: 0.3s;
-  box-shadow: 3px 5px var(--smokey-black);
+  box-shadow: 5px 8px var(--smokey-black);
 }
 
-.admin_login_container button:hover {
+.admin_login_container button:hover, .admin-button:hover, .edit_question_form button:hover, .admin button:hover {
   background-color: var(--button-hover-color);
   color: #2c2c2c;
   letter-spacing: 0.3px;
@@ -73,7 +77,7 @@
   cursor: pointer;
 }
 
-.admin_login_container h3 {
+.admin_login_container h3, .admin h3 {
   padding-top: 10px;
   padding-bottom: 0px;
   margin-bottom: 10px;

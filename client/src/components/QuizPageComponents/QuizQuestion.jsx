@@ -5,7 +5,7 @@ export default function QuizQuestion({ question }) {
   return (
     <div className="quiz_question_container">
       <div className="quiz_question_title">
-        <h2>Topic</h2>
+        <h2>topic</h2>
       </div>
       <div className="quiz_question_text">
         <p>{question}</p>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import Modal from 'react-modal';
 import './AdminPageComponents.css';
 
@@ -80,98 +81,99 @@ function EditPage() {
   }, [topic, difficulty, search]);
 
   return (
-    <div>
-      <h2>Edit Page</h2>
+    <div className="edit_question_main_container">
+      <div className="edit_question_container">
+        <h2>Edit Page</h2>
+        <div className="edit_question_form">
+          <label htmlFor="topicSearch">
+            Select Topic:
+            <select id="topicSearch" value={topic} onChange={(e) => setTopic(e.target.value)}>
+              <option value="" disabled>
+                Select Topic
+              </option>
+              <option value={Number(1)}>HTML</option>
+              <option value={Number(2)}>CSS</option>
+              <option value={Number(3)}>JavaScript</option>
+            </select>
+          </label>
 
-      <div>
-        <label htmlFor="topicSearch">
-          Select Topic:
-          <select id="topicSearch" value={topic} onChange={(e) => setTopic(e.target.value)}>
-            <option value="" disabled>
-              Select Topic
-            </option>
-            <option value={Number(1)}>HTML</option>
-            <option value={Number(2)}>CSS</option>
-            <option value={Number(3)}>JavaScript</option>
-          </select>
-        </label>
+          <label htmlFor="diffSearch">
+            Select Difficulty:
+            <select
+              id="diffSearch"
+              value={difficulty}
+              onChange={(e) => setDifficulty(e.target.value)}
+            >
+              <option value="" disabled>
+                Select Difficulty
+              </option>
+              <option value="EASY">Easy</option>
+              <option value="MEDIUM">Medium</option>
+              <option value="HARD">Hard</option>
+            </select>
+          </label>
 
-        <label htmlFor="diffSearch">
-          Select Difficulty:
-          <select
-            id="diffSearch"
-            value={difficulty}
-            onChange={(e) => setDifficulty(e.target.value)}
-          >
-            <option value="" disabled>
-              Select Difficulty
-            </option>
-            <option value="EASY">Easy</option>
-            <option value="MEDIUM">Medium</option>
-            <option value="HARD">Hard</option>
-          </select>
-        </label>
+          <label htmlFor="textSearch">
+            Search:
+            <input
+              id="textSearch"
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </label>
 
-        <label htmlFor="textSearch">
-          Search:
-          <input
-            id="textSearch"
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </label>
-
-        <button type="button" onClick={fetchQuestions}>
-          Search
-        </button>
-      </div>
-
-      {loading && <p>Loading...</p>}
-      {errorState && <p style={{ color: 'red' }}>{errorState}</p>}
-
-      {questions.length > 0 && (
-        <div>
-          <h3>Questions:</h3>
-          <ul>
-            {questions.map((question) => (
-              <li
-                role="presentation"
-                key={question.id}
-                className="question-item"
-                onClick={() => handleQuestionClick(question)}
-              >
-                {question.description}
-              </li>
-            ))}
-          </ul>
+          <button type="button" onClick={fetchQuestions}>
+            Search
+          </button>
         </div>
-      )}
 
-      <Modal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)}>
-        {selectedQuestion && (
-          <div>
-            <h2>Edit Question</h2>
-            <label htmlFor="questionTextarea">
-              Question Description:
-              <textarea
-                id="questionTextarea"
-                value={updatedQuestion}
-                onChange={(e) => setUpdatedQuestion(e.target.value)}
-                rows={3}
-                cols={40}
-                style={{ resize: 'none' }}
-              />
-            </label>
-            <button type="button" onClick={handleUpdateQuestion}>
-              Update Question
-            </button>
-            <button type="button" onClick={() => setIsModalOpen(false)}>
-              Close Modal
-            </button>
+        {loading && <p>Loading...</p>}
+        {errorState && <p className="error-message">{errorState}</p>}
+
+        {questions.length > 0 && (
+          <div className="questions_container">
+            <h3>Questions:</h3>
+            <ul>
+              {questions.map((question) => (
+                <li
+                  role="presentation"
+                  key={question.id}
+                  className="question-item"
+                  onClick={() => handleQuestionClick(question)}
+                >
+                  {question.description}
+                </li>
+              ))}
+            </ul>
           </div>
         )}
-      </Modal>
+
+        <Modal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)}>
+          {selectedQuestion && (
+            <div>
+              <h2>Edit Question</h2>
+              <label htmlFor="questionTextarea">
+                Question Description:
+                <textarea
+                  id="questionTextarea"
+                  value={updatedQuestion}
+                  onChange={(e) => setUpdatedQuestion(e.target.value)}
+                  rows={3}
+                  cols={40}
+                  style={{ resize: 'none' }}
+                />
+              </label>
+              <button type="button" onClick={handleUpdateQuestion}>
+                Update Question
+              </button>
+              <button type="button" onClick={() => setIsModalOpen(false)}>
+                Close Modal
+              </button>
+            </div>
+          )}
+        </Modal>
+      </div>
     </div>
   );
 }
