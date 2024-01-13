@@ -39,8 +39,8 @@ function Register() {
   }, [password, password2]);
 
   return (
-    <div className="admin_login_main_container">
-      <div className="admin_login_container">
+    <div className="login_main_container">
+      <div className="login_container">
         <h2>Registration</h2>
         <form onSubmit={handleReg}>
           <label htmlFor="username">

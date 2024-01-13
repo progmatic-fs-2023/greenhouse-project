@@ -30,9 +30,8 @@ function Login() {
   };
 
   return (
-    <div className="wrapper">
-      <div className="admin_login_main_container">
-        <div className="admin_login_container">
+      <div className="login_main_container">
+        <div className="login_container">
           <h2>Login</h2>
           <form onSubmit={handleLogin}>
             <label htmlFor="username">
@@ -65,7 +64,6 @@ function Login() {
           </form>
         </div>
       </div>
-    </div>
   );
 }
 

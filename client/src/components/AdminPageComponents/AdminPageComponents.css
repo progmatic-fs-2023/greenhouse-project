@@ -26,10 +26,6 @@
   padding: 5rem 0;
 }
 
-.edit_question_main_container, .admin_main_container {
-  padding-bottom: 300px;
-}
-
 .question-form-container, .edit_question_container {
   display: flex;
   justify-content: center;

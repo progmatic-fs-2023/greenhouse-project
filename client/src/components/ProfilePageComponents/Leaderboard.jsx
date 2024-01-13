@@ -1,7 +1,7 @@
 export default function Leaderboard() {
   return (
     <div>
-      <h2>Leaderboard</h2>
+      <h2>You have not joined the leaderboard yet.</h2>
     </div>
   );
 }

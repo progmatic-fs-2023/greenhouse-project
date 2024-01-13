@@ -9,20 +9,17 @@ export default function ProfileNavbar() {
       <NavLink to="/profile/password" className="navlink">
         Password
       </NavLink>
+      <NavLink to="/profile/notifications" className="navlink">
+        Notifications
+      </NavLink>
       <NavLink to="/profile/daily-goal" className="navlink">
         Daily goal
       </NavLink>
       <NavLink to="/profile/leaderboard" className="navlink">
         Leaderboard
       </NavLink>
-      <NavLink to="/profile/friends" className="navlink">
-        Friends
-      </NavLink>
       <NavLink to="/profile/premium" className="navlink">
         Premium
-      </NavLink>
-      <NavLink to="/profile/privacy" className="navlink">
-        Privacy
       </NavLink>
     </div>
   );
