@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import './AdminPageComponents.css';
-import NewQuestionForm from './QuestionForm';
+import QuestionForm from './QuestionForm';
 
 function EditPage() {
   const [topic, setTopic] = useState('');
@@ -28,7 +28,6 @@ function EditPage() {
       }
 
       const fetchedQuestions = await response.json();
-      console.log(fetchedQuestions);
       setQuestions(fetchedQuestions);
     } catch (error) {
       setErrorState(error.message);
@@ -36,6 +35,17 @@ function EditPage() {
       setLoading(false);
     }
   };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  useEffect(() => {
+    if (!isModalOpen) {
+      // Refresh selected questions immediately when modal is closed
+      fetchQuestions();
+    }
+  }, [isModalOpen]);
 
   const handleQuestionClick = (question) => {
     setSelectedQuestion(question);
@@ -117,11 +127,11 @@ function EditPage() {
         </div>
       )}
 
-      <Modal isOpen={isModalOpen} ariaHideApp={false} onRequestClose={() => setIsModalOpen(false)}>
+      <Modal isOpen={isModalOpen} ariaHideApp={false} onRequestClose={handleModalClose}>
         {selectedQuestion && (
           <div>
             <h2>Edit Question</h2>
-            <NewQuestionForm
+            <QuestionForm
               QuestionProps={selectedQuestion.description}
               AnswersProps={selectedQuestion.answers}
               DifficultyProps={selectedQuestion.level}
@@ -129,7 +139,7 @@ function EditPage() {
               IdProps={selectedQuestion.id}
             />
 
-            <button type="button" onClick={() => setIsModalOpen(false)}>
+            <button type="button" onClick={handleModalClose}>
               Close Modal
             </button>
           </div>

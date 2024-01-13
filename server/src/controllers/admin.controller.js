@@ -3,6 +3,7 @@ import {
   getQuestions,
   createAnswers,
   editQuestions,
+  editAnswers,
 } from '../services/admin.services';
 
 const newQuestion = async (req, res) => {
@@ -46,11 +47,12 @@ const getSelectedQuestions = async (req, res) => {
 const editQuestionChanges = async (req, res) => {
   try {
     const questionId = req.params.id;
-    const editedQuestion = req.body.updatedQuestion;
-    console.log(questionId, editedQuestion);
-    const updatedQuestion = await editQuestions(questionId, editedQuestion);
+    const updatedQuestionData = req.body;
+    console.log(updatedQuestionData);
+    const updatedQuestion = await editQuestions(questionId, updatedQuestionData);
+    const updatedAnswer = await editAnswers(questionId, updatedQuestionData);
 
-    res.status(200).json(updatedQuestion);
+    res.status(201).json(updatedQuestion);
   } catch (error) {
     console.error('Error updating question:', error);
     res.status(500).json({ error: 'Internal server error' });

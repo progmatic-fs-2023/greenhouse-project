@@ -18,6 +18,14 @@ const QuestionForm = ({ QuestionProps, AnswersProps, DifficultyProps, TopicProps
     setDifficulty(DifficultyProps || '');
     setTopic(TopicProps || '');
     setId(IdProps || '');
+    if (Array.isArray(AnswersProps) && AnswersProps.length === answers.length) {
+      const processedAnswers = AnswersProps.map((answer, index) => ({
+        text: answer.name || '',
+        isCorrect: answer.isCorrect || false,
+      }));
+
+      setAnswers(processedAnswers);
+    }
   }, [QuestionProps, AnswersProps, DifficultyProps, TopicProps, IdProps]);
 
   const [formError, setFormError] = useState('');
@@ -34,6 +42,8 @@ const QuestionForm = ({ QuestionProps, AnswersProps, DifficultyProps, TopicProps
     setAnswers(newAnswers);
   };
 
+  const isEditing = Boolean(IdProps);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -48,8 +58,14 @@ const QuestionForm = ({ QuestionProps, AnswersProps, DifficultyProps, TopicProps
     }
 
     try {
-      const response = await fetch('http://localhost:3030/api/admin/new', {
-        method: 'POST',
+      const url = isEditing
+        ? `http://localhost:3030/api/admin/edit/${id}`
+        : 'http://localhost:3030/api/admin/new';
+
+      const method = isEditing ? 'PUT' : 'POST';
+
+      const response = await fetch(url, {
+        method,
         headers: {
           'Content-Type': 'application/json',
         },
