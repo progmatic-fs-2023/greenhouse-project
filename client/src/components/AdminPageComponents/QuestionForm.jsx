@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './AdminPageComponents.css';
+import '../../login.css';
 
 const QuestionForm = ({ QuestionProps, AnswersProps, DifficultyProps, TopicProps, IdProps }) => {
   const [difficulty, setDifficulty] = useState('');
