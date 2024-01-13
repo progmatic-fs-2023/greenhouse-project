@@ -8,7 +8,6 @@ import {
 const newQuestion = async (req, res) => {
   try {
     const { difficulty, topic, question, answers } = req.body;
-    /* console.log(req.body); */
     const createdQuestion = await createQuestion({
       difficulty,
       topic,
@@ -35,6 +34,8 @@ const getSelectedQuestions = async (req, res) => {
     }
 
     const foundedQuestions = await getQuestions(topic, difficulty, search);
+    const jsonData = JSON.stringify(foundedQuestions.answers);
+    console.log(jsonData);
     return res.status(200).json(foundedQuestions);
   } catch (error) {
     console.error('Error in getQuestionsByTopicAndDifficulty:', error);

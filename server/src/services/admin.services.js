@@ -45,6 +45,9 @@ export const getQuestions = async (topic, difficulty, search) => {
         contains: search || '',
       },
     },
+    include: {
+      answers: true,
+    },
   });
   return questions;
 };
