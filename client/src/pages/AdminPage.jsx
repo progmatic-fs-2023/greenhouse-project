@@ -5,7 +5,7 @@ export default function AdminPage() {
   const { username } = useAuth();
 
   return (
-    <div className='admin_main_container'>
+    <div className="admin_main_container">
       <div className="admin">
         <h1>Hello {username}</h1>
         <h3>Want would you like to do?</h3>

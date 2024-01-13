@@ -30,41 +30,41 @@ function Login() {
   };
 
   return (
-    <div className='wrapper'>
-    <div className="admin_login_main_container">
-      <div className="admin_login_container">
-        <h2>Login</h2>
-        <form onSubmit={handleLogin}>
-          <label htmlFor="username">
-            Username:
+    <div className="wrapper">
+      <div className="admin_login_main_container">
+        <div className="admin_login_container">
+          <h2>Login</h2>
+          <form onSubmit={handleLogin}>
+            <label htmlFor="username">
+              Username:
+              <br />
+              <input
+                id="username"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </label>
             <br />
-            <input
-              id="username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </label>
-          <br />
-          <label htmlFor="password">
-            Password:
+            <label htmlFor="password">
+              Password:
+              <br />
+              <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
             <br />
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
-          <br />
-          <button type="submit">Login</button>
-          <h3>OR</h3>
-          <NavLink to="/register">
-            <button type="button">Create account</button>
-          </NavLink>
-        </form>
+            <button type="submit">Login</button>
+            <h3>OR</h3>
+            <NavLink to="/register">
+              <button type="button">Create account</button>
+            </NavLink>
+          </form>
+        </div>
       </div>
-    </div>
     </div>
   );
 }
