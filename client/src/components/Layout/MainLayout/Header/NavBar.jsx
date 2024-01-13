@@ -13,7 +13,7 @@ function NavBar() {
         <button type="button">Start Quiz</button>
       </NavLink>
       <NavLink to="/admin">
-        {userRole === 'admin' ? <button type="button">Admin</button> : ''}
+        {userRole === 'admin' || userRole === 'godmin' ? <button type="button">Admin</button> : ''}
       </NavLink>
       <NavLink to={isLoggedIn ? '/profile' : '/login'}>
         {isLoggedIn ? (
@@ -30,7 +30,7 @@ function NavBar() {
             Logout
           </button>
         ) : (
-          <div />
+          ''
         )}
       </NavLink>
     </div>
