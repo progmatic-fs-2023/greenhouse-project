@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Modal from 'react-modal';
 import './AdminPageComponents.css';
-
-//! Admit that, only God knows what's in this code.
+import QuestionForm from './QuestionForm';
 
 function EditPage() {
   const [topic, setTopic] = useState('');
@@ -14,7 +13,6 @@ function EditPage() {
   const [errorState, setErrorState] = useState('');
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [updatedQuestion, setUpdatedQuestion] = useState('');
 
   const fetchQuestions = async () => {
     try {
@@ -39,39 +37,20 @@ function EditPage() {
     }
   };
 
-  const handleQuestionClick = (question) => {
-    setSelectedQuestion(question);
-    setUpdatedQuestion(question.description);
-    setIsModalOpen(true);
+  const handleModalClose = () => {
+    setIsModalOpen(false);
   };
 
-  const handleUpdateQuestion = async () => {
-    try {
-      const response = await fetch(`http://localhost:3030/api/admin/edit/${selectedQuestion.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ updatedQuestion }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to update question. Please try again.');
-      }
-
-      const updatedQuestionFromBackend = await response.json();
-
-      setQuestions((prevQuestions) =>
-        prevQuestions.map((question) =>
-          question.id === selectedQuestion.id ? updatedQuestionFromBackend : question,
-        ),
-      );
-
-      setIsModalOpen(false);
-      setUpdatedQuestion('');
-    } catch (error) {
-      throw new Error('Error updating question:', error.message);
+  useEffect(() => {
+    if (!isModalOpen) {
+      // Refresh selected questions immediately when modal is closed
+      fetchQuestions();
     }
+  }, [isModalOpen]);
+
+  const handleQuestionClick = (question) => {
+    setSelectedQuestion(question);
+    setIsModalOpen(true);
   };
 
   useEffect(() => {
@@ -149,25 +128,19 @@ function EditPage() {
           </div>
         )}
 
-        <Modal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)}>
+        <Modal isOpen={isModalOpen} ariaHideApp={false} onRequestClose={handleModalClose}>
           {selectedQuestion && (
             <div>
               <h2>Edit Question</h2>
-              <label htmlFor="questionTextarea">
-                Question Description:
-                <textarea
-                  id="questionTextarea"
-                  value={updatedQuestion}
-                  onChange={(e) => setUpdatedQuestion(e.target.value)}
-                  rows={3}
-                  cols={40}
-                  style={{ resize: 'none' }}
-                />
-              </label>
-              <button type="button" onClick={handleUpdateQuestion}>
-                Update Question
-              </button>
-              <button type="button" onClick={() => setIsModalOpen(false)}>
+              <QuestionForm
+                QuestionProps={selectedQuestion.description}
+                AnswersProps={selectedQuestion.answers}
+                DifficultyProps={selectedQuestion.level}
+                TopicProps={selectedQuestion.topicId}
+                IdProps={selectedQuestion.id}
+              />
+
+              <button type="button" onClick={handleModalClose}>
                 Close Modal
               </button>
             </div>

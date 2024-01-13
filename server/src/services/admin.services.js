@@ -45,11 +45,14 @@ export const getQuestions = async (topic, difficulty, search) => {
         contains: search || '',
       },
     },
+    include: {
+      answers: true,
+    },
   });
   return questions;
 };
 
-export const editQuestions = async (questionId, updatedQuestion) => {
+/* export const editQuestions = async (questionId, updatedQuestion) => {
   const editedQuestions = await prisma.question.update({
     where: {
       id: questionId,
@@ -59,4 +62,37 @@ export const editQuestions = async (questionId, updatedQuestion) => {
     },
   });
   return editedQuestions;
+}; */
+
+export const editQuestions = async (questionId, updatedQuestion) => {
+  const editedQuestion = await prisma.question.update({
+    where: {
+      id: questionId,
+    },
+    data: {
+      description: updatedQuestion.description,
+      level: updatedQuestion.difficulty,
+      topicId: Number(updatedQuestion.topic),
+    },
+  });
+  return editedQuestion;
+};
+
+export const editAnswers = async (questionId, updatedAnswersData) => {
+  const transaction = await prisma.$transaction([
+    prisma.answer.deleteMany({
+      where: {
+        questionId,
+      },
+    }),
+    prisma.answer.createMany({
+      data: updatedAnswersData.answers.map(answer => ({
+        questionId,
+        name: answer.text,
+        isCorrect: answer.isCorrect,
+      })),
+    }),
+  ]);
+
+  return transaction[0];
 };

@@ -3,12 +3,12 @@ import {
   getQuestions,
   createAnswers,
   editQuestions,
+  editAnswers,
 } from '../services/admin.services';
 
 const newQuestion = async (req, res) => {
   try {
     const { difficulty, topic, question, answers } = req.body;
-    /* console.log(req.body); */
     const createdQuestion = await createQuestion({
       difficulty,
       topic,
@@ -35,6 +35,8 @@ const getSelectedQuestions = async (req, res) => {
     }
 
     const foundedQuestions = await getQuestions(topic, difficulty, search);
+    const jsonData = JSON.stringify(foundedQuestions.answers);
+    console.log(jsonData);
     return res.status(200).json(foundedQuestions);
   } catch (error) {
     console.error('Error in getQuestionsByTopicAndDifficulty:', error);
@@ -45,11 +47,12 @@ const getSelectedQuestions = async (req, res) => {
 const editQuestionChanges = async (req, res) => {
   try {
     const questionId = req.params.id;
-    const editedQuestion = req.body.updatedQuestion;
-    console.log(questionId, editedQuestion);
-    const updatedQuestion = await editQuestions(questionId, editedQuestion);
+    const updatedQuestionData = req.body;
+    console.log(updatedQuestionData);
+    const updatedQuestion = await editQuestions(questionId, updatedQuestionData);
+    await editAnswers(questionId, updatedQuestionData);
 
-    res.status(200).json(updatedQuestion);
+    res.status(201).json(updatedQuestion);
   } catch (error) {
     console.error('Error updating question:', error);
     res.status(500).json({ error: 'Internal server error' });
