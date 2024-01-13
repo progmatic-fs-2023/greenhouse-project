@@ -6,6 +6,8 @@ import {
   editAnswers,
 } from '../services/admin.services';
 
+import { getUsersByRole, editUserByRole } from '../services/users.service';
+
 const newQuestion = async (req, res) => {
   try {
     const { difficulty, topic, question, answers } = req.body;
@@ -35,9 +37,7 @@ const getSelectedQuestions = async (req, res) => {
     }
 
     const foundedQuestions = await getQuestions(topic, difficulty, search);
-    const jsonData = JSON.stringify(foundedQuestions.answers);
-    console.log(jsonData);
-    return res.status(200).json(foundedQuestions);
+    return res.status(201).json(foundedQuestions);
   } catch (error) {
     console.error('Error in getQuestionsByTopicAndDifficulty:', error);
     return res.status(500).json({ error: 'Failed to fetch questions.' });
@@ -59,8 +59,37 @@ const editQuestionChanges = async (req, res) => {
   }
 };
 
+const getSelectedUsers = async (req, res) => {
+  try {
+    const { userRole, search } = req.query;
+    const foundedUsers = await getUsersByRole(userRole, search);
+    if (!foundedUsers) {
+      return res.status(400).json({ error: 'User data.' });
+    }
+    return res.status(201).json(foundedUsers);
+  } catch (error) {
+    console.error('Error in get users:', error);
+    return res.status(500).json({ error: 'Failed to fetch questions.' });
+  }
+};
+
+const editUserRole = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const updatedUserData = req.body;
+    const updatedUser = await editUserByRole(userId, updatedUserData);
+
+    res.status(201).json(updatedUser);
+  } catch (error) {
+    console.error('Error updating user:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 export default {
   newQuestion,
   getSelectedQuestions,
   editQuestionChanges,
+  getSelectedUsers,
+  editUserRole,
 };

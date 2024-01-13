@@ -19,6 +19,7 @@ import ProtectedRoute from './components/ProtectedPageComponents/ProtectedRoute'
 import AdminPage from './pages/AdminPage';
 import NewQuestion from './components/AdminPageComponents/NewQuestion';
 import EditQuestion from './components/AdminPageComponents/EditQuestion';
+import UserEditRole from './components/AdminPageComponents/UserEditRole';
 
 function App() {
   return (
@@ -39,12 +40,14 @@ function App() {
               <Route path="premium" element={<Premium />} />
               <Route path="notifications" element={<Notifications />} />
             </Route>
-            <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
+            <Route element={<ProtectedRoute allowedRoles={['admin', 'godmin']} />}>
               <Route path="/admin" element={<AdminPage />} />
               <Route path="/admin/new" element={<NewQuestion />} />
               <Route path="/admin/edit" element={<EditQuestion />} />
             </Route>
-            {/* <Route path="/admin/edit" element={<EditQuestion />} /> */}
+            <Route element={<ProtectedRoute allowedRoles={['godmin']} />}>
+              <Route path="/admin/users" element={<UserEditRole />} />
+            </Route>
           </Route>
         </Routes>
       </QuizProvider>

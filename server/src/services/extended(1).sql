@@ -5,9 +5,9 @@ alter sequence topic_id_seq restart with 1;
 -- Dependencies: 218
 -- Data for Name: answer; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-INSERT INTO public.topic (name, description, created_at, updated_at) VALUES ('HTML', 'HTML Questions', '2024-01-06 16:05:04.809', '2024-01-06 17:05:14.825');
-INSERT INTO public.topic (name, description, created_at, updated_at) VALUES ('CSS', 'CSS Questions', '2024-01-06 16:05:04.809', '2024-01-06 17:05:14.825');
-INSERT INTO public.topic (name, description, created_at, updated_at) VALUES ('JS', 'Javascript Questions', '2024-01-06 16:05:04.809', '2024-01-06 17:05:14.825');
+INSERT INTO public.topic (name, description, created_at, updated_at) VALUES ('HTML', '</>', '2024-01-06 16:05:04.809', '2024-01-06 17:05:14.825');
+INSERT INTO public.topic (name, description, created_at, updated_at) VALUES ('CSS', '{ }', '2024-01-06 16:05:04.809', '2024-01-06 17:05:14.825');
+INSERT INTO public.topic (name, description, created_at, updated_at) VALUES ('Javascript', 'JS', '2024-01-06 16:05:04.809', '2024-01-06 17:05:14.825');
 
 
 
