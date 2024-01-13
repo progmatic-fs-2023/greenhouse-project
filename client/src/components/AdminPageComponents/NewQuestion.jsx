@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './AdminPageComponents.css';
+import '../../login.css'
 
 function QuestionForm() {
   const [difficulty, setDifficulty] = useState('');
@@ -74,11 +75,10 @@ function QuestionForm() {
   };
 
   return (
-    <div className="question-form-container">
+    <div className="question-container">
+      <div className='question-form-container'>
       <h2>Quiz Form</h2>
-      <p>This form allows you to add a question with one correct and three wrong answers.</p>
-
-      {formError && <p className="error-message">{formError}</p>}
+      <p id='question-form-p'>This form allows you to add a question with one correct and three wrong answers.</p>
 
       <form className="quiz-form" onSubmit={handleSubmit}>
         <label htmlFor="difficulty">
@@ -120,7 +120,6 @@ function QuestionForm() {
         </label>
 
         <label htmlFor="answers">
-          Answers:
           {answers
             .map((a, index) => ({ key: `a-${index}`, ...a }))
             .map((answer, index) => (
@@ -147,8 +146,11 @@ function QuestionForm() {
             ))}
         </label>
 
-        <button type="submit">Submit</button>
+      {formError && <p className="error-message">{formError}</p>}
+
+        <button type="submit" className='admin-button'>Submit</button>
       </form>
+      </div>
     </div>
   );
 }

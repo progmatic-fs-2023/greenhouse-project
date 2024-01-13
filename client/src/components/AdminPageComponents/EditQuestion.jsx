@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Modal from 'react-modal';
 import './AdminPageComponents.css';
 
@@ -80,10 +81,10 @@ function EditPage() {
   }, [topic, difficulty, search]);
 
   return (
-    <div>
+    <div className='edit_question_main_container'>
+      <div className='edit_question_container'>
       <h2>Edit Page</h2>
-
-      <div>
+      <div className='edit_question_form'>
         <label htmlFor="topicSearch">
           Select Topic:
           <select id="topicSearch" value={topic} onChange={(e) => setTopic(e.target.value)}>
@@ -128,10 +129,10 @@ function EditPage() {
       </div>
 
       {loading && <p>Loading...</p>}
-      {errorState && <p style={{ color: 'red' }}>{errorState}</p>}
+      {errorState && <p className='error-message'>{errorState}</p>}
 
       {questions.length > 0 && (
-        <div>
+        <div className='questions_container'>
           <h3>Questions:</h3>
           <ul>
             {questions.map((question) => (
@@ -172,6 +173,7 @@ function EditPage() {
           </div>
         )}
       </Modal>
+    </div>
     </div>
   );
 }
