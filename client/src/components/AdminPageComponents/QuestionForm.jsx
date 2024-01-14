@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './AdminPageComponents.css';
 import '../../login.css';
+import { API_URL } from '../../constants';
 
 function QuestionForm({ QuestionProps, AnswersProps, DifficultyProps, TopicProps, IdProps }) {
   const [difficulty, setDifficulty] = useState('');
@@ -60,9 +61,7 @@ function QuestionForm({ QuestionProps, AnswersProps, DifficultyProps, TopicProps
     }
 
     try {
-      const url = isEditing
-        ? `http://localhost:3030/api/admin/edit/${id}`
-        : 'http://localhost:3030/api/admin/new';
+      const url = isEditing ? `${API_URL}/admin/edit/${id}` : `${API_URL}/admin/new`;
 
       const method = isEditing ? 'PUT' : 'POST';
 
