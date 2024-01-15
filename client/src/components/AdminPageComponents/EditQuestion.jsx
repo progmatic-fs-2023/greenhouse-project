@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import './AdminPageComponents.css';
 import QuestionForm from './QuestionForm';
+import { API_URL } from '../../constants';
 
 function EditPage() {
   const [topic, setTopic] = useState('');
@@ -20,7 +21,7 @@ function EditPage() {
       setErrorState('');
 
       const response = await fetch(
-        `http://localhost:3030/api/admin/edit?topic=${topic}&difficulty=${difficulty}&search=${search}`,
+        `${API_URL}/admin/edit?topic=${topic}&difficulty=${difficulty}&search=${search}`,
       );
 
       if (!response.ok) {
@@ -43,7 +44,6 @@ function EditPage() {
 
   useEffect(() => {
     if (!isModalOpen) {
-      // Refresh selected questions immediately when modal is closed
       fetchQuestions();
     }
   }, [isModalOpen]);

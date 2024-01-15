@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './AdminPageComponents.css';
+import { API_URL } from '../../constants';
 
 function EditUserPage() {
   const [users, setUsers] = useState([]);
@@ -13,9 +14,7 @@ function EditUserPage() {
       setLoading(true);
       setErrorState('');
 
-      const response = await fetch(
-        `http://localhost:3030/api/admin/users?userRole=${userRole}&search=${search}`,
-      );
+      const response = await fetch(`${API_URL}/admin/users?userRole=${userRole}&search=${search}`);
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || 'Failed to fetch questions.');
@@ -32,7 +31,7 @@ function EditUserPage() {
 
   const updateUserRole = async (role, id) => {
     try {
-      const response = await fetch(`http://localhost:3030/api/admin/users/${id}`, {
+      const response = await fetch(`${API_URL}/admin/users/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

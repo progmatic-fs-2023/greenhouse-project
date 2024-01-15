@@ -17,10 +17,11 @@ import Friends from './components/ProfilePageComponents/Friends';
 import Premium from './components/ProfilePageComponents/Premium';
 import Privacy from './components/ProfilePageComponents/Privacy';
 import ProtectedRoute from './components/ProtectedPageComponents/ProtectedRoute';
-import AdminPage from './pages/AdminPage';
+import AdminPage from './pages/Admin';
 import NewQuestion from './components/AdminPageComponents/NewQuestion';
 import EditQuestion from './components/AdminPageComponents/EditQuestion';
 import UserEditRole from './components/AdminPageComponents/UserEditRole';
+import Contact from './pages/Contact';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/quizmoduls" element={<QuizModuls />} />
             <Route path="/quizpage" element={<QuizPage />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/profile" element={<Profile />}>
               <Route path="account" element={<Account />} />
               <Route path="password" element={<Password />} />
