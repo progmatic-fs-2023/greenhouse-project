@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import Modal from 'react-modal';
 import './AdminPageComponents.css';
 import QuestionForm from './QuestionForm';
@@ -20,9 +19,7 @@ function EditPage() {
       setLoading(true);
       setErrorState('');
 
-      const response = await fetch(
-        `${API_URL}/admin/edit?topic=${topic}&difficulty=${difficulty}&search=${search}`,
-      );
+      const response = await fetch(`${API_URL}/admin/edit?topic=${topic}&difficulty=${difficulty}`);
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -138,6 +135,7 @@ function EditPage() {
                 DifficultyProps={selectedQuestion.level}
                 TopicProps={selectedQuestion.topicId}
                 IdProps={selectedQuestion.id}
+                IsActiveProps={selectedQuestion.isActive}
               />
 
               <button type="button" onClick={handleModalClose}>
@@ -152,3 +150,5 @@ function EditPage() {
 }
 
 export default EditPage;
+
+// best code ever
