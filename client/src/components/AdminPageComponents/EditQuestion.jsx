@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
 import Modal from 'react-modal';
 import './AdminPageComponents.css';
 import QuestionForm from './QuestionForm';
+import { API_URL } from '../../constants';
 
 function EditPage() {
   const [topic, setTopic] = useState('');
@@ -19,9 +19,7 @@ function EditPage() {
       setLoading(true);
       setErrorState('');
 
-      const response = await fetch(
-        `http://localhost:3030/api/admin/edit?topic=${topic}&difficulty=${difficulty}&search=${search}`,
-      );
+      const response = await fetch(`${API_URL}/admin/edit?topic=${topic}&difficulty=${difficulty}`);
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -43,7 +41,6 @@ function EditPage() {
 
   useEffect(() => {
     if (!isModalOpen) {
-      // Refresh selected questions immediately when modal is closed
       fetchQuestions();
     }
   }, [isModalOpen]);
@@ -138,6 +135,7 @@ function EditPage() {
                 DifficultyProps={selectedQuestion.level}
                 TopicProps={selectedQuestion.topicId}
                 IdProps={selectedQuestion.id}
+                IsActiveProps={selectedQuestion.isActive}
               />
 
               <button className='modal_button' type="button" onClick={handleModalClose}>
@@ -152,3 +150,5 @@ function EditPage() {
 }
 
 export default EditPage;
+
+// best code ever

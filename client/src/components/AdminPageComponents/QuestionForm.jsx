@@ -1,25 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { API_URL } from '../../constants';
 import './AdminPageComponents.css';
 import '../../login.css';
 
-function QuestionForm({ QuestionProps, AnswersProps, DifficultyProps, TopicProps, IdProps }) {
+function QuestionForm({
+  QuestionProps,
+  AnswersProps,
+  DifficultyProps,
+  TopicProps,
+  IdProps,
+  IsActiveProps,
+}) {
   const [difficulty, setDifficulty] = useState('');
   const [topic, setTopic] = useState('');
   const [question, setQuestion] = useState('');
   const [id, setId] = useState('');
+  const [isActive, setIsActive] = useState(IsActiveProps || true);
   const [answers, setAnswers] = useState([
     { text: '', isCorrect: false },
     { text: '', isCorrect: false },
     { text: '', isCorrect: false },
     { text: '', isCorrect: false },
   ]);
+  const [formError, setFormError] = useState('');
+  const [formOk, setFormOk] = useState('');
 
   useEffect(() => {
     setQuestion(QuestionProps || '');
     setDifficulty(DifficultyProps || '');
     setTopic(TopicProps || '');
     setId(IdProps || '');
+    setIsActive(IsActiveProps);
+
     if (Array.isArray(AnswersProps) && AnswersProps.length === answers.length) {
       const processedAnswers = AnswersProps.map((answer) => ({
         text: answer.name || '',
@@ -28,20 +41,40 @@ function QuestionForm({ QuestionProps, AnswersProps, DifficultyProps, TopicProps
 
       setAnswers(processedAnswers);
     }
-  }, [QuestionProps, AnswersProps, DifficultyProps, TopicProps, IdProps]);
-
-  const [formError, setFormError] = useState('');
+  }, [QuestionProps, AnswersProps, DifficultyProps, TopicProps, IdProps, IsActiveProps]);
 
   const handleAnswerChange = (index, text) => {
     const newAnswers = [...answers];
     newAnswers[index].text = text;
     setAnswers(newAnswers);
+    setFormOk('');
   };
 
   const handleCheckboxChange = (index) => {
     const newAnswers = [...answers];
     newAnswers[index].isCorrect = !newAnswers[index].isCorrect;
     setAnswers(newAnswers);
+    setFormOk('');
+  };
+
+  const handleDifficultyChange = (e) => {
+    setDifficulty(e.target.value);
+    setFormOk('');
+  };
+
+  const handleTopicChange = (e) => {
+    setTopic(e.target.value);
+    setFormOk('');
+  };
+
+  const handleQuestionChange = (e) => {
+    setQuestion(e.target.value);
+    setFormOk('');
+  };
+
+  const handleIsActiveChange = () => {
+    setIsActive(!isActive);
+    setFormOk('');
   };
 
   const isEditing = Boolean(IdProps);
@@ -51,18 +84,18 @@ function QuestionForm({ QuestionProps, AnswersProps, DifficultyProps, TopicProps
 
     if (!difficulty || !topic || !question || answers.some((answer) => answer.text.trim() === '')) {
       setFormError('Please fill in all required fields.');
+      setFormOk('');
       return;
     }
 
     if (!answers.some((answer) => answer.isCorrect)) {
       setFormError('Please select at least one correct answer.');
+      setFormOk('');
       return;
     }
 
     try {
-      const url = isEditing
-        ? `http://localhost:3030/api/admin/edit/${id}`
-        : 'http://localhost:3030/api/admin/new';
+      const url = isEditing ? `${API_URL}/admin/edit/${id}` : `${API_URL}/admin/new`;
 
       const method = isEditing ? 'PUT' : 'POST';
 
@@ -76,12 +109,14 @@ function QuestionForm({ QuestionProps, AnswersProps, DifficultyProps, TopicProps
           topic,
           question,
           answers,
+          isActive,
         }),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        setFormError(errorData.error || 'Failed to add question.');
+        setFormError(errorData.error || 'Failed to add/update question.');
+        setFormOk('');
         return;
       }
 
@@ -94,9 +129,12 @@ function QuestionForm({ QuestionProps, AnswersProps, DifficultyProps, TopicProps
         { text: '', isCorrect: false },
         { text: '', isCorrect: false },
       ]);
+      setIsActive(true);
       setFormError('');
+      setFormOk('Question submitted successfully!');
     } catch (error) {
-      setFormError('Failed to add question. Please try again.');
+      setFormError('Failed to add/update question. Please try again.');
+      setFormOk('');
     }
   };
 
@@ -106,15 +144,12 @@ function QuestionForm({ QuestionProps, AnswersProps, DifficultyProps, TopicProps
       <p>This form allows you to add a question with one correct and three wrong answers.</p>
 
       {formError && <p className="error-message">{formError}</p>}
+      {formOk && <p className="ok-message">{formOk}</p>}
 
       <form className="quiz-form" onSubmit={handleSubmit}>
         <label htmlFor="difficulty">
           Difficulty:
-          <select
-            id="difficulty"
-            value={difficulty}
-            onChange={(e) => setDifficulty(e.target.value)}
-          >
+          <select id="difficulty" value={difficulty} onChange={handleDifficultyChange}>
             <option value="" disabled>
               Select Difficulty
             </option>
@@ -126,7 +161,7 @@ function QuestionForm({ QuestionProps, AnswersProps, DifficultyProps, TopicProps
 
         <label htmlFor="topic">
           Topic:
-          <select id="topic" value={topic} onChange={(e) => setTopic(e.target.value)}>
+          <select id="topic" value={topic} onChange={handleTopicChange}>
             <option value="" disabled>
               Select Topic
             </option>
@@ -138,12 +173,7 @@ function QuestionForm({ QuestionProps, AnswersProps, DifficultyProps, TopicProps
 
         <label htmlFor="question">
           Question:
-          <input
-            id="question"
-            type="text"
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-          />
+          <input id="question" type="text" value={question} onChange={handleQuestionChange} />
         </label>
 
         <label htmlFor="answers">
@@ -152,19 +182,19 @@ function QuestionForm({ QuestionProps, AnswersProps, DifficultyProps, TopicProps
             .map((a, index) => ({ key: `a-${index}`, ...a }))
             .map((answer, index) => (
               <div id="answers" key={answer.key} className="answer-group">
-                <label htmlFor="answer">
+                <label htmlFor={`answer-${index}`}>
                   Answer {index + 1}:
                   <input
-                    id="answer"
+                    id={`answer-${index}`}
                     type="text"
                     value={answer.text}
                     onChange={(e) => handleAnswerChange(index, e.target.value)}
                   />
                 </label>
-                <label htmlFor="checkbox">
+                <label htmlFor={`checkbox-${index}`}>
                   Correct:
                   <input
-                    id="checkbox"
+                    id={`checkbox-${index}`}
                     type="checkbox"
                     checked={answer.isCorrect}
                     onChange={() => handleCheckboxChange(index)}
@@ -172,6 +202,11 @@ function QuestionForm({ QuestionProps, AnswersProps, DifficultyProps, TopicProps
                 </label>
               </div>
             ))}
+        </label>
+
+        <label htmlFor="isActive">
+          Active:
+          <input id="isActive" type="checkbox" checked={isActive} onChange={handleIsActiveChange} />
         </label>
 
         <button type="submit">Submit</button>
@@ -191,14 +226,16 @@ QuestionForm.propTypes = {
   DifficultyProps: PropTypes.string,
   TopicProps: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   IdProps: PropTypes.string,
+  IsActiveProps: PropTypes.bool,
 };
 
 QuestionForm.defaultProps = {
   QuestionProps: '',
-  AnswersProps: '',
+  AnswersProps: [],
   DifficultyProps: '',
   TopicProps: '',
   IdProps: '',
+  IsActiveProps: true,
 };
 
 export default QuestionForm;
