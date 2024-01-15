@@ -10,14 +10,14 @@
   align-items: center;
   text-align: center;
   flex-flow: column;
-  width: 300px;
+  width: 400px;
   height: 100%;
   border-right: 3px solid var(--smokey-black);
   border-bottom: 3px solid var(--smokey-black);
   border-left: 3px solid var(--smokey-black);
   border-radius: 10px;
-  background-color: var(--secondary-color);
   box-shadow: 8px 8px var(--smokey-black);
+  background-color: var(--grey-background);
 }
 
 .login_container h2, .question-form-container h2, .edit_question_container h2, .admin h1 {
@@ -28,6 +28,7 @@
   text-transform: uppercase;
   font-style: normal;
   font-size: 30pt;
+  background-color: var(--secondary-color);
 }
 
 .login_container form {
@@ -37,35 +38,33 @@
 .login_container label, .quiz-form label, .edit_question_form label {
   font-style: normal;
   font-size: 17pt;
-  font-weight: bold;
 }
 
 .login_container input, .quiz-form select, .quiz-form input {
   margin-bottom: 15px;
-  padding: 5px;
+  padding: 5px 10px;
   border: 3px solid var(--smokey-black);
   border-radius: 5px;
-  width: 200px;
-  font-size: 13pt;
-  font-weight: bold;
+  width: 250px;
+  font-size: 15pt;
+  border-radius: 10px;
 }
 
-.login_container button, .admin-button, .edit_question_form button, .admin button {
+.login_container button, .edit_question_form button, .admin button, .question-form-container button, .modal_button {
   background-color: var(--accent-color);
   border-radius: 10px;
   border: none;
-  width: 215px;
+  width: 170px;
   height: 40px;
   padding: 5px;
   margin: 10px 0;
   font-size: 13pt;
-  font-weight: bold;
   text-transform: uppercase;
   transition-duration: 0.3s;
   box-shadow: 5px 8px var(--smokey-black);
 }
 
-.login_container button:hover, .admin-button:hover, .edit_question_form button:hover, .admin button:hover {
+.login_container button:hover, .edit_question_form button:hover, .admin button:hover, .question-form-container button:hover, .modal_button:hover {
   background-color: var(--button-hover-color);
   color: #2c2c2c;
   letter-spacing: 0.3px;

@@ -17,19 +17,20 @@
   margin-top: -24px;
   font-size: 45pt;
   text-align: right;
-  border-bottom: 10px solid #066f3037;
 }
 
 .welcome_text h3 {
   margin-top: -1.5rem;
   text-align: center;
   font-size: 17pt;
+  background-color: #066f3037;
+  padding: 5px 0;
+  border-radius: 7px;
 }
 
 .welcome_text p {
   margin: 2.5rem 0;
   font-size: 15pt;
-  font-weight: bold;
 }
 
 .welcome_img {
@@ -37,4 +38,33 @@
   opacity: 20%;
   padding: auto;
   border-radius: 50px;
+}
+
+/* --- MEDIA QUERIES --- */
+
+@media only screen and (max-width: 430px) { 
+  .welcome_text h1 {
+    font-size: 40pt;
+  }
+}
+
+@media only screen and (max-width: 700px) { 
+  .welcome_text {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    text-align: justify;
+  }
+
+  .welcome_text h1 {
+    margin-top: -80px;
+    font-size: 42pt;
+    text-align: center;
+  }
+  
+  .welcome_text h3 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 15pt;
+  }
 }

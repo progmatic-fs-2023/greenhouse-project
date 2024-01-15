@@ -130,7 +130,7 @@ function EditPage() {
 
         <Modal isOpen={isModalOpen} ariaHideApp={false} onRequestClose={handleModalClose}>
           {selectedQuestion && (
-            <div>
+            <div className='modal'>
               <h2>Edit Question</h2>
               <QuestionForm
                 QuestionProps={selectedQuestion.description}
@@ -140,8 +140,8 @@ function EditPage() {
                 IdProps={selectedQuestion.id}
               />
 
-              <button type="button" onClick={handleModalClose}>
-                Close Modal
+              <button className='modal_button' type="button" onClick={handleModalClose}>
+                Close
               </button>
             </div>
           )}

@@ -12,7 +12,6 @@ footer {
   border-top: 2px solid var(--smokey-black);
   box-shadow: 0 -5px 10px var(--smokey-black);
   font-size: 14pt;
-  font-weight: bold;
 }
 
 footer img {
@@ -22,4 +21,20 @@ footer img {
   background-color: white;
   border-radius: 50%;
   opacity: 80%;
+}
+
+footer img:hover {
+  opacity: 100%;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 700px) { 
+  footer {
+    flex-flow: row wrap;
+    padding: 10px 20px;
+  }
+
+  footer img {
+    margin-top: 10px;
+  }
 }

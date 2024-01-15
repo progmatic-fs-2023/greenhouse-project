@@ -75,7 +75,6 @@
     list-style: none;
     font-size: 17pt;
     padding: 5px 0;
-    font-weight: bold;
     transition-duration: 0.3s;
     letter-spacing: 0.2px;
     text-decoration: none;
@@ -86,7 +85,6 @@
     list-style: none;
     width: max-content;
     padding: 5px 0;
-    font-weight: bold;
     color: #100c08a7;
     letter-spacing: 0.3px;
     transition-timing-function: 0.3s ease-in-out;

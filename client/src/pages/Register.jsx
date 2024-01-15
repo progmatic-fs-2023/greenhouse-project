@@ -45,6 +45,7 @@ function Register() {
         <form onSubmit={handleReg}>
           <label htmlFor="username">
             Username:
+            <br />
             <input
               id="username"
               type="text"
@@ -66,6 +67,7 @@ function Register() {
           <br />
           <label htmlFor="password">
             Password:
+            <br />
             <input
               id="password"
               type="password"
@@ -76,6 +78,7 @@ function Register() {
           <br />
           <label htmlFor="password2">
             Password again:
+            <br />
             <input
               id="password2"
               type="password"

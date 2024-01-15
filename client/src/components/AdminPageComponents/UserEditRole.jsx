@@ -90,10 +90,10 @@ function EditUserPage() {
 
         {users.length > 0 && (
           <div className="questions_container">
-            <h3>Questions:</h3>
+            <h3>Users:</h3>
             <ul>
               {users.map((user) => (
-                <li role="presentation" key={user.id} className="question-item">
+                <li role="presentation" key={user.id} className="question-item" id='users_list'>
                   <p>Username: {user.username}</p>
 
                   <select

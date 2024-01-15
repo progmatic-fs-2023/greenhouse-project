@@ -40,7 +40,6 @@
   align-items: center;
   width: 400px;
   height: 400px;
-  font-weight: bold;
   padding: 100px 20px;
   font-size: 20pt;
   background-color: white;
@@ -89,7 +88,6 @@
   border-radius: 10px;
   background-color: white;
   font-size: 15pt;
-  font-weight: bold;
   transition-duration: 0.4s;
 }
 
