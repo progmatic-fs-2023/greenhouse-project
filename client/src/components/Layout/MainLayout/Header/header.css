@@ -44,7 +44,7 @@
     margin-right: 30px;
 }
 
-ul {
+nav ul {
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
@@ -52,7 +52,7 @@ ul {
     position: relative;
 }
 
-li {
+nav li {
     list-style: none;
     
 }
