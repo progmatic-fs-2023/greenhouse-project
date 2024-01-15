@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { API_URL } from '../../constants';
+import './AdminPageComponents.css';
+import '../../login.css';
 
 function QuestionForm({
   QuestionProps,
@@ -45,34 +47,34 @@ function QuestionForm({
     const newAnswers = [...answers];
     newAnswers[index].text = text;
     setAnswers(newAnswers);
-    setFormOk(''); // Dismiss success message on input change
+    setFormOk('');
   };
 
   const handleCheckboxChange = (index) => {
     const newAnswers = [...answers];
     newAnswers[index].isCorrect = !newAnswers[index].isCorrect;
     setAnswers(newAnswers);
-    setFormOk(''); // Dismiss success message on input change
+    setFormOk('');
   };
 
   const handleDifficultyChange = (e) => {
     setDifficulty(e.target.value);
-    setFormOk(''); // Dismiss success message on input change
+    setFormOk('');
   };
 
   const handleTopicChange = (e) => {
     setTopic(e.target.value);
-    setFormOk(''); // Dismiss success message on input change
+    setFormOk('');
   };
 
   const handleQuestionChange = (e) => {
     setQuestion(e.target.value);
-    setFormOk(''); // Dismiss success message on input change
+    setFormOk('');
   };
 
   const handleIsActiveChange = () => {
     setIsActive(!isActive);
-    setFormOk(''); // Dismiss success message on isActive change
+    setFormOk('');
   };
 
   const isEditing = Boolean(IdProps);
@@ -127,7 +129,7 @@ function QuestionForm({
         { text: '', isCorrect: false },
         { text: '', isCorrect: false },
       ]);
-      setIsActive(true); // Reset isActive state
+      setIsActive(true);
       setFormError('');
       setFormOk('Question submitted successfully!');
     } catch (error) {
