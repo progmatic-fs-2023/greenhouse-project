@@ -3,6 +3,7 @@ import gameRouter from './game.route';
 import authRouter from './auth.route';
 import adminRouter from './admin.route';
 import profileRouter from './profile.route';
+import contactRouter from './contact.route';
 
 const router = Router();
 
@@ -16,5 +17,7 @@ router.use('/auth', authRouter);
 router.use('/admin', adminRouter);
 
 router.use('/profile', profileRouter);
+
+router.use('/contact', contactRouter);
 
 export default router;

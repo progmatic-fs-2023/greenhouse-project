@@ -1,6 +1,7 @@
 import '../login.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../constants';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -14,7 +15,7 @@ function Register() {
   const handleReg = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('http://localhost:3030/api/auth/register', {
+    const response = await fetch(`${API_URL}/auth/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
