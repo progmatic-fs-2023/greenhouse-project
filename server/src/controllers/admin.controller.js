@@ -10,11 +10,12 @@ import { getUsersByRole, editUserByRole } from '../services/users.service';
 
 const newQuestion = async (req, res) => {
   try {
-    const { difficulty, topic, question, answers } = req.body;
+    const { difficulty, topic, question, answers, isActive } = req.body;
     const createdQuestion = await createQuestion({
       difficulty,
       topic,
       question,
+      isActive,
     });
     console.log(createdQuestion.id);
 

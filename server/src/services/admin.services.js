@@ -2,13 +2,14 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const createQuestion = async ({ question, difficulty, topic }) => {
+export const createQuestion = async ({ question, difficulty, topic, isActive }) => {
   try {
     const createdQuestion = await prisma.question.create({
       data: {
         description: question,
         level: difficulty,
         topicId: Number(topic),
+        isActive,
       },
     });
 
@@ -61,6 +62,7 @@ export const editQuestions = async (questionId, updatedQuestion) => {
       description: updatedQuestion.description,
       level: updatedQuestion.difficulty,
       topicId: Number(updatedQuestion.topic),
+      isActive: updatedQuestion.isActive,
     },
   });
   return editedQuestion;
