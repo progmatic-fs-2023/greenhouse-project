@@ -83,7 +83,6 @@
 
 .profile_navbar .navlink:hover {
     list-style: none;
-    width: max-content;
     padding: 5px 0;
     color: #100c08a7;
     letter-spacing: 0.3px;

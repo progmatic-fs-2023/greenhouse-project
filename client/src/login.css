@@ -17,10 +17,10 @@
   border-left: 3px solid var(--smokey-black);
   border-radius: 10px;
   box-shadow: 8px 8px var(--smokey-black);
-  background-color: var(--grey-background);
+  background-color: white;
 }
 
-.login_container h2, .question-form-container h2, .edit_question_container h2, .admin h1 {
+.login_container h2, .question-form-container h2, .edit_question_container h2, .admin h1, .new_question h2 {
   border: 3px solid var(--smokey-black);
   width: 100%;
   border-radius: 10px 10px 0 0;

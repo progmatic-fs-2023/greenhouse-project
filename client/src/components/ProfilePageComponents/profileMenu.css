@@ -8,7 +8,7 @@
     display: flex;
     justify-content: space-between;
     flex-flow: row;
-    width: 600px;
+    width: 570px;
     margin: 30px auto;
     font-size: 20pt;
 }
@@ -21,7 +21,7 @@
 }
 
 
-.container button {
+#delete_button {
     width: 130px;
     padding: 10px;
     margin: 20px auto;
@@ -35,7 +35,7 @@
     text-transform: uppercase;
 }
 
-.container button:hover {
+#delete_button:hover {
     background-color: rgb(218, 3, 3);
     cursor: pointer;
 }

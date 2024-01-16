@@ -12,7 +12,7 @@
   border-bottom: 3px solid var(--smokey-black);
   border-left: 3px solid var(--smokey-black);
   border-radius: 10px;
-  background-color: var(--grey-background);
+  background-color: white;
   box-shadow: 8px 8px var(--smokey-black);
 }
 
@@ -25,9 +25,25 @@
   justify-content: center;
   flex-flow: row;
   padding: 5rem 0;
+
 }
 
-.question-form-container, .edit_question_container {
+.new_question {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-flow: column;
+  margin: 30px auto;
+  width: 700px;
+  border-right: 3px solid var(--smokey-black);
+  border-left: 3px solid var(--smokey-black);
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  box-shadow: 8px 8px var(--smokey-black);
+}
+
+ .edit_question_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,22 +59,25 @@
   box-shadow: 8px 8px var(--smokey-black);
 }
 
-.question-form-container {
-  margin: 50px auto;
-}
-
 .edit_question_form {
   display: flex;
   justify-content:flex-start;
   align-items: center;
-  flex-flow: row wrap;
+  flex-flow: row;
   padding: 10px;
 }
 
 .question-form-container p {
   font-size: 17pt;
+  margin-top: 20px;
+}
+
+.new_question p {
+  background-color: var(--grey-background);
+  font-size: 17pt;
   padding: 20px 0;
 }
+
 
 .quiz-form .answer-group {
   display: flex;
@@ -102,8 +121,8 @@
 }
 
 .quiz-form {
-  background-color: var(--grey-background);
   border-radius: 0 0 7px 7px;
+  background-color: white;
 }
 
 .error-message, .edit_question_form p {
@@ -154,6 +173,14 @@
   background-color: var(--grey-background);
 }
 
+.admin h3 {
+  width: 100%;
+  font-size: 18pt;
+  padding: 10px 0;
+  border-bottom: 3px solid var(--smokey-black);
+  background-color: var(--grey-background);
+}
+
 .questions_container li {
   font-size: 17pt;
   padding: 5px;
@@ -173,13 +200,6 @@
 }
 
 
-.modal {
-  display: flex;
-  justify-content: center;
-  flex-direction: row wrap;
-  width: 100%;
-}
-
 .modal_button {
   background-color: darkgray;
   width: fit-content;
@@ -191,4 +211,22 @@
 
 .modal_button:hover {
   background-color: rgb(138, 138, 138);
+}
+
+.modal h2 {
+  font-size: 30pt;
+}
+
+.active_container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: min-content;
+  margin: 0 auto;
+}
+
+.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
