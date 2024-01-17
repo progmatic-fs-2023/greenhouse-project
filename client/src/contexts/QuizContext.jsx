@@ -20,7 +20,7 @@ function QuizProvider({ children }) {
       const quiz = await response.json();
 
       setQuizQuestions(quiz.questions);
-      setCorrectAnswers(0); // Reset correctAnswers when a new quiz is loaded
+      setCorrectAnswers(0);
       setTotalQuestions(numberOfQuestions);
     } catch (error) {
       throw new Error();
@@ -32,9 +32,10 @@ function QuizProvider({ children }) {
       quizQuestions,
       getQuiz,
       correctAnswers,
+      setCorrectAnswers, // Make sure setCorrectAnswers is included in the context value
       totalQuestions,
     }),
-    [quizQuestions],
+    [quizQuestions, correctAnswers, totalQuestions],
   );
 
   return <QuizContext.Provider value={QuizContextValue}>{children}</QuizContext.Provider>;
