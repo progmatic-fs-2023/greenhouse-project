@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const QuizResultPage = ({ totalQuestions, correctAnswers }) => {
   return (
@@ -12,6 +13,11 @@ const QuizResultPage = ({ totalQuestions, correctAnswers }) => {
         <p>
           {correctAnswers} / {totalQuestions}
         </p>
+      </div>
+      <div>
+        <Link to="/quizmoduls">
+          <button style={{ height: 50, width: 100 }}>NEW QUIZ</button>
+        </Link>
       </div>
     </>
   );
