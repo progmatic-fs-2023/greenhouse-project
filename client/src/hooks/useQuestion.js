@@ -18,6 +18,7 @@ const useQuestion = () => {
 
       .then((data) => {
         setCorrectAnswer(data);
+        console.log(correctAnswer);
       });
     if (questionIndex < quizQuestions.length - 1) setQuestionIndex((prevIndex) => prevIndex + 1);
   };
