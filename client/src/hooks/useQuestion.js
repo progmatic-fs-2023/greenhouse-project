@@ -28,7 +28,7 @@ const useQuestion = () => {
       .then((data) => {
         setCorrectAnswer(data);
 
-        if (data === true || data === 'true') {
+        if (data) {
           setCorrectAnswers(contextCorrectAnswers + 1);
         }
       })

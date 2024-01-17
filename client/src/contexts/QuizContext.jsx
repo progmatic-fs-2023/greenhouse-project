@@ -8,6 +8,7 @@ function QuizProvider({ children }) {
   const [quizQuestions, setQuizQuestions] = useState('');
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
+  const [playedLanguage, setPlayedLanguage] = useState('');
 
   const getQuiz = async (language, difficulty, numberOfQuestions) => {
     try {
@@ -22,6 +23,7 @@ function QuizProvider({ children }) {
       setQuizQuestions(quiz.questions);
       setCorrectAnswers(0);
       setTotalQuestions(numberOfQuestions);
+      setPlayedLanguage(language);
     } catch (error) {
       throw new Error();
     }
@@ -34,8 +36,9 @@ function QuizProvider({ children }) {
       correctAnswers,
       setCorrectAnswers, // Make sure setCorrectAnswers is included in the context value
       totalQuestions,
+      playedLanguage,
     }),
-    [quizQuestions, correctAnswers, totalQuestions],
+    [quizQuestions, correctAnswers, totalQuestions, playedLanguage],
   );
 
   return <QuizContext.Provider value={QuizContextValue}>{children}</QuizContext.Provider>;

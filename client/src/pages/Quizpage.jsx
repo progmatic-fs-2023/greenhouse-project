@@ -7,7 +7,7 @@ import useQuestion from '../hooks/useQuestion';
 import { QuizContext } from '../contexts/QuizContext'; // Adjust the path
 
 export default function QuizPage() {
-  const { question, nextQuestion, quizCompleted, correctAnswer } = useQuestion();
+  const { question, nextQuestion, quizCompleted } = useQuestion();
   const { totalQuestions, correctAnswers } = useContext(QuizContext);
 
   if (quizCompleted) {
