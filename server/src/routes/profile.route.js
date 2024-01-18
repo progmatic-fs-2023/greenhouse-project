@@ -3,8 +3,8 @@ import * as profileController from '../controllers/profile.controller';
 
 const router = Router();
 
-router.put('/account/:id', profileController.emailUpdate);
+router.put('/account/:id', profileController.userDataUpdate);
 
-router.put('/password/edit/:id', profileController.passwordUpdate);
+router.put('/password/:id', profileController.passwordUpdate);
 
 export default router;

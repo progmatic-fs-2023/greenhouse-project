@@ -1,20 +1,20 @@
 import 'dotenv/config';
-import { updateUserEmail, updatePassword } from '../services/profile.services';
+import { updateUserEmail, updateUsername, updatePassword } from '../services/profile.services';
 
-export const emailUpdate = async (req, res) => {
+export const userDataUpdate = async (req, res) => {
   try {
     const userId = req.params.id;
-    const updatedEmail = req.body;
-    console.log(updatedEmail);
-    console.log(req.body.newEmail)
-    const updatedData = await updateUserEmail(userId, updatedEmail);
-    res.status(201).json(updatedData);
-    console.log(updatedData)
+    const {newUsername, newEmail} = req.body;
+    const updatedDataEmail = await updateUserEmail(userId, newEmail);
+    const updatedDataUsername = await updateUsername(userId, newUsername);
+    res.status(201).json([updatedDataEmail, updatedDataUsername]);
+    console.log(updatedDataEmail)
   } catch (error) {
     console.error('Error updating user data', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
 
 export const passwordUpdate = async (req, res) => {
   try {

@@ -9,10 +9,28 @@ export const updateUserEmail = async (userId, userEmail) => {
     id: userId,
   },
   data: {
-    email: userEmail.newEmail,
+    email: userEmail,
   },
 });
 return updatedUserEmail;
+}
+catch ( err ){
+  console.log(err)
+  throw new Error;
+}
+}
+
+export const updateUsername = async (userId, userName) => {
+  try {
+  const updatedUsername = await prisma.user.update({
+  where: {
+    id: userId,
+  },
+  data: {
+    username: userName,
+  },
+});
+return updatedUsername;
 }
 catch ( err ){
   console.log(err)
