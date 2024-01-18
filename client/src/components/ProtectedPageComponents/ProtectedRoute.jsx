@@ -4,7 +4,6 @@ import { useAuth } from '../../contexts/AuthContext';
 
 function ProtectedRoute({ allowedRoles }) {
   const { userRole } = useAuth();
-
   return allowedRoles.includes(userRole) ? <Outlet /> : <Navigate to="/" />;
 }
 ProtectedRoute.propTypes = {
