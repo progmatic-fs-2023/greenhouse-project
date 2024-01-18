@@ -18,7 +18,13 @@ export default function QuizQuestionCard({ answers, nextQuestion }) {
     </div>
   );
 }
+
 QuizQuestionCard.propTypes = {
-  answers: PropTypes.arrayOf({ id: PropTypes.number, name: PropTypes.string }).isRequired,
+  answers: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
   nextQuestion: PropTypes.func.isRequired,
 };

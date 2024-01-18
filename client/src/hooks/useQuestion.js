@@ -7,7 +7,12 @@ const useQuestion = () => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [correctAnswer, setCorrectAnswer] = useState('');
   const [errorState, setErrorState] = useState('');
-  const { quizQuestions } = useContext(QuizContext);
+  const [quizCompleted, setQuizCompleted] = useState(false);
+  const {
+    quizQuestions,
+    correctAnswers: contextCorrectAnswers,
+    setCorrectAnswers,
+  } = useContext(QuizContext);
   const { token } = useAuth();
 
   const question = useMemo(() => quizQuestions[questionIndex], [questionIndex, quizQuestions]);
@@ -30,14 +35,23 @@ const useQuestion = () => {
       const data = await response.json();
       setCorrectAnswer(data);
 
+      if (data) {
+        setCorrectAnswers(contextCorrectAnswers + 1);
+      }
+
       if (questionIndex < quizQuestions.length - 1) {
         setQuestionIndex((prevIndex) => prevIndex + 1);
+      }
+
+      if (questionIndex >= quizQuestions.length - 1) {
+        setQuizCompleted(true);
       }
     } catch (error) {
       setErrorState(error.message);
     }
   };
 
-  return { nextQuestion, question, errorState, correctAnswer };
+  return { nextQuestion, question, errorState, correctAnswer, quizCompleted };
 };
+
 export default useQuestion;
