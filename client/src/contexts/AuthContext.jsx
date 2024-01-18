@@ -24,10 +24,16 @@ const initUserCreationDate = (token) => {
   const decodedToken = jwtDecode(token);
   return decodedToken.createdAt ? decodedToken.createdAt : '';
 };
+const initUserId = (token) => {
+  if (!token) return '';
+  const decodedToken = jwtDecode(token);
+  return decodedToken.id ? decodedToken.id : '';
+};
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [isLoggedIn, setIsLoggedIn] = useState(!!token);
   const [username, setUsername] = useState(initUsername(token));
+  const [userId, setUserId] = useState(initUserId(token));
   const [userRole, setUserRole] = useState(initUserRole(token));
   const [userEmail, setUserEmail] = useState(initUserEmail(token));
   const [userCreationDate, setuserCreationDate] = useState(initUserCreationDate(token));
@@ -39,6 +45,7 @@ export function AuthProvider({ children }) {
       setIsLoggedIn(true);
       setUserRole(decodedToken.role);
       setUsername(decodedToken.username);
+      setUserId(decodedToken.id);
       setUserEmail(decodedToken.email);
       setuserCreationDate(decodedToken.createdAt);
     }
@@ -55,11 +62,22 @@ export function AuthProvider({ children }) {
     setUserRole('');
     setUserEmail('');
     setuserCreationDate('');
+    setToken('');
   };
 
   const authContextValue = useMemo(
-    () => ({ isLoggedIn, login, logout, username, userRole, userEmail, userCreationDate }),
-    [isLoggedIn, username, userRole, userEmail, userCreationDate],
+    () => ({
+      isLoggedIn,
+      login,
+      logout,
+      username,
+      userRole,
+      userEmail,
+      userCreationDate,
+      userId,
+      token,
+    }),
+    [isLoggedIn, username, userRole, userEmail, userCreationDate, userId, token],
   );
 
   return <AuthContext.Provider value={authContextValue}>{children}</AuthContext.Provider>;

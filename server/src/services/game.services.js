@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import QUIZ_SCORING from '../gameSettings';
 
 const prisma = new PrismaClient();
 
@@ -17,14 +18,75 @@ export const getQuestions = async (topicNumber, difficulty, numberOfQuestions) =
     answers: answers.filter(answer => answer.questionId === question.id),
   }));
 };
-export const findAnswer = async id => {
+
+export const checkCorrectAnswer = async (answerId, questionId) => {
   const question = await prisma.question.findUnique({
-    where: { id },
+    where: { id: questionId },
     include: { answers: { select: { id: true, isCorrect: true } } },
   });
-  return question;
+  return question.answers.every(answer => (answer.isCorrect ? answer.id === answerId : true));
 };
+
 export const getTopicsFromDB = async () => {
   const topics = await prisma.topic.findMany();
   return topics;
+};
+
+export const modifyXp = async (userId, questionId) => {
+  const question = await prisma.question.findUnique({
+    where: {
+      id: questionId,
+    },
+  });
+
+  const rewardedXp = QUIZ_SCORING.LEVEL[question.level];
+  if (!rewardedXp) {
+    throw new Error('Quesiton level is not defined!');
+  }
+  const userScore = await prisma.score.findUnique({
+    where: {
+      userId,
+    },
+  });
+
+  if (!userScore) {
+    const createdScore = await prisma.score.create({
+      data: {
+        userId,
+        xp: rewardedXp,
+      },
+    });
+    return createdScore;
+  }
+
+  const modifiedXp = await prisma.score.update({
+    where: {
+      userId,
+    },
+    data: {
+      xp: userScore.xp + rewardedXp,
+    },
+  });
+
+  return modifiedXp;
+};
+
+export const getUsersScore = async () => {
+  const userScore = await prisma.score.findMany({
+    include: {
+      user: {
+        select: {
+          username: true,
+        },
+      },
+    },
+    orderBy: {
+      xp: 'desc',
+    },
+  });
+  return userScore.map(score => ({
+    id: score.userId,
+    username: score.user.username,
+    xp: score.xp,
+  }));
 };

@@ -51,9 +51,18 @@ model User {
   role      String   @default("user")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+  score     Score?     
 
   @@map("user")
 }
+model Score{
+userId       String   @id @db.Uuid
+user        User @relation(fields: [userId], references: [id])
+xp          Int @default(0)
+
+@@map("score")
+}
+
 
 enum Level {
   EASY
