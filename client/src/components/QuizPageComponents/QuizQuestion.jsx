@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { QuizContext } from '../../contexts/QuizContext';
 import PropTypes from 'prop-types';
 import './quizpage.css';
+import { QuizContext } from '../../contexts/QuizContext';
 
 export default function QuizQuestion({ question }) {
   const { playedLanguage } = useContext(QuizContext);

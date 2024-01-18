@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState, useEffect } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { QuizContext } from '../contexts/QuizContext';
 import { API_URL } from '../constants';
 import { useAuth } from '../contexts/AuthContext';

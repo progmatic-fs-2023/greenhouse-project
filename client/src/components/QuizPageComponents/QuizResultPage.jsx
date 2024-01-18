@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const QuizResultPage = ({ totalQuestions, correctAnswers }) => {
+function QuizResultPage({ totalQuestions, correctAnswers }) {
   return (
     <>
       <div>
@@ -16,11 +17,18 @@ const QuizResultPage = ({ totalQuestions, correctAnswers }) => {
       </div>
       <div>
         <Link to="/quizmoduls">
-          <button style={{ height: 50, width: 100 }}>NEW QUIZ</button>
+          <button type="button" style={{ height: 50, width: 100 }}>
+            NEW QUIZ
+          </button>
         </Link>
       </div>
     </>
   );
+}
+
+QuizResultPage.propTypes = {
+  totalQuestions: PropTypes.number.isRequired, // Assume totalQuestions is a number
+  correctAnswers: PropTypes.number.isRequired, // Assume correctAnswers is a number
 };
 
 export default QuizResultPage;
