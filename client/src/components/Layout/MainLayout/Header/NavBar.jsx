@@ -39,7 +39,7 @@ function NavBar() {
       </NavLink>
       </li>
       <li>
-      <NavLink to={isLoggedIn ? '/profile' : '/login'}>
+      <NavLink to={isLoggedIn ? '/profile/account/' : '/login'}>
         {isLoggedIn ? (
           <button type="button">{username}</button>
         ) : (

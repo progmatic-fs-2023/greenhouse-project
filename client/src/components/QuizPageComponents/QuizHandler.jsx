@@ -1,5 +1,3 @@
-import './quizpage.css';
-
 export default function QuizHandler() {
   return (
     <div className="handler">

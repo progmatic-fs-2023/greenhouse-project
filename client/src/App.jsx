@@ -11,7 +11,6 @@ import QuizProvider from './contexts/QuizContext';
 import Profile from './pages/Profile';
 import Account from './components/ProfilePageComponents/Account';
 import Password from './components/ProfilePageComponents/Password';
-import DailyGoal from './components/ProfilePageComponents/DailyGoal';
 import Leaderboard from './components/ProfilePageComponents/Leaderboard';
 import Premium from './components/ProfilePageComponents/Premium';
 import Notifications from './components/ProfilePageComponents/Notifications';
@@ -37,7 +36,6 @@ function App() {
             <Route path="/profile" element={<Profile />}>
               <Route path="account" element={<Account />} />
               <Route path="password" element={<Password />} />
-              <Route path="daily-goal" element={<DailyGoal />} />
               <Route path="leaderboard" element={<Leaderboard />} />
               <Route path="premium" element={<Premium />} />
               <Route path="notifications" element={<Notifications />} />

@@ -1,6 +1,7 @@
 import QuizQuestionCard from '../components/QuizPageComponents/QuizQuestionCard';
 import QuizQuestion from '../components/QuizPageComponents/QuizQuestion';
 import '../components/QuizPageComponents/quizpage.css';
+import '../login.css'
 import useQuestion from '../hooks/useQuestion';
 
 export default function QuizPage() {

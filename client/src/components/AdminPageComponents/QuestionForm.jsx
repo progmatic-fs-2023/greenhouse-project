@@ -202,7 +202,7 @@ function QuestionForm({
             ))}
         </label>
         <div className='active_container'>
-        <label htmlFor="isActive" className='active'>
+        <label htmlFor="isActive" className='isActive'>
           Active:
           <input id="isActive" type="checkbox" checked={isActive} onChange={handleIsActiveChange} />
         </label>

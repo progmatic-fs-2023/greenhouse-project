@@ -1,36 +1,63 @@
-.container {
+.account {
     display: flex;
     justify-content: center;
     flex-flow: column;
+}
+
+.input_container {
+    display: flex;
+    flex-flow: row wrap;
+    margin: auto;
 }
 
 .input_container label {
     display: flex;
     justify-content: space-between;
     flex-flow: row;
-    width: 570px;
-    margin: 30px auto;
-    font-size: 20pt;
+    width: 500px;
+    margin: 30px 10px;
+    font-size: 18pt;
 }
 
-.input_container input {
-    width: 300px;
-    font-size: 17pt;
+.input_container input[type=text] {
+    width: 250px;
+    font-size: 15pt;
     padding: 5px 10px;
     border-radius: 10px;
 }
 
+.account button, .subscription button {
+    background-color: darkgray;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 5px 10px;
+    box-shadow: 4px 5px var(--smokey-black);
+    border-radius: 10px;
+    border: none;
+    font-size: 15pt;
+    transition-duration: 0.3s;
+}
+
+.input_container p{
+    font-size: 15pt;
+    margin-top: 20px;
+}
+
+.account button:hover {
+    background-color: rgb(138, 138, 138);
+    cursor: pointer;
+}
 
 #delete_button {
-    width: 130px;
-    padding: 10px;
-    margin: 20px auto;
+    width: fit-content;
+    padding: 5px 10px;
+    margin: 80px auto 0;
     height: fit-content;
     border: none;
     box-shadow: 3px 5px var(--smokey-black);
     border-radius: 10px;
     background-color: red;
-    font-size: 12pt;
+    font-size: 10pt;
     transition-duration: 0.3s;
     text-transform: uppercase;
 }

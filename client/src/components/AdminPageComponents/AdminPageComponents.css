@@ -207,10 +207,13 @@
   padding: 5px 10px;
   box-shadow: 4px 5px var(--smokey-black);
   font-size: 11pt;
+  transition-duration: 0.3s;
+
 }
 
 .modal_button:hover {
   background-color: rgb(138, 138, 138);
+  cursor: pointer;
 }
 
 .modal h2 {
@@ -225,7 +228,7 @@
   margin: 0 auto;
 }
 
-.active {
+.isActive {
   display: flex;
   justify-content: center;
   align-items: center;

@@ -2,20 +2,27 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const findUserEmail = async email => {
-  const userEmail = await prisma.user.findUnique({
-    where: { email },
-  });
+export const updateUserEmail = async (userId, userEmail) => {
+  const updatedUserEmail = await prisma.user.update({
+  where: {
+    id: userId,
+  },
+  data: {
+    email: userEmail.email,
+  },
+});
+  return updatedUserEmail;
+}
 
-  return userEmail;
-};
-
-export const findUserCreationDate = async createdAt => {
-  const creationDate = await prisma.user.findUnique({
+export const updatePassword = async (userId, userPassword) => {
+  const updatedPassword = await prisma.user.update({
     where: {
-      createdAt,
+      id: userId,
     },
+    data: {
+      password: userPassword
+    }
   });
 
-  return creationDate;
+  return updatedPassword;
 };

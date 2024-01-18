@@ -1,4 +1,4 @@
-import './quizpage.css';
+
 import PropTypes from 'prop-types';
 
 export default function QuizAnswer({ answer, nextQuestion }) {

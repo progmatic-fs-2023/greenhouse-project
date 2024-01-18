@@ -3,22 +3,19 @@ import { NavLink } from 'react-router-dom';
 export default function ProfileNavbar() {
   return (
     <div className="profile_navbar">
-      <NavLink to="/profile/account" className="navlink">
+      <NavLink to="/profile/account" className="profile_navlink">
         Account
       </NavLink>
-      <NavLink to="/profile/password" className="navlink">
+      <NavLink to="/profile/password" className="profile_navlink">
         Password
       </NavLink>
-      <NavLink to="/profile/notifications" className="navlink">
+      <NavLink to="/profile/notifications" className="profile_navlink">
         Notifications
       </NavLink>
-      <NavLink to="/profile/daily-goal" className="navlink">
-        Daily goal
-      </NavLink>
-      <NavLink to="/profile/leaderboard" className="navlink">
+      <NavLink to="/profile/leaderboard" className="profile_navlink">
         Leaderboard
       </NavLink>
-      <NavLink to="/profile/premium" className="navlink">
+      <NavLink to="/profile/premium" className="profile_navlink">
         Premium
       </NavLink>
     </div>
