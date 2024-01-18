@@ -2,15 +2,14 @@ import './quizpage.css';
 import PropTypes from 'prop-types';
 
 export default function QuizAnswer({ answer, nextQuestion }) {
+  const handleClick = async () => {
+    await nextQuestion(answer.id);
+  };
+
   return (
     <div>
-      <button
-        type="button"
-        onClick={() => {
-          nextQuestion(answer.id);
-        }}
-      >
-        {[answer.name]}
+      <button type="button" onClick={handleClick}>
+        {answer.name}
       </button>
     </div>
   );
