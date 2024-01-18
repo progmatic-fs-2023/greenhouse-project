@@ -6,8 +6,10 @@ export const emailUpdate = async (req, res) => {
     const userId = req.params.id;
     const updatedEmail = req.body;
     console.log(updatedEmail);
+    console.log(req.body.newEmail)
     const updatedData = await updateUserEmail(userId, updatedEmail);
     res.status(201).json(updatedData);
+    console.log(updatedData)
   } catch (error) {
     console.error('Error updating user data', error);
     res.status(500).json({ error: 'Internal server error' });

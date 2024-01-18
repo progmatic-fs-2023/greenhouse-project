@@ -37,7 +37,6 @@ export function AuthProvider({ children }) {
   const [userRole, setUserRole] = useState(initUserRole(token));
   const [userEmail, setUserEmail] = useState(initUserEmail(token));
   const [userCreationDate, setUserCreationDate] = useState(initUserCreationDate(token));
-  const [userId, setUserId] = useState(initUserId(token));
 
   useEffect(() => {
     if (token) {
@@ -49,7 +48,6 @@ export function AuthProvider({ children }) {
       setUserId(decodedToken.id);
       setUserEmail(decodedToken.email);
       setUserCreationDate(decodedToken.createdAt);
-      setUserId(decodedToken.id);
     }
   }, [token]);
 
@@ -63,7 +61,7 @@ export function AuthProvider({ children }) {
     setUsername('');
     setUserRole('');
     setUserEmail('');
-    setuserCreationDate('');
+    setUserCreationDate('');
     setToken('');
   };
 
@@ -78,8 +76,9 @@ export function AuthProvider({ children }) {
       userCreationDate,
       userId,
       token,
+      setUserEmail
     }),
-    [isLoggedIn, username, userRole, userEmail, userCreationDate, userId, token],
+    [isLoggedIn, username, userRole, userEmail, userCreationDate, userId, token, setUserEmail],
   );
 
   return <AuthContext.Provider value={authContextValue}>{children}</AuthContext.Provider>;

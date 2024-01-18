@@ -4,12 +4,12 @@ import { API_URL } from '../../constants';
 import './profileMenu.css'
 
 export default function Account() {
-  const { userEmail, username, userId } = useAuth();
+  const { username, userId, userEmail, setUserEmail } = useAuth();
 
   const [newEmail, setNewEmail] = useState('');
-
+  console.log(newEmail)
   const handleEmailChange = (e) => {
-    setNewEmail(e.target.value);
+    setNewEmail(e);
   };
 
   const handleSubmit = async (e) => {
@@ -28,7 +28,7 @@ export default function Account() {
       if (response.ok) {
         const updatedUser = await response.json();
         console.log(`Email updated to: ${updatedUser.email}`);
-        setNewEmail('');
+        setUserEmail(updatedUser.email);
       } else {
         console.error('Error updating email');
       }
@@ -37,7 +37,7 @@ export default function Account() {
     }
   };
   return (
-    <div className='account' onSubmit={handleSubmit}>
+    <form className='account' onSubmit={handleSubmit}>
       <div className='input_container'>
       <label htmlFor='username' className='username_label'>
           Username:
@@ -47,13 +47,13 @@ export default function Account() {
         <label htmlFor='email' className='email_label'>
           Email address:
           <br />
-          <input name='email' className='email' type="text" defaultValue={userEmail} onChange={handleEmailChange}/>
+          <input name='email' className='email' type="text" defaultValue={userEmail} onChange={(e) => handleEmailChange(e.target.value)}/>
         </label>
       </div>
 
-      <button type='submit' onClick={handleEmailChange}>Save</button>
+      <button type='submit'>Save</button>
 
       <button type='button' id='delete_button'>Delete profile</button>
-    </div>
+    </form>
   );
 }
