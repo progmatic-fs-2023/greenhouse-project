@@ -10,7 +10,16 @@ export const getQuestions = async (topicNumber, difficulty, numberOfQuestions) =
   ORDER BY RANDOM()
   LIMIT ${numberOfQuestions};`;
   const answers = await prisma.answer.findMany({
-    where: { questionId: { in: questions.map(question => question.id) } },
+    where: {
+      questionId: {
+        in: questions.map(question => question.id),
+      },
+    },
+    select: {
+      id: true,
+      questionId: true,
+      name: true,
+    },
   });
   answers.sort(() => Math.random() - 0.5);
   return questions.map(question => ({
@@ -21,10 +30,24 @@ export const getQuestions = async (topicNumber, difficulty, numberOfQuestions) =
 
 export const checkCorrectAnswer = async (answerId, questionId) => {
   const question = await prisma.question.findUnique({
-    where: { id: questionId },
-    include: { answers: { select: { id: true, isCorrect: true } } },
+    where: {
+      id: questionId,
+    },
+    include: {
+      answers: {
+        select: {
+          id: true,
+          isCorrect: true,
+          name: true,
+        },
+      },
+    },
   });
-  return question.answers.every(answer => (answer.isCorrect ? answer.id === answerId : true));
+
+  return {
+    isCorrect: question.answers.every(answer => (answer.isCorrect ? answer.id === answerId : true)),
+    question,
+  };
 };
 
 export const getTopicsFromDB = async () => {

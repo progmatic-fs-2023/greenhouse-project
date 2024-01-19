@@ -8,7 +8,7 @@ import useQuestion from '../hooks/useQuestion';
 import { QuizContext } from '../contexts/QuizContext'; // Adjust the path
 
 export default function QuizPage() {
-  const { question, nextQuestion, quizCompleted } = useQuestion();
+  const { question, nextQuestion, quizCompleted, nextQuestionIndex } = useQuestion();
   const { totalQuestions, correctAnswers } = useContext(QuizContext);
 
   if (quizCompleted) {
@@ -26,7 +26,11 @@ export default function QuizPage() {
           <QuizQuestion question={question.description} />
         </div>
         <div className="quiz_side">
-          <QuizQuestionCard answers={question.answers} nextQuestion={nextQuestion} />
+          <QuizQuestionCard
+            answers={question.answers}
+            nextQuestion={nextQuestion}
+            nextQuestionIndex={nextQuestionIndex}
+          />
         </div>
       </div>
     </div>
