@@ -13,7 +13,7 @@
 }
 
 .hamburger_menu {
-    position: relative;
+    display: none;
 }
 
 .logo_navlink {
@@ -56,7 +56,6 @@ nav ul {
 
 nav li {
     list-style: none;
-    
 }
 
 .navbar button {

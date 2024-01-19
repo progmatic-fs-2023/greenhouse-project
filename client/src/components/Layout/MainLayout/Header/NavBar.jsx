@@ -14,7 +14,7 @@ function NavBar() {
 
   return (
     <nav>
-      <ul className={`${isOpen ? 'navbar' : 'sidebar'}`}>
+      <ul className="navbar">
         <li>
           <NavLink to="">
             <button type="button">Home</button>
