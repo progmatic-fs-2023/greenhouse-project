@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { API_URL } from '../../constants';
-import './profileMenu.css'
+import './profileMenu.css';
 
 export default function Account() {
   const { username, userId, userEmail } = useAuth();
@@ -9,22 +9,21 @@ export default function Account() {
   const [newEmail, setNewEmail] = useState('');
   const [newUsername, setNewUsername] = useState('');
 
-  console.log(newEmail, newUsername)
   const handleEmailChange = (e) => {
-    if(!e){
-    setNewEmail(userEmail);
+    if (!e) {
+      setNewEmail(userEmail);
     } else {
-      setNewEmail(e)
+      setNewEmail(e);
     }
   };
 
   const handleUsernameChange = (e) => {
-    if(!e){
+    if (!e) {
       setNewUsername(username);
-      } else {
-        setNewUsername(e)
-      }  
-    }; 
+    } else {
+      setNewUsername(e);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,30 +41,44 @@ export default function Account() {
       if (response.ok) {
         const updatedUser = await response.json();
         setNewEmail(updatedUser.email);
-        setNewUsername(updatedUser.username)
+        setNewUsername(updatedUser.username);
       }
     } catch (error) {
       throw new Error('Error updating data:', error);
     }
   };
   return (
-    <form className='account' onSubmit={handleSubmit}>
-      <div className='input_container'>
-      <label htmlFor='username' className='username_label'>
+    <form className="account" onSubmit={handleSubmit}>
+      <div className="input_container">
+        <label htmlFor="username" className="username_label">
           Username:
-          <input name='username' className="username" type="text" defaultValue={username} onChange={(e) => handleUsernameChange(e.target.value)}/>
+          <input
+            name="username"
+            className="username"
+            type="text"
+            defaultValue={username}
+            onChange={(e) => handleUsernameChange(e.target.value)}
+          />
         </label>
 
-        <label htmlFor='email' className='email_label'>
+        <label htmlFor="email" className="email_label">
           Email address:
           <br />
-          <input name='email' className='email' type="text" defaultValue={userEmail} onChange={(e) => handleEmailChange(e.target.value)}/>
+          <input
+            name="email"
+            className="email"
+            type="text"
+            defaultValue={userEmail}
+            onChange={(e) => handleEmailChange(e.target.value)}
+          />
         </label>
       </div>
 
-      <button type='submit'>Save</button>
+      <button type="submit">Save</button>
 
-      <button type='button' id='delete_button'>Delete profile</button>
+      <button type="button" id="delete_button">
+        Delete profile
+      </button>
     </form>
   );
 }

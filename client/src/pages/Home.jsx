@@ -6,7 +6,7 @@ import InstructionCards from '../components/HomePageComponents/InstructionCards'
 function Home() {
   return (
     <div className="welcome_div">
-      <div className='content'>
+      <div className="content">
         <WelcomeText />
         <WelcomeImg />
       </div>

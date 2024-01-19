@@ -76,7 +76,7 @@ export function AuthProvider({ children }) {
       userCreationDate,
       userId,
       token,
-      setUserEmail
+      setUserEmail,
     }),
     [isLoggedIn, username, userRole, userEmail, userCreationDate, userId, token, setUserEmail],
   );

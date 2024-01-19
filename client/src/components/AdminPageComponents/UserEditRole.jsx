@@ -92,7 +92,7 @@ function EditUserPage() {
             <h3>Users:</h3>
             <ul>
               {users.map((user) => (
-                <li role="presentation" key={user.id} className="question-item" id='users_list'>
+                <li role="presentation" key={user.id} className="question-item" id="users_list">
                   <p>Username: {user.username}</p>
 
                   <select
