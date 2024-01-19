@@ -33,12 +33,14 @@ function App() {
             <Route path="/quizpage" element={<QuizPage />} />
             <Route path="/register" element={<Register />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/profile" element={<Profile />}>
-              <Route path="account" element={<Account />} />
-              <Route path="password" element={<Password />} />
-              <Route path="leaderboard" element={<Leaderboard />} />
-              <Route path="premium" element={<Premium />} />
-              <Route path="notifications" element={<Notifications />} />
+            <Route element={<ProtectedRoute allowedRoles={['user', 'admin', 'godmin']} />}>
+              <Route path="/profile" element={<Profile />}>
+                <Route path="account" element={<Account />} />
+                <Route path="password" element={<Password />} />
+                <Route path="leaderboard" element={<Leaderboard />} />
+                <Route path="premium" element={<Premium />} />
+                <Route path="notifications" element={<Notifications />} />
+              </Route>
             </Route>
             <Route element={<ProtectedRoute allowedRoles={['admin', 'godmin']} />}>
               <Route path="/admin" element={<AdminPage />} />
