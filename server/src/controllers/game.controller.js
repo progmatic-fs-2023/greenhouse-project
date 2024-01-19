@@ -21,7 +21,7 @@ export const handleAnswer = async (req, res) => {
   const { answerId } = req.body;
   const { userId } = req;
   const isCorrect = await checkCorrectAnswer(answerId, questionId);
-  if (isCorrect && userId) await modifyXp(userId, questionId);
+  if (isCorrect.isCorrect && userId) await modifyXp(userId, questionId);
   res.status(200).json(isCorrect);
 };
 

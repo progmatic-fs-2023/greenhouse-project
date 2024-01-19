@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { QuizContext } from '../contexts/QuizContext';
 import { API_URL } from '../constants';
 import { useAuth } from '../contexts/AuthContext';
@@ -14,8 +14,11 @@ const useQuestion = () => {
     setCorrectAnswers,
   } = useContext(QuizContext);
   const { token } = useAuth();
+  const [question, setQuestion] = useState(quizQuestions[questionIndex]);
 
-  const question = useMemo(() => quizQuestions[questionIndex], [questionIndex, quizQuestions]);
+  useEffect(() => {
+    setQuestion(quizQuestions[questionIndex]);
+  }, [questionIndex, quizQuestions]);
 
   const nextQuestion = async (answerId) => {
     try {
@@ -33,25 +36,36 @@ const useQuestion = () => {
       }
 
       const data = await response.json();
-      setCorrectAnswer(data);
+      setCorrectAnswer(data.isCorrect);
 
-      if (data) {
+      setQuestion(data.question);
+
+      if (data.isCorrect) {
         setCorrectAnswers(contextCorrectAnswers + 1);
-      }
-
-      if (questionIndex < quizQuestions.length - 1) {
-        setQuestionIndex((prevIndex) => prevIndex + 1);
-      }
-
-      if (questionIndex >= quizQuestions.length - 1) {
-        setQuizCompleted(true);
       }
     } catch (error) {
       setErrorState(error.message);
     }
   };
 
-  return { nextQuestion, question, errorState, correctAnswer, quizCompleted };
+  const nextQuestionIndex = () => {
+    if (questionIndex <= quizQuestions.length - 1) {
+      setQuestionIndex((prevIndex) => prevIndex + 1);
+
+      if (questionIndex >= quizQuestions.length - 1) {
+        setQuizCompleted(true);
+      }
+    }
+  };
+
+  return {
+    nextQuestion,
+    question,
+    errorState,
+    correctAnswer,
+    quizCompleted,
+    nextQuestionIndex,
+  };
 };
 
 export default useQuestion;
