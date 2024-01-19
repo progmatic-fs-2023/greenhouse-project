@@ -40,12 +40,13 @@ function Register() {
   }, [password, password2]);
 
   return (
-    <div className="admin_login_main_container">
-      <div className="admin_login_container">
+    <div className="login_main_container">
+      <div className="login_container">
         <h2>Registration</h2>
         <form onSubmit={handleReg}>
           <label htmlFor="username">
             Username:
+            <br />
             <input
               id="username"
               type="text"
@@ -67,6 +68,7 @@ function Register() {
           <br />
           <label htmlFor="password">
             Password:
+            <br />
             <input
               id="password"
               type="password"
@@ -77,6 +79,7 @@ function Register() {
           <br />
           <label htmlFor="password2">
             Password again:
+            <br />
             <input
               id="password2"
               type="password"

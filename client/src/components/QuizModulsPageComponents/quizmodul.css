@@ -2,32 +2,35 @@
 .description_container {
     display: flex;
     justify-content: center;
-    flex-flow: column;
+    flex-flow: row wrap;
+    width: 90%;
     text-align: center;
-    margin: 0 10% 3% 10%;
+    margin: 0 auto;
     padding: 5% 0;
 }
 
 .description_container h1 {
+
     font-size: 42pt;
 }
 
 .description_container p {
+    width: 90%;
     font-size: 18pt;
-    font-weight: bold;
-    margin: 0 10%;
+    padding: 0 auto;
 }
 
 .quizmodul_main_container {
     display: flex;
-    justify-content: space-between;
     flex-flow: column;
-    padding: 0 10% 10% 10%;
+    margin: 20px auto;
 }
 
 .language_card_container {
     display: flex;
     justify-content: space-evenly;
+    flex-flow: row wrap;
+    margin-bottom: 50px;
 }
 
 .language_card_content{
@@ -47,6 +50,10 @@
     border-bottom: 3px solid var(--smokey-black);
 }
 
+.card {
+    margin: 15px;
+}
+
 .card button, .handler button {
     background-color: var(--accent-color);
     border-radius: 10px;
@@ -56,7 +63,6 @@
     margin: 10px 0 20px;
     padding: 5px;
     font-size: 13pt;
-    font-weight: bold;
     text-transform: uppercase;
     transition-duration: 0.3s;
     box-shadow: 5px 5px var(--smokey-black);
@@ -73,7 +79,6 @@
 .card label {
     font-style: normal;
     font-size: 17pt;
-    font-weight: bold;
     width: 100%;
 }
 
@@ -84,7 +89,6 @@
     border-radius: 5px;
     width: 130px;
     font-size: 13pt;
-    font-weight: bold;
 }
 
 .title_text {
@@ -101,3 +105,27 @@
     border-bottom: 3px solid var(--smokey-black);
 }
 
+@media only screen and (max-width: 850px) { 
+  .description_container {
+    padding: 0 auto;
+  }
+  
+  .language_card_container {
+    justify-content: center;
+}
+
+.description_container h1 {
+    padding-top: 20px;
+}
+
+.description_container p {
+    margin: 10px auto;
+}
+}
+
+@media only screen and (max-width: 1000px) { 
+    .description_container {
+        width: 90%;
+        margin: 0 auto;
+    }
+}

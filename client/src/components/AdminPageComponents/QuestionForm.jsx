@@ -140,9 +140,6 @@ function QuestionForm({
 
   return (
     <div className="question-form-container">
-      <h2>Quiz Form</h2>
-      <p>This form allows you to add a question with one correct and three wrong answers.</p>
-
       {formError && <p className="error-message">{formError}</p>}
       {formOk && <p className="ok-message">{formOk}</p>}
 
@@ -203,13 +200,19 @@ function QuestionForm({
               </div>
             ))}
         </label>
+        <div className="active_container">
+          <label htmlFor="isActive" className="isActive">
+            Active:
+            <input
+              id="isActive"
+              type="checkbox"
+              checked={isActive}
+              onChange={handleIsActiveChange}
+            />
+          </label>
 
-        <label htmlFor="isActive">
-          Active:
-          <input id="isActive" type="checkbox" checked={isActive} onChange={handleIsActiveChange} />
-        </label>
-
-        <button type="submit">Submit</button>
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </div>
   );

@@ -59,6 +59,7 @@
     border-radius: 0 0 10px 10px;
     box-shadow: 8px 8px var(--smokey-black);
     width: 110%;
+    height: 400px;
     background-color: #fdfaf3;
 }
 
@@ -71,22 +72,17 @@
     border-right: 3px solid var(--smokey-black);
 }
 
-.profile_navbar .navlink {
+.profile_navbar .profile_navlink {
     list-style: none;
     font-size: 17pt;
     padding: 5px 0;
-    font-weight: bold;
     transition-duration: 0.3s;
     letter-spacing: 0.2px;
     text-decoration: none;
     color: var(--smokey-black);
 }
 
-.profile_navbar .navlink:hover {
-    list-style: none;
-    width: max-content;
-    padding: 5px 0;
-    font-weight: bold;
+.profile_navbar .profile_navlink:hover {
     color: #100c08a7;
     letter-spacing: 0.3px;
     transition-timing-function: 0.3s ease-in-out;
@@ -94,7 +90,8 @@
 }
 
 .profile_content {
-    width: 60%;
+    width: 70%;
     text-align: center;
     margin: auto;
+    padding: 0 10px;
 }
