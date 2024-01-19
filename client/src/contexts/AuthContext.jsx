@@ -73,8 +73,9 @@ export function AuthProvider({ children }) {
       userCreationDate,
       userId,
       token,
+      setUserEmail,
     }),
-    [isLoggedIn, username, userRole, userEmail, userCreationDate, userId, token],
+    [isLoggedIn, username, userRole, userEmail, userCreationDate, userId, token, setUserEmail],
   );
 
   return <AuthContext.Provider value={authContextValue}>{children}</AuthContext.Provider>;
