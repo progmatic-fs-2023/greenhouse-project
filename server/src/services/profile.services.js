@@ -4,39 +4,37 @@ const prisma = new PrismaClient();
 
 export const updateUserEmail = async (userId, userEmail) => {
   try {
-  const updatedUserEmail = await prisma.user.update({
-  where: {
-    id: userId,
-  },
-  data: {
-    email: userEmail,
-  },
-});
-return updatedUserEmail;
-}
-catch ( err ){
-  console.log(err)
-  throw new Error;
-}
-}
+    const updatedUserEmail = await prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        email: userEmail,
+      },
+    });
+    return updatedUserEmail;
+  } catch (err) {
+    console.log(err);
+    throw new Error();
+  }
+};
 
 export const updateUsername = async (userId, userName) => {
   try {
-  const updatedUsername = await prisma.user.update({
-  where: {
-    id: userId,
-  },
-  data: {
-    username: userName,
-  },
-});
-return updatedUsername;
-}
-catch ( err ){
-  console.log(err)
-  throw new Error;
-}
-}
+    const updatedUsername = await prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        username: userName,
+      },
+    });
+    return updatedUsername;
+  } catch (err) {
+    console.log(err);
+    throw new Error();
+  }
+};
 
 export const updatePassword = async (userId, userPassword) => {
   const updatedPassword = await prisma.user.update({
@@ -44,8 +42,8 @@ export const updatePassword = async (userId, userPassword) => {
       id: userId,
     },
     data: {
-      password: userPassword
-    }
+      password: userPassword,
+    },
   });
 
   return updatedPassword;

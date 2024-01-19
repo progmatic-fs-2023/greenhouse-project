@@ -2,6 +2,7 @@
     background-color: var(--primary-color);
     display: flex;
     justify-content: space-between;
+    width: 100%;
     height: 70px;
     border-bottom: 2px solid var(--smokey-black);
     box-shadow: 0 5px 10px var(--smokey-black);
@@ -97,9 +98,7 @@ nav li {
 /* --- MEDIA QUERIES --- */
 
 @media only screen and (max-width: 750px) { 
-    .header {
-        width: 100vw;
-    }
+
 
     .logo img {
         display: none;

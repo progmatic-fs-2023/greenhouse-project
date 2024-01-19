@@ -1,6 +1,6 @@
 .cards_main_container h1{
     margin-left: 10%;
-    padding: 4rem 0 4rem;
+    padding: 30px 0;
     font-size: 42pt;
 }
 
@@ -17,7 +17,7 @@
     align-items: center;
     text-align: center;
     flex-flow: column;
-    width: 280px;
+    width: 300px;
     height: 100%;
     border-right: 3px solid var(--smokey-black);
     border-bottom: 3px solid var(--smokey-black);
@@ -61,7 +61,7 @@
     height: 150px;
 }
 
-@media only screen and (max-width: 700px) { 
+@media only screen and (max-width: 430px) { 
     .cards_main_container h1{
         margin: 0;
         padding: 20px 0 40px;
@@ -69,17 +69,18 @@
         text-align: center;
     }
 
+    .card {
+        margin: 0 20px 50px;
+    }
+}
+
+@media only screen and (max-width: 1000px) { 
+
     .cards_container {
-        display: flex;
-        justify-content: center;
         align-items: center;
         flex-flow: row wrap;
         width: 90%;
         margin-bottom: -40px;
         padding: auto;
-    }
-
-    .card {
-        margin: 0 20px 50px;
     }
 }

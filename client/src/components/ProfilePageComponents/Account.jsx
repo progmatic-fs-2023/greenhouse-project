@@ -11,18 +11,18 @@ export default function Account() {
 
   console.log(newEmail, newUsername)
   const handleEmailChange = (e) => {
-    if(e){
-    setNewEmail(e);
+    if(!e){
+    setNewEmail(userEmail);
     } else {
-      setNewEmail(userEmail)
+      setNewEmail(e)
     }
   };
 
   const handleUsernameChange = (e) => {
-    if(e){
-      setNewUsername(e);
+    if(!e){
+      setNewUsername(username);
       } else {
-        setNewUsername(username)
+        setNewUsername(e)
       }  
     }; 
 
@@ -41,14 +41,11 @@ export default function Account() {
 
       if (response.ok) {
         const updatedUser = await response.json();
-        console.log(`User data updated to: ${updatedUser.email}, ${updatedUser.username}`);
         setNewEmail(updatedUser.email);
         setNewUsername(updatedUser.username)
-      } else {
-        console.error('Error updating user data');
       }
     } catch (error) {
-      console.error('Error updating data:', error);
+      throw new Error('Error updating data:', error);
     }
   };
   return (
