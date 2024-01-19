@@ -10,19 +10,12 @@ function NavBar() {
 
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => {
-    setIsOpen((open) => !open)
+    setIsOpen(!isOpen)
   }
 
   return (
     <nav>
-    <ul>
-      <li>
-      <button type='button' className='hamburger_menu' onClick={toggleMenu}>
-        <img className='menu' src={menu} alt="menu" />
-      </button>
-      </li>
-    </ul>
-    <ul className={`navbar ${isOpen ? "is-open" : ""}`} id='navbar'>
+    <ul className={`${isOpen ? "navbar" : "sidebar"}`}>
       <li>
       <NavLink to="">
         <button type="button">Home</button>
@@ -60,7 +53,10 @@ function NavBar() {
         )}
       </NavLink>
       </li>
-      </ul>
+    </ul>
+    <button type='button' className='hamburger_menu' onClick={toggleMenu}>
+        <img className='menu' src={menu} alt="menu" />
+      </button>
     </nav>
   );
 }

@@ -2,7 +2,7 @@
 .description_container {
     display: flex;
     justify-content: center;
-    flex-flow: column;
+    flex-flow: row wrap;
     width: 90%;
     text-align: center;
     margin: 0 auto;
@@ -22,7 +22,6 @@
 
 .quizmodul_main_container {
     display: flex;
-    justify-content: space-between;
     flex-flow: column;
     margin: 20px auto;
 }
@@ -31,7 +30,7 @@
     display: flex;
     justify-content: space-evenly;
     flex-flow: row wrap;
-
+    margin-bottom: 50px;
 }
 
 .language_card_content{
@@ -107,13 +106,10 @@
 }
 
 @media only screen and (max-width: 850px) { 
-
-
   .description_container {
     padding: 0 auto;
   }
-
-
+  
   .language_card_container {
     justify-content: center;
 }
