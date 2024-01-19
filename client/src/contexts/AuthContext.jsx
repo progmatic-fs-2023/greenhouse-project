@@ -1,29 +1,10 @@
 import { createContext, useContext, useState, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { jwtDecode } from 'jwt-decode';
+import { API_URL } from '../constants';
 
 const AuthContext = createContext();
 
-const initUserRole = (token) => {
-  if (!token) return '';
-  const decodedToken = jwtDecode(token);
-  return decodedToken.role ? decodedToken.role : '';
-};
-const initUsername = (token) => {
-  if (!token) return '';
-  const decodedToken = jwtDecode(token);
-  return decodedToken.username ? decodedToken.username : '';
-};
-const initUserEmail = (token) => {
-  if (!token) return '';
-  const decodedToken = jwtDecode(token);
-  return decodedToken.email ? decodedToken.email : '';
-};
-const initUserCreationDate = (token) => {
-  if (!token) return '';
-  const decodedToken = jwtDecode(token);
-  return decodedToken.createdAt ? decodedToken.createdAt : '';
-};
 const initUserId = (token) => {
   if (!token) return '';
   const decodedToken = jwtDecode(token);
@@ -32,24 +13,39 @@ const initUserId = (token) => {
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [isLoggedIn, setIsLoggedIn] = useState(!!token);
-  const [username, setUsername] = useState(initUsername(token));
   const [userId, setUserId] = useState(initUserId(token));
-  const [userRole, setUserRole] = useState(initUserRole(token));
-  const [userEmail, setUserEmail] = useState(initUserEmail(token));
-  const [userCreationDate, setuserCreationDate] = useState(initUserCreationDate(token));
+  const [username, setUsername] = useState('');
+  const [userRole, setUserRole] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [userCreationDate, setuserCreationDate] = useState('');
 
   useEffect(() => {
     if (token) {
       localStorage.setItem('token', token);
       const decodedToken = jwtDecode(token);
       setIsLoggedIn(true);
-      setUserRole(decodedToken.role);
-      setUsername(decodedToken.username);
       setUserId(decodedToken.id);
-      setUserEmail(decodedToken.email);
-      setuserCreationDate(decodedToken.createdAt);
     }
   }, [token]);
+
+  useEffect(() => {
+    async function fetchUserData() {
+      if (token && isLoggedIn) {
+        try {
+          const response = await fetch(`${API_URL}/userdata/${userId}`);
+          const responseData = await response.json();
+          setUserRole(responseData.role);
+          setUsername(responseData.username);
+          setUserEmail(responseData.email);
+          setuserCreationDate(responseData.createdAt);
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      }
+    }
+
+    fetchUserData();
+  }, [userId]);
 
   const login = (userData) => {
     setToken(userData.token);
@@ -62,6 +58,7 @@ export function AuthProvider({ children }) {
     setUserRole('');
     setUserEmail('');
     setuserCreationDate('');
+    setUserId('');
     setToken('');
   };
 
