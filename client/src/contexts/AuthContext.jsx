@@ -45,7 +45,7 @@ export function AuthProvider({ children }) {
     }
 
     fetchUserData();
-  }, [userId]);
+  }, [userId, userEmail, username]);
 
   const login = (userData) => {
     setToken(userData.token);
@@ -74,8 +74,19 @@ export function AuthProvider({ children }) {
       userId,
       token,
       setUserEmail,
+      setUsername,
     }),
-    [isLoggedIn, username, userRole, userEmail, userCreationDate, userId, token, setUserEmail],
+    [
+      isLoggedIn,
+      username,
+      userRole,
+      userEmail,
+      userCreationDate,
+      userId,
+      token,
+      setUserEmail,
+      setUsername,
+    ],
   );
 
   return <AuthContext.Provider value={authContextValue}>{children}</AuthContext.Provider>;
