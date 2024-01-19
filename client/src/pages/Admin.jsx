@@ -8,7 +8,7 @@ export default function AdminPage() {
     <div className="admin_main_container">
       <div className="admin">
         <h1>Hello {username}</h1>
-        <h3>Want would you like to do?</h3>
+        <h3>What would you like to do?</h3>
         <NavLink to="/admin/new">
           <button type="button">New Question</button>
         </NavLink>

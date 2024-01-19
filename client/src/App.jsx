@@ -11,11 +11,9 @@ import QuizProvider from './contexts/QuizContext';
 import Profile from './pages/Profile';
 import Account from './components/ProfilePageComponents/Account';
 import Password from './components/ProfilePageComponents/Password';
-import DailyGoal from './components/ProfilePageComponents/DailyGoal';
 import Leaderboard from './components/ProfilePageComponents/Leaderboard';
-import Friends from './components/ProfilePageComponents/Friends';
 import Premium from './components/ProfilePageComponents/Premium';
-import Privacy from './components/ProfilePageComponents/Privacy';
+import Notifications from './components/ProfilePageComponents/Notifications';
 import ProtectedRoute from './components/ProtectedPageComponents/ProtectedRoute';
 import AdminPage from './pages/Admin';
 import NewQuestion from './components/AdminPageComponents/NewQuestion';
@@ -39,11 +37,9 @@ function App() {
               <Route path="/profile" element={<Profile />}>
                 <Route path="account" element={<Account />} />
                 <Route path="password" element={<Password />} />
-                <Route path="daily-goal" element={<DailyGoal />} />
                 <Route path="leaderboard" element={<Leaderboard />} />
-                <Route path="friends" element={<Friends />} />
                 <Route path="premium" element={<Premium />} />
-                <Route path="privacy" element={<Privacy />} />
+                <Route path="notifications" element={<Notifications />} />
               </Route>
             </Route>
             <Route element={<ProtectedRoute allowedRoles={['admin', 'godmin']} />}>

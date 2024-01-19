@@ -2,20 +2,49 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const findUserEmail = async email => {
-  const userEmail = await prisma.user.findUnique({
-    where: { email },
-  });
-
-  return userEmail;
+export const updateUserEmail = async (userId, userEmail) => {
+  try {
+    const updatedUserEmail = await prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        email: userEmail,
+      },
+    });
+    return updatedUserEmail;
+  } catch (err) {
+    console.log(err);
+    throw new Error();
+  }
 };
 
-export const findUserCreationDate = async createdAt => {
-  const creationDate = await prisma.user.findUnique({
+export const updateUsername = async (userId, userName) => {
+  try {
+    const updatedUsername = await prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        username: userName,
+      },
+    });
+    return updatedUsername;
+  } catch (err) {
+    console.log(err);
+    throw new Error();
+  }
+};
+
+export const updatePassword = async (userId, userPassword) => {
+  const updatedPassword = await prisma.user.update({
     where: {
-      createdAt,
+      id: userId,
+    },
+    data: {
+      password: userPassword,
     },
   });
 
-  return creationDate;
+  return updatedPassword;
 };

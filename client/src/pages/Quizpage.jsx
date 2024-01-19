@@ -3,6 +3,7 @@ import QuizQuestionCard from '../components/QuizPageComponents/QuizQuestionCard'
 import QuizQuestion from '../components/QuizPageComponents/QuizQuestion';
 import QuizResultPage from '../components/QuizPageComponents/QuizResultPage';
 import '../components/QuizPageComponents/quizpage.css';
+import '../login.css';
 import useQuestion from '../hooks/useQuestion';
 import { QuizContext } from '../contexts/QuizContext'; // Adjust the path
 

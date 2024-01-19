@@ -4,10 +4,17 @@
   --accent-color: #BF5700;
   --button-hover-color: #af4128;
   --smokey-black: #100C08;
-  font-weight: bold;
+  --grey-background: #e1e1e1;
+
 }
 
 * {
   margin: 0;
-  padding: 0;
+  padding: 0;  
+  font-weight: bold;
+  text-decoration: none;
+}
+
+* input:focus {
+  outline: none;
 }
