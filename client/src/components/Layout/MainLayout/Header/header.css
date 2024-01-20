@@ -95,6 +95,16 @@ nav li {
     transition-timing-function: 0.3s ease-in-out;
 }
 
+.logged_in_icon {
+    width: 35px;
+    height: 35px;
+    margin: 10px 0 5px;
+    color: var(--smokey-black);
+}
+
+.logged_in_icon img {
+    background-color: var(--smokey-black);
+}
 
 /* --- MEDIA QUERIES --- */
 
