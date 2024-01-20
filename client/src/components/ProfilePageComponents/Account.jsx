@@ -1,65 +1,50 @@
 import { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { API_URL } from '../../constants';
-import './profileMenu.css';
 
 export default function Account() {
-  const { username, userId, userEmail } = useAuth();
-
+  const { userId, userEmail, setUsername, setUserEmail } = useAuth();
+  const [errorState, setErrorState] = useState('');
   const [newEmail, setNewEmail] = useState('');
-  const [newUsername, setNewUsername] = useState('');
-
-  const handleEmailChange = (e) => {
-    if (!e) {
-      setNewEmail(userEmail);
-    } else {
-      setNewEmail(e);
-    }
-  };
-
-  const handleUsernameChange = (e) => {
-    if (!e) {
-      setNewUsername(username);
-    } else {
-      setNewUsername(e);
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Make a PUT request to update the email
     try {
       const response = await fetch(`${API_URL}/profile/account/${userId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ newEmail, newUsername }),
+        body: JSON.stringify({ newEmail }),
       });
 
       if (response.ok) {
         const updatedUser = await response.json();
-        setNewEmail(updatedUser.email);
-        setNewUsername(updatedUser.username);
+        setUserEmail(updatedUser.email);
+        setUsername(updatedUser.username);
+
+        setNewEmail('');
       }
     } catch (error) {
-      throw new Error('Error updating data:', error);
+      setErrorState(error.message);
     }
   };
+
   return (
     <form className="account" onSubmit={handleSubmit}>
       <div className="input_container">
-        <label htmlFor="username" className="username_label">
+        {/* <label htmlFor="username" className="username_label">
           Username:
           <input
             name="username"
             className="username"
             type="text"
-            defaultValue={username}
-            onChange={(e) => handleUsernameChange(e.target.value)}
+            placeholder={username}
+            value={newUsername}
+            onChange={(e) => setNewUsername(e.target.value)}
           />
-        </label>
+        </label> */}
 
         <label htmlFor="email" className="email_label">
           Email address:
@@ -68,14 +53,15 @@ export default function Account() {
             name="email"
             className="email"
             type="text"
-            defaultValue={userEmail}
-            onChange={(e) => handleEmailChange(e.target.value)}
+            placeholder={userEmail}
+            value={newEmail}
+            onChange={(e) => setNewEmail(e.target.value)}
           />
         </label>
       </div>
 
       <button type="submit">Save</button>
-
+      {errorState && <p>{errorState}</p>}
       <button type="button" id="delete_button">
         Delete profile
       </button>

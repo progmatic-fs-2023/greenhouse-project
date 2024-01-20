@@ -4,8 +4,7 @@ import { useAuth } from '../../../../contexts/AuthContext';
 import menu from '../../../../assets/menu.svg';
 
 function NavBar() {
-  const { isLoggedIn, username, userRole } = useAuth();
-  const { logout } = useAuth();
+  const { isLoggedIn, username, userRole, logout } = useAuth();
 
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => {
