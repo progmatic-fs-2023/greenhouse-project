@@ -18,6 +18,7 @@ export function AuthProvider({ children }) {
   const [userRole, setUserRole] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userCreationDate, setuserCreationDate] = useState('');
+  const [errorState, setErrorState] = useState('');
 
   useEffect(() => {
     if (token) {
@@ -39,7 +40,7 @@ export function AuthProvider({ children }) {
           setUserEmail(responseData.email);
           setuserCreationDate(responseData.createdAt);
         } catch (error) {
-          console.error('Error fetching user data:', error);
+          setErrorState(error.message);
         }
       }
     }
@@ -75,6 +76,7 @@ export function AuthProvider({ children }) {
       token,
       setUserEmail,
       setUsername,
+      errorState,
     }),
     [
       isLoggedIn,
@@ -86,6 +88,7 @@ export function AuthProvider({ children }) {
       token,
       setUserEmail,
       setUsername,
+      errorState,
     ],
   );
 

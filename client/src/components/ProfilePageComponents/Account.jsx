@@ -4,7 +4,7 @@ import { API_URL } from '../../constants';
 
 export default function Account() {
   const { userId, userEmail, setUsername, setUserEmail } = useAuth();
-
+  const [errorState, setErrorState] = useState('');
   const [newEmail, setNewEmail] = useState('');
 
   const handleSubmit = async (e) => {
@@ -27,7 +27,7 @@ export default function Account() {
         setNewEmail('');
       }
     } catch (error) {
-      console.error('Error updating data:', error);
+      setErrorState(error.message);
     }
   };
 
@@ -61,7 +61,7 @@ export default function Account() {
       </div>
 
       <button type="submit">Save</button>
-
+      {errorState && <p>{errorState}</p>}
       <button type="button" id="delete_button">
         Delete profile
       </button>
