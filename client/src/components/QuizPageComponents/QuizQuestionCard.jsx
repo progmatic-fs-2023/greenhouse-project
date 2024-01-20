@@ -3,7 +3,7 @@ import QuizAnswer from './QuizAnswer';
 import QuizHandler from './QuizHandler';
 import '../QuizModulsPageComponents/quizmodul.css';
 
-export default function QuizQuestionCard({ answers, nextQuestion }) {
+export default function QuizQuestionCard({ answers, nextQuestion, nextQuestionIndex }) {
   return (
     <div className="quiz_question_card">
       <div className="quiz_answer_container">
@@ -12,7 +12,7 @@ export default function QuizQuestionCard({ answers, nextQuestion }) {
             <QuizAnswer answer={answer} nextQuestion={nextQuestion} />
           </div>
         ))}
-        <QuizHandler />
+        <QuizHandler nextQuestionIndex={nextQuestionIndex} />
       </div>
     </div>
   );
@@ -26,4 +26,5 @@ QuizQuestionCard.propTypes = {
     }),
   ).isRequired,
   nextQuestion: PropTypes.func.isRequired,
+  nextQuestionIndex: PropTypes.number.isRequired,
 };

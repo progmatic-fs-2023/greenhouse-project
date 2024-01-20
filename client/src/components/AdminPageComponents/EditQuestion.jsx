@@ -19,7 +19,9 @@ function EditPage() {
       setLoading(true);
       setErrorState('');
 
-      const response = await fetch(`${API_URL}/admin/edit?topic=${topic}&difficulty=${difficulty}`);
+      const response = await fetch(
+        `${API_URL}/admin/edit?topic=${topic}&difficulty=${difficulty}&search=${search}`,
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
