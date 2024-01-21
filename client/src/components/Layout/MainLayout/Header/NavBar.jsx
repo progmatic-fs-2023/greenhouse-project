@@ -35,7 +35,7 @@ function NavBar() {
           </NavLink>
         </li>
         <li>
-          <NavLink to={isLoggedIn ? '/profile/account/' : '/login'}>
+          <NavLink to={isLoggedIn ? '/profile/account' : '/login'}>
             {isLoggedIn ? (
               <button type="button"><img src={profil} alt='logged-in-icon' className='logged_in_icon'/></button>
             ) : (

@@ -42,7 +42,7 @@ export default function Leaderboard() {
   return (
     <div>
       {errorState && <p>{errorState}</p>}
-      {loggedInUserXp === 0 ? (
+      {loggedInUserXp === undefined ? (
         <div style={{ textAlign: 'center', margin: '20px' }}>
           <p style={{ fontSize: '20px', color: 'green' }}>
             Great to have you here! Start playing to get on the leaderboard.

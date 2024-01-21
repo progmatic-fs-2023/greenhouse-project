@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { updateUserEmail, updatePassword } from '../services/profile.services';
+import { updateUserEmail, updatePassword, findUserXp } from '../services/profile.services';
 
 export const userDataUpdate = async (req, res) => {
   try {
@@ -23,6 +23,17 @@ export const passwordUpdate = async (req, res) => {
     res.status(201).json(updatedData);
   } catch (error) {
     console.error('Error updating password', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+export const getUserXp = async (req, res) => {
+  try {
+  const userId= req.params.id;
+  const userXpData = await findUserXp(userId);
+  res.status(200).json(userXpData);
+  } catch (error) {
+    console.error(error);
     res.status(500).json({ error: 'Internal server error' });
   }
 };

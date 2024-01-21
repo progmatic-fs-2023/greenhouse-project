@@ -16,11 +16,11 @@
     flex-flow: row;
     width: 500px;
     margin: 30px 10px;
-    font-size: 18pt;
+    font-size: 25pt;
 }
 
 .input_container input[type=text] {
-    width: 250px;
+    width: 400px;
     font-size: 15pt;
     padding: 5px 10px;
     border-radius: 10px;
@@ -28,13 +28,13 @@
 
 .account button, .subscription button {
     background-color: darkgray;
-    width: fit-content;
+    width: 100px;
     margin: 0 auto;
     padding: 5px 10px;
     box-shadow: 4px 5px var(--smokey-black);
     border-radius: 10px;
     border: none;
-    font-size: 15pt;
+    font-size: 20pt;
     transition-duration: 0.3s;
 }
 

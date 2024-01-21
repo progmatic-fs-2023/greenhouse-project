@@ -3,9 +3,11 @@ import { useAuth } from '../../contexts/AuthContext';
 import { API_URL } from '../../constants';
 
 export default function Account() {
-  const { userId, userEmail, setUsername, setUserEmail } = useAuth();
+  const { userId, userEmail, setUsername, setUserEmail, userCreationDate } = useAuth();
   const [errorState, setErrorState] = useState('');
   const [newEmail, setNewEmail] = useState('');
+  const dateString = [userCreationDate];
+  const formattedDate = dateString[0].slice(0, 10);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,6 +47,8 @@ export default function Account() {
             onChange={(e) => setNewUsername(e.target.value)}
           />
         </label> */}
+        <h4>Member since: {formattedDate}</h4>
+
 
         <label htmlFor="email" className="email_label">
           Email address:
