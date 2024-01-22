@@ -48,3 +48,26 @@ export const updatePassword = async (userId, hashedNewPassword) => {
 
   return updatedPassword;
 };
+
+export const destroyUserById = async userId => {
+  try {
+    await prisma.$transaction(async prisma => {
+      const userScores = await prisma.score.findMany({
+        where: { userId },
+      });
+
+      if (userScores.length > 0) {
+        await prisma.score.deleteMany({
+          where: { userId },
+        });
+      }
+      await prisma.user.delete({
+        where: { id: userId },
+      });
+    });
+    return true;
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    throw error;
+  }
+};

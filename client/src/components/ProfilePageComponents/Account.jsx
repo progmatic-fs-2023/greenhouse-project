@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { API_URL } from '../../constants';
 import './account.css';
 
 export default function Account() {
-  const { userId, userEmail, setUsername, setUserEmail } = useAuth();
+  const { userId, userEmail, setUsername, setUserEmail, logout } = useAuth();
   const [errorState, setErrorState] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +28,6 @@ export default function Account() {
         const updatedUser = await response.json();
         setUserEmail(updatedUser.email);
         setUsername(updatedUser.username);
-
         setNewEmail('');
       }
     } catch (error) {
@@ -38,16 +39,14 @@ export default function Account() {
     try {
       const response = await fetch(`${API_URL}/profile/account/${userId}`, {
         method: 'DELETE',
-        // További fejlécek vagy beállítások szükség szerint
       });
-
-      if (response.ok) {
-        // Kezeld a sikeres törlést, pl. navigáció vagy állapot frissítése
-      } else {
-        // Kezeld az esetleges hibákat
+      console.log(response);
+      if (response.status === 200) {
+        navigate('/');
+        logout();
       }
     } catch (error) {
-      setErrorState(error.message);
+      setErrorState(error.error);
     }
   };
 
