@@ -38,7 +38,13 @@ const useQuestion = () => {
       const data = await response.json();
       setCorrectAnswer(data.isCorrect);
 
-      setQuestion(data.question);
+      setQuestion((prevQuestion) => ({
+        ...prevQuestion,
+        answers: prevQuestion.answers.map((answer) => ({
+          ...answer,
+          isCorrect: data.question.answers.find((a) => a.id === answer.id)?.isCorrect,
+        })),
+      }));
 
       if (data.isCorrect) {
         setCorrectAnswers(contextCorrectAnswers + 1);

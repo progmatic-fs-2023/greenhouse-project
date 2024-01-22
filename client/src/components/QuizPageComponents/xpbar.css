@@ -1,0 +1,17 @@
+.xp-bar {
+  width: 360px;
+  height: 360px;
+  background-color: #edc9af;
+}
+
+.customModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%; 
+  max-width: 400px; 
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
