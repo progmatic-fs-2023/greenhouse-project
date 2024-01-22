@@ -11,7 +11,7 @@ import './xpbar.css';
 Modal.setAppElement('#root');
 
 function QuizResultPage({ totalQuestions, correctAnswers }) {
-  const { userXp, fetchUserScore } = useAuth();
+  const { userXp, fetchUserScore, isLoggedIn } = useAuth();
   const [currentXp, setCurrentXp] = useState(userXp - correctAnswers);
   const { nextRank, lowerThreshold, upperThreshold } = calculateRanks(userXp);
   const [reachedNextRank, setReachedNextRank] = useState(false);
@@ -64,14 +64,16 @@ function QuizResultPage({ totalQuestions, correctAnswers }) {
         </Link>
       </div>
       <div>
-        <div>
-          <CircularProgressbar
-            className="xp-bar"
-            value={xpPercentage}
-            text={centerLabel}
-            styles={{ text: { fontSize: '5px' } }}
-          />
-        </div>
+        {isLoggedIn && (
+          <div>
+            <CircularProgressbar
+              className="xp-bar"
+              value={xpPercentage}
+              text={centerLabel}
+              styles={{ text: { fontSize: '5px' } }}
+            />
+          </div>
+        )}
       </div>
       <Modal
         isOpen={reachedNextRank}
