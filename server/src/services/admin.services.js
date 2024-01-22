@@ -44,6 +44,7 @@ export const getQuestions = async (topic, difficulty, search) => {
       level: difficulty,
       description: {
         contains: search || '',
+        mode: 'insensitive',
       },
     },
     include: {

@@ -101,9 +101,9 @@ function EditPage() {
             />
           </label>
 
-          <button type="button" onClick={fetchQuestions}>
+          {/*  <button type="button" onClick={fetchQuestions}>
             Search
-          </button>
+          </button> */}
         </div>
 
         {loading && <p>Loading...</p>}
