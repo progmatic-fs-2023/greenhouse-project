@@ -1,20 +1,29 @@
 import PropTypes from 'prop-types';
 
-export default function QuizAnswer({ answer, nextQuestion }) {
-  const { id, name, isCorrect } = answer;
+export default function QuizAnswer({
+  answer,
+  nextQuestion,
+  correctAnswer,
+  selectedAnswer,
+  onAnswerClick,
+}) {
+  const { id, name } = answer;
 
   const getBackgroundColor = () => {
-    if (isCorrect === true) {
-      return 'green';
-    }
-    if (isCorrect === false) {
-      return 'red';
+    if (selectedAnswer !== null) {
+      if (id === correctAnswer) {
+        return 'green';
+      }
+      if (id === selectedAnswer) {
+        return 'red';
+      }
     }
     return 'white';
   };
 
   const handleClick = async () => {
     await nextQuestion(id);
+    onAnswerClick(id);
   };
 
   return (
@@ -39,4 +48,7 @@ QuizAnswer.propTypes = {
     isCorrect: PropTypes.bool,
   }).isRequired,
   nextQuestion: PropTypes.func.isRequired,
+  correctAnswer: PropTypes.func.isRequired,
+  selectedAnswer: PropTypes.func.isRequired,
+  onAnswerClick: PropTypes.func.isRequired,
 };
