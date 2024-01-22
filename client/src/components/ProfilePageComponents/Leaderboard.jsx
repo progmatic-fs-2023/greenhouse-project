@@ -5,9 +5,8 @@ import { useAuth } from '../../contexts/AuthContext';
 
 export default function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
-  const [loggedInUserXp, setLoggedInUserXp] = useState();
   const loggedInUserRef = useRef(null);
-  const { userId } = useAuth();
+  const { userId, userXp, setUserXp } = useAuth();
   const [errorState, setErrorState] = useState('');
 
   useEffect(() => {
@@ -21,13 +20,17 @@ export default function Leaderboard() {
         const leaderboardData = await response.json();
         setLeaderboard(leaderboardData);
         const loggedInUserData = leaderboardData.find((user) => user.id === userId);
-        setLoggedInUserXp(loggedInUserData.xp);
+        if (loggedInUserData && loggedInUserData.xp !== undefined) {
+          setUserXp(loggedInUserData.xp);
+        } else {
+          setUserXp(undefined);
+        }
       } catch (error) {
         setErrorState(error.message);
       }
     };
     getLeaderboard();
-  }, [userId]);
+  }, [userId, userXp]);
 
   useEffect(() => {
     if (loggedInUserRef.current) {
@@ -42,7 +45,7 @@ export default function Leaderboard() {
   return (
     <div>
       {errorState && <p>{errorState}</p>}
-      {loggedInUserXp === undefined ? (
+      {userXp === undefined ? (
         <div style={{ textAlign: 'center', margin: '20px' }}>
           <p style={{ fontSize: '20px', color: 'green' }}>
             Great to have you here! Start playing to get on the leaderboard.

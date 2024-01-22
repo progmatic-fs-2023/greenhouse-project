@@ -1,0 +1,21 @@
+import ranks from '../../utils/ranks';
+
+const calculateRanks = (xp) => {
+  let currentRank = 'Newbie';
+  let nextRank = 'Rookie';
+  let lowerThreshold = 0;
+  let upperThreshold = 20;
+
+  const rankKeys = Object.keys(ranks);
+  for (let i = 0; i < rankKeys.length; i += 1) {
+    if (xp >= ranks[rankKeys[i]].xpThreshold) {
+      currentRank = ranks[rankKeys[i]].name;
+      lowerThreshold = ranks[rankKeys[i]].xpThreshold;
+      nextRank = i < rankKeys.length - 1 ? ranks[rankKeys[i + 1]].name : 'Max Rank';
+      upperThreshold = i < rankKeys.length - 1 ? ranks[rankKeys[i + 1]].xpThreshold : xp;
+    }
+  }
+
+  return { currentRank, nextRank, lowerThreshold, upperThreshold };
+};
+export default calculateRanks;
