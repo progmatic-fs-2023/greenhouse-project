@@ -1,16 +1,77 @@
+import React, { useState } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
+import { API_URL } from '../../constants';
+
 export default function Password() {
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [newPasswordChanged, setNewPasswordChanged] = useState('');
+  const [error, setError] = useState('');
+  const { userId } = useAuth();
+
+  const handleSaveClick = async (e) => {
+    e.preventDefault();
+    if (newPassword !== confirmNewPassword) {
+      setError('Az új jelszavak nem egyeznek.');
+    } else {
+      setError('');
+      const response = await fetch(`${API_URL}/profile/password/${userId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ newPassword, currentPassword }),
+      });
+      // const responseData = await response.json();
+
+      if (response.ok) {
+        setNewPasswordChanged('Sikeres módosítás');
+      } else {
+        const errorResponse = await response.json();
+        setError(errorResponse.error);
+      }
+    }
+  };
+
   return (
     <div className="container">
       <div className="input_container">
         <label htmlFor="current_password" className="current_password_label">
           Current password:
-          <input name="current_password" className="current_password_input" type="text" value="" />
+          <input
+            name="current_password"
+            className="current_password_input"
+            type="password"
+            value={currentPassword}
+            onChange={(e) => setCurrentPassword(e.target.value)}
+          />
         </label>
-
         <label htmlFor="new_password" className="new_password_label">
           New password:
-          <input name="new_password" className="new_password_input" type="text" value="" />
+          <input
+            name="new_password"
+            className="new_password_input"
+            type="password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
         </label>
+        <label htmlFor="confirm_new_password" className="new_password_label">
+          New password again:
+          <input
+            name="confirm_new_password"
+            className="new_password_input"
+            type="password"
+            value={confirmNewPassword}
+            onChange={(e) => setConfirmNewPassword(e.target.value)}
+          />
+        </label>
+        {newPasswordChanged && <p>{newPasswordChanged}</p>}
+        {error && <p className="error">{error}</p>}
+        <button type="submit" onClick={handleSaveClick}>
+          Save
+        </button>
       </div>
     </div>
   );

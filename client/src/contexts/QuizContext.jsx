@@ -22,7 +22,7 @@ function QuizProvider({ children }) {
 
       setQuizQuestions(quiz.questions);
       setCorrectAnswers(0);
-      setTotalQuestions(numberOfQuestions);
+      setTotalQuestions(quiz.questions.length);
       setPlayedLanguage(language);
     } catch (error) {
       throw new Error();

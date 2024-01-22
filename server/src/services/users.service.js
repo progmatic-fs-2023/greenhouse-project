@@ -21,6 +21,15 @@ export const findUserById = async userId => {
   return userDatas;
 };
 
+export const findUserScoreById = async userId => {
+  const userScore = await prisma.score.findUnique({
+    where: {
+      userId,
+    },
+  });
+  return userScore;
+};
+
 export const createUser = async newUser => {
   const createdUser = await prisma.user.create({
     data: {

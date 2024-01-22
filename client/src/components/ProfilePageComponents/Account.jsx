@@ -47,8 +47,8 @@ export default function Account() {
             onChange={(e) => setNewUsername(e.target.value)}
           />
         </label> */}
-        <h4>Member since: {formattedDate}</h4>
 
+        <h4>Member since: {formattedDate}</h4>
 
         <label htmlFor="email" className="email_label">
           Email address:
