@@ -1,10 +1,21 @@
-import './quizpage.css';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function QuizHandler({ nextQuestionIndex }) {
+function QuizHandler({ nextQuestionIndex, isCorrectPresent }) {
+  const buttonStyle = {
+    backgroundColor: isCorrectPresent ? '' : '#ccc',
+    color: isCorrectPresent ? '' : '#666',
+    cursor: isCorrectPresent ? 'pointer' : 'not-allowed',
+  };
+
   return (
     <div className="handler">
-      <button type="button" onClick={nextQuestionIndex}>
+      <button
+        type="button"
+        onClick={nextQuestionIndex}
+        disabled={!isCorrectPresent}
+        style={buttonStyle}
+      >
         Next Question
       </button>
     </div>
@@ -13,4 +24,7 @@ export default function QuizHandler({ nextQuestionIndex }) {
 
 QuizHandler.propTypes = {
   nextQuestionIndex: PropTypes.func.isRequired,
+  isCorrectPresent: PropTypes.bool.isRequired,
 };
+
+export default QuizHandler;
