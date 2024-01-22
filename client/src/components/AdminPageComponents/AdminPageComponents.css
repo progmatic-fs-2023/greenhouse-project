@@ -6,7 +6,7 @@
   align-items: center;
   text-align: center;
   flex-flow: column;
-  width: 700px;
+  width: 60%;
   height: 100%;
   border-right: 3px solid var(--smokey-black);
   border-bottom: 3px solid var(--smokey-black);
@@ -125,10 +125,19 @@
   background-color: white;
 }
 
-.error-message, .edit_question_form p {
+#error-message {
   color: red;
   margin-bottom: 10px;
-  font-size: 15pt;
+  font-size: 17pt;
+  background-color: white;
+  width: 300px;
+  text-align: center;
+}
+
+.edit_question_form p, #ok-message {
+  color: black;
+  margin-bottom: 10px;
+  font-size: 17pt;
 }
 
 .admin-button {
@@ -175,8 +184,8 @@
 
 .admin h3 {
   width: 100%;
-  font-size: 18pt;
-  padding: 10px 0;
+  font-size: 25pt;
+  padding: 20px 0;
   border-bottom: 3px solid var(--smokey-black);
   background-color: var(--grey-background);
 }
@@ -187,7 +196,7 @@
 }
 
 .question-form-container button{
-  margin-bottom: 30px;
+  margin: 30px auto 0;
 }
 
 #users_list {
@@ -224,7 +233,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: min-content;
+  width: max-content;
   margin: 0 auto;
 }
 

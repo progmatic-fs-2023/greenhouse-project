@@ -58,6 +58,8 @@ function ProfileHeader() {
     }
   });
 
+  const difference = threshold-xp;
+
   return (
     <div className="profile_header_container">
       <img src={Profilepic} alt="Profile" className="user_pic" />
@@ -75,6 +77,7 @@ function ProfileHeader() {
               style={{ width: `${(xp/threshold)*100}%` }}
             />
             </div>
+            <p>{difference} XP until next level</p>
           </div>
     </div>
   );

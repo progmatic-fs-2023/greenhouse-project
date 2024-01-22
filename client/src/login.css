@@ -10,8 +10,9 @@
   align-items: center;
   text-align: center;
   flex-flow: column;
-  width: 400px;
+  width: 50%;
   height: 100%;
+  padding: 30px auto;
   border-right: 3px solid var(--smokey-black);
   border-bottom: 3px solid var(--smokey-black);
   border-left: 3px solid var(--smokey-black);
@@ -24,10 +25,10 @@
   border: 3px solid var(--smokey-black);
   width: 100%;
   border-radius: 10px 10px 0 0;
-  padding: 10px 0;
+  padding: 20px 0;
   text-transform: uppercase;
   font-style: normal;
-  font-size: 30pt;
+  font-size: 42pt;
   background-color: var(--secondary-color);
 }
 
@@ -37,16 +38,16 @@
 
 .login_container label, .quiz-form label, .edit_question_form label {
   font-style: normal;
-  font-size: 17pt;
+  font-size: 25pt;
 }
 
 .login_container input, .quiz-form select, .quiz-form input {
   margin-bottom: 15px;
-  padding: 5px 10px;
+  padding: 10px 15px;
   border: 3px solid var(--smokey-black);
   border-radius: 5px;
-  width: 250px;
-  font-size: 15pt;
+  width: 400px;
+  font-size: 20pt;
   border-radius: 10px;
 }
 
@@ -54,11 +55,11 @@
   background-color: var(--accent-color);
   border-radius: 10px;
   border: none;
-  width: 170px;
-  height: 40px;
-  padding: 5px;
-  margin: 10px 0;
-  font-size: 13pt;
+  width: 250px;
+  height: 70px;
+  padding: 10px;
+  margin: 20px 0;
+  font-size: 20pt;
   text-transform: uppercase;
   transition-duration: 0.3s;
   box-shadow: 5px 8px var(--smokey-black);
@@ -78,5 +79,5 @@
   margin-bottom: 10px;
   text-transform: uppercase;
   font-style: normal;
-  font-size: x-large;
+  font-size: 25pt;
 }

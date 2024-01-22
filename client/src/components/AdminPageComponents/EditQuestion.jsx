@@ -107,7 +107,7 @@ function EditPage() {
         </div>
 
         {loading && <p>Loading...</p>}
-        {errorState && <p className="error-message">{errorState}</p>}
+        {errorState && <p>{errorState}</p>}
 
         {questions.length > 0 && (
           <div className="questions_container">

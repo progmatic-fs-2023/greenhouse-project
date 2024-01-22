@@ -105,6 +105,11 @@
     margin-bottom: 10px;
     overflow: hidden;
   }
+
+  .xp p {
+    font-size: 18pt;
+    text-align: center;
+  }
   
   .status-bar-fill {
     height: 100%;
