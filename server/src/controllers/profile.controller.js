@@ -18,7 +18,7 @@ export const userDataUpdate = async (req, res) => {
 export const passwordUpdate = async (req, res) => {
   try {
     const userId = req.params.id;
-    const { currentPassword, newPassword } = req.body.currentPassword;
+    const { currentPassword, newPassword } = req.body;
     const user = await findUserById(userId);
     const matchedPassword = await comparePassword(currentPassword, user.password);
     if (matchedPassword) {
@@ -29,7 +29,6 @@ export const passwordUpdate = async (req, res) => {
       throw new Error();
     }
   } catch (error) {
-    console.error('Error updating password', error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Something went wrong with changing password :(' });
   }
 };

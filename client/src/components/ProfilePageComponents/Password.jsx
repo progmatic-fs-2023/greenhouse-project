@@ -28,7 +28,8 @@ export default function Password() {
       if (response.ok) {
         setNewPasswordChanged('Sikeres módosítás');
       } else {
-        setError(response.message);
+        const errorResponse = await response.json();
+        setError(errorResponse.error);
       }
     }
   };
