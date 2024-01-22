@@ -94,6 +94,8 @@ function QuizResultPage({ totalQuestions, correctAnswers }) {
         <div className="firework" />
         <div className="firework" />
         <div className="firework" />
+        <div className="firework" />
+        <div className="firework" />
       </div>
       <div className="pyro">
         <div className="before" />

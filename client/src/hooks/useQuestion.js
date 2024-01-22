@@ -117,11 +117,20 @@ const useQuestion = () => {
       const data = await response.json();
       setCorrectAnswer(data.isCorrect);
 
+      /*  setQuestion((prevQuestion) => ({
+        ...prevQuestion,
+        answers: prevQuestion.answers.map((answer) => ({
+          ...answer,
+          isCorrect: data.question.answers.find((a) => a.id === answer.id)?.isCorrect,
+        })),
+      })); */
+
       setQuestion((prevQuestion) => ({
         ...prevQuestion,
         answers: prevQuestion.answers.map((answer) => ({
           ...answer,
           isCorrect: data.question.answers.find((a) => a.id === answer.id)?.isCorrect,
+          isSelected: answer.id === answerId, // Add isSelected property
         })),
       }));
 
