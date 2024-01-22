@@ -110,6 +110,10 @@
     font-size: 18pt;
     text-align: center;
   }
+
+  .xp h4 {
+    margin-bottom: 10px;
+  }
   
   .status-bar-fill {
     height: 100%;

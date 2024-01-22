@@ -1,10 +1,10 @@
-.login_main_container {
+.login_main_container, .contact_main_container {
   display: flex;
   justify-content: center;
   padding: 3rem 0;
 }
 
-.login_container {
+.login_container, .contact_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +21,7 @@
   background-color: white;
 }
 
-.login_container h2, .question-form-container h2, .edit_question_container h2, .admin h1, .new_question h2 {
+.login_container h2, .question-form-container h2, .edit_question_container h2, .admin h1, .new_question h2, .contact_container h2 {
   border: 3px solid var(--smokey-black);
   width: 100%;
   border-radius: 10px 10px 0 0;
@@ -32,16 +32,16 @@
   background-color: var(--secondary-color);
 }
 
-.login_container form {
+.login_container form, .contact_container form {
   padding: 40px 0;
 }
 
-.login_container label, .quiz-form label, .edit_question_form label {
+.login_container label, .quiz-form label, .edit_question_form label, .contact_container label {
   font-size: 23pt;
   padding: 0 auto;
 }
 
-.login_container input, .quiz-form select, .quiz-form input {
+.login_container input, .quiz-form select, .quiz-form input, .contact_container input, #subject, #message {
   margin: 0 auto 30px;
   padding: 10px 15px;
   border: 3px solid var(--smokey-black);
@@ -50,7 +50,7 @@
   border-radius: 10px;
 }
 
-.login_container button, .edit_question_form button, .admin button, .question-form-container button, .modal_button {
+.login_container button, .edit_question_form button, .admin button, .question-form-container button, .modal_button, .contact_container button {
   background-color: var(--accent-color);
   border-radius: 10px;
   border: none;
@@ -64,7 +64,7 @@
   box-shadow: 5px 8px var(--smokey-black);
 }
 
-.login_container button:hover, .edit_question_form button:hover, .admin button:hover, .question-form-container button:hover, .modal_button:hover {
+.login_container button:hover, .edit_question_form button:hover, .admin button:hover, .question-form-container button:hover, .modal_button:hover, .contact_container button:hover {
   background-color: var(--button-hover-color);
   color: #2c2c2c;
   transition-timing-function: 0.3s ease-in-out;
@@ -80,10 +80,16 @@
   font-size: 25pt;
 }
 
+#message {
+  height: auto;
+  width: 300px;
+}
+
+
 /* MEDIA QUERIES */
 
 @media only screen and (max-width: 800px) { 
-  .login_container {
+  .login_container, .contact_container {
     width: 400px;
   }
 

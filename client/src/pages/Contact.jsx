@@ -48,7 +48,8 @@ function ContactPage() {
   };
 
   return (
-    <div>
+    <div className='contact_main_container'>
+      <div className='contact_container'>
       <h2>Contact Us</h2>
       {sending && <p>Sending...</p>}
       {sent && <p>Message sent!</p>}
@@ -58,12 +59,14 @@ function ContactPage() {
           <div>
             <label htmlFor="name">
               Your Name:
+              <br />
               <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
             </label>
           </div>
           <div>
             <label htmlFor="email">
               Your Email:
+              <br />
               <input
                 type="email"
                 id="email"
@@ -76,6 +79,7 @@ function ContactPage() {
           <div>
             <label htmlFor="subject">
               Subject:
+              <br />
               <select
                 id="subject"
                 value={selectedSubject}
@@ -96,6 +100,7 @@ function ContactPage() {
           <div>
             <label htmlFor="message">
               Your Message:
+              <br />
               <textarea
                 id="message"
                 value={message}
@@ -110,6 +115,7 @@ function ContactPage() {
           </button>
         </form>
       )}
+    </div>
     </div>
   );
 }

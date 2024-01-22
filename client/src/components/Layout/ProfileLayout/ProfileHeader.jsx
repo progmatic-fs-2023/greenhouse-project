@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../../contexts/AuthContext';
 import { API_URL } from '../../../constants';
+import ranks from '../../../utils/ranks';
 import Profilepic from '../../../assets/profilepic.svg';
 import plant from '../../../assets/plant.svg';
 import pottedPlant from '../../../assets/potted_plant.svg'
@@ -14,7 +15,7 @@ function ProfileHeader() {
   const [xp, setXp] = useState('');
   const [icon, setIcon] = useState();
   const [threshold, setThreshold] = useState(0);
-  const ranks = ["Newbie", "Rookie", "Apprentice", "Master", "Legend"];
+  const difference = threshold-xp;
 
   useEffect(() => {
     const fetchUserXP = async () => {
@@ -37,28 +38,26 @@ function ProfileHeader() {
 
   useEffect(() => {
   if(xp <= 100){
-    setRank(ranks[0]);
+    setRank(ranks.newbie.name);
     setIcon(pottedPlant);
-    setThreshold(100);
+    setThreshold(ranks.newbie.xpThreshold);
     } else if(xp <= 200){
-    setRank(ranks[1]);
+    setRank(ranks.rookie.name);
     setIcon(plant);
-    setThreshold(200);
+    setThreshold(ranks.rookie.xpThreshold);
     } else if(xp <= 350){
-      setRank(ranks[2]);
+      setRank(ranks.apprentice.name);
       setIcon(spa);
-      setThreshold(350);
+      setThreshold(ranks.apprentice.xpThreshold);
     } else if(xp <= 500){
-      setRank(ranks[3]);
+      setRank(ranks.expert.name);
       setIcon(grass);
       setThreshold(500);
     } else if(xp > 500){
-      setRank(ranks[4]);
+      setRank(ranks.legend.name);
       setIcon(tree);
     }
   });
-
-  const difference = threshold-xp;
 
   return (
     <div className="profile_header_container">
@@ -70,14 +69,14 @@ function ProfileHeader() {
         <img src={icon} alt="rank-icon" className="rank_pic" />
         </h2>
         <div className='xp'>
-          <h4>{xp} XP</h4>
+          <h4>{xp || 0}xp</h4>
           <div className="status-bar">
             <div
               className="status-bar-fill"
               style={{ width: `${(xp/threshold)*100}%` }}
             />
             </div>
-            <p>{difference} XP until next level</p>
+            <div>{xp > 500 ? <p> </p> : <p>{difference}xp until next level</p>}</div>
           </div>
     </div>
   );
