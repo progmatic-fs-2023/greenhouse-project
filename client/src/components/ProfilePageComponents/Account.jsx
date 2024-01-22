@@ -34,18 +34,6 @@ export default function Account() {
   return (
     <form className="account" onSubmit={handleSubmit}>
       <div className="input_container">
-        {/* <label htmlFor="username" className="username_label">
-          Username:
-          <input
-            name="username"
-            className="username"
-            type="text"
-            placeholder={username}
-            value={newUsername}
-            onChange={(e) => setNewUsername(e.target.value)}
-          />
-        </label> */}
-
         <label htmlFor="email" className="email_label">
           Email address:
           <br />

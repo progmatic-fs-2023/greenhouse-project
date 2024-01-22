@@ -10,14 +10,21 @@ const initUserId = (token) => {
   const decodedToken = jwtDecode(token);
   return decodedToken.id ? decodedToken.id : '';
 };
+const initUserRole = (token) => {
+  if (!token) return '';
+  const decodedToken = jwtDecode(token);
+  return decodedToken.role ? decodedToken.role : '';
+};
+
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [isLoggedIn, setIsLoggedIn] = useState(!!token);
   const [userId, setUserId] = useState(initUserId(token));
   const [username, setUsername] = useState('');
-  const [userRole, setUserRole] = useState('');
+  const [userRole, setUserRole] = useState(initUserRole);
   const [userEmail, setUserEmail] = useState('');
-  const [userCreationDate, setuserCreationDate] = useState('');
+  const [userCreationDate, setUserCreationDate] = useState('');
+  const [userXp, setUserXp] = useState(undefined);
   const [errorState, setErrorState] = useState('');
 
   useEffect(() => {
@@ -38,7 +45,8 @@ export function AuthProvider({ children }) {
           setUserRole(responseData.role);
           setUsername(responseData.username);
           setUserEmail(responseData.email);
-          setuserCreationDate(responseData.createdAt);
+          setUserCreationDate(responseData.createdAt);
+          setUserXp(responseData.score.xp);
         } catch (error) {
           setErrorState(error.message);
         }
@@ -46,7 +54,19 @@ export function AuthProvider({ children }) {
     }
 
     fetchUserData();
-  }, [userId, userEmail, username]);
+  }, [userId, userEmail, username, userXp]);
+
+  async function fetchUserScore() {
+    if (token && isLoggedIn) {
+      try {
+        const response = await fetch(`${API_URL}/userdata/score/${userId}`);
+        const responseData = await response.json();
+        setUserXp(responseData.xp);
+      } catch (error) {
+        setErrorState(error.message);
+      }
+    }
+  }
 
   const login = (userData) => {
     setToken(userData.token);
@@ -58,7 +78,7 @@ export function AuthProvider({ children }) {
     setUsername('');
     setUserRole('');
     setUserEmail('');
-    setuserCreationDate('');
+    setUserCreationDate('');
     setUserId('');
     setToken('');
   };
@@ -76,7 +96,10 @@ export function AuthProvider({ children }) {
       token,
       setUserEmail,
       setUsername,
+      setUserXp,
       errorState,
+      userXp,
+      fetchUserScore,
     }),
     [
       isLoggedIn,
@@ -88,7 +111,10 @@ export function AuthProvider({ children }) {
       token,
       setUserEmail,
       setUsername,
+      setUserXp,
       errorState,
+      userXp,
+      fetchUserScore,
     ],
   );
 
