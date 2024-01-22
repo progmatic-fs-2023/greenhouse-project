@@ -1,7 +1,7 @@
 .login_main_container {
   display: flex;
   justify-content: center;
-  padding: 5rem 0;
+  padding: 3rem 0;
 }
 
 .login_container {
@@ -12,7 +12,7 @@
   flex-flow: column;
   width: 50%;
   height: 100%;
-  padding: 30px auto;
+  padding: 0 auto 20px;
   border-right: 3px solid var(--smokey-black);
   border-bottom: 3px solid var(--smokey-black);
   border-left: 3px solid var(--smokey-black);
@@ -28,25 +28,24 @@
   padding: 20px 0;
   text-transform: uppercase;
   font-style: normal;
-  font-size: 42pt;
+  font-size: 40pt;
   background-color: var(--secondary-color);
 }
 
 .login_container form {
-  padding: 20px 0;
+  padding: 40px 0;
 }
 
 .login_container label, .quiz-form label, .edit_question_form label {
-  font-style: normal;
-  font-size: 25pt;
+  font-size: 23pt;
+  padding: 0 auto;
 }
 
 .login_container input, .quiz-form select, .quiz-form input {
-  margin-bottom: 15px;
+  margin: 0 auto 30px;
   padding: 10px 15px;
   border: 3px solid var(--smokey-black);
   border-radius: 5px;
-  width: 400px;
   font-size: 20pt;
   border-radius: 10px;
 }
@@ -58,7 +57,7 @@
   width: 250px;
   height: 70px;
   padding: 10px;
-  margin: 20px 0;
+  margin: 10px 0;
   font-size: 20pt;
   text-transform: uppercase;
   transition-duration: 0.3s;
@@ -68,7 +67,6 @@
 .login_container button:hover, .edit_question_form button:hover, .admin button:hover, .question-form-container button:hover, .modal_button:hover {
   background-color: var(--button-hover-color);
   color: #2c2c2c;
-  letter-spacing: 0.3px;
   transition-timing-function: 0.3s ease-in-out;
   cursor: pointer;
 }
@@ -80,4 +78,13 @@
   text-transform: uppercase;
   font-style: normal;
   font-size: 25pt;
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 800px) { 
+  .login_container {
+    width: 400px;
+  }
+
 }
