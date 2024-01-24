@@ -1,11 +1,16 @@
 import { useState } from 'react';
+import Modal from 'react-modal';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { API_URL } from '../../constants';
+import './account.css';
 
 export default function Account() {
-  const { userId, userEmail, setUsername, setUserEmail } = useAuth();
+  const { userId, userEmail, setUsername, setUserEmail, logout } = useAuth();
   const [errorState, setErrorState] = useState('');
   const [newEmail, setNewEmail] = useState('');
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,11 +28,24 @@ export default function Account() {
         const updatedUser = await response.json();
         setUserEmail(updatedUser.email);
         setUsername(updatedUser.username);
-
         setNewEmail('');
       }
     } catch (error) {
       setErrorState(error.message);
+    }
+  };
+
+  const handleDeleteConfirm = async () => {
+    try {
+      const response = await fetch(`${API_URL}/profile/account/${userId}`, {
+        method: 'DELETE',
+      });
+      if (response.status === 200) {
+        navigate('/', { state: { accountDeleted: true } });
+        logout();
+      }
+    } catch (error) {
+      setErrorState(error.error);
     }
   };
 
@@ -49,10 +67,27 @@ export default function Account() {
       </div>
 
       <button type="submit">Save</button>
-      {errorState && <p>{errorState}</p>}
-      <button type="button" id="delete_button">
+
+      <button type="button" id="delete_button" onClick={() => setIsDeleteModalOpen(true)}>
         Delete profile
       </button>
+
+      <Modal
+        isOpen={isDeleteModalOpen}
+        onRequestClose={() => setIsDeleteModalOpen(false)}
+        contentLabel="Profil törlése megerősítése"
+        className="Modal"
+      >
+        <h2>Delete profile</h2>
+        <p>Are you sure want to delete this profile?</p>
+        <button type="button" onClick={handleDeleteConfirm}>
+          Yes, do it!
+        </button>
+        <button type="button" onClick={() => setIsDeleteModalOpen(false)}>
+          Nope!
+        </button>
+      </Modal>
+      {errorState && <p>{errorState}</p>}
     </form>
   );
 }
