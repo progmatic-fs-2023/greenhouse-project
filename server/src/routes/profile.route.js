@@ -3,7 +3,7 @@ import * as profileController from '../controllers/profile.controller';
 
 const router = Router();
 
-router.get('/:id', profileController.getUserXp)
+router.get('/:id', profileController.getUserXp);
 
 router.put('/account/:id', profileController.userDataUpdate);
 

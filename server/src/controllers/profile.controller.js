@@ -35,9 +35,9 @@ export const passwordUpdate = async (req, res) => {
 
 export const getUserXp = async (req, res) => {
   try {
-  const userId= req.params.id;
-  const userXpData = await findUserXp(userId);
-  res.status(200).json(userXpData);
+    const userId = req.params.id;
+    const userXpData = await findUserXp(userId);
+    res.status(200).json(userXpData);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });

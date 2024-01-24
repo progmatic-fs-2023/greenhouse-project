@@ -49,18 +49,18 @@ export const updatePassword = async (userId, hashedNewPassword) => {
   return updatedPassword;
 };
 
-export const findUserXp = async (userId) => {
+export const findUserXp = async userId => {
   const experiencePoints = await prisma.user.findUnique({
-    where:{
+    where: {
       id: userId,
     },
     include: {
-      score:{
+      score: {
         select: {
           xp: true,
-        }
-      }
+        },
+      },
     },
-  })
+  });
   return experiencePoints;
 };

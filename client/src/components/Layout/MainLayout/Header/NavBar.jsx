@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../../../contexts/AuthContext';
-import profil from '../../../../assets/logged-in-icon.svg'
+import profil from '../../../../assets/logged-in-icon.svg';
 import menu from '../../../../assets/menu.svg';
 
 function NavBar() {
@@ -37,7 +37,9 @@ function NavBar() {
         <li>
           <NavLink to={isLoggedIn ? '/profile/account' : '/login'}>
             {isLoggedIn ? (
-              <button type="button"><img src={profil} alt='logged-in-icon' className='logged_in_icon'/></button>
+              <button type="button">
+                <img src={profil} alt="logged-in-icon" className="logged_in_icon" />
+              </button>
             ) : (
               <button type="button" id="signinBtn">
                 Sign in
