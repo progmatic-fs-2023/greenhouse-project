@@ -1,10 +1,10 @@
 import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+const prismaClient = new PrismaClient();
 
 export const updateUserEmail = async (userId, userEmail) => {
   try {
-    const updatedUserEmail = await prisma.user.update({
+    const updatedUserEmail = await prismaClient.user.update({
       where: {
         id: userId,
       },
@@ -21,7 +21,7 @@ export const updateUserEmail = async (userId, userEmail) => {
 
 export const updateUsername = async (userId, userName) => {
   try {
-    const updatedUsername = await prisma.user.update({
+    const updatedUsername = await prismaClient.user.update({
       where: {
         id: userId,
       },
@@ -37,7 +37,7 @@ export const updateUsername = async (userId, userName) => {
 };
 
 export const updatePassword = async (userId, hashedNewPassword) => {
-  const updatedPassword = await prisma.user.update({
+  const updatedPassword = await prismaClient.user.update({
     where: {
       id: userId,
     },
@@ -51,7 +51,7 @@ export const updatePassword = async (userId, hashedNewPassword) => {
 
 export const destroyUserById = async userId => {
   try {
-    await prisma.$transaction(async prisma => {
+    await prismaClient.$transaction(async prisma => {
       const userScores = await prisma.score.findMany({
         where: { userId },
       });

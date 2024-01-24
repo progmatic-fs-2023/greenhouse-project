@@ -40,9 +40,8 @@ export default function Account() {
       const response = await fetch(`${API_URL}/profile/account/${userId}`, {
         method: 'DELETE',
       });
-      console.log(response);
       if (response.status === 200) {
-        navigate('/');
+        navigate('/', { state: { accountDeleted: true } });
         logout();
       }
     } catch (error) {
