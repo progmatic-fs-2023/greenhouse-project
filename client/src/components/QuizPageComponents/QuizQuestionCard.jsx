@@ -7,6 +7,7 @@ import '../QuizModulsPageComponents/quizmodul.css';
 export default function QuizQuestionCard({ answers, nextQuestion, nextQuestionIndex }) {
   const [isCorrectPresent, setIsCorrectPresent] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [areAnswersDisabled, setAreAnswersDisabled] = useState(false);
 
   useEffect(() => {
     setIsCorrectPresent(answers.some((answer) => answer.isCorrect !== undefined));
@@ -14,6 +15,12 @@ export default function QuizQuestionCard({ answers, nextQuestion, nextQuestionIn
 
   const handleAnswerClick = (answerId) => {
     setSelectedAnswer(answerId);
+    setAreAnswersDisabled(true);
+  };
+
+  const handleNextQuestion = () => {
+    setAreAnswersDisabled(false);
+    nextQuestionIndex();
   };
 
   return (
@@ -27,10 +34,11 @@ export default function QuizQuestionCard({ answers, nextQuestion, nextQuestionIn
               correctAnswer={answer.isCorrect ? answer.id : null}
               selectedAnswer={selectedAnswer}
               onAnswerClick={handleAnswerClick}
+              isDisabled={areAnswersDisabled}
             />
           </div>
         ))}
-        <QuizHandler nextQuestionIndex={nextQuestionIndex} isCorrectPresent={isCorrectPresent} />
+        <QuizHandler nextQuestionIndex={handleNextQuestion} isCorrectPresent={isCorrectPresent} />
       </div>
     </div>
   );
