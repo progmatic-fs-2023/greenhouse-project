@@ -30,6 +30,7 @@ export default function QuizPage() {
             answers={question.answers}
             nextQuestion={nextQuestion}
             nextQuestionIndex={nextQuestionIndex}
+            questionId={question.id}
           />
         </div>
       </div>

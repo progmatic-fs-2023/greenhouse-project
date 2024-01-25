@@ -4,7 +4,7 @@ import QuizAnswer from './QuizAnswer';
 import QuizHandler from './QuizHandler';
 import '../QuizModulsPageComponents/quizmodul.css';
 
-export default function QuizQuestionCard({ answers, nextQuestion, nextQuestionIndex }) {
+export default function QuizQuestionCard({ answers, nextQuestion, nextQuestionIndex, questionId }) {
   const [isCorrectPresent, setIsCorrectPresent] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [areAnswersDisabled, setAreAnswersDisabled] = useState(false);
@@ -23,6 +23,11 @@ export default function QuizQuestionCard({ answers, nextQuestion, nextQuestionIn
     nextQuestionIndex();
   };
 
+  const handleReport = () => {
+    const reportUrl = `http://localhost:5173/contact?reported=${questionId}`;
+    window.open(reportUrl, '_blank');
+  };
+
   return (
     <div className="quiz_question_card">
       <div className="quiz_answer_container">
@@ -38,7 +43,19 @@ export default function QuizQuestionCard({ answers, nextQuestion, nextQuestionIn
             />
           </div>
         ))}
-        <QuizHandler nextQuestionIndex={handleNextQuestion} isCorrectPresent={isCorrectPresent} />
+        <div className="quiz-handler-container">
+          <QuizHandler nextQuestionIndex={handleNextQuestion} isCorrectPresent={isCorrectPresent} />
+        </div>
+        <div className="report-container">
+          <button
+            className="report-button"
+            type="button"
+            title="Report a problem with this question"
+            onClick={handleReport}
+          >
+            ❓
+          </button>
+        </div>
       </div>
     </div>
   );
