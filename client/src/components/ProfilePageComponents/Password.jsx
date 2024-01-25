@@ -37,6 +37,7 @@ export default function Password() {
   return (
     <div className="container">
       <div className="input_container">
+        <div>
         <label htmlFor="current_password" className="current_password_label">
           Current password:
           <input
@@ -47,6 +48,8 @@ export default function Password() {
             onChange={(e) => setCurrentPassword(e.target.value)}
           />
         </label>
+        </div>
+        <div>
         <label htmlFor="new_password" className="new_password_label">
           New password:
           <input
@@ -57,6 +60,8 @@ export default function Password() {
             onChange={(e) => setNewPassword(e.target.value)}
           />
         </label>
+        </div>
+        <div>
         <label htmlFor="confirm_new_password" className="new_password_label">
           New password again:
           <input
@@ -67,12 +72,14 @@ export default function Password() {
             onChange={(e) => setConfirmNewPassword(e.target.value)}
           />
         </label>
+        </div>
+        </div>
         {newPasswordChanged && <p>{newPasswordChanged}</p>}
         {error && <p className="error">{error}</p>}
         <button type="submit" onClick={handleSaveClick}>
           Save
         </button>
-      </div>
+
     </div>
   );
 }

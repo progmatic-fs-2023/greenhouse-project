@@ -35,7 +35,7 @@ export default function Account() {
 
   return (
     <form className="account" onSubmit={handleSubmit}>
-      <div className="input_container">
+      <div className="account_container">
         {/* <label htmlFor="username" className="username_label">
           Username:
           <input
@@ -48,11 +48,10 @@ export default function Account() {
           />
         </label> */}
 
-        <h4>Member since: {formattedDate}</h4>
-
+        <p>Member since: </p> <p>{formattedDate}</p>
+        <div>
         <label htmlFor="email" className="email_label">
           Email address:
-          <br />
           <input
             name="email"
             className="email"
@@ -62,6 +61,7 @@ export default function Account() {
             onChange={(e) => setNewEmail(e.target.value)}
           />
         </label>
+        </div>
       </div>
 
       <button type="submit">Save</button>

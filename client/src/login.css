@@ -42,12 +42,13 @@
 }
 
 .login_container input, .quiz-form select, .quiz-form input, .contact_container input, #subject, #message {
-  margin: 0 auto 30px;
+  margin: 0 5px 30px;
   padding: 10px 15px;
   border: 3px solid var(--smokey-black);
   border-radius: 5px;
   font-size: 20pt;
   border-radius: 10px;
+  width: 350px;
 }
 
 .login_container button, .edit_question_form button, .admin button, .question-form-container button, .modal_button, .contact_container button {
@@ -82,7 +83,7 @@
 
 #message {
   height: auto;
-  width: 300px;
+  width: 350px;
 }
 
 

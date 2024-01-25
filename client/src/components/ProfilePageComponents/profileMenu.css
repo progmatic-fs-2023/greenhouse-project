@@ -1,32 +1,26 @@
-.account {
-    display: flex;
-    justify-content: center;
-    flex-flow: column;
+
+.input_container label, .account_container label {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 100px;
+    margin: 10px 50px; 
+    font-size: 23pt;
 }
 
-.input_container {
-    display: flex;
-    flex-flow: row wrap;
-    margin: auto;
-}
-
-.input_container label {
-    display: flex;
-    justify-content: space-between;
-    flex-flow: row;
-    width: 500px;
-    margin: 30px 10px;
-    font-size: 25pt;
-}
-
-.input_container input[type=text] {
-    width: 400px;
-    font-size: 15pt;
+.input_container input, .account_container input {
+    width: 300px;
+    font-size: 18pt;
     padding: 5px 10px;
+    margin: 0 auto;
     border-radius: 10px;
 }
 
-.account button, .subscription button {
+.account_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.account button {
     background-color: darkgray;
     width: 100px;
     margin: 0 auto;
@@ -38,9 +32,16 @@
     transition-duration: 0.3s;
 }
 
-.input_container p{
-    font-size: 15pt;
-    margin-top: 20px;
+.input_container p {
+    font-size: 23pt;
+    margin: 10px auto;
+}
+
+.premium p {
+    margin: 150px 50px;
+    align-items: center;
+    font-size: 23pt;
+
 }
 
 .account button:hover {
@@ -51,7 +52,7 @@
 #delete_button {
     width: fit-content;
     padding: 5px 10px;
-    margin: 80px auto 0;
+    margin: 80px auto 30px;
     height: fit-content;
     border: none;
     box-shadow: 3px 5px var(--smokey-black);
