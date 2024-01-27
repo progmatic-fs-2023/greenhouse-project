@@ -28,7 +28,7 @@ export const getQuestions = async (topicNumber, difficulty, numberOfQuestions) =
   }));
 };
 
-export const checkCorrectAnswer = async (answerId, questionId) => {
+export const checkCorrectAnswer = async (answerIds, questionId) => {
   const question = await prisma.question.findUnique({
     where: {
       id: questionId,
@@ -43,9 +43,15 @@ export const checkCorrectAnswer = async (answerId, questionId) => {
       },
     },
   });
-
+  if (question.answers.filter(answer => answer.isCorrect).length === answerIds.length)
+    return {
+      isCorrect: question.answers
+        .filter(answer => answer.isCorrect)
+        .every(answer => answerIds.includes(answer.id)),
+      question,
+    };
   return {
-    isCorrect: question.answers.every(answer => (answer.isCorrect ? answer.id === answerId : true)),
+    isCorrect: false,
     question,
   };
 };
