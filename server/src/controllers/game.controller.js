@@ -16,7 +16,8 @@ export const quizQuestions = async (req, res) => {
     const questions = await getQuestions(number, difficulty, numberOfQuestions);
     res.status(200).json({ questions });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -29,7 +30,8 @@ export const handleAnswer = async (req, res) => {
     if (isCorrect.isCorrect && userId) await modifyXp(userId, questionId);
     res.status(200).json(isCorrect);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -38,7 +40,8 @@ export const getTopics = async (_, res) => {
     const topics = await getTopicsFromDB();
     res.status(200).json({ topics });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -47,6 +50,7 @@ export const getLeaderboard = async (req, res) => {
     const usersLeaderboard = await getUsersScore();
     res.status(200).json(usersLeaderboard);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
   }
 };

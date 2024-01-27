@@ -24,7 +24,7 @@ export default async (name, email, subject, message) => {
     console.log(`Email sent: ${info.response}`);
     return true;
   } catch (error) {
-    console.log(error);
-    return false;
+    console.error(`Failed to send email: ${error.message}`);
+    throw new Error(`Email sending failed: ${error.message}`);
   }
 };

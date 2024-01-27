@@ -16,9 +16,9 @@ function QuizResultPage({ totalQuestions, correctAnswers }) {
   const { currentUserXp, startGameUserXp, isLoggedIn, fetchCurrentUserXp } = useAuth();
   const [reachedNextRank, setReachedNextRank] = useState(false);
   const [xpPercentage, setXpPercentage] = useState(0);
-  const { currentRank: starGameRank } = calculateRanks(startGameUserXp);
+  const { currentRank: startGameRank } = calculateRanks(startGameUserXp);
   const [stat, setStat] = useState(calculateRanks(currentUserXp));
-  console.log(stat,starGameRank);
+
   useEffect(() => {
     fetchCurrentUserXp();
   }, []);
@@ -31,8 +31,7 @@ function QuizResultPage({ totalQuestions, correctAnswers }) {
       const xpWithinRange = currentUserXp - lowerThreshold;
       const range = upperThreshold - lowerThreshold;
       setXpPercentage(Math.max(5, Math.min((xpWithinRange / range) * 100, 100)));
-
-      if (currentRank === starGameRank) {
+      if (startGameUserXp === undefined || currentRank === startGameRank) {
         setReachedNextRank(false);
       } else {
         setReachedNextRank(true);
