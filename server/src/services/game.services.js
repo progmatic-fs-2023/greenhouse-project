@@ -32,32 +32,32 @@ export const getQuestions = async (topicNumber, difficulty, numberOfQuestions) =
   }
 };
 
-export const checkCorrectAnswer = async (answerId, questionId) => {
-  try {
-    const question = await prisma.question.findUnique({
-      where: {
-        id: questionId,
-      },
-      include: {
-        answers: {
-          select: {
-            id: true,
-            isCorrect: true,
-            name: true,
-          },
+export const checkCorrectAnswer = async (answerIds, questionId) => {
+  const question = await prisma.question.findUnique({
+    where: {
+      id: questionId,
+    },
+    include: {
+      answers: {
+        select: {
+          id: true,
+          isCorrect: true,
+          name: true,
         },
       },
-    });
-
+    },
+  });
+  if (question.answers.filter(answer => answer.isCorrect).length === answerIds.length)
     return {
-      isCorrect: question.answers.every(answer =>
-        answer.isCorrect ? answer.id === answerId : true,
-      ),
+      isCorrect: question.answers
+        .filter(answer => answer.isCorrect)
+        .every(answer => answerIds.includes(answer.id)),
       question,
     };
-  } catch (error) {
-    throw new Error(`Error in checkCorrectAnswer: ${error.message}`);
-  }
+  return {
+    isCorrect: false,
+    question,
+  };
 };
 
 export const getTopicsFromDB = async () => {

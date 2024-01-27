@@ -188,3 +188,22 @@
     font-size: 18pt;
   }
 }
+.quiz_answer label {
+  padding: 10px;
+  width: 320px;
+  height: fit-content;
+  border: 3px solid var(--smokey-black);
+  box-shadow: 3px 5px var(--smokey-black);
+  border-radius: 10px;
+  background-color: white;
+  font-size: 15pt;
+  transition-duration: 0.4s;
+  margin: 0 auto;
+  text-decoration: none;
+}
+
+.quiz_answer label:hover {
+  background-color: #9c9c9c;
+  cursor: pointer;
+  transition-timing-function: 0.4s ease-in-out;
+}
