@@ -64,8 +64,11 @@ export default function Account() {
             onChange={(e) => setNewUsername(e.target.value)}
           />
         </label> */}
-        <p>Member since: </p> <p>{formattedDate}</p>
-        <div>
+        <div className='member_since'>
+        <p>Member since:</p>
+        <p>{formattedDate}</p>
+        </div>
+        <div className='email_container'>
           <label htmlFor="email" className="email_label">
             Email address:
             <input
@@ -78,13 +81,13 @@ export default function Account() {
             />
           </label>
         </div>
-      </div>
-
-      <button type="submit">Save</button>
+        
+      <button type="submit" id='save_button'>Save</button>
 
       <button type="button" id="delete_button" onClick={() => setIsDeleteModalOpen(true)}>
         Delete profile
       </button>
+      </div>
 
       <Modal
         isOpen={isDeleteModalOpen}

@@ -12,7 +12,7 @@ export default function Notifications() {
     setIsSubscribed(newStatus);
     localStorage.setItem('isSubscribed', JSON.stringify(newStatus));
     setMessage(
-      newStatus ? 'Successfully subscribed to our awesome newsletter! :)' : 'You unsubscribed. :(',
+      newStatus ? 'Successfully subscribed to our awesome newsletter!' : 'You unsubscribed.',
     );
   };
 
@@ -20,7 +20,7 @@ export default function Notifications() {
 
   return (
     <div className="container">
-      <div className="input_container">
+      <div className="input_container" id='notifications'>
         <label htmlFor="subscription" className="subscription">
           Subscribe to newsletter:
           <br />
@@ -29,8 +29,9 @@ export default function Notifications() {
           </button>{' '}
           <span className="slider round" />
         </label>
-
-        <p>{message}</p>
+        <div>
+        {message ? <p>{message}</p> : ""}
+        </div>
       </div>
     </div>
   );
