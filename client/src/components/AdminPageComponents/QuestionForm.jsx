@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useAuth } from '../contexts/AuthContext';
 import { API_URL } from '../../constants';
 import './AdminPageComponents.css';
 import '../../login.css';
@@ -25,6 +26,7 @@ function QuestionForm({
   ]);
   const [formError, setFormError] = useState('');
   const [formOk, setFormOk] = useState('');
+  const { token } = useAuth();
 
   useEffect(() => {
     setQuestion(QuestionProps || '');
@@ -103,6 +105,7 @@ function QuestionForm({
         method,
         headers: {
           'Content-Type': 'application/json',
+          Authorization: token ? `Bearer ${token}` : undefined,
         },
         body: JSON.stringify({
           difficulty,

@@ -1,16 +1,17 @@
 import { Router } from 'express';
 import adminController from '../controllers/admin.controller';
+import backendAuth from '../middlewares/backendAuth.middleware';
 
 const router = Router();
 
-router.post('/new', adminController.newQuestion);
+router.post('/new', backendAuth, adminController.newQuestion);
 
-router.get('/edit', adminController.getSelectedQuestions);
+router.get('/edit', backendAuth, adminController.getSelectedQuestions);
 
-router.put('/edit/:id', adminController.editQuestionChanges);
+router.put('/edit/:id', backendAuth, adminController.editQuestionChanges);
 
-router.get('/users', adminController.getSelectedUsers);
+router.get('/users', backendAuth, adminController.getSelectedUsers);
 
-router.put('/users/:id', adminController.editUserRole);
+router.put('/users/:id', backendAuth, adminController.editUserRole);
 
 export default router;
