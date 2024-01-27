@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function QuizHandler({ nextQuestionIndex, isCorrectPresent }) {
+function QuizHandler({ nextQuestionIndex, isCorrectPresent, multiSelect, onSubmit, isSubmitted }) {
   const buttonStyle = {
     backgroundColor: isCorrectPresent ? '' : '#ccc',
     color: isCorrectPresent ? '' : '#666',
@@ -18,6 +18,13 @@ function QuizHandler({ nextQuestionIndex, isCorrectPresent }) {
       >
         Next Question
       </button>
+      {multiSelect ? (
+        <button type="button" onClick={onSubmit} disabled={isSubmitted}>
+          Submit
+        </button>
+      ) : (
+        ''
+      )}
     </div>
   );
 }
@@ -25,6 +32,9 @@ function QuizHandler({ nextQuestionIndex, isCorrectPresent }) {
 QuizHandler.propTypes = {
   nextQuestionIndex: PropTypes.func.isRequired,
   isCorrectPresent: PropTypes.bool.isRequired,
+  multiSelect: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  isSubmitted: PropTypes.func.isRequired,
 };
 
 export default QuizHandler;
