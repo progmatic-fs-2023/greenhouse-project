@@ -12,12 +12,13 @@ model Question {
   description      String
   level            Level
   topicId          Int      @map("topic_id")
+  isMultiSelectQuestion Boolean  @default(false) @map("isMultiSelectQuestion")
   createdAt        DateTime @default(now()) @map("created_at")
   updatedAt        DateTime @updatedAt @map("updated_at")
-  isTypingQuestion Boolean  @default(false) @map("is_typing_question")
+  isActive         Boolean  @default(true)
   answers          Answer[]
   topic            Topic    @relation(fields: [topicId], references: [id])
-  isActive         Boolean  @default(true)
+
 
   @@map("question")
 }

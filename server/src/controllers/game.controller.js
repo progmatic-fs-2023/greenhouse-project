@@ -18,9 +18,12 @@ export const quizQuestions = async (req, res) => {
 
 export const handleAnswer = async (req, res) => {
   const questionId = req.params.id;
-  const { answerId } = req.body;
+  const { answerIds } = req.body;
   const { userId } = req;
-  const isCorrect = await checkCorrectAnswer(answerId, questionId);
+  const isCorrect = await checkCorrectAnswer(
+    answerIds.map(id => Number(id)),
+    questionId,
+  );
   if (isCorrect.isCorrect && userId) await modifyXp(userId, questionId);
   res.status(200).json(isCorrect);
 };

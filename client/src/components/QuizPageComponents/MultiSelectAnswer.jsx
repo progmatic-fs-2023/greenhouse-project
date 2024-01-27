@@ -1,35 +1,22 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
-export default function QuizAnswer({
-  answer,
-  nextQuestion,
-  correctAnswer,
-  selectedAnswer,
-  onAnswerClick,
-  isDisabled,
-}) {
-  const { id, name } = answer;
-  const [isClicked, setIsClicked] = useState(false);
-
+export default function MultiSelectAnswer({ answer, selectedAnswer, onAnswerClick, isSubmitted }) {
+  const { id, name, isCorrect } = answer;
   const getBackgroundColor = () => {
-    if (selectedAnswer !== null) {
-      if (id === correctAnswer) {
+    if (isSubmitted) {
+      if (isCorrect) {
         return 'green';
       }
       if (selectedAnswer) {
         return 'red';
       }
+      return 'white';
     }
-    return 'white';
+    return selectedAnswer ? 'yellow' : 'white';
   };
-
-  const handleClick = async () => {
-    await nextQuestion([id]);
+  const handleClick = () => {
     onAnswerClick(id);
-    setIsClicked(true);
   };
-
   return (
     <div>
       <button
@@ -39,23 +26,20 @@ export default function QuizAnswer({
           color: 'black',
         }}
         onClick={handleClick}
-        disabled={isDisabled || isClicked}
+        disabled={isSubmitted}
       >
         {name}
       </button>
     </div>
   );
 }
-
-QuizAnswer.propTypes = {
+MultiSelectAnswer.propTypes = {
   answer: PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     name: PropTypes.string.isRequired,
     isCorrect: PropTypes.bool,
   }).isRequired,
-  nextQuestion: PropTypes.func.isRequired,
-  correctAnswer: PropTypes.func.isRequired,
   selectedAnswer: PropTypes.func.isRequired,
   onAnswerClick: PropTypes.func.isRequired,
-  isDisabled: PropTypes.func.isRequired,
+  isSubmitted: PropTypes.func.isRequired,
 };

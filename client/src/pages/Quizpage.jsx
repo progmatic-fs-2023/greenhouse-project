@@ -23,12 +23,16 @@ export default function QuizPage() {
     <div className="main_container">
       <div className="quiz_container">
         <div className="quiz_question">
-          <QuizQuestion question={question.description} />
+          <QuizQuestion
+            question={question.description}
+            multiSelect={question.isMultiSelectQuestion}
+          />
         </div>
         <div className="quiz_side">
           <QuizQuestionCard
             answers={question.answers}
             nextQuestion={nextQuestion}
+            multiSelect={question.isMultiSelectQuestion}
             nextQuestionIndex={nextQuestionIndex}
           />
         </div>
