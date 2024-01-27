@@ -1,5 +1,10 @@
 import 'dotenv/config';
-import { updateUserEmail, updatePassword, findUserXp, destroyUserById } from '../services/profile.services';
+import {
+  updateUserEmail,
+  updatePassword,
+  findUserXp,
+  destroyUserById,
+} from '../services/profile.services';
 import { findUserById } from '../services/users.service';
 import { comparePassword, hashPassword } from '../services/auth.services';
 
