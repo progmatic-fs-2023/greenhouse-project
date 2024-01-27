@@ -64,7 +64,8 @@ function EditPage() {
         <h2>Edit Page</h2>
         <div className="edit_question_form">
           <label htmlFor="topicSearch">
-            Select Topic:
+            Select Topic: *
+            <br />
             <select id="topicSearch" value={topic} onChange={(e) => setTopic(e.target.value)}>
               <option value="" disabled>
                 Select Topic
@@ -76,7 +77,8 @@ function EditPage() {
           </label>
 
           <label htmlFor="diffSearch">
-            Select Difficulty:
+            Select Difficulty: *
+            <br />
             <select
               id="diffSearch"
               value={difficulty}
@@ -93,6 +95,7 @@ function EditPage() {
 
           <label htmlFor="textSearch">
             Search:
+            <br />
             <input
               id="textSearch"
               type="text"
@@ -107,7 +110,7 @@ function EditPage() {
         </div>
 
         {loading && <p>Loading...</p>}
-        {errorState && <p className="error-message">{errorState}</p>}
+        {errorState && <p>{errorState}</p>}
 
         {questions.length > 0 && (
           <div className="questions_container">

@@ -48,68 +48,79 @@ function ContactPage() {
   };
 
   return (
-    <div>
-      <h2>Contact Us</h2>
-      {sending && <p>Sending...</p>}
-      {sent && <p>Message sent!</p>}
-      {error && <p className="error">Error: {error}</p>}
-      {!sent && !error && (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="name">
-              Your Name:
-              <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="email">
-              Your Email:
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="subject">
-              Subject:
-              <select
-                id="subject"
-                value={selectedSubject}
-                onChange={(e) => setSelectedSubject(e.target.value)}
-                required
-              >
-                <option value="" disabled>
-                  Select a subject
-                </option>
-                {subjects.map((subject) => (
-                  <option key={subject} value={subject}>
-                    {subject}
+    <div className="contact_main_container">
+      <div className="contact_container">
+        <h2>Contact Us</h2>
+        {sending && <p>Sending...</p>}
+        {sent && <p>Message sent!</p>}
+        {error && <p className="error">Error: {error}</p>}
+        {!sent && !error && (
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="name">
+                Your Name:
+                <br />
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </label>
+            </div>
+            <div>
+              <label htmlFor="email">
+                Your Email:
+                <br />
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </label>
+            </div>
+            <div>
+              <label htmlFor="subject">
+                Subject:
+                <br />
+                <select
+                  id="subject"
+                  value={selectedSubject}
+                  onChange={(e) => setSelectedSubject(e.target.value)}
+                  required
+                >
+                  <option value="" disabled>
+                    Select a subject
                   </option>
-                ))}
-              </select>
-            </label>
-          </div>
-          <div>
-            <label htmlFor="message">
-              Your Message:
-              <textarea
-                id="message"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                rows={6}
-                required
-              />
-            </label>
-          </div>
-          <button type="submit" disabled={sending}>
-            Send Message
-          </button>
-        </form>
-      )}
+                  {subjects.map((subject) => (
+                    <option key={subject} value={subject}>
+                      {subject}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+            <div>
+              <label htmlFor="message">
+                Your Message:
+                <br />
+                <textarea
+                  id="message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  rows={6}
+                  required
+                />
+              </label>
+            </div>
+            <button type="submit" disabled={sending}>
+              Send Message
+            </button>
+          </form>
+        )}
+      </div>
     </div>
   );
 }

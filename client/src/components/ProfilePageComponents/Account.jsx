@@ -6,12 +6,13 @@ import { API_URL } from '../../constants';
 import './account.css';
 
 export default function Account() {
-  const { userId, userEmail, setUsername, setUserEmail, logout } = useAuth();
+  const { userId, userEmail, setUsername, setUserEmail, userCreationDate, logout } = useAuth();
   const [errorState, setErrorState] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const dateString = [userCreationDate];
+  const formattedDate = dateString[0].slice(0, 10);
   const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -51,19 +52,32 @@ export default function Account() {
 
   return (
     <form className="account" onSubmit={handleSubmit}>
-      <div className="input_container">
-        <label htmlFor="email" className="email_label">
-          Email address:
-          <br />
+      <div className="account_container">
+        {/* <label htmlFor="username" className="username_label">
+          Username:
           <input
-            name="email"
-            className="email"
+            name="username"
+            className="username"
             type="text"
-            placeholder={userEmail}
-            value={newEmail}
-            onChange={(e) => setNewEmail(e.target.value)}
+            placeholder={username}
+            value={newUsername}
+            onChange={(e) => setNewUsername(e.target.value)}
           />
-        </label>
+        </label> */}
+        <p>Member since: </p> <p>{formattedDate}</p>
+        <div>
+          <label htmlFor="email" className="email_label">
+            Email address:
+            <input
+              name="email"
+              className="email"
+              type="text"
+              placeholder={userEmail}
+              value={newEmail}
+              onChange={(e) => setNewEmail(e.target.value)}
+            />
+          </label>
+        </div>
       </div>
 
       <button type="submit">Save</button>

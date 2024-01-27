@@ -140,9 +140,6 @@ function QuestionForm({
 
   return (
     <div className="question-form-container">
-      {formError && <p className="error-message">{formError}</p>}
-      {formOk && <p className="ok-message">{formOk}</p>}
-
       <form className="quiz-form" onSubmit={handleSubmit}>
         <label htmlFor="difficulty">
           Difficulty:
@@ -212,6 +209,8 @@ function QuestionForm({
           </label>
 
           <button type="submit">Submit</button>
+          {formError && <p id="error-message">{formError}</p>}
+          {formOk && <p id="ok-message">{formOk}</p>}
         </div>
       </form>
     </div>
