@@ -102,4 +102,5 @@ QuizQuestionCard.propTypes = {
   nextQuestion: PropTypes.func.isRequired,
   nextQuestionIndex: PropTypes.number.isRequired,
   multiSelect: PropTypes.bool.isRequired,
+  questionId: PropTypes.string.isRequired,
 };

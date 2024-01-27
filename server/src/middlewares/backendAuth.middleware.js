@@ -16,9 +16,8 @@ const backendAuth = async (req, res, next) => {
 
     if (['admin', 'godmin'].includes(decoded.role) || decoded.id === paramId) {
       return next();
-    } else {
-      return next(new HttpError('Forbidden access', 403));
     }
+    return next(new HttpError('Forbidden access', 403));
   } catch (error) {
     console.error(error);
     return next(error);
