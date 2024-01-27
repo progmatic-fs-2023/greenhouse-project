@@ -4,112 +4,134 @@ import QUIZ_SCORING from '../gameSettings';
 const prisma = new PrismaClient();
 
 export const getQuestions = async (topicNumber, difficulty, numberOfQuestions) => {
-  const questions = await prisma.$queryRaw`
-  SELECT * FROM question
-  where topic_id=${topicNumber} And level::text=${difficulty} And "isActive"=${true}
-  ORDER BY RANDOM()
-  LIMIT ${numberOfQuestions};`;
-  const answers = await prisma.answer.findMany({
-    where: {
-      questionId: {
-        in: questions.map(question => question.id),
+  try {
+    const questions = await prisma.$queryRaw`
+    SELECT * FROM question
+    where topic_id=${topicNumber} And level::text=${difficulty} And "isActive"=${true}
+    ORDER BY RANDOM()
+    LIMIT ${numberOfQuestions};`;
+    const answers = await prisma.answer.findMany({
+      where: {
+        questionId: {
+          in: questions.map(question => question.id),
+        },
       },
-    },
-    select: {
-      id: true,
-      questionId: true,
-      name: true,
-    },
-  });
-  answers.sort(() => Math.random() - 0.5);
-  return questions.map(question => ({
-    ...question,
-    answers: answers.filter(answer => answer.questionId === question.id),
-  }));
+      select: {
+        id: true,
+        questionId: true,
+        name: true,
+      },
+    });
+    answers.sort(() => Math.random() - 0.5);
+    return questions.map(question => ({
+      ...question,
+      answers: answers.filter(answer => answer.questionId === question.id),
+    }));
+  } catch (error) {
+    throw new Error(`Error in getQuestions: ${error.message}`);
+  }
 };
 
 export const checkCorrectAnswer = async (answerId, questionId) => {
-  const question = await prisma.question.findUnique({
-    where: {
-      id: questionId,
-    },
-    include: {
-      answers: {
-        select: {
-          id: true,
-          isCorrect: true,
-          name: true,
+  try {
+    const question = await prisma.question.findUnique({
+      where: {
+        id: questionId,
+      },
+      include: {
+        answers: {
+          select: {
+            id: true,
+            isCorrect: true,
+            name: true,
+          },
         },
       },
-    },
-  });
+    });
 
-  return {
-    isCorrect: question.answers.every(answer => (answer.isCorrect ? answer.id === answerId : true)),
-    question,
-  };
+    return {
+      isCorrect: question.answers.every(answer =>
+        answer.isCorrect ? answer.id === answerId : true,
+      ),
+      question,
+    };
+  } catch (error) {
+    throw new Error(`Error in checkCorrectAnswer: ${error.message}`);
+  }
 };
 
 export const getTopicsFromDB = async () => {
-  const topics = await prisma.topic.findMany();
-  return topics;
+  try {
+    const topics = await prisma.topic.findMany();
+    return topics;
+  } catch (error) {
+    throw new Error(`Error in getTopicsFromDB: ${error.message}`);
+  }
 };
 
 export const modifyXp = async (userId, questionId) => {
-  const question = await prisma.question.findUnique({
-    where: {
-      id: questionId,
-    },
-  });
-
-  const rewardedXp = QUIZ_SCORING.LEVEL[question.level];
-  if (!rewardedXp) {
-    throw new Error('Quesiton level is not defined!');
-  }
-  const userScore = await prisma.score.findUnique({
-    where: {
-      userId,
-    },
-  });
-
-  if (!userScore) {
-    const createdScore = await prisma.score.create({
-      data: {
-        userId,
-        xp: rewardedXp,
+  try {
+    const question = await prisma.question.findUnique({
+      where: {
+        id: questionId,
       },
     });
-    return createdScore;
+
+    const rewardedXp = QUIZ_SCORING.LEVEL[question.level];
+    if (!rewardedXp) {
+      throw new Error('Question level is not defined!');
+    }
+    const userScore = await prisma.score.findUnique({
+      where: {
+        userId,
+      },
+    });
+
+    if (!userScore) {
+      const createdScore = await prisma.score.create({
+        data: {
+          userId,
+          xp: rewardedXp,
+        },
+      });
+      return createdScore;
+    }
+
+    const modifiedXp = await prisma.score.update({
+      where: {
+        userId,
+      },
+      data: {
+        xp: userScore.xp + rewardedXp,
+      },
+    });
+
+    return modifiedXp;
+  } catch (error) {
+    throw new Error(`Error in modifyXp: ${error.message}`);
   }
-
-  const modifiedXp = await prisma.score.update({
-    where: {
-      userId,
-    },
-    data: {
-      xp: userScore.xp + rewardedXp,
-    },
-  });
-
-  return modifiedXp;
 };
 
 export const getUsersScore = async () => {
-  const userScore = await prisma.score.findMany({
-    include: {
-      user: {
-        select: {
-          username: true,
+  try {
+    const userScore = await prisma.score.findMany({
+      include: {
+        user: {
+          select: {
+            username: true,
+          },
         },
       },
-    },
-    orderBy: {
-      xp: 'desc',
-    },
-  });
-  return userScore.map(score => ({
-    id: score.userId,
-    username: score.user.username,
-    xp: score.xp,
-  }));
+      orderBy: {
+        xp: 'desc',
+      },
+    });
+    return userScore.map(score => ({
+      id: score.userId,
+      username: score.user.username,
+      xp: score.xp,
+    }));
+  } catch (error) {
+    throw new Error(`Error in getUsersScore: ${error.message}`);
+  }
 };

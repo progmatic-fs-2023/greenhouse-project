@@ -13,38 +13,34 @@ import './quizpage.css';
 Modal.setAppElement('#root');
 
 function QuizResultPage({ totalQuestions, correctAnswers }) {
-  const { userXp, fetchUserScore, isLoggedIn } = useAuth();
-  const [currentXp, setCurrentXp] = useState(userXp - correctAnswers);
-  const { nextRank, lowerThreshold, upperThreshold } = calculateRanks(userXp);
+  const { currentUserXp, startGameUserXp, isLoggedIn, fetchCurrentUserXp } = useAuth();
   const [reachedNextRank, setReachedNextRank] = useState(false);
-  const [currentUpperThreshold, setCurrentUpperThreshold] = useState(null);
-  const [currentNextRank, setCurrentNextRank] = useState('');
-
-  const newXP = userXp - correctAnswers;
+  const [xpPercentage, setXpPercentage] = useState(0);
+  const { currentRank: starGameRank} = calculateRanks(startGameUserXp);
+  console.log(upperThreshold, nextRank, currentUserXp, startGameUserXp, correctAnswers);
 
   useEffect(() => {
-    setCurrentUpperThreshold(upperThreshold);
-    setCurrentNextRank(nextRank);
-    fetchUserScore();
+    fetchCurrentUserXp();
   }, []);
 
   useEffect(() => {
-    if (userXp >= currentUpperThreshold) {
-      setReachedNextRank(true);
-    } else {
-      setReachedNextRank(false);
-    }
-    setCurrentXp(userXp - correctAnswers);
-    const timer = setTimeout(() => {
-      setCurrentXp(newXP);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [userXp, correctAnswers, upperThreshold, currentUpperThreshold]);
+    const updateRankInfo = () => {
+      const { lowerThreshold, upperThreshold,nextRank, currentRank} = calculateRanks(currentUserXp);
+      const xpWithinRange = currentUserXp - lowerThreshold;
+      const range = upperThreshold - lowerThreshold;
+      setXpPercentage(Math.max(5, Math.min((xpWithinRange / range) * 100, 100)));
 
-  const xpWithinRange = currentXp + correctAnswers - lowerThreshold;
-  const range = upperThreshold - lowerThreshold;
-  const xpPercentage = Math.max(5, Math.min((xpWithinRange / range) * 100, 100));
-  const centerLabel = `${upperThreshold - userXp} XP to reach ${nextRank} rank`;
+      if (currentUserXp >= upperThreshold) {
+        setReachedNextRank(true);
+      } else {
+        setReachedNextRank(false);
+      }
+    };
+
+    updateRankInfo();
+  }, [currentUserXp]);
+
+  const centerLabel = `${upperThreshold - userXp} XP to reach ${currentNextRank} rank`;
 
   return (
     <div className="quiz-result-container">

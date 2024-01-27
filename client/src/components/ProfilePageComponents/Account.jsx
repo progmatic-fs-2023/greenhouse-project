@@ -6,7 +6,7 @@ import { API_URL } from '../../constants';
 import './account.css';
 
 export default function Account() {
-  const { userId, userEmail, setUsername, setUserEmail, logout } = useAuth();
+  const { userId, userEmail, setUserEmail, logout } = useAuth();
   const [errorState, setErrorState] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -26,8 +26,8 @@ export default function Account() {
 
       if (response.ok) {
         const updatedUser = await response.json();
+        console.log(updatedUser)
         setUserEmail(updatedUser.email);
-        setUsername(updatedUser.username);
         setNewEmail('');
       }
     } catch (error) {

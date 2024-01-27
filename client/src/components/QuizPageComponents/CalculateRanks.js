@@ -1,10 +1,10 @@
 import ranks from '../../utils/ranks';
 
 const calculateRanks = (xp) => {
-  let currentRank = 'Newbie';
-  let nextRank = 'Rookie';
-  let lowerThreshold = 0;
-  let upperThreshold = 20;
+  let currentRank 
+  let nextRank
+  let lowerThreshold 
+  let upperThreshold 
 
   const rankKeys = Object.keys(ranks);
   for (let i = 0; i < rankKeys.length; i += 1) {

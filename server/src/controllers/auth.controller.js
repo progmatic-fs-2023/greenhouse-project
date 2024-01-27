@@ -72,7 +72,7 @@ const login = async (req, res) => {
       password: 'Password is incorrect',
     });
   } catch (err) {
-    return res.status(400).json({
+    return res.status(500).json({
       message: 'Failed to finish login',
       error: err.message,
     });
