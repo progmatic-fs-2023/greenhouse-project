@@ -1,9 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
 
 .input_container label, .account_container label {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 100px;
-    margin: 10px 50px; 
+    margin: 10px 20px; 
     font-size: 23pt;
 }
 
@@ -20,10 +24,10 @@
     grid-template-columns: 1fr 1fr;
 }
 
-.account button {
+.account button, .input_container button, .container button {
     background-color: darkgray;
-    width: 100px;
-    margin: 0 auto;
+    width: 150px;
+    margin: 10px auto;
     padding: 5px 10px;
     box-shadow: 4px 5px var(--smokey-black);
     border-radius: 10px;
@@ -68,12 +72,27 @@
     cursor: pointer;
 }
 
-@media only screen and (max-width: 930px) { 
+@media only screen and (max-width: 1340px) { 
     .premium p {
         margin: 20px 30px 20px 40px;
         align-items: center;
         text-align: justify;
         font-size: 20pt;
-    
+    }
+
+    .input_container label {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        font-size: 20pt;
+    }
+
+    .container {
+        padding: 10px 0;
+    };
+
+    .input_container p {
+        font-size: 20pt;
+        margin: 10px 20px;
     }
 }
+

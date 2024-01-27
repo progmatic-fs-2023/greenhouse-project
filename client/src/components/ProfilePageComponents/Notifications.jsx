@@ -23,6 +23,7 @@ export default function Notifications() {
       <div className="input_container">
         <label htmlFor="subscription" className="subscription">
           Subscribe to newsletter:
+          <br />
           <button type="button" onClick={handleClick}>
             {isSubscribed ? 'Unsubscribe' : 'Subscribe'}
           </button>{' '}
