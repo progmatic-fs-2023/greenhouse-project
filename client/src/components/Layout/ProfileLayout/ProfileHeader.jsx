@@ -74,7 +74,7 @@ function ProfileHeader() {
       <div className="xp">
         <h4>{xp || 0}xp</h4>
         <div className="status-bar">
-          <div className="status-bar-fill" style={{ width: `${(xp-lowerThreshold)/(upperThreshold-lowerThreshold) * 100}%` }} />
+          <div className="status-bar-fill" style={{ width: xp>0 ? `${(xp-lowerThreshold)/(upperThreshold-lowerThreshold) * 100}%` : 0}} />
         </div>
         <div>{xp > 500 ? <p> </p> : <p>{difference}xp until next level</p>}</div>
       </div>

@@ -71,7 +71,7 @@
     border-right: 3px solid var(--smokey-black);
 }
 
-.profile_navbar .profile_navlink {
+.profile_navlink {
     list-style: none;
     font-size: 25pt;
     padding: 10px;
@@ -81,7 +81,7 @@
     color: var(--smokey-black);
 }
 
-.profile_navbar .profile_navlink:hover {
+.profile_navlink:hover {
     color: #100c08a7;
     letter-spacing: 0.3px;
     transition-timing-function: 0.3s ease-in-out;
@@ -138,24 +138,22 @@
 
     .profile_navbar {
         display: flex;
+        justify-content: center;
         flex-flow: row wrap;
-        margin: 0 auto;
-        padding: none;
-        width: 400px;
+        margin: 0;
+        padding: 0;
+        width: 100%;
         border-bottom: 3px solid var(--smokey-black);
         border-right: none;
-        font-size: 18pt;
     }
 
-    .profile_navbar, .profile_navlink {
-        font-size: 18pt;
+    .profile_navlink {
+        font-size: 22pt;
     }
 }
 
-  
-@media only screen and (max-width: 700px) { 
+@media only screen and (max-width: 800px) { 
     .profile_container {
-      width: 400px;
+        width: 400px;
     }
-
 }
