@@ -1,20 +1,33 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-export default function QuizAnswer({ answer, nextQuestion }) {
-  const { id, name, isCorrect } = answer;
+export default function QuizAnswer({
+  answer,
+  nextQuestion,
+  correctAnswer,
+  selectedAnswer,
+  onAnswerClick,
+  isDisabled,
+}) {
+  const { id, name } = answer;
+  const [isClicked, setIsClicked] = useState(false);
 
   const getBackgroundColor = () => {
-    if (isCorrect === true) {
-      return 'green';
-    }
-    if (isCorrect === false) {
-      return 'red';
+    if (selectedAnswer !== null) {
+      if (id === correctAnswer) {
+        return 'green';
+      }
+      if (id === selectedAnswer) {
+        return 'red';
+      }
     }
     return 'white';
   };
 
   const handleClick = async () => {
     await nextQuestion(id);
+    onAnswerClick(id);
+    setIsClicked(true);
   };
 
   return (
@@ -23,8 +36,10 @@ export default function QuizAnswer({ answer, nextQuestion }) {
         type="button"
         style={{
           backgroundColor: getBackgroundColor(),
+          color: 'black',
         }}
         onClick={handleClick}
+        disabled={isDisabled || isClicked}
       >
         {name}
       </button>
@@ -39,4 +54,8 @@ QuizAnswer.propTypes = {
     isCorrect: PropTypes.bool,
   }).isRequired,
   nextQuestion: PropTypes.func.isRequired,
+  correctAnswer: PropTypes.func.isRequired,
+  selectedAnswer: PropTypes.func.isRequired,
+  onAnswerClick: PropTypes.func.isRequired,
+  isDisabled: PropTypes.func.isRequired,
 };

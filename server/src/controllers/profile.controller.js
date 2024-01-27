@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { updateUserEmail, updatePassword, findUserXp } from '../services/profile.services';
+import { updateUserEmail, updatePassword, findUserXp, destroyUserById } from '../services/profile.services';
 import { findUserById } from '../services/users.service';
 import { comparePassword, hashPassword } from '../services/auth.services';
 
@@ -30,6 +30,17 @@ export const passwordUpdate = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ error: 'Something went wrong with changing password :(' });
+  }
+};
+export const destroyUser = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const result = await destroyUserById(userId);
+    if (result) {
+      res.status(200).end();
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Something went wrong deleting profile.' });
   }
 };
 

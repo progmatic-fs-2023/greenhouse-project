@@ -13,7 +13,7 @@ export default function Password() {
   const handleSaveClick = async (e) => {
     e.preventDefault();
     if (newPassword !== confirmNewPassword) {
-      setError('Az új jelszavak nem egyeznek.');
+      setError('The new passwords do not match!');
     } else {
       setError('');
       const response = await fetch(`${API_URL}/profile/password/${userId}`, {
@@ -26,7 +26,7 @@ export default function Password() {
       // const responseData = await response.json();
 
       if (response.ok) {
-        setNewPasswordChanged('Sikeres módosítás');
+        setNewPasswordChanged('Successful password change');
       } else {
         const errorResponse = await response.json();
         setError(errorResponse.error);

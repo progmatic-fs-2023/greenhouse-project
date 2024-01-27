@@ -1,3 +1,8 @@
+/* .firework-container {
+  overflow: hidden;
+  position: relative;
+} */
+
 /*! QuestionCard animation  */
 .new-quiz-button {
   animation: wiggle 2s linear infinite;
@@ -33,11 +38,11 @@
 .quiz-result-container {
   text-align: center;
   margin: 100px;
-  opacity: 0;
-  animation: slideInFromBorder 1s ease-in-out forwards;
+  opacity: 1;
+  /* animation: slideInFromBorder 1s ease-in-out forwards; */
 }
 
-@keyframes slideInFromBorder {
+/* @keyframes slideInFromBorder {
   from {
     transform: translateX(-100%);
     opacity: 0;
@@ -46,7 +51,7 @@
     transform: translateX(0);
     opacity: 1;
   }
-}
+} */
 
 .quiz-results-heading {
   font-size: 48px;
