@@ -65,7 +65,7 @@ export default function Account() {
           />
         </label> */}
         <div className='member_since'>
-        <p>Member since:</p>
+        <h2>Member since:</h2>
         <p>{formattedDate}</p>
         </div>
         <div className='email_container'>
