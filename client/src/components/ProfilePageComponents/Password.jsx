@@ -38,48 +38,47 @@ export default function Password() {
     <div className="container">
       <div className="input_container">
         <div>
-        <label htmlFor="current_password" className="current_password_label">
-          Current password:
-          <input
-            name="current_password"
-            className="current_password_input"
-            type="password"
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-          />
-        </label>
+          <label htmlFor="current_password" className="current_password_label">
+            Current password:
+            <input
+              name="current_password"
+              className="current_password_input"
+              type="password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+            />
+          </label>
         </div>
         <div>
-        <label htmlFor="new_password" className="new_password_label">
-          New password:
-          <input
-            name="new_password"
-            className="new_password_input"
-            type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-          />
-        </label>
+          <label htmlFor="new_password" className="new_password_label">
+            New password:
+            <input
+              name="new_password"
+              className="new_password_input"
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
+          </label>
         </div>
         <div>
-        <label htmlFor="confirm_new_password" className="new_password_label">
-          New password again:
-          <input
-            name="confirm_new_password"
-            className="new_password_input"
-            type="password"
-            value={confirmNewPassword}
-            onChange={(e) => setConfirmNewPassword(e.target.value)}
-          />
-        </label>
+          <label htmlFor="confirm_new_password" className="new_password_label">
+            New password again:
+            <input
+              name="confirm_new_password"
+              className="new_password_input"
+              type="password"
+              value={confirmNewPassword}
+              onChange={(e) => setConfirmNewPassword(e.target.value)}
+            />
+          </label>
         </div>
-        </div>
-        {newPasswordChanged && <p>{newPasswordChanged}</p>}
-        {error && <p className="error">{error}</p>}
-        <button type="submit" onClick={handleSaveClick}>
-          Save
-        </button>
-
+      </div>
+      {newPasswordChanged && <p>{newPasswordChanged}</p>}
+      {error && <p className="error">{error}</p>}
+      <button type="submit" onClick={handleSaveClick}>
+        Save
+      </button>
     </div>
   );
 }

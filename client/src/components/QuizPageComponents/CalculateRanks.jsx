@@ -4,7 +4,7 @@ const calculateRanks = (xp) => {
   let currentRank;
   let nextRank;
   let lowerThreshold;
-  let upperThreshold; 
+  let upperThreshold;
 
   const rankKeys = Object.keys(ranks);
   for (let i = 0; i < rankKeys.length; i += 1) {

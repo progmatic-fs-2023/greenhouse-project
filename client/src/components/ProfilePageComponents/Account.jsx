@@ -47,20 +47,19 @@ export default function Account() {
             onChange={(e) => setNewUsername(e.target.value)}
           />
         </label> */}
-
         <p>Member since: </p> <p>{formattedDate}</p>
         <div>
-        <label htmlFor="email" className="email_label">
-          Email address:
-          <input
-            name="email"
-            className="email"
-            type="text"
-            placeholder={userEmail}
-            value={newEmail}
-            onChange={(e) => setNewEmail(e.target.value)}
-          />
-        </label>
+          <label htmlFor="email" className="email_label">
+            Email address:
+            <input
+              name="email"
+              className="email"
+              type="text"
+              placeholder={userEmail}
+              value={newEmail}
+              onChange={(e) => setNewEmail(e.target.value)}
+            />
+          </label>
         </div>
       </div>
 
