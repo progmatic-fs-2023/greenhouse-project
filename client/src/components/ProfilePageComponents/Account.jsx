@@ -6,10 +6,12 @@ import { API_URL } from '../../constants';
 import './account.css';
 
 export default function Account() {
-  const { userId, userEmail, setUsername, setUserEmail, logout } = useAuth();
+  const { userId, userEmail, setUsername, setUserEmail, userCreationDate, logout } = useAuth();
   const [errorState, setErrorState] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const dateString = [userCreationDate];
+  const formattedDate = dateString[0].slice(0, 10);
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();

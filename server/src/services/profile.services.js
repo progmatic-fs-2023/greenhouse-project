@@ -48,6 +48,7 @@ export const updatePassword = async (userId, hashedNewPassword) => {
 
   return updatedPassword;
 };
+
 export const destroyUserById = async userId => {
   try {
     await prismaClient.$transaction(async prisma => {
@@ -72,7 +73,7 @@ export const destroyUserById = async userId => {
 };
 
 export const findUserXp = async userId => {
-  const experiencePoints = await prisma.user.findUnique({
+  const experiencePoints = await prismaClient.user.findUnique({
     where: {
       id: userId,
     },
