@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { API_URL } from '../../constants';
 import './AdminPageComponents.css';
 import '../../login.css';
+import { useNavigate } from 'react-router';
 
 function QuestionForm({
   QuestionProps,
@@ -25,6 +26,7 @@ function QuestionForm({
   ]);
   const [formError, setFormError] = useState('');
   const [formOk, setFormOk] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     setQuestion(QuestionProps || '');
@@ -114,6 +116,14 @@ function QuestionForm({
       });
 
       if (!response.ok) {
+        if (response.status === 500) {
+          navigate('/404');
+          return;
+        }
+        if (response.status === 401) {
+          navigate('/login');
+          return;
+        }
         const errorData = await response.json();
         setFormError(errorData.error || 'Failed to add/update question.');
         setFormOk('');

@@ -7,10 +7,10 @@ const getUserDatas = async (req, res) => {
     if (!userDatas) {
       return res.status(404).send('User not found');
     }
-    res.status(200).json(userDatas);
+    return res.status(200).json(userDatas);
   } catch (error) {
     console.error('Error getting user data:', error);
-    res.status(500).send('Error retrieving user data');
+    return res.status(500).send('Error retrieving user data');
   }
 };
 
@@ -21,10 +21,10 @@ const getUserScore = async (req, res) => {
     if (!userScore) {
       return res.status(404).send('User score not found');
     }
-    res.status(200).json(userScore);
+    return res.status(200).json(userScore);
   } catch (error) {
     console.error('Error getting user score:', error);
-    res.status(500).send('Error retrieving user score');
+    return res.status(500).send('Error retrieving user score');
   }
 };
 

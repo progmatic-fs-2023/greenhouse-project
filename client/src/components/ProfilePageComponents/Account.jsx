@@ -6,7 +6,7 @@ import { API_URL } from '../../constants';
 import './account.css';
 
 export default function Account() {
-  const { userId, userEmail, setUsername, setUserEmail, userCreationDate, logout } = useAuth();
+  const { userId, userEmail, setUserEmail, userCreationDate, logout } = useAuth();
   const [errorState, setErrorState] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -24,10 +24,18 @@ export default function Account() {
         },
         body: JSON.stringify({ newEmail }),
       });
-
+      if (!response.ok) {
+        if (response.status === 500) {
+          navigate('/404');
+          return;
+        }
+        if (response.status === 401) {
+          navigate('/login');
+          return;
+        }
+      }
       if (response.ok) {
         const updatedUser = await response.json();
-        console.log(updatedUser)
         setUserEmail(updatedUser.email);
         setNewEmail('');
       }
@@ -41,6 +49,16 @@ export default function Account() {
       const response = await fetch(`${API_URL}/profile/account/${userId}`, {
         method: 'DELETE',
       });
+      if (!response.ok) {
+        if (response.status === 500) {
+          navigate('/404');
+          return;
+        }
+        if (response.status === 401) {
+          navigate('/login');
+          return;
+        }
+      }
       if (response.status === 200) {
         navigate('/', { state: { accountDeleted: true } });
         logout();

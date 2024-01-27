@@ -22,15 +22,22 @@ export const quizQuestions = async (req, res) => {
 };
 
 export const handleAnswer = async (req, res) => {
-  const questionId = req.params.id;
-  const { answerIds } = req.body;
-  const { userId } = req;
-  const isCorrect = await checkCorrectAnswer(
-    answerIds.map(id => Number(id)),
-    questionId,
-  );
-  if (isCorrect.isCorrect && userId) await modifyXp(userId, questionId);
-  res.status(200).json(isCorrect);
+  try {
+    const questionId = req.params.id;
+    const { answerIds } = req.body;
+    const { userId } = req;
+    const isCorrect = await checkCorrectAnswer(
+      answerIds.map(id => Number(id)),
+      questionId,
+    );
+    if (isCorrect.isCorrect && userId) {
+      await modifyXp(userId, questionId);
+    }
+    res.status(200).json(isCorrect);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: error.message });
+  }
 };
 
 export const getTopics = async (_, res) => {

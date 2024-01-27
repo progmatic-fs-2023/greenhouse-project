@@ -25,8 +25,7 @@ function QuizResultPage({ totalQuestions, correctAnswers }) {
 
   useEffect(() => {
     const updateRankInfo = () => {
-      const { lowerThreshold, upperThreshold, nextRank, currentRank } =
-        calculateRanks(currentUserXp);
+      const { lowerThreshold, upperThreshold, currentRank } = calculateRanks(currentUserXp);
       setStat(calculateRanks(currentUserXp));
       const xpWithinRange = currentUserXp - lowerThreshold;
       const range = upperThreshold - lowerThreshold;
@@ -49,19 +48,20 @@ function QuizResultPage({ totalQuestions, correctAnswers }) {
         <div className="quiz-results-heading">Quiz Results</div>
         <p className="quiz-results-text">Total Questions: {totalQuestions}</p>
         <p className="quiz-results-text">Correct Answers: {correctAnswers}</p>
+        <div className="quiz-result-score" style={{ fontSize: 50 }}>
+          <p>
+            {correctAnswers} / {totalQuestions}
+          </p>
+          <div className="quiz-result-button">
+            <Link to="/quizmoduls">
+              <button type="button" className="new-quiz-button">
+                NEW QUIZ
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
-      <div className="quiz-result-score" style={{ fontSize: 50 }}>
-        <p>
-          {correctAnswers} / {totalQuestions}
-        </p>
-      </div>
-      <div className="quiz-result-button">
-        <Link to="/quizmoduls">
-          <button type="button" className="new-quiz-button">
-            NEW QUIZ
-          </button>
-        </Link>
-      </div>
+
       <div>
         {isLoggedIn && (
           <div>
@@ -87,13 +87,13 @@ function QuizResultPage({ totalQuestions, correctAnswers }) {
         </button>
       </Modal>
 
-      <div className="firework-container">
+      {/* <div className="firework-container">
         <div className="firework" />
         <div className="firework" />
         <div className="firework" />
         <div className="firework" />
         <div className="firework" />
-      </div>
+      </div> */}
       {/* <div className="pyro">
         <div className="before" />
         <div className="after" />

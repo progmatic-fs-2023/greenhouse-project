@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useMemo, useEffect } from 'react';
-import PropTypes, { func } from 'prop-types';
+import PropTypes from 'prop-types';
 import { jwtDecode } from 'jwt-decode';
 import { API_URL } from '../constants';
 
@@ -58,14 +58,16 @@ export function AuthProvider({ children }) {
   }, [token, isLoggedIn]);
 
   async function fetchUserScore() {
-    if (token && isLoggedIn) {
-      try {
-        const response = await fetch(`${API_URL}/userdata/score/${userId}`);
-        const responseData = await response.json();
-        return responseData.xp;
-      } catch (error) {
-        setErrorState(error.message);
-      }
+    if (!token || !isLoggedIn) {
+      return null;
+    }
+    try {
+      const response = await fetch(`${API_URL}/userdata/score/${userId}`);
+      const responseData = await response.json();
+      return responseData.xp;
+    } catch (error) {
+      setErrorState(error.message);
+      return null;
     }
   }
 

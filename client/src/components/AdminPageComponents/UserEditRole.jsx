@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './AdminPageComponents.css';
 import { API_URL } from '../../constants';
+import { useNavigate } from 'react-router';
 
 function EditUserPage() {
   const [users, setUsers] = useState([]);
@@ -8,6 +9,7 @@ function EditUserPage() {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorState, setErrorState] = useState('');
+  const navigate = useNavigate();
 
   const fetchUser = async () => {
     try {
@@ -16,10 +18,17 @@ function EditUserPage() {
 
       const response = await fetch(`${API_URL}/admin/users?userRole=${userRole}&search=${search}`);
       if (!response.ok) {
+        if (response.status === 500) {
+          navigate('/404');
+          return;
+        }
+        if (response.status === 401) {
+          navigate('/login');
+          return;
+        }
         const errorData = await response.json();
         throw new Error(errorData.error || 'Failed to fetch questions.');
       }
-
       const fetchedUser = await response.json();
       setUsers(fetchedUser);
     } catch (error) {
@@ -40,6 +49,14 @@ function EditUserPage() {
       });
 
       if (!response.ok) {
+        if (response.status === 500) {
+          navigate('/404');
+          return;
+        }
+        if (response.status === 401) {
+          navigate('/login');
+          return;
+        }
         throw new Error('Failed to update user role');
       }
       fetchUser();

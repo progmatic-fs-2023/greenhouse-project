@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import './AdminPageComponents.css';
 import QuestionForm from './QuestionForm';
 import { API_URL } from '../../constants';
+import { useNavigate } from 'react-router';
 
 function EditPage() {
   const [topic, setTopic] = useState('');
@@ -13,6 +14,7 @@ function EditPage() {
   const [errorState, setErrorState] = useState('');
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const fetchQuestions = async () => {
     try {
@@ -24,6 +26,14 @@ function EditPage() {
       );
 
       if (!response.ok) {
+        if (response.status === 500) {
+          navigate('/404');
+          return;
+        }
+        if (response.status === 401) {
+          navigate('/login');
+          return;
+        }
         const errorData = await response.json();
         throw new Error(errorData.error || 'Failed to fetch questions.');
       }
@@ -155,5 +165,3 @@ function EditPage() {
 }
 
 export default EditPage;
-
-// best code ever

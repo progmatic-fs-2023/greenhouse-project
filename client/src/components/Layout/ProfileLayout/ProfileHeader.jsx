@@ -9,6 +9,7 @@ import pottedPlant from '../../../assets/potted_plant.svg';
 import spa from '../../../assets/spa.svg';
 import tree from '../../../assets/tree.svg';
 import grass from '../../../assets/grass.svg';
+import { useNavigate } from 'react-router';
 
 function ProfileHeader() {
   const { username, userId } = useAuth();
@@ -18,6 +19,7 @@ function ProfileHeader() {
   const [threshold, setThreshold] = useState(0);
   const difference = threshold - xp;
   const { lowerThreshold, upperThreshold } = calculateRanks(xp);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserXP = async () => {
@@ -25,6 +27,14 @@ function ProfileHeader() {
         const response = await fetch(`${API_URL}/profile/${userId}`);
 
         if (!response.ok) {
+          if (response.status === 500) {
+            navigate('/404');
+            return;
+          }
+          if (response.status === 401) {
+            navigate('/login');
+            return;
+          }
           throw new Error(`Error: ${response.status}`);
         }
 

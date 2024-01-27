@@ -36,9 +36,13 @@
 }
 /*! RESULT PAGE ANIMATION AND FIREWORK TOOL */
 .quiz-result-container {
+  display: flex;
+  justify-content: center;
   text-align: center;
-  margin: 100px;
+  margin: 100px 0;
+  gap: 100px;
   opacity: 1;
+
   /* animation: slideInFromBorder 1s ease-in-out forwards; */
 }
 

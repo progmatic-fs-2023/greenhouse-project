@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { API_URL } from '../../constants';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -8,6 +8,7 @@ export default function Leaderboard() {
   const loggedInUserRef = useRef(null);
   const { userId, currentUserXp, fetchCurrentUserXp } = useAuth();
   const [errorState, setErrorState] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getLeaderboard = async () => {
@@ -15,6 +16,14 @@ export default function Leaderboard() {
         const response = await fetch(`${API_URL}/game/leaderboard`);
 
         if (!response.ok) {
+          if (response.status === 500) {
+            navigate('/404');
+            return;
+          }
+          if (response.status === 401) {
+            navigate('/login');
+            return;
+          }
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const leaderboardData = await response.json();
