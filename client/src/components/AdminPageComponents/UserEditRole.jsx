@@ -61,6 +61,7 @@ function EditUserPage() {
         <div className="edit_question_form">
           <label htmlFor="topicSearch">
             Select User Role:
+            <br />
             <select id="topicSearch" value={userRole} onChange={(e) => setUserRole(e.target.value)}>
               <option value="" disabled>
                 Select User Role
@@ -72,6 +73,7 @@ function EditUserPage() {
 
           <label htmlFor="textSearch">
             Search:
+            <br />
             <input
               id="textSearch"
               type="text"
@@ -93,7 +95,7 @@ function EditUserPage() {
             <ul>
               {users.map((user) => (
                 <li role="presentation" key={user.id} className="question-item" id="users_list">
-                  <p>Username: {user.username}</p>
+                  <p>{user.username}</p>
 
                   <select
                     id="topicSearch"

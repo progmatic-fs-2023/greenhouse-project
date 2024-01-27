@@ -71,3 +71,19 @@ export const destroyUserById = async userId => {
     throw error;
   }
 };
+
+export const findUserXp = async userId => {
+  const experiencePoints = await prismaClient.user.findUnique({
+    where: {
+      id: userId,
+    },
+    include: {
+      score: {
+        select: {
+          xp: true,
+        },
+      },
+    },
+  });
+  return experiencePoints;
+};

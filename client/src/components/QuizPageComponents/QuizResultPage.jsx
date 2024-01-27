@@ -16,31 +16,33 @@ function QuizResultPage({ totalQuestions, correctAnswers }) {
   const { currentUserXp, startGameUserXp, isLoggedIn, fetchCurrentUserXp } = useAuth();
   const [reachedNextRank, setReachedNextRank] = useState(false);
   const [xpPercentage, setXpPercentage] = useState(0);
-  const { currentRank: starGameRank} = calculateRanks(startGameUserXp);
-  console.log(upperThreshold, nextRank, currentUserXp, startGameUserXp, correctAnswers);
-
+  const { currentRank: starGameRank } = calculateRanks(startGameUserXp);
+  const [stat, setStat] = useState(calculateRanks(currentUserXp));
+  console.log(stat,starGameRank);
   useEffect(() => {
     fetchCurrentUserXp();
   }, []);
 
   useEffect(() => {
     const updateRankInfo = () => {
-      const { lowerThreshold, upperThreshold,nextRank, currentRank} = calculateRanks(currentUserXp);
+      const { lowerThreshold, upperThreshold, nextRank, currentRank } =
+        calculateRanks(currentUserXp);
+      setStat(calculateRanks(currentUserXp));
       const xpWithinRange = currentUserXp - lowerThreshold;
       const range = upperThreshold - lowerThreshold;
       setXpPercentage(Math.max(5, Math.min((xpWithinRange / range) * 100, 100)));
 
-      if (currentUserXp >= upperThreshold) {
-        setReachedNextRank(true);
-      } else {
+      if (currentRank === starGameRank) {
         setReachedNextRank(false);
+      } else {
+        setReachedNextRank(true);
       }
     };
 
     updateRankInfo();
   }, [currentUserXp]);
 
-  const centerLabel = `${upperThreshold - userXp} XP to reach ${currentNextRank} rank`;
+  const centerLabel = `${stat.upperThreshold - currentUserXp} XP to reach ${stat.nextRank} rank`;
 
   return (
     <div className="quiz-result-container">
@@ -80,7 +82,7 @@ function QuizResultPage({ totalQuestions, correctAnswers }) {
         className="customModal"
       >
         <h2>Congratulations!</h2>
-        <p>You have reached the next rank: {currentNextRank}</p>
+        <p>You have reached the next rank: {stat.currentRank}</p>
         <button type="button" onClick={() => setReachedNextRank(false)}>
           Close
         </button>

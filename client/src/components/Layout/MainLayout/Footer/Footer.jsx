@@ -14,7 +14,7 @@ function Footer() {
       <div className="links_container">
         <div className="contact">
           <NavLink to="/contact">
-            <button type="button">Contact</button>
+            <button type="button">Contact us</button>
           </NavLink>
         </div>
         <div className="icons_container">
