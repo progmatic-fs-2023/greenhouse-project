@@ -34,6 +34,7 @@ export default function QuizPage() {
             nextQuestion={nextQuestion}
             multiSelect={question.isMultiSelectQuestion}
             nextQuestionIndex={nextQuestionIndex}
+            questionId={question.id}
           />
         </div>
       </div>

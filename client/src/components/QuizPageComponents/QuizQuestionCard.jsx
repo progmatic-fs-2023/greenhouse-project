@@ -10,6 +10,7 @@ export default function QuizQuestionCard({
   nextQuestion,
   nextQuestionIndex,
   multiSelect,
+  questionId,
 }) {
   const [isCorrectPresent, setIsCorrectPresent] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState({});
@@ -22,6 +23,11 @@ export default function QuizQuestionCard({
   const handleAnswerClick = (answerId) => {
     setSelectedAnswer((prev) => ({ ...prev, [answerId]: !prev[answerId] }));
     setAreAnswersDisabled(true);
+  };
+
+  const handleReport = () => {
+    const reportUrl = `http://localhost:5173/contact?reported=${questionId}`;
+    window.open(reportUrl, '_blank');
   };
 
   const handleNextQuestion = () => {
@@ -70,6 +76,16 @@ export default function QuizQuestionCard({
           onSubmit={handleSubmit}
           isSubmitted={isSubmitted}
         />
+        <div className="report-container">
+          <button
+            className="report-button"
+            type="button"
+            title="Report a problem with this question"
+            onClick={handleReport}
+          >
+            ❓
+          </button>
+        </div>
       </div>
     </div>
   );

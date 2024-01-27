@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { API_URL } from '../constants';
 
 function ContactPage() {
@@ -11,6 +11,15 @@ function ContactPage() {
   const [error, setError] = useState('');
 
   const subjects = ['General Inquiry', 'Product Support', 'Billing Issue', 'Feedback', 'Other'];
+
+  const queryParameters = new URLSearchParams(window.location.search);
+  const reportedId = queryParameters.get('reported');
+
+  useEffect(() => {
+    if (reportedId) {
+      setSelectedSubject(reportedId);
+    }
+  }, [reportedId]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -84,22 +93,25 @@ function ContactPage() {
             <div>
               <label htmlFor="subject">
                 Subject:
-                <br />
-                <select
-                  id="subject"
-                  value={selectedSubject}
-                  onChange={(e) => setSelectedSubject(e.target.value)}
-                  required
-                >
-                  <option value="" disabled>
-                    Select a subject
-                  </option>
-                  {subjects.map((subject) => (
-                    <option key={subject} value={subject}>
-                      {subject}
+                {reportedId ? (
+                  <input type="text" id="subject" value={reportedId} readOnly />
+                ) : (
+                  <select
+                    id="subject"
+                    value={selectedSubject}
+                    onChange={(e) => setSelectedSubject(e.target.value)}
+                    required
+                  >
+                    <option value="" disabled>
+                      Select a subject
                     </option>
-                  ))}
-                </select>
+                    {subjects.map((subject) => (
+                      <option key={subject} value={subject}>
+                        {subject}
+                      </option>
+                    ))}
+                  </select>
+                )}
               </label>
             </div>
             <div>
