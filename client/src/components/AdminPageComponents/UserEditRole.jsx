@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './AdminPageComponents.css';
 import { API_URL } from '../../constants';
+import { useAuth } from '../../contexts/AuthContext';
 
 function EditUserPage() {
   const [users, setUsers] = useState([]);
@@ -8,13 +9,21 @@ function EditUserPage() {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorState, setErrorState] = useState('');
+  const { token } = useAuth();
 
   const fetchUser = async () => {
     try {
       setLoading(true);
       setErrorState('');
 
-      const response = await fetch(`${API_URL}/admin/users?userRole=${userRole}&search=${search}`);
+      const response = await fetch(`${API_URL}/admin/users?userRole=${userRole}&search=${search}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token ? `Bearer ${token}` : undefined,
+        },
+      });
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || 'Failed to fetch questions.');

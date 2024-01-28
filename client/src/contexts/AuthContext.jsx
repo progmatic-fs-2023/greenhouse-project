@@ -40,7 +40,13 @@ export function AuthProvider({ children }) {
     async function fetchUserData() {
       if (token && isLoggedIn) {
         try {
-          const response = await fetch(`${API_URL}/userdata/${userId}`);
+          const response = await fetch(`${API_URL}/userdata/${userId}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: token ? `Bearer ${token}` : undefined,
+            },
+          });
           const responseData = await response.json();
           setUserRole(responseData.role);
           setUsername(responseData.username);
@@ -59,7 +65,13 @@ export function AuthProvider({ children }) {
   async function fetchUserScore() {
     if (token && isLoggedIn) {
       try {
-        const response = await fetch(`${API_URL}/userdata/score/${userId}`);
+        const response = await fetch(`${API_URL}/userdata/score/${userId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token ? `Bearer ${token}` : undefined,
+          },
+        });
         const responseData = await response.json();
         setUserXp(responseData.xp);
       } catch (error) {

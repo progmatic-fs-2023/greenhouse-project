@@ -18,11 +18,18 @@ function ProfileHeader() {
   const [threshold, setThreshold] = useState(0);
   const difference = threshold - xp;
   const { lowerThreshold, upperThreshold } = calculateRanks(xp);
+  const { token } = useAuth();
 
   useEffect(() => {
     const fetchUserXP = async () => {
       try {
-        const response = await fetch(`${API_URL}/profile/${userId}`);
+        const response = await fetch(`${API_URL}/profile/${userId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token ? `Bearer ${token}` : undefined,
+          },
+        });
 
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
