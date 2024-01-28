@@ -30,6 +30,16 @@ export const createAnswers = async (questionId, answers) => {
       })),
     });
 
+    const numCorrectAnswers = answers.filter(answer => answer.isCorrect).length;
+    const isMultiSelect = numCorrectAnswers >= 2;
+
+    if (isMultiSelect) {
+      await prisma.question.update({
+        where: { id: questionId },
+        data: { isMultiSelectQuestion: true },
+      });
+    }
+
     return createdAnswers;
   } catch (error) {
     console.error('Error in createAnswers:', error);
@@ -84,6 +94,14 @@ export const editAnswers = async (questionId, updatedAnswersData) => {
       })),
     }),
   ]);
+
+  const numCorrectAnswers = updatedAnswersData.answers.filter(answer => answer.isCorrect).length;
+  const isMultiSelect = numCorrectAnswers > 1;
+
+  await prisma.question.update({
+    where: { id: questionId },
+    data: { isMultiSelectQuestion: isMultiSelect },
+  });
 
   return transaction[0];
 };
