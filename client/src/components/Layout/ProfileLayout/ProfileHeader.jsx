@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { useAuth } from '../../../contexts/AuthContext';
 import { API_URL } from '../../../constants';
 import ranks from '../../../utils/ranks';
@@ -11,13 +12,14 @@ import tree from '../../../assets/tree.svg';
 import grass from '../../../assets/grass.svg';
 
 function ProfileHeader() {
-  const { username, userId } = useAuth();
+  const { username, userId, logout } = useAuth();
   const [rank, setRank] = useState('');
   const [xp, setXp] = useState('');
   const [icon, setIcon] = useState();
   const [threshold, setThreshold] = useState(0);
   const difference = threshold - xp;
   const { lowerThreshold, upperThreshold } = calculateRanks(xp);
+  const navigate = useNavigate();
   const { token } = useAuth();
 
   useEffect(() => {
@@ -32,6 +34,15 @@ function ProfileHeader() {
         });
 
         if (!response.ok) {
+          if (response.status === 500) {
+            navigate('/404');
+            return;
+          }
+          if (response.status === 401 || response.status === 403) {
+            navigate('/login');
+            logout();
+            return;
+          }
           throw new Error(`Error: ${response.status}`);
         }
 

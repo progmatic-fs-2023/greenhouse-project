@@ -17,6 +17,7 @@ const ranks = {
   },
   legend: {
     name: 'Legend',
+    xpThreshold: Number.MAX_SAFE_INTEGER,
   },
 };
 export default ranks;

@@ -5,7 +5,6 @@ import errorHandler from './middlewares/errorHandler.middleware';
 import apiRouter from './routes/api.route';
 
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

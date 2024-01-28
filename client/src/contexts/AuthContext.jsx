@@ -24,8 +24,9 @@ export function AuthProvider({ children }) {
   const [userRole, setUserRole] = useState(initUserRole);
   const [userEmail, setUserEmail] = useState('');
   const [userCreationDate, setUserCreationDate] = useState('');
-  const [userXp, setUserXp] = useState(undefined);
+  const [currentUserXp, setCurrentUserXp] = useState(undefined);
   const [errorState, setErrorState] = useState('');
+  const [startGameUserXp, setStartGameUserXp] = useState(null);
 
   useEffect(() => {
     if (token) {
@@ -52,7 +53,7 @@ export function AuthProvider({ children }) {
           setUsername(responseData.username);
           setUserEmail(responseData.email);
           setUserCreationDate(responseData.createdAt);
-          setUserXp(responseData.score.xp);
+          setCurrentUserXp(responseData.score.xp);
         } catch (error) {
           setErrorState(error.message);
         }
@@ -60,7 +61,7 @@ export function AuthProvider({ children }) {
     }
 
     fetchUserData();
-  }, [userId, userEmail, username, userXp]);
+  }, [token, isLoggedIn]);
 
   async function fetchUserScore() {
     if (token && isLoggedIn) {
@@ -73,11 +74,26 @@ export function AuthProvider({ children }) {
           },
         });
         const responseData = await response.json();
-        setUserXp(responseData.xp);
+        setCurrentUserXp(responseData.xp);
       } catch (error) {
         setErrorState(error.message);
       }
     }
+    try {
+      const response = await fetch(`${API_URL}/userdata/score/${userId}`);
+      const responseData = await response.json();
+      return responseData.xp;
+    } catch (error) {
+      setErrorState(error.message);
+      return null;
+    }
+  }
+
+  async function fetchCurrentUserXp() {
+    setCurrentUserXp(await fetchUserScore());
+  }
+  async function fetchStartGameUserXp() {
+    setStartGameUserXp(await fetchUserScore());
   }
 
   const login = (userData) => {
@@ -93,6 +109,7 @@ export function AuthProvider({ children }) {
     setUserCreationDate('');
     setUserId('');
     setToken('');
+    setCurrentUserXp(null);
   };
 
   const authContextValue = useMemo(
@@ -108,10 +125,11 @@ export function AuthProvider({ children }) {
       token,
       setUserEmail,
       setUsername,
-      setUserXp,
       errorState,
-      userXp,
-      fetchUserScore,
+      currentUserXp,
+      startGameUserXp,
+      fetchStartGameUserXp,
+      fetchCurrentUserXp,
     }),
     [
       isLoggedIn,
@@ -123,10 +141,9 @@ export function AuthProvider({ children }) {
       token,
       setUserEmail,
       setUsername,
-      setUserXp,
       errorState,
-      userXp,
-      fetchUserScore,
+      currentUserXp,
+      startGameUserXp,
     ],
   );
 

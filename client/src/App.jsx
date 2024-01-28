@@ -20,6 +20,7 @@ import NewQuestion from './components/AdminPageComponents/NewQuestion';
 import EditQuestion from './components/AdminPageComponents/EditQuestion';
 import UserEditRole from './components/AdminPageComponents/UserEditRole';
 import Contact from './pages/Contact';
+import ErrorLanding from './pages/ErrorLanding';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/quizpage" element={<QuizPage />} />
             <Route path="/register" element={<Register />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/404" element={<ErrorLanding />} />
             <Route element={<ProtectedRoute allowedRoles={['user', 'admin', 'godmin']} />}>
               <Route path="/profile" element={<Profile />}>
                 <Route path="account" element={<Account />} />

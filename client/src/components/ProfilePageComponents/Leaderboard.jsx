@@ -1,36 +1,40 @@
 import { useEffect, useState, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { API_URL } from '../../constants';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
   const loggedInUserRef = useRef(null);
-  const { userId, userXp, setUserXp } = useAuth();
+  const { userId, currentUserXp, fetchCurrentUserXp, logout } = useAuth();
   const [errorState, setErrorState] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getLeaderboard = async () => {
       try {
         const response = await fetch(`${API_URL}/game/leaderboard`);
-
         if (!response.ok) {
+          if (response.status === 500) {
+            navigate('/404');
+            return;
+          }
+          if (response.status === 401 || response.status === 403) {
+            navigate('/login');
+            logout();
+            return;
+          }
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const leaderboardData = await response.json();
         setLeaderboard(leaderboardData);
-        const loggedInUserData = leaderboardData.find((user) => user.id === userId);
-        if (loggedInUserData && loggedInUserData.xp !== undefined) {
-          setUserXp(loggedInUserData.xp);
-        } else {
-          setUserXp(undefined);
-        }
+        fetchCurrentUserXp();
       } catch (error) {
         setErrorState(error.message);
       }
     };
     getLeaderboard();
-  }, [userId, userXp]);
+  }, [userId, currentUserXp]);
 
   useEffect(() => {
     if (loggedInUserRef.current) {
@@ -45,7 +49,7 @@ export default function Leaderboard() {
   return (
     <div>
       {errorState && <p>{errorState}</p>}
-      {userXp === undefined ? (
+      {currentUserXp === null ? (
         <div style={{ textAlign: 'center', margin: '20px' }}>
           <p style={{ fontSize: '20px', color: 'green' }}>
             Great to have you here! Start playing to get on the leaderboard.

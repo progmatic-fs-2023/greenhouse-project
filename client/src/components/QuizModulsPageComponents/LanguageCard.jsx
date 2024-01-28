@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import CardHeader from '../HomePageComponents/CardHeader';
 import { QuizContext } from '../../contexts/QuizContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 function LanguageCard({ title, language }) {
   const [difficulty, setDifficulty] = useState('EASY');
   const [numQuestions, setNumQuestions] = useState(5);
   const { getQuiz } = useContext(QuizContext);
+  const { fetchStartGameUserXp } = useAuth();
   const handleDifficultyChange = (e) => {
     setDifficulty(e.target.value);
   };
@@ -53,6 +55,7 @@ function LanguageCard({ title, language }) {
           style={{ marginTop: '20px' }}
           onClick={() => {
             getQuiz(language, difficulty, numQuestions);
+            fetchStartGameUserXp();
           }}
         >
           Start Quiz
