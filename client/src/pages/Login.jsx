@@ -11,6 +11,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { token } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -19,6 +20,7 @@ function Login() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: token ? `Bearer ${token}` : undefined,
       },
       body: JSON.stringify({ username, password }),
     });

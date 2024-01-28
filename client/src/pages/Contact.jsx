@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { API_URL } from '../constants';
+import { useAuth } from '../contexts/AuthContext';
 
 function ContactPage() {
   const [email, setEmail] = useState('');
@@ -9,6 +10,7 @@ function ContactPage() {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
+  const { token } = useAuth();
 
   const subjects = ['General Inquiry', 'Product Support', 'Billing Issue', 'Feedback', 'Other'];
 
@@ -31,6 +33,7 @@ function ContactPage() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: token ? `Bearer ${token}` : undefined,
         },
         body: JSON.stringify({
           name,

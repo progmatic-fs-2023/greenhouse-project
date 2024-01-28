@@ -89,18 +89,6 @@ function QuizResultPage({ totalQuestions, correctAnswers }) {
           Close
         </button>
       </Modal>
-
-      <div className="firework-container">
-        <div className="firework" />
-        <div className="firework" />
-        <div className="firework" />
-        <div className="firework" />
-        <div className="firework" />
-      </div>
-      {/* <div className="pyro">
-        <div className="before" />
-        <div className="after" />
-      </div> */}
     </div>
   );
 }
