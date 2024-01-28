@@ -4,6 +4,7 @@ import './AdminPageComponents.css';
 import QuestionForm from './QuestionForm';
 import { API_URL } from '../../constants';
 import { useNavigate } from 'react-router';
+import { useAuth } from '../../contexts/AuthContext';
 
 function EditPage() {
   const [topic, setTopic] = useState('');
@@ -15,6 +16,7 @@ function EditPage() {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
+  const { token } = useAuth();
 
   const fetchQuestions = async () => {
     try {
@@ -23,6 +25,13 @@ function EditPage() {
 
       const response = await fetch(
         `${API_URL}/admin/edit?topic=${topic}&difficulty=${difficulty}&search=${search}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token ? `Bearer ${token}` : undefined,
+          },
+        },
       );
 
       if (!response.ok) {
