@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { API_URL } from '../constants';
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router';
 
 function ContactPage() {
   const [email, setEmail] = useState('');
@@ -9,6 +11,8 @@ function ContactPage() {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
   const subjects = ['General Inquiry', 'Product Support', 'Billing Issue', 'Feedback', 'Other'];
 
@@ -47,6 +51,15 @@ function ContactPage() {
         setSelectedSubject('');
         setMessage('');
       } else {
+        if (response.status === 500) {
+          navigate('/404');
+          return;
+        }
+        if (response.status === 401 || response.status === 403) {
+          navigate('/login');
+          logout();
+          return;
+        }
         throw new Error('Failed to send the message.');
       }
     } catch (err) {

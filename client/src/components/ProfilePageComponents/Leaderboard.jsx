@@ -6,7 +6,7 @@ import { useAuth } from '../../contexts/AuthContext';
 export default function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
   const loggedInUserRef = useRef(null);
-  const { userId, currentUserXp, fetchCurrentUserXp } = useAuth();
+  const { userId, currentUserXp, fetchCurrentUserXp, logout } = useAuth();
   const [errorState, setErrorState] = useState('');
   const navigate = useNavigate();
 
@@ -20,8 +20,9 @@ export default function Leaderboard() {
             navigate('/404');
             return;
           }
-          if (response.status === 401) {
+          if (response.status === 401 || response.status === 403) {
             navigate('/login');
+            logout();
             return;
           }
           throw new Error(`HTTP error! Status: ${response.status}`);

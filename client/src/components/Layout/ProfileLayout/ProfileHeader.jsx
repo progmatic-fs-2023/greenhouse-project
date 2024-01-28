@@ -12,7 +12,7 @@ import grass from '../../../assets/grass.svg';
 import { useNavigate } from 'react-router';
 
 function ProfileHeader() {
-  const { username, userId } = useAuth();
+  const { username, userId, logout } = useAuth();
   const [rank, setRank] = useState('');
   const [xp, setXp] = useState('');
   const [icon, setIcon] = useState();
@@ -31,8 +31,9 @@ function ProfileHeader() {
             navigate('/404');
             return;
           }
-          if (response.status === 401) {
+          if (response.status === 401 || response.status === 403) {
             navigate('/login');
+            logout();
             return;
           }
           throw new Error(`Error: ${response.status}`);

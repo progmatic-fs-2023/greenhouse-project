@@ -18,8 +18,9 @@ const register = async (req, res) => {
     });
   } catch (error) {
     console.log(error.message);
-    res.status(500).json({
-      message: 'Failed to create user',
+    const statusCode = error.statusCode || 500;
+    res.status(statusCode).json({
+      message: error.message,
     });
   }
 };
@@ -27,21 +28,11 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { username, password } = req.body;
 
-  if (!username || !password) {
-    console.log('Failed to login, username or password not present');
-    return res.status(500).json({
-      message: 'Failed to login, username or password not present',
-    });
-  }
-
   try {
     const user = await findUserByUsername(username);
     const { password: passwordHash, ...userWithoutPassword } = user;
-    if (!user) {
-      console.log('Failed to login, username is invalid');
-      return res.status(500).json({
-        message: 'Failed to login, username is invalid',
-      });
+    if (!user || !password) {
+      console.log('Failed to login, username or password invalid');
     }
     const result = await comparePassword(password, user.password);
 
@@ -66,14 +57,11 @@ const login = async (req, res) => {
         token,
       });
     }
-    console.log('Failed to login, password is incorrect');
-    return res.status(500).json({
-      message: 'Failed to login, password is incorrect',
-    });
   } catch (error) {
     console.log(error.message);
-    return res.status(500).json({
-      message: 'Failed to finish login',
+    const statusCode = error.statusCode || 500;
+    res.status(statusCode).json({
+      message: error.message,
     });
   }
 };

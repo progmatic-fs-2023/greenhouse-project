@@ -14,6 +14,13 @@ export const hashPassword = async password => {
 export const comparePassword = async (password, userPassword) => {
   try {
     const result = await bcrypt.compare(password, userPassword);
+
+    if (!result) {
+      const error = new Error('Invalid password');
+      error.statusCode = 401;
+      throw error;
+    }
+
     return result;
   } catch (error) {
     console.error('Error comparing passwords:', error);

@@ -16,7 +16,7 @@ function EditPage() {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
-  const { token } = useAuth();
+  const { token, logout } = useAuth();
 
   const fetchQuestions = async () => {
     try {
@@ -39,8 +39,9 @@ function EditPage() {
           navigate('/404');
           return;
         }
-        if (response.status === 401) {
+        if (response.status === 401 || response.status === 403) {
           navigate('/login');
+          logout();
           return;
         }
         const errorData = await response.json();

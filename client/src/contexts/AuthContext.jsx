@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { jwtDecode } from 'jwt-decode';
 import { API_URL } from '../constants';
 
+
 const AuthContext = createContext();
 
 const initUserId = (token) => {

@@ -24,6 +24,18 @@ function Register() {
     });
     if (response.ok) {
       navigate('/login');
+    } else {
+      if (response.status === 409) {
+        setError('Username already exists');
+      }
+      if (response.status === 500) {
+        navigate('/404');
+        return;
+      }
+      if (response.status === 401 || response.status === 403) {
+        navigate('/login');
+        return;
+      }
     }
   };
 
@@ -88,7 +100,9 @@ function Register() {
             />
           </label>
           <br />
-          {showButton ? <button type="submit">Send Registration</button> : <p>{error}</p>}
+          {showButton ? <button type="submit">Send Registration</button> : ''}
+          <br />
+          {error ? error : ''}
         </form>
       </div>
     </div>

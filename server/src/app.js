@@ -6,7 +6,6 @@ import apiRouter from './routes/api.route';
 
 const app = express();
 app.use(cors());
-// app.use((req, res) => res.sendStatus(500));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(logger);

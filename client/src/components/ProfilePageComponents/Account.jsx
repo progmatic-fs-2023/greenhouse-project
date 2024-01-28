@@ -29,8 +29,9 @@ export default function Account() {
           navigate('/404');
           return;
         }
-        if (response.status === 401) {
+        if (response.status === 401 || response.status === 403) {
           navigate('/login');
+          logout()
           return;
         }
       }
@@ -54,8 +55,9 @@ export default function Account() {
           navigate('/404');
           return;
         }
-        if (response.status === 401) {
+        if (response.status === 401 || response.status === 403) {
           navigate('/login');
+          logout();
           return;
         }
       }

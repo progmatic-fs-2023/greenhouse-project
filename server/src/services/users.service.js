@@ -9,6 +9,13 @@ export const findUserByUsername = async username => {
         username,
       },
     });
+
+    if (!user) {
+      const error = new Error('User not found');
+      error.statusCode = 401;
+      throw error;
+    }
+
     return user;
   } catch (error) {
     console.error('Error finding user by username:', error);
@@ -46,6 +53,18 @@ export const findUserScoreById = async userId => {
 
 export const createUser = async newUser => {
   try {
+    const existingUser = await prisma.user.findUnique({
+      where: {
+        username: newUser.username,
+      },
+    });
+
+    if (existingUser) {
+      const error = new Error('Username is already taken');
+      error.statusCode = 409;
+      throw error;
+    }
+
     const createdUser = await prisma.user.create({
       data: {
         username: newUser.username,
@@ -53,6 +72,7 @@ export const createUser = async newUser => {
         email: newUser.email,
       },
     });
+
     return createdUser;
   } catch (error) {
     console.error('Error creating new user:', error);

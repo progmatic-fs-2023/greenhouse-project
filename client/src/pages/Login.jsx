@@ -9,6 +9,7 @@ import { API_URL } from '../constants';
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -22,11 +23,20 @@ function Login() {
       },
       body: JSON.stringify({ username, password }),
     });
-    const responseData = await response.json();
 
     if (response.ok) {
+      const responseData = await response.json();
       login(responseData);
       navigate('/');
+    } else {
+      if (response.status === 500) {
+        navigate('/404');
+        return;
+      }
+      if (response.status === 401) {
+        setError('Failed to login, username or password invalid');
+        return;
+      }
     }
   };
 
@@ -63,6 +73,7 @@ function Login() {
             <button type="button">Create account</button>
           </NavLink>
         </form>
+        {error ? error : ''}
       </div>
     </div>
   );

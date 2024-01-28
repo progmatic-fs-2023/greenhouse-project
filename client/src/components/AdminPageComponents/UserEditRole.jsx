@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './AdminPageComponents.css';
 import { API_URL } from '../../constants';
 import { useNavigate } from 'react-router';
+import { useAuth } from '../../contexts/AuthContext';
 
 function EditUserPage() {
   const [users, setUsers] = useState([]);
@@ -10,6 +11,7 @@ function EditUserPage() {
   const [loading, setLoading] = useState(false);
   const [errorState, setErrorState] = useState('');
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const fetchUser = async () => {
     try {
@@ -22,8 +24,9 @@ function EditUserPage() {
           navigate('/404');
           return;
         }
-        if (response.status === 401) {
+        if (response.status === 401 || response.status === 403) {
           navigate('/login');
+          logout();
           return;
         }
         const errorData = await response.json();
@@ -53,8 +56,9 @@ function EditUserPage() {
           navigate('/404');
           return;
         }
-        if (response.status === 401) {
+        if (response.status === 401 || response.status === 403) {
           navigate('/login');
+          logout()
           return;
         }
         throw new Error('Failed to update user role');

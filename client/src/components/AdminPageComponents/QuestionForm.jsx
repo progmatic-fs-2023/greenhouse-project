@@ -4,6 +4,7 @@ import { API_URL } from '../../constants';
 import './AdminPageComponents.css';
 import '../../login.css';
 import { useNavigate } from 'react-router';
+import { useAuth } from '../../contexts/AuthContext';
 
 function QuestionForm({
   QuestionProps,
@@ -26,6 +27,7 @@ function QuestionForm({
   ]);
   const [formError, setFormError] = useState('');
   const [formOk, setFormOk] = useState('');
+  const { logout } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -120,8 +122,9 @@ function QuestionForm({
           navigate('/404');
           return;
         }
-        if (response.status === 401) {
+        if (response.status === 401 || response.status === 403) {
           navigate('/login');
+          logout()
           return;
         }
         const errorData = await response.json();
