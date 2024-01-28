@@ -9,6 +9,7 @@ export default function Password() {
   const [newPasswordChanged, setNewPasswordChanged] = useState('');
   const [error, setError] = useState('');
   const { userId } = useAuth();
+  const { token } = useAuth();
 
   const handleSaveClick = async (e) => {
     e.preventDefault();
@@ -20,6 +21,7 @@ export default function Password() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: token ? `Bearer ${token}` : undefined,
         },
         body: JSON.stringify({ newPassword, currentPassword }),
       });

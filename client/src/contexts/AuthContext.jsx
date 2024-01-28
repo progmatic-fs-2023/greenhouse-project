@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { jwtDecode } from 'jwt-decode';
 import { API_URL } from '../constants';
 
-
 const AuthContext = createContext();
 
 const initUserId = (token) => {
@@ -42,7 +41,13 @@ export function AuthProvider({ children }) {
     async function fetchUserData() {
       if (token && isLoggedIn) {
         try {
-          const response = await fetch(`${API_URL}/userdata/${userId}`);
+          const response = await fetch(`${API_URL}/userdata/${userId}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: token ? `Bearer ${token}` : undefined,
+            },
+          });
           const responseData = await response.json();
           setUserRole(responseData.role);
           setUsername(responseData.username);
@@ -59,8 +64,20 @@ export function AuthProvider({ children }) {
   }, [token, isLoggedIn]);
 
   async function fetchUserScore() {
-    if (!token || !isLoggedIn) {
-      return null;
+    if (token && isLoggedIn) {
+      try {
+        const response = await fetch(`${API_URL}/userdata/score/${userId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token ? `Bearer ${token}` : undefined,
+          },
+        });
+        const responseData = await response.json();
+        setCurrentUserXp(responseData.xp);
+      } catch (error) {
+        setErrorState(error.message);
+      }
     }
     try {
       const response = await fetch(`${API_URL}/userdata/score/${userId}`);

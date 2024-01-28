@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { QuizContext } from '../contexts/QuizContext';
 import { API_URL } from '../constants';
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router';
 
 const useQuestion = () => {
   const [questionIndex, setQuestionIndex] = useState(0);

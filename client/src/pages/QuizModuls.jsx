@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import '../components/QuizModulsPageComponents/quizmodul.css';
 import '../components/HomePageComponents/card.css';
+import { useNavigate } from 'react-router';
 import Description from '../components/QuizModulsPageComponents/Description';
 import LanguageCard from '../components/QuizModulsPageComponents/LanguageCard';
 import { API_URL } from '../constants';
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router';
 
 function QuizModuls() {
   const [objectTopics, setTopics] = useState([]);

@@ -31,9 +31,7 @@ const login = async (req, res) => {
   try {
     const user = await findUserByUsername(username);
     const { password: passwordHash, ...userWithoutPassword } = user;
-    if (!user || !password) {
-      console.log('Failed to login, username or password invalid');
-    }
+
     const result = await comparePassword(password, user.password);
 
     if (result) {
@@ -48,19 +46,19 @@ const login = async (req, res) => {
       const token = await createToken(payload);
 
       res.cookie('jwt', token, {
-        maxAge: 3 * 60 * 60 * 1000,
+        maxAge: 24 * 60 * 60 * 1000,
       });
-
       return res.status(200).json({
         message: 'Login successful',
         user: userWithoutPassword,
         token,
       });
     }
+    return res.status(401);
   } catch (error) {
     console.log(error.message);
     const statusCode = error.statusCode || 500;
-    res.status(statusCode).json({
+    return res.status(statusCode).json({
       message: error.message,
     });
   }

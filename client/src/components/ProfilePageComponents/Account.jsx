@@ -13,6 +13,8 @@ export default function Account() {
   const dateString = [userCreationDate];
   const formattedDate = dateString[0].slice(0, 10);
   const navigate = useNavigate();
+  const { token } = useAuth();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -21,6 +23,7 @@ export default function Account() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: token ? `Bearer ${token}` : undefined,
         },
         body: JSON.stringify({ newEmail }),
       });
@@ -31,7 +34,7 @@ export default function Account() {
         }
         if (response.status === 401 || response.status === 403) {
           navigate('/login');
-          logout()
+          logout();
           return;
         }
       }
@@ -49,6 +52,10 @@ export default function Account() {
     try {
       const response = await fetch(`${API_URL}/profile/account/${userId}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token ? `Bearer ${token}` : undefined,
+        },
       });
       if (!response.ok) {
         if (response.status === 500) {
@@ -73,17 +80,6 @@ export default function Account() {
   return (
     <form className="account" onSubmit={handleSubmit}>
       <div className="account_container">
-        {/* <label htmlFor="username" className="username_label">
-          Username:
-          <input
-            name="username"
-            className="username"
-            type="text"
-            placeholder={username}
-            value={newUsername}
-            onChange={(e) => setNewUsername(e.target.value)}
-          />
-        </label> */}
         <p>Member since: </p> <p>{formattedDate}</p>
         <div>
           <label htmlFor="email" className="email_label">

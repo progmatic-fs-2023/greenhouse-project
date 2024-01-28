@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './AdminPageComponents.css';
-import { API_URL } from '../../constants';
 import { useNavigate } from 'react-router';
+import { API_URL } from '../../constants';
 import { useAuth } from '../../contexts/AuthContext';
 
 function EditUserPage() {
@@ -11,14 +11,21 @@ function EditUserPage() {
   const [loading, setLoading] = useState(false);
   const [errorState, setErrorState] = useState('');
   const navigate = useNavigate();
-  const { logout } = useAuth();
+  const { logout, token } = useAuth();
 
   const fetchUser = async () => {
     try {
       setLoading(true);
       setErrorState('');
 
-      const response = await fetch(`${API_URL}/admin/users?userRole=${userRole}&search=${search}`);
+      const response = await fetch(`${API_URL}/admin/users?userRole=${userRole}&search=${search}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token ? `Bearer ${token}` : undefined,
+        },
+      });
+
       if (!response.ok) {
         if (response.status === 500) {
           navigate('/404');
@@ -47,6 +54,7 @@ function EditUserPage() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: token ? `Bearer ${token}` : undefined,
         },
         body: JSON.stringify({ role }),
       });
@@ -58,7 +66,7 @@ function EditUserPage() {
         }
         if (response.status === 401 || response.status === 403) {
           navigate('/login');
-          logout()
+          logout();
           return;
         }
         throw new Error('Failed to update user role');

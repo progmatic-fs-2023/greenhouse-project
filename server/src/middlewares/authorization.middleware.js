@@ -11,7 +11,7 @@ const authorization = async (req, res, next) => {
     req.userId = decoded.id;
     return next();
   } catch (error) {
-    res.status(401).send;
+    res.status(401).send();
     console.error(error);
     return next(error);
   }

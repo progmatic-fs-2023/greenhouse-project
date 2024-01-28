@@ -14,7 +14,6 @@ export default function Leaderboard() {
     const getLeaderboard = async () => {
       try {
         const response = await fetch(`${API_URL}/game/leaderboard`);
-
         if (!response.ok) {
           if (response.status === 500) {
             navigate('/404');
@@ -50,7 +49,7 @@ export default function Leaderboard() {
   return (
     <div>
       {errorState && <p>{errorState}</p>}
-      {currentUserXp === undefined ? (
+      {currentUserXp === null ? (
         <div style={{ textAlign: 'center', margin: '20px' }}>
           <p style={{ fontSize: '20px', color: 'green' }}>
             Great to have you here! Start playing to get on the leaderboard.

@@ -34,7 +34,7 @@ function App() {
             <Route path="/quizpage" element={<QuizPage />} />
             <Route path="/register" element={<Register />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/404" element={<ErrorLanding/>}/>
+            <Route path="/404" element={<ErrorLanding />} />
             <Route element={<ProtectedRoute allowedRoles={['user', 'admin', 'godmin']} />}>
               <Route path="/profile" element={<Profile />}>
                 <Route path="account" element={<Account />} />

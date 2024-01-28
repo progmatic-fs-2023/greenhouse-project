@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { useAuth } from '../../../contexts/AuthContext';
 import { API_URL } from '../../../constants';
 import ranks from '../../../utils/ranks';
@@ -9,7 +10,6 @@ import pottedPlant from '../../../assets/potted_plant.svg';
 import spa from '../../../assets/spa.svg';
 import tree from '../../../assets/tree.svg';
 import grass from '../../../assets/grass.svg';
-import { useNavigate } from 'react-router';
 
 function ProfileHeader() {
   const { username, userId, logout } = useAuth();
@@ -20,11 +20,18 @@ function ProfileHeader() {
   const difference = threshold - xp;
   const { lowerThreshold, upperThreshold } = calculateRanks(xp);
   const navigate = useNavigate();
+  const { token } = useAuth();
 
   useEffect(() => {
     const fetchUserXP = async () => {
       try {
-        const response = await fetch(`${API_URL}/profile/${userId}`);
+        const response = await fetch(`${API_URL}/profile/${userId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token ? `Bearer ${token}` : undefined,
+          },
+        });
 
         if (!response.ok) {
           if (response.status === 500) {

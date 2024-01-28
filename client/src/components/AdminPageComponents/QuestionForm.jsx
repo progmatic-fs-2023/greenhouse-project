@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router';
 import { API_URL } from '../../constants';
 import './AdminPageComponents.css';
 import '../../login.css';
-import { useNavigate } from 'react-router';
 import { useAuth } from '../../contexts/AuthContext';
 
 function QuestionForm({
@@ -27,7 +27,7 @@ function QuestionForm({
   ]);
   const [formError, setFormError] = useState('');
   const [formOk, setFormOk] = useState('');
-  const { logout } = useAuth();
+  const { logout, token } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -107,6 +107,7 @@ function QuestionForm({
         method,
         headers: {
           'Content-Type': 'application/json',
+          Authorization: token ? `Bearer ${token}` : undefined,
         },
         body: JSON.stringify({
           difficulty,
@@ -124,7 +125,7 @@ function QuestionForm({
         }
         if (response.status === 401 || response.status === 403) {
           navigate('/login');
-          logout()
+          logout();
           return;
         }
         const errorData = await response.json();
