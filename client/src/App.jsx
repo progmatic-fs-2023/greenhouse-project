@@ -21,6 +21,7 @@ import EditQuestion from './components/AdminPageComponents/EditQuestion';
 import UserEditRole from './components/AdminPageComponents/UserEditRole';
 import Contact from './pages/Contact';
 import ErrorLanding from './pages/ErrorLanding';
+import Goodies from './components/ProfilePageComponents/Goodies';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
                 <Route path="leaderboard" element={<Leaderboard />} />
                 <Route path="premium" element={<Premium />} />
                 <Route path="notifications" element={<Notifications />} />
+                <Route path="goodies" element={<Goodies />} />
               </Route>
             </Route>
             <Route element={<ProtectedRoute allowedRoles={['admin', 'godmin']} />}>

@@ -16,12 +16,13 @@
     font-size: 23pt;
 }
 
-.input_container input, .account_container input {
-    width: 300px;
-    font-size: 18pt;
-    padding: 5px 10px;
-    margin: 0 auto;
-    border-radius: 10px;
+.input_container input,
+.account_container input {
+  width: 300px;
+  font-size: 18pt;
+  padding: 5px 10px;
+  margin: 0 auto;
+  border-radius: 10px;
 }
 
 .account_container {
@@ -80,15 +81,14 @@
 }
 
 .premium p {
-    margin: 150px 50px;
-    align-items: center;
-    font-size: 23pt;
-
+  margin: 150px 50px;
+  align-items: center;
+  font-size: 23pt;
 }
 
 .account button:hover {
-    background-color: rgb(138, 138, 138);
-    cursor: pointer;
+  background-color: rgb(138, 138, 138);
+  cursor: pointer;
 }
 
 #notifications {
@@ -113,8 +113,8 @@
 }
 
 #delete_button:hover {
-    background-color: rgb(218, 3, 3);
-    cursor: pointer;
+  background-color: rgb(218, 3, 3);
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1510px) { 
