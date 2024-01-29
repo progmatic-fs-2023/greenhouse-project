@@ -23,8 +23,8 @@ console.log(subscribed)
       });
 
       const result = await response.json();
+      console.log(result);
       setSubscribed(result.isSubscribed);
-      setIsSubscribed(result.isSubscribed)
     } catch (error) {
       console.error('Error submitting newsletter:', error);
     }

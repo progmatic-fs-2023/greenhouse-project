@@ -6,10 +6,9 @@ const newsletterMailSend = async (req, res) => {
     console.log(email)
     const emailSent = await newsletterServices(email, isSubscribed, userId);
     if (emailSent) {
-      res.status(200).send('Email sent successfully');
-    } else {
-      res.status(500).send('Error sending email');
+      return res.status(200).json({isSubscribed: emailSent});
     }
+      return res.status(500).send('Error sending email');
   };
   
   export default {

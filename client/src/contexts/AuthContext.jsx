@@ -28,6 +28,7 @@ export function AuthProvider({ children }) {
   const [errorState, setErrorState] = useState('');
   const [subscribed, setSubscribed] = useState()
   const [startGameUserXp, setStartGameUserXp] = useState(null);
+  console.log(subscribed, userCreationDate)
 
   useEffect(() => {
     if (token) {
@@ -54,7 +55,7 @@ export function AuthProvider({ children }) {
           setUsername(responseData.username);
           setUserEmail(responseData.email);
           setUserCreationDate(responseData.createdAt);
-          setSubscribed(responseData.isSubscribed);
+          setSubscribed(responseData.subscribe);
           setCurrentUserXp(responseData.score.xp);
         } catch (error) {
           setErrorState(error.message);

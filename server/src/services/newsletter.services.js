@@ -38,10 +38,11 @@ export default async (email, isSubscribed, userId) => {
     try {
       const info = await transporter.sendMail(newsletterMailOptions);
       console.log(`Email sent: ${info.response}`);
-      return true;
+      return subscribing;
     } catch (error) {
       console.log(error);
       return false;
     }
+
   };
   
