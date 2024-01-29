@@ -1,5 +1,9 @@
+import { PrismaClient } from '@prisma/client';
 import nodemailer from 'nodemailer';
 import 'dotenv/config';
+
+const prisma = new PrismaClient();
+
 
 const transporter = nodemailer.createTransport({
   host: 'smtp-mail.outlook.com',
@@ -11,12 +15,24 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export default async (text) => {
+export default async (email, isSubscribed, userId) => {
+    const subscribing = await prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        subscribe: isSubscribed,
+      }
+    })
+
+    const subject = subscribing ? 'thank you' : 'unsubscribed';
+    const text = subscribing ? 'Thank you for your subscription, good to have you onboard!' : 'You have succesfully unsubscribed, sad to see you go.'
+
     const newsletterMailOptions = {
       from: process.env.EMAILUSERNAME,
-      to: 'esztersari66@gmail.com',
-      subject: `Thank you for subscribing to our newsletter!`,
-      text: `${text}`,
+      to: email,
+      subject,
+      text,
     };
   
     try {

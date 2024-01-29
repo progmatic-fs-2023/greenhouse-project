@@ -3,5 +3,5 @@ import newsletterController from '../controllers/newsletter.controller';
 
 const router = Router();
 
-router.post('/notifications', newsletterController.newsletterMailSend);
+router.post('/:id/notifications', newsletterController.newsletterMailSend);
 export default router;

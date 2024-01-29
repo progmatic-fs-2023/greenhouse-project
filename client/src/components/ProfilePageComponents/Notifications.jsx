@@ -1,27 +1,30 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { API_URL } from '../../constants';
+import {useAuth} from '../../contexts/AuthContext'
 import './profileMenu.css';
 
 
 export default function Notifications() {
-  const [isSubscribed, setIsSubscribed] = useState(
-    JSON.parse(localStorage.getItem('isSubscribed')) || false,
-  );
+const {userEmail, subscribed, setSubscribed, userId} = useAuth();
+console.log(subscribed)
+
+  const [isSubscribed, setIsSubscribed] = useState();
   const [message, setMessage] = useState('');
 
-
-  const handleNewsletterSubmit = async (data) => {
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await fetch(`${API_URL}/profile/notifications`, {
+      const response = await fetch(`${API_URL}/profile/${userId}/notifications`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({email: userEmail, isSubscribed}),
       });
 
       const result = await response.json();
-      console.log(result);
+      setSubscribed(result.isSubscribed);
+      setIsSubscribed(result.isSubscribed)
     } catch (error) {
       console.error('Error submitting newsletter:', error);
     }
@@ -36,8 +39,6 @@ export default function Notifications() {
     );
   };
 
-  useEffect(() => {}, [isSubscribed]);
-
   return (
     <form className="container" onSubmit={handleNewsletterSubmit}>
       <div className="input_container" id='notifications'>
@@ -46,7 +47,7 @@ export default function Notifications() {
           <br />
           <button type="submit" onClick={handleClick}>
             {isSubscribed ? 'Unsubscribe' : 'Subscribe'}
-          </button>{' '}
+          </button>
         </label>
         <div>
         {message ? <p>{message}</p> : ""}
