@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import './AdminPageComponents.css';
+import { useNavigate } from 'react-router';
 import QuestionForm from './QuestionForm';
 import { API_URL } from '../../constants';
+import { useAuth } from '../../contexts/AuthContext';
 
 function EditPage() {
   const [topic, setTopic] = useState('');
@@ -13,6 +15,8 @@ function EditPage() {
   const [errorState, setErrorState] = useState('');
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
+  const { token, logout } = useAuth();
 
   const fetchQuestions = async () => {
     try {
@@ -21,9 +25,25 @@ function EditPage() {
 
       const response = await fetch(
         `${API_URL}/admin/edit?topic=${topic}&difficulty=${difficulty}&search=${search}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token ? `Bearer ${token}` : undefined,
+          },
+        },
       );
 
       if (!response.ok) {
+        if (response.status === 500) {
+          navigate('/404');
+          return;
+        }
+        if (response.status === 401 || response.status === 403) {
+          navigate('/login');
+          logout();
+          return;
+        }
         const errorData = await response.json();
         throw new Error(errorData.error || 'Failed to fetch questions.');
       }
@@ -155,5 +175,3 @@ function EditPage() {
 }
 
 export default EditPage;
-
-// best code ever

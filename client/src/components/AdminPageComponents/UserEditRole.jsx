@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './AdminPageComponents.css';
+import { useNavigate } from 'react-router';
 import { API_URL } from '../../constants';
+import { useAuth } from '../../contexts/AuthContext';
 
 function EditUserPage() {
   const [users, setUsers] = useState([]);
@@ -8,18 +10,35 @@ function EditUserPage() {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorState, setErrorState] = useState('');
+  const navigate = useNavigate();
+  const { logout, token } = useAuth();
 
   const fetchUser = async () => {
     try {
       setLoading(true);
       setErrorState('');
 
-      const response = await fetch(`${API_URL}/admin/users?userRole=${userRole}&search=${search}`);
+      const response = await fetch(`${API_URL}/admin/users?userRole=${userRole}&search=${search}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token ? `Bearer ${token}` : undefined,
+        },
+      });
+
       if (!response.ok) {
+        if (response.status === 500) {
+          navigate('/404');
+          return;
+        }
+        if (response.status === 401 || response.status === 403) {
+          navigate('/login');
+          logout();
+          return;
+        }
         const errorData = await response.json();
         throw new Error(errorData.error || 'Failed to fetch questions.');
       }
-
       const fetchedUser = await response.json();
       setUsers(fetchedUser);
     } catch (error) {
@@ -35,11 +54,21 @@ function EditUserPage() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: token ? `Bearer ${token}` : undefined,
         },
         body: JSON.stringify({ role }),
       });
 
       if (!response.ok) {
+        if (response.status === 500) {
+          navigate('/404');
+          return;
+        }
+        if (response.status === 401 || response.status === 403) {
+          navigate('/login');
+          logout();
+          return;
+        }
         throw new Error('Failed to update user role');
       }
       fetchUser();

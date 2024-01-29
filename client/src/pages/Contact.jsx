@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { API_URL } from '../constants';
+import { useAuth } from '../contexts/AuthContext';
 
 function ContactPage() {
   const [email, setEmail] = useState('');
@@ -9,8 +11,19 @@ function ContactPage() {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
+  const { logout, token } = useAuth();
+  const navigate = useNavigate();
 
   const subjects = ['General Inquiry', 'Product Support', 'Billing Issue', 'Feedback', 'Other'];
+
+  const queryParameters = new URLSearchParams(window.location.search);
+  const reportedId = queryParameters.get('reported');
+
+  useEffect(() => {
+    if (reportedId) {
+      setSelectedSubject(reportedId);
+    }
+  }, [reportedId]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,6 +35,7 @@ function ContactPage() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: token ? `Bearer ${token}` : undefined,
         },
         body: JSON.stringify({
           name,
@@ -38,6 +52,15 @@ function ContactPage() {
         setSelectedSubject('');
         setMessage('');
       } else {
+        if (response.status === 500) {
+          navigate('/404');
+          return;
+        }
+        if (response.status === 401 || response.status === 403) {
+          navigate('/login');
+          logout();
+          return;
+        }
         throw new Error('Failed to send the message.');
       }
     } catch (err) {
@@ -84,22 +107,25 @@ function ContactPage() {
             <div>
               <label htmlFor="subject">
                 Subject:
-                <br />
-                <select
-                  id="subject"
-                  value={selectedSubject}
-                  onChange={(e) => setSelectedSubject(e.target.value)}
-                  required
-                >
-                  <option value="" disabled>
-                    Select a subject
-                  </option>
-                  {subjects.map((subject) => (
-                    <option key={subject} value={subject}>
-                      {subject}
+                {reportedId ? (
+                  <input type="text" id="subject" value={reportedId} readOnly />
+                ) : (
+                  <select
+                    id="subject"
+                    value={selectedSubject}
+                    onChange={(e) => setSelectedSubject(e.target.value)}
+                    required
+                  >
+                    <option value="" disabled>
+                      Select a subject
                     </option>
-                  ))}
-                </select>
+                    {subjects.map((subject) => (
+                      <option key={subject} value={subject}>
+                        {subject}
+                      </option>
+                    ))}
+                  </select>
+                )}
               </label>
             </div>
             <div>

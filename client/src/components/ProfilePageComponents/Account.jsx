@@ -6,13 +6,15 @@ import { API_URL } from '../../constants';
 import './account.css';
 
 export default function Account() {
-  const { userId, userEmail, setUsername, setUserEmail, userCreationDate, logout } = useAuth();
+  const { userId, userEmail, setUserEmail, userCreationDate, logout } = useAuth();
   const [errorState, setErrorState] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const dateString = [userCreationDate];
   const formattedDate = dateString[0].slice(0, 10);
   const navigate = useNavigate();
+  const { token } = useAuth();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -21,14 +23,24 @@ export default function Account() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: token ? `Bearer ${token}` : undefined,
         },
         body: JSON.stringify({ newEmail }),
       });
-
+      if (!response.ok) {
+        if (response.status === 500) {
+          navigate('/404');
+          return;
+        }
+        if (response.status === 401 || response.status === 403) {
+          navigate('/login');
+          logout();
+          return;
+        }
+      }
       if (response.ok) {
         const updatedUser = await response.json();
         setUserEmail(updatedUser.email);
-        setUsername(updatedUser.username);
         setNewEmail('');
       }
     } catch (error) {
@@ -40,7 +52,22 @@ export default function Account() {
     try {
       const response = await fetch(`${API_URL}/profile/account/${userId}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token ? `Bearer ${token}` : undefined,
+        },
       });
+      if (!response.ok) {
+        if (response.status === 500) {
+          navigate('/404');
+          return;
+        }
+        if (response.status === 401 || response.status === 403) {
+          navigate('/login');
+          logout();
+          return;
+        }
+      }
       if (response.status === 200) {
         navigate('/', { state: { accountDeleted: true } });
         logout();
@@ -64,11 +91,8 @@ export default function Account() {
             onChange={(e) => setNewUsername(e.target.value)}
           />
         </label> */}
-        <div className='member_since'>
-        <h2>Member since:</h2>
-        <p>{formattedDate}</p>
-        </div>
-        <div className='email_container'>
+        <p>Member since: </p> <p>{formattedDate}</p>
+        <div>
           <label htmlFor="email" className="email_label">
             Email address:
             <input

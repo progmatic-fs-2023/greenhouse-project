@@ -1,6 +1,8 @@
 import { createContext, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router';
 import { API_URL } from '../constants';
+import { useAuth } from './AuthContext';
 
 export const QuizContext = createContext({});
 
@@ -9,6 +11,8 @@ function QuizProvider({ children }) {
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [playedLanguage, setPlayedLanguage] = useState('');
+  const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const getQuiz = async (language, difficulty, numberOfQuestions) => {
     try {
@@ -17,7 +21,17 @@ function QuizProvider({ children }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ language, difficulty, numberOfQuestions }),
       });
-
+      if (!response.ok) {
+        if (response.status === 500) {
+          navigate('/404');
+          return;
+        }
+        if (response.status === 401 || response.status === 403) {
+          navigate('/login');
+          logout();
+          return;
+        }
+      }
       const quiz = await response.json();
 
       setQuizQuestions(quiz.questions);

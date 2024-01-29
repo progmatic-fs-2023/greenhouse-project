@@ -2,6 +2,7 @@ import '../login.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../constants';
+import { useAuth } from '../contexts/AuthContext';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -11,6 +12,7 @@ function Register() {
   const [error, setError] = useState('');
   const [showButton, setShowButton] = useState('false');
   const navigate = useNavigate();
+  const { token } = useAuth();
 
   const handleReg = async (e) => {
     e.preventDefault();
@@ -19,11 +21,23 @@ function Register() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: token ? `Bearer ${token}` : undefined,
       },
       body: JSON.stringify({ username, password, email }),
     });
     if (response.ok) {
       navigate('/login');
+    } else {
+      if (response.status === 409) {
+        setError('Username already exists');
+      }
+      if (response.status === 500) {
+        navigate('/404');
+        return;
+      }
+      if (response.status === 401 || response.status === 403) {
+        navigate('/login');
+      }
     }
   };
 
@@ -88,7 +102,9 @@ function Register() {
             />
           </label>
           <br />
-          {showButton ? <button type="submit">Send Registration</button> : <p>{error}</p>}
+          {showButton ? <button type="submit">Send Registration</button> : ''}
+          <br />
+          {error || ''}
         </form>
       </div>
     </div>

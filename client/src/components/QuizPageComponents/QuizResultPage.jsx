@@ -13,38 +13,34 @@ import './quizpage.css';
 Modal.setAppElement('#root');
 
 function QuizResultPage({ totalQuestions, correctAnswers }) {
-  const { userXp, fetchUserScore, isLoggedIn } = useAuth();
-  const [currentXp, setCurrentXp] = useState(userXp - correctAnswers);
-  const { nextRank, lowerThreshold, upperThreshold } = calculateRanks(userXp);
+  const { currentUserXp, startGameUserXp, isLoggedIn, fetchCurrentUserXp } = useAuth();
   const [reachedNextRank, setReachedNextRank] = useState(false);
-  const [currentUpperThreshold, setCurrentUpperThreshold] = useState(null);
-  const [currentNextRank, setCurrentNextRank] = useState('');
-
-  const newXP = userXp - correctAnswers;
+  const [xpPercentage, setXpPercentage] = useState(0);
+  const { currentRank: startGameRank } = calculateRanks(startGameUserXp);
+  const [stat, setStat] = useState(calculateRanks(currentUserXp));
 
   useEffect(() => {
-    setCurrentUpperThreshold(upperThreshold);
-    setCurrentNextRank(nextRank);
-    fetchUserScore();
+    fetchCurrentUserXp();
   }, []);
 
   useEffect(() => {
-    if (userXp >= currentUpperThreshold) {
-      setReachedNextRank(true);
-    } else {
-      setReachedNextRank(false);
-    }
-    setCurrentXp(userXp - correctAnswers);
-    const timer = setTimeout(() => {
-      setCurrentXp(newXP);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [userXp, correctAnswers, upperThreshold, currentUpperThreshold]);
+    const updateRankInfo = () => {
+      const { lowerThreshold, upperThreshold, currentRank } = calculateRanks(currentUserXp);
+      setStat(calculateRanks(currentUserXp));
+      const xpWithinRange = currentUserXp - lowerThreshold;
+      const range = upperThreshold - lowerThreshold;
+      setXpPercentage(Math.max(5, Math.min((xpWithinRange / range) * 100, 100)));
+      if (startGameUserXp === undefined || currentRank === startGameRank) {
+        setReachedNextRank(false);
+      } else {
+        setReachedNextRank(true);
+      }
+    };
 
-  const xpWithinRange = currentXp + correctAnswers - lowerThreshold;
-  const range = upperThreshold - lowerThreshold;
-  const xpPercentage = Math.max(5, Math.min((xpWithinRange / range) * 100, 100));
-  const centerLabel = `${upperThreshold - userXp} XP to reach ${nextRank} rank`;
+    updateRankInfo();
+  }, [currentUserXp]);
+
+  const centerLabel = `${stat.upperThreshold - currentUserXp} XP to reach ${stat.nextRank} rank`;
 
   return (
     <div className="quiz-result-container">
@@ -52,19 +48,20 @@ function QuizResultPage({ totalQuestions, correctAnswers }) {
         <div className="quiz-results-heading">Quiz Results</div>
         <p className="quiz-results-text">Total Questions: {totalQuestions}</p>
         <p className="quiz-results-text">Correct Answers: {correctAnswers}</p>
+        <div className="quiz-result-score" style={{ fontSize: 50 }}>
+          <p>
+            {correctAnswers} / {totalQuestions}
+          </p>
+          <div className="quiz-result-button">
+            <Link to="/quizmoduls">
+              <button type="button" className="new-quiz-button">
+                NEW QUIZ
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
-      <div className="quiz-result-score" style={{ fontSize: 50 }}>
-        <p>
-          {correctAnswers} / {totalQuestions}
-        </p>
-      </div>
-      <div className="quiz-result-button">
-        <Link to="/quizmoduls">
-          <button type="button" className="new-quiz-button">
-            NEW QUIZ
-          </button>
-        </Link>
-      </div>
+
       <div>
         {isLoggedIn && (
           <div>
@@ -84,7 +81,7 @@ function QuizResultPage({ totalQuestions, correctAnswers }) {
         className="customModal"
       >
         <h2>Congratulations!</h2>
-        <p>You have reached the next rank: {currentNextRank}</p>
+        <p>You have reached the next rank: {stat.currentRank}</p>
         <button type="button" onClick={() => setReachedNextRank(false)}>
           Close
         </button>

@@ -16,11 +16,11 @@ const register = async (req, res) => {
       message: 'User created',
       user: createdUser,
     });
-  } catch (err) {
-    console.log(err.message);
-    res.status(400).json({
-      message: 'Failed to create user',
-      error: err.message,
+  } catch (error) {
+    console.log(error.message);
+    const statusCode = error.statusCode || 500;
+    res.status(statusCode).json({
+      message: error.message,
     });
   }
 };
@@ -28,23 +28,11 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { username, password } = req.body;
 
-  if (!username || !password) {
-    return res.status(400).json({
-      message: 'Failed to login',
-      error: 'Username or password not present',
-    });
-  }
-
   try {
     const user = await findUserByUsername(username);
     console.log(user)
     const { password: passwordHash, ...userWithoutPassword } = user;
-    if (!user) {
-      return res.status(401).json({
-        message: 'Failed to login',
-        error: 'Username is invalid',
-      });
-    }
+
     const result = await comparePassword(password, user.password);
 
     if (result) {
@@ -60,23 +48,20 @@ const login = async (req, res) => {
       const token = await createToken(payload);
 
       res.cookie('jwt', token, {
-        maxAge: 3 * 60 * 60 * 1000,
+        maxAge: 24 * 60 * 60 * 1000,
       });
-
       return res.status(200).json({
         message: 'Login successful',
         user: userWithoutPassword,
         token,
       });
     }
-    return res.status(401).json({
-      message: 'Failed to login',
-      password: 'Password is incorrect',
-    });
-  } catch (err) {
-    return res.status(400).json({
-      message: 'Failed to finish login',
-      error: err.message,
+    return res.status(401);
+  } catch (error) {
+    console.log(error.message);
+    const statusCode = error.statusCode || 500;
+    return res.status(statusCode).json({
+      message: error.message,
     });
   }
 };

@@ -12,7 +12,6 @@ export const createQuestion = async ({ question, difficulty, topic, isActive }) 
         isActive,
       },
     });
-
     return createdQuestion;
   } catch (error) {
     console.error('Error in createQuestion:', error);
@@ -29,7 +28,15 @@ export const createAnswers = async (questionId, answers) => {
         isCorrect: answer.isCorrect,
       })),
     });
+    const numCorrectAnswers = answers.filter(answer => answer.isCorrect).length;
+    const isMultiSelect = numCorrectAnswers >= 2;
 
+    if (isMultiSelect) {
+      await prisma.question.update({
+        where: { id: questionId },
+        data: { isMultiSelectQuestion: true },
+      });
+    }
     return createdAnswers;
   } catch (error) {
     console.error('Error in createAnswers:', error);
@@ -38,52 +45,74 @@ export const createAnswers = async (questionId, answers) => {
 };
 
 export const getQuestions = async (topic, difficulty, search) => {
-  const questions = await prisma.question.findMany({
-    where: {
-      topicId: Number(topic),
-      level: difficulty,
-      description: {
-        contains: search || '',
-        mode: 'insensitive',
+  try {
+    const questions = await prisma.question.findMany({
+      where: {
+        topicId: Number(topic),
+        level: difficulty,
+        description: {
+          contains: search || '',
+          mode: 'insensitive',
+        },
       },
-    },
-    include: {
-      answers: true,
-    },
-  });
-  return questions;
+      include: {
+        answers: true,
+      },
+    });
+    return questions;
+  } catch (error) {
+    console.error('Error in getQuestions:', error);
+    throw new Error('Failed to retrieve questions. Please try again.');
+  }
 };
 
 export const editQuestions = async (questionId, updatedQuestion) => {
-  const editedQuestion = await prisma.question.update({
-    where: {
-      id: questionId,
-    },
-    data: {
-      description: updatedQuestion.description,
-      level: updatedQuestion.difficulty,
-      topicId: Number(updatedQuestion.topic),
-      isActive: updatedQuestion.isActive,
-    },
-  });
-  return editedQuestion;
+  try {
+    const editedQuestion = await prisma.question.update({
+      where: {
+        id: questionId,
+      },
+      data: {
+        description: updatedQuestion.description,
+        level: updatedQuestion.difficulty,
+        topicId: Number(updatedQuestion.topic),
+        isActive: updatedQuestion.isActive,
+      },
+    });
+    return editedQuestion;
+  } catch (error) {
+    console.error('Error in editQuestions:', error);
+    throw new Error('Failed to edit question. Please try again.');
+  }
 };
 
 export const editAnswers = async (questionId, updatedAnswersData) => {
-  const transaction = await prisma.$transaction([
-    prisma.answer.deleteMany({
+  try {
+    await prisma.answer.deleteMany({
       where: {
         questionId,
       },
-    }),
-    prisma.answer.createMany({
+    });
+
+    const createdAnswers = await prisma.answer.createMany({
       data: updatedAnswersData.answers.map(answer => ({
         questionId,
         name: answer.text,
         isCorrect: answer.isCorrect,
       })),
-    }),
-  ]);
+    });
 
-  return transaction[0];
+    const numCorrectAnswers = updatedAnswersData.answers.filter(answer => answer.isCorrect).length;
+    const isMultiSelect = numCorrectAnswers > 1;
+
+    await prisma.question.update({
+      where: { id: questionId },
+      data: { isMultiSelectQuestion: isMultiSelect },
+    });
+
+    return createdAnswers;
+  } catch (error) {
+    console.error('Error in editAnswers:', error);
+    throw new Error('Failed to edit answers. Please try again.');
+  }
 };

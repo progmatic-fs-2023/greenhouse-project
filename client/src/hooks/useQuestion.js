@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { QuizContext } from '../contexts/QuizContext';
 import { API_URL } from '../constants';
 import { useAuth } from '../contexts/AuthContext';
@@ -13,8 +14,9 @@ const useQuestion = () => {
     correctAnswers: contextCorrectAnswers,
     setCorrectAnswers,
   } = useContext(QuizContext);
-  const { token } = useAuth();
+  const { token, logout } = useAuth();
   const [question, setQuestion] = useState(quizQuestions[questionIndex]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setQuestion(quizQuestions[questionIndex]);
@@ -32,6 +34,15 @@ const useQuestion = () => {
       });
 
       if (!response.ok) {
+        if (response.status === 500) {
+          navigate('/404');
+          return;
+        }
+        if (response.status === 401 || response.status === 403) {
+          navigate('/login');
+          logout();
+          return;
+        }
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
