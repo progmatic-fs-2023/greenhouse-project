@@ -18,6 +18,9 @@ export default function ProfileNavbar() {
       <NavLink to="/profile/premium" className="profile_navlink">
         Premium
       </NavLink>
+      <NavLink to="/profile/goodies" className="profile_navlink">
+        Goodies
+      </NavLink>
     </div>
   );
 }

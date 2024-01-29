@@ -28,7 +28,6 @@ export default function Notifications() {
           </button>{' '}
           <span className="slider round" />
         </label>
-
         <p>{message}</p>
       </div>
     </div>

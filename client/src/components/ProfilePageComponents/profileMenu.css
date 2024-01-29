@@ -1,79 +1,147 @@
-
-.input_container label, .account_container label {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 100px;
-    margin: 10px 50px; 
-    font-size: 23pt;
+.input_container label,
+.account_container label {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 100px;
+  margin: 10px 50px;
+  font-size: 23pt;
 }
 
-.input_container input, .account_container input {
-    width: 300px;
-    font-size: 18pt;
-    padding: 5px 10px;
-    margin: 0 auto;
-    border-radius: 10px;
+.input_container input,
+.account_container input {
+  width: 300px;
+  font-size: 18pt;
+  padding: 5px 10px;
+  margin: 0 auto;
+  border-radius: 10px;
 }
 
 .account_container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .account button {
-    background-color: darkgray;
-    width: 100px;
-    margin: 0 auto;
-    padding: 5px 10px;
-    box-shadow: 4px 5px var(--smokey-black);
-    border-radius: 10px;
-    border: none;
-    font-size: 20pt;
-    transition-duration: 0.3s;
+  background-color: darkgray;
+  width: 100px;
+  margin: 0 auto;
+  padding: 5px 10px;
+  box-shadow: 4px 5px var(--smokey-black);
+  border-radius: 10px;
+  border: none;
+  font-size: 20pt;
+  transition-duration: 0.3s;
 }
 
 .input_container p {
-    font-size: 23pt;
-    margin: 10px auto;
+  font-size: 23pt;
+  margin: 10px auto;
 }
 
 .premium p {
-    margin: 150px 50px;
-    align-items: center;
-    font-size: 23pt;
-
+  margin: 150px 50px;
+  align-items: center;
+  font-size: 23pt;
 }
 
 .account button:hover {
-    background-color: rgb(138, 138, 138);
-    cursor: pointer;
+  background-color: rgb(138, 138, 138);
+  cursor: pointer;
 }
 
 #delete_button {
-    width: fit-content;
-    padding: 5px 10px;
-    margin: 80px auto 30px;
-    height: fit-content;
-    border: none;
-    box-shadow: 3px 5px var(--smokey-black);
-    border-radius: 10px;
-    background-color: red;
-    font-size: 10pt;
-    transition-duration: 0.3s;
-    text-transform: uppercase;
+  width: fit-content;
+  padding: 5px 10px;
+  margin: 80px auto 30px;
+  height: fit-content;
+  border: none;
+  box-shadow: 3px 5px var(--smokey-black);
+  border-radius: 10px;
+  background-color: red;
+  font-size: 10pt;
+  transition-duration: 0.3s;
+  text-transform: uppercase;
 }
 
 #delete_button:hover {
-    background-color: rgb(218, 3, 3);
-    cursor: pointer;
+  background-color: rgb(218, 3, 3);
+  cursor: pointer;
 }
 
-@media only screen and (max-width: 930px) { 
-    .premium p {
-        margin: 20px 30px 20px 40px;
-        align-items: center;
-        text-align: justify;
-        font-size: 20pt;
-    
-    }
+@media only screen and (max-width: 930px) {
+  .premium p {
+    margin: 20px 30px 20px 40px;
+    align-items: center;
+    text-align: justify;
+    font-size: 20pt;
+  }
+}
+.container {
+  width: 100%;
+  /* height: 100vh; */
+  background: #fdfaf3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.coupon-card {
+  background: linear-gradient(135deg, #c4bfbf, var(--secondary-color));
+  color: #000000;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+.logo {
+  width: 40px;
+  border-radius: 8px;
+}
+.coupon-card h3 {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 40px;
+
+}
+.coupon-card p {
+  font-size: 15px;
+}
+.coupon-row {
+  display: flex;
+  align-items: center;
+  margin: 25px auto;
+  width: fit-content;
+}
+#cpnCode {
+  border: 1px dashed #fff;
+  padding: 10px 20px;
+  border-right: 0;
+}
+#cpnBtn {
+  border: 1px solid #fff;
+  background: #fff;
+  padding: 10px 20px;
+  color: #000000;
+  cursor: pointer;
+}
+.circle1,
+.circle2 {
+  background: #fdfaf3;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.circle1 {
+  left: -25px;
+}
+.circle2 {
+  right: -25px;
+}
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
