@@ -32,12 +32,12 @@
 
 .logo p {
     margin: auto 0 ;
-    font-size: 25pt;
+    font-size: 23pt;
     letter-spacing: -1px;
 }
 
 .navbar {
-    display: flex;
+    display: inline-flex;
     justify-content: space-evenly;
     align-items: center;
     color: var(--smokey-black);
@@ -58,7 +58,7 @@ nav li {
     list-style: none;
 }
 
-.navbar button {
+.nav_btn {
     background-color: var(--primary-color);
     text-align: center;
     border: none;
@@ -70,13 +70,13 @@ nav li {
     transition-duration: 0.3s;
 }
   
-.navbar button:hover {
+.nav_btn:hover {
     color: #2c2c2c;
     transition-duration: 0.3s;
     letter-spacing: 0.2px;
 }
 
-#signinBtn {
+.signinBtn {
     background-color: var(--accent-color);
     border-radius: 10px;
     border: none;
@@ -84,12 +84,13 @@ nav li {
     height: 50px;
     margin: 0 5px 5px;
     padding: 10px 15px;
+    font-size: 17pt;
     text-transform: uppercase;
     transition-duration: 0.3s;
     box-shadow: 5px 8px var(--smokey-black);
 }
 
-#signinBtn:hover {
+.signinBtn:hover {
     background-color: var(--button-hover-color);
     color: #2c2c2c;
     letter-spacing: 0.3px;
@@ -107,9 +108,17 @@ nav li {
     background-color: var(--smokey-black);
 }
 
+.sidebar {
+    display: none;
+}
+
+.close {
+    display: none;
+}
+
 /* --- MEDIA QUERIES --- */
 
-@media only screen and (max-width: 750px) { 
+@media only screen and (max-width: 892px) { 
     .logo img {
         display: none;
     }
@@ -118,14 +127,16 @@ nav li {
         display: block;
         width: 250px;
         left: 0;
-        margin: auto 0;
+        margin-bottom: 10px;
+        font-size: 23pt;
     }
 
     .hamburger_menu {
-        display: inline;
+        display: inline-block;
         position: absolute;
         right: 0;
         top: 0;
+        margin: 30px ;
         background-color: var(--primary-color);
         border: none;
         font-size: 15pt;
@@ -141,44 +152,52 @@ nav li {
         display: none;
     }
 
-    .navbar button {
-        background-color: none;
-        margin: 0;
-        padding: 5px;
-        text-align: center;
-        height: 30px;
-        width: 100%;
-        text-transform: uppercase;
-        font-size: 12pt;
-        cursor: pointer;
-        transition-duration: 0.3s;
-        background-color: var(--secondary-color);
-    }
-
     .sidebar {
+        display: inline;
         position: fixed;
         top: 0;
         right: 0;
         height: 100vh;
-        width: 250px;
+        width: 150px;
         z-index: 999;
-        background-color: #edc9afb5;
+        background-color: #edc9af6d;
         backdrop-filter: blur(10px);
         box-shadow: 3px 5px var(--smokey-black);
         flex-direction: column;
-        align-items: flex-start;
         justify-content: flex-start;
+        align-items: center;
     }
 
-    #signinBtn {
+    .sidebar_btn {
+        background-color: none;
+        text-align: center;
+        border: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+        transition-duration: 0.3s;
+        margin: 10px;
+        background-color: #edc9af00;
+
+    }
+
+    .signinBtn {
         background-color: var(--accent-color);
         border-radius: 10px;
         border: none;
-        width: 80px;
-        height: 30px;
+        width: max-content;
+        height: max-content;
         text-transform: uppercase;
         transition-duration: 0.3s;
+        margin-left: 10px;
+        font-size: 1.2rem;
         box-shadow: 3px 5px var(--smokey-black);
+    }
+    .close {
+        display: block;
+        width: 4vw;
+        margin: 20px 20px 0 5px;
+        background-color: var(--primary-color);
+        border: none;
     }
 }
 

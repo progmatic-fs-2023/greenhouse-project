@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../../../contexts/AuthContext';
 import profil from '../../../../assets/logged-in-icon.svg';
 import menu from '../../../../assets/menu.svg';
+import close from '../../../../assets/close.svg'
 
 function NavBar() {
   const { isLoggedIn, userRole, logout } = useAuth();
@@ -12,23 +13,30 @@ function NavBar() {
     setIsOpen(!isOpen);
   };
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
     <nav>
-      <ul className="navbar">
+      <ul className={`${isOpen ? 'sidebar' : 'navbar'}`}>
+      <button type='button' onClick={toggleMenu} className='close'>
+          <img src={close} alt="close-menu" className='close'/>
+        </button>
         <li>
           <NavLink to="">
-            <button type="button">Home</button>
+            <button type="button" className={`${isOpen ? 'sidebar_btn' : 'nav_btn'}`} onClick={closeMenu}>Home</button>
           </NavLink>
         </li>
         <li>
           <NavLink to="/quizmoduls">
-            <button type="button">Start Quiz</button>
+            <button type="button" className={`${isOpen ? 'sidebar_btn' : 'nav_btn'}`} onClick={closeMenu}>Start Quiz</button>
           </NavLink>
         </li>
         <li>
           <NavLink to="/admin">
             {userRole === 'admin' || userRole === 'godmin' ? (
-              <button type="button">Admin</button>
+              <button type="button" className={`${isOpen ? 'sidebar_btn' : 'nav_btn'}`} onClick={closeMenu}>Admin</button>
             ) : (
               ''
             )}
@@ -37,11 +45,11 @@ function NavBar() {
         <li>
           <NavLink to={isLoggedIn ? '/profile/account' : '/login'}>
             {isLoggedIn ? (
-              <button type="button">
+              <button type="button" className={`${isOpen ? 'sidebar_btn' : 'nav_btn'}`} onClick={closeMenu}>
                 <img src={profil} alt="logged-in-icon" className="logged_in_icon" />
               </button>
             ) : (
-              <button type="button" id="signinBtn">
+              <button type="button" className="signinBtn" onClick={closeMenu}>
                 Sign in
               </button>
             )}
@@ -50,7 +58,7 @@ function NavBar() {
         <li>
           <NavLink to="/">
             {isLoggedIn ? (
-              <button type="button" id="signinBtn" onClick={() => logout()}>
+              <button type="button" className="signinBtn" onClick={() => logout()}>
                 Logout
               </button>
             ) : (

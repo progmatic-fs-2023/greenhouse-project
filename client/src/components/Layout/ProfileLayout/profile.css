@@ -25,24 +25,24 @@
 }
 
 .user_pic {
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     border: 8px solid var(--smokey-black);
     border-radius: 50%;
     background-color: white;
 }
 
 .profile_header_container h1 {
-    font-size: 55pt;
+    font-size: 50pt;
 }
 
 .profile_header_container h2 {
-    font-size: 35pt;
+    font-size: 30pt;
     padding: 0 auto;
 }
 
 .profile_header_container h4 {
-    font-size: 25pt;
+    font-size: 22pt;
     margin:  auto;
 }
 

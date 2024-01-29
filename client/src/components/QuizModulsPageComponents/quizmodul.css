@@ -6,17 +6,17 @@
     width: 90%;
     text-align: center;
     margin: 0 auto;
-    padding: 5% 0;
+    padding: 2% 0;
 }
 
 .description_container h1 {
 
-    font-size: 42pt;
+    font-size: 45pt;
 }
 
 .description_container p {
     width: 90%;
-    font-size: 18pt;
+    font-size: 20pt;
     padding: 0 auto;
 }
 
@@ -46,7 +46,7 @@
     margin-bottom: 20px;
     text-transform: uppercase;
     font-style: normal;
-    font-size: x-large;
+    font-size: 23pt;
     border-bottom: 3px solid var(--smokey-black);
 }
 
@@ -62,7 +62,7 @@
     height: 40px;
     margin: 10px 0 20px;
     padding: 5px;
-    font-size: 13pt;
+    font-size: 17pt;
     text-transform: uppercase;
     transition-duration: 0.3s;
     box-shadow: 5px 5px var(--smokey-black);
@@ -78,7 +78,7 @@
 
 .card label {
     font-style: normal;
-    font-size: 17pt;
+    font-size: 20pt;
     width: 100%;
 }
 
@@ -88,7 +88,7 @@
     border: 2px solid var(--smokey-black);
     border-radius: 5px;
     width: 130px;
-    font-size: 13pt;
+    font-size: 17pt;
 }
 
 .title_text {

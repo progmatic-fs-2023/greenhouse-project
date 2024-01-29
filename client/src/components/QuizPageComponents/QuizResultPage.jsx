@@ -90,13 +90,13 @@ function QuizResultPage({ totalQuestions, correctAnswers }) {
         </button>
       </Modal>
 
-      <div className="firework-container">
+      {/* <div className="firework-container">
         <div className="firework" />
         <div className="firework" />
         <div className="firework" />
         <div className="firework" />
         <div className="firework" />
-      </div>
+        </div> */}
       {/* <div className="pyro">
         <div className="before" />
         <div className="after" />

@@ -37,8 +37,13 @@
 /*! RESULT PAGE ANIMATION AND FIREWORK TOOL */
 .quiz-result-container {
   text-align: center;
-  margin: 100px;
+  margin: 20px auto;
+  width: 25%;
   opacity: 1;
+  background-color: white;
+  border-radius: 10px;
+  border: 3px solid var(--smokey-black);
+  box-shadow: 8px 8px var(--smokey-black);
   /* animation: slideInFromBorder 1s ease-in-out forwards; */
 }
 
@@ -56,11 +61,15 @@
 .quiz-results-heading {
   font-size: 48px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin: 0;
+  border-bottom: 3px solid var(--smokey-black);
+  border-radius: 7px 7px 0 0;
+  background-color: var(--secondary-color);
 }
 
 .quiz-results-text {
   font-size: 32px;
+  margin-top: 20px;
 }
 
 .quiz-result-score {
@@ -81,7 +90,7 @@
 
 .new-quiz-button {
   height: 70px;
-  background-color: var(--secondary-color);
+  background-color: var(--accent-color);
   color: #000000;
   font-size: 32px;
   border: none;
@@ -103,7 +112,6 @@
 }
 
 .new-quiz-button:hover {
-  background-color: #88b190;
   transform: scale(1.1);
 }
 
