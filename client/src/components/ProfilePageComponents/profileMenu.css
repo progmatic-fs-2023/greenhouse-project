@@ -79,7 +79,7 @@
 .container {
   width: 100%;
   /* height: 100vh; */
-  background: #fff;
+  background: #fdfaf3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -126,7 +126,7 @@
 }
 .circle1,
 .circle2 {
-  background: #ffffff;
+  background: #fdfaf3;
   width: 50px;
   height: 50px;
   border-radius: 50%;
