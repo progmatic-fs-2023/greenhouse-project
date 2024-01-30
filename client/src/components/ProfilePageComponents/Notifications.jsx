@@ -6,7 +6,6 @@ import './profileMenu.css';
 export default function Notifications() {
   const { userEmail, setSubscribed, userId } = useAuth();
 
-
   const [isSubscribed, setIsSubscribed] = useState();
   const [message, setMessage] = useState('');
 

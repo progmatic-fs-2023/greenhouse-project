@@ -29,7 +29,6 @@ export function AuthProvider({ children }) {
   const [subscribed, setSubscribed] = useState();
   const [startGameUserXp, setStartGameUserXp] = useState(null);
 
-
   useEffect(() => {
     if (token) {
       localStorage.setItem('token', token);

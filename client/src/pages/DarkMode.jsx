@@ -1,4 +1,1 @@
-
-export default function DarkModeToggle() {
-
-  };
+export default function DarkModeToggle() {}
