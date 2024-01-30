@@ -41,7 +41,12 @@ function QuizModuls() {
 
       <div className="language_card_container">
         {objectTopics.map((topic) => (
-          <LanguageCard key={topic.id} title={topic.description} language={topic.name} />
+          <LanguageCard
+            key={topic.id}
+            title={topic.description}
+            language={topic.name}
+            maxNumOfQuestions={topic.maxNumOfQuestions}
+          />
         ))}
       </div>
     </div>
