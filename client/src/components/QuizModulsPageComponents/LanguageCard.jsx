@@ -1,17 +1,29 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import CardHeader from '../HomePageComponents/CardHeader';
 import { QuizContext } from '../../contexts/QuizContext';
 import { useAuth } from '../../contexts/AuthContext';
 
-function LanguageCard({ title, language }) {
+function LanguageCard({ title, language, maxNumOfQuestions }) {
   const [difficulty, setDifficulty] = useState('EASY');
   const [numQuestions, setNumQuestions] = useState(5);
   const { getQuiz } = useContext(QuizContext);
   const { fetchStartGameUserXp } = useAuth();
+
+  const [maxNumOfQuestionsButton, setMaxNumOfQuestions] = useState(null);
+
+  useEffect(() => {
+    const maxQuestionNumber = maxNumOfQuestions.find((b) => b.level === 'EASY');
+    setMaxNumOfQuestions(maxQuestionNumber.count);
+  }, []);
+
   const handleDifficultyChange = (e) => {
+    const maxQuestionNumber = maxNumOfQuestions.find((b) => b.level === e.target.value);
+
     setDifficulty(e.target.value);
+    setMaxNumOfQuestions(maxQuestionNumber.count);
+    setNumQuestions(Number(5));
   };
 
   const handleNumQuestionsChange = (e) => {
@@ -46,6 +58,7 @@ function LanguageCard({ title, language }) {
             value={numQuestions}
             onChange={handleNumQuestionsChange}
             min="1"
+            max={maxNumOfQuestionsButton}
           />
         </label>
       </div>
@@ -67,5 +80,6 @@ function LanguageCard({ title, language }) {
 LanguageCard.propTypes = {
   language: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  maxNumOfQuestions: PropTypes.arrayOf.isRequired,
 };
 export default LanguageCard;
