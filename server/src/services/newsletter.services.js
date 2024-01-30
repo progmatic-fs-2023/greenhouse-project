@@ -24,8 +24,8 @@ export default async (email, isSubscribed, userId) => {
     },
   });
 
-  const subject = subscribing ? 'thank you' : 'unsubscribed';
-  const text = subscribing
+  const subject = subscribing.subscribe ? 'Subscribed' : 'Unsubscribed';
+  const text = subscribing.subscribe
     ? 'Thank you for your subscription, good to have you onboard!'
     : 'You have succesfully unsubscribed, sad to see you go.';
 
@@ -42,6 +42,6 @@ export default async (email, isSubscribed, userId) => {
     return subscribing;
   } catch (error) {
     console.log(error);
-    return false;
+    throw new Error('Failed to sending email');
   }
 };

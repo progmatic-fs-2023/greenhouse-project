@@ -35,6 +35,7 @@ export function AuthProvider({ children }) {
       const decodedToken = jwtDecode(token);
       setIsLoggedIn(true);
       setUserId(decodedToken.id);
+      setSubscribed(decodedToken.subscribed);
     }
   }, [token]);
 

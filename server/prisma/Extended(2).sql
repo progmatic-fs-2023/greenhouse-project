@@ -48,7 +48,7 @@ INSERT INTO public.question (id, description, level, topic_id, created_at, updat
 INSERT INTO public.question (id, description, level, topic_id, created_at, updated_at, "isActive", "isMultiSelectQuestion") VALUES ('510a7e39-6c8d-47ce-93ee-5be04253a09d', 'Which tag is used to make text bold?', 'EASY', 1, '2024-01-06 17:02:41.734', '2024-01-06 17:02:41.734', true, false);
 INSERT INTO public.question (id, description, level, topic_id, created_at, updated_at, "isActive", "isMultiSelectQuestion") VALUES ('675e2e08-9ad2-4d3d-9760-a81ef4768c2a', 'What is the purpose of the <ol> tag?', 'EASY', 1, '2024-01-06 17:02:41.734', '2024-01-06 17:02:41.734', true, false);
 INSERT INTO public.question (id, description, level, topic_id, created_at, updated_at, "isActive", "isMultiSelectQuestion") VALUES ('5d6528cc-676d-4cdf-88e0-d7e489835309', 'Which tag denotes the head section of an HTML document?', 'EASY', 1, '2024-01-06 17:02:41.734', '2024-01-06 17:02:41.734', true, false);
-INSERT INTO public.question (id, description, level, topic_id, created_at, updated_at, "isActive", "isMultiSelectQuestion") VALUES ('1c3e2b91-8b33-4772-9e57-ccdd4162efc0', 'Which tag is used for italicizing text?', 'EASY', 1, '2024-01-06 17:02:41.734', '2024-01-06 17:02:41.734', true, false);
+INSERT INTO public.question (id, description, level, topic_id, created_at, updated_at, "isActive", "isMultiSelectQuestion") VALUES ('1c3e2b91-8b33-4772-9e57-ccdd4162efc0', 'Which tag is used for italicizing text?', 'EASY', 1, '2024-01-06 17:02:41.734', '2024-01-06 17:02:41.734', true, true);
 INSERT INTO public.question (id, description, level, topic_id, created_at, updated_at, "isActive", "isMultiSelectQuestion") VALUES ('9e5334ac-9565-4f5a-b910-fb2c1a8eae39', 'Which HTML tag is used to create a table?', 'EASY', 1, '2024-01-06 17:02:41.734', '2024-01-06 17:02:41.734', true, false);
 INSERT INTO public.question (id, description, level, topic_id, created_at, updated_at, "isActive", "isMultiSelectQuestion") VALUES ('24ca5927-9477-4287-b1e6-8f3f71037d5d', 'What is the purpose of the <img> tag?', 'EASY', 1, '2024-01-06 17:02:41.734', '2024-01-06 17:02:41.734', true, false);
 INSERT INTO public.question (id, description, level, topic_id, created_at, updated_at, "isActive", "isMultiSelectQuestion") VALUES ('672df2b3-74a2-4a69-824a-0719891887ee', 'Which tag denotes the main content area of an HTML document?', 'EASY', 1, '2024-01-06 17:02:41.734', '2024-01-06 17:02:41.734', true, false);
@@ -251,7 +251,7 @@ INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (16, '5d652
 INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (17, '1c3e2b91-8b33-4772-9e57-ccdd4162efc0', '<em>', true);
 INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (18, '1c3e2b91-8b33-4772-9e57-ccdd4162efc0', '<i>', true);
 INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (19, '1c3e2b91-8b33-4772-9e57-ccdd4162efc0', '<italic>', false);
-INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (20, '1c3e2b91-8b33-4772-9e57-ccdd4162efc0', 'Mind a és b', true);
+INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (20, '1c3e2b91-8b33-4772-9e57-ccdd4162efc0', 'Both <em> and <i>', true);
 INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (21, '9e5334ac-9565-4f5a-b910-fb2c1a8eae39', '<tab>', false);
 INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (22, '9e5334ac-9565-4f5a-b910-fb2c1a8eae39', '<table>', true);
 INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (23, '9e5334ac-9565-4f5a-b910-fb2c1a8eae39', '<tbl>', false);
@@ -533,7 +533,7 @@ INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (298, '9149
 INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (299, '9149cbc1-b960-4add-a2a7-92253bf4d472', 'By changing the values of properties rapidly', false);
 INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (300, '9149cbc1-b960-4add-a2a7-92253bf4d472', 'Applying the animation property', false);
 INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (301, '86480a2f-7fbb-4953-8490-b30ce438c3be', 'visibility: hidden hides the element but it still takes up space in the layout', true);
-INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (302, '86480a2f-7fbb-4953-8490-b30ce438c3be', 'display: none removes the element from the document flow and hides it', true);
+INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (302, '86480a2f-7fbb-4953-8490-b30ce438c3be', 'display: none removes the element from the document flow and hides it', false);
 INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (303, '86480a2f-7fbb-4953-8490-b30ce438c3be', 'There is no difference between the two', false);
 INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (304, '86480a2f-7fbb-4953-8490-b30ce438c3be', 'visibility: hidden removes the element from the document flow', false);
 INSERT INTO public.answer (id, question_id, name, is_correct) VALUES (305, 'f83170a1-b5ed-44ea-b3fc-695a31ee0e52', 'A library that provides ready-made CSS styles, like Bootstrap', true);
