@@ -1,19 +1,20 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0;
 }
 
 .input_container {
-    padding: 0 30px;
+  padding: 0 30px;
 }
 
-.input_container label, .account_container label {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    margin: 10px 20px; 
-    font-size: 1.8rem;
+.input_container label,
+.account_container label {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin: 10px 20px;
+  font-size: 1.8rem;
 }
 
 .input_container input,
@@ -26,58 +27,58 @@
 }
 
 .account_container {
-    display: grid;
-    grid-template-areas: 
+  display: grid;
+  grid-template-areas:
     'member'
     'email'
     'save'
-    'delete'
+    'delete';
 }
 
 .member_since {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 90px;
-    align-items: center;
-    grid-area: 'member';
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 90px;
+  align-items: center;
+  grid-area: 'member';
 }
 
 .member_since > p {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .member_since > h2 {
-    font-size: 1.8rem;
-    margin: 0 0 0 20px;
+  font-size: 1.8rem;
+  margin: 0 0 0 20px;
 }
 
 .email_container {
-    grid-area: 'email';
+  grid-area: 'email';
 }
 
 .save_button {
-    grid-area: 'save';
+  grid-area: 'save';
 }
 
 .account_btn {
-    background-color: darkgray;
-    width: 130px;
-    margin: 30px auto;
-    padding: 5px 10px;
-    box-shadow: 4px 5px var(--smokey-black);
-    border-radius: 10px;
-    border: none;
-    font-size: 1.5rem;
-    transition-duration: 0.3s;
+  background-color: darkgray;
+  width: 130px;
+  margin: 30px auto;
+  padding: 5px 10px;
+  box-shadow: 4px 5px var(--smokey-black);
+  border-radius: 10px;
+  border: none;
+  font-size: 1.5rem;
+  transition-duration: 0.3s;
 }
 
 .account_container p {
-    font-size: 1.8rem;
+  font-size: 1.8rem;
 }
 
 .input_container p {
-    font-size: 1.8rem;
-    margin: 10px 20px;
+  font-size: 1.8rem;
+  margin: 10px 20px;
 }
 
 .premium p {
@@ -92,24 +93,23 @@
 }
 
 #notifications {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
 .delete_button {
-    width: fit-content;
-    padding: 5px 10px;
-    margin: 80px auto 30px;
-    height: fit-content;
-    border: none;
-    box-shadow: 3px 5px var(--smokey-black);
-    border-radius: 10px;
-    background-color: red;
-    font-size: 10pt;
-    transition-duration: 0.3s;
-    text-transform: uppercase;
-    grid-area: 'delete';
-
+  width: fit-content;
+  padding: 5px 10px;
+  margin: 80px auto 30px;
+  height: fit-content;
+  border: none;
+  box-shadow: 3px 5px var(--smokey-black);
+  border-radius: 10px;
+  background-color: red;
+  font-size: 10pt;
+  transition-duration: 0.3s;
+  text-transform: uppercase;
+  grid-area: 'delete';
 }
 
 .delete_button:hover {
@@ -118,30 +118,30 @@
 }
 
 .container {
-    width: 90%;
-    /* height: 100vh; */
-    background: #fdfaf3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 4% auto;
-  }
-  .coupon-card {
-    background: linear-gradient(135deg, #c4bfbf, var(--secondary-color));
-    color: #000000;
-    text-align: center;
-    padding: 10px 20px;
-    border-radius: 15px;
-    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.15);
-    position: relative;
-  }
-  .logo {
-    width: 40px;
-    border-radius: 8px;
-  }
-  .coupon-card h3 {
-    font-size: 1.5rem;
-    line-height: 40px;
+  width: 90%;
+  /* height: 100vh; */
+  background: #fdfaf3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4% auto;
+}
+.coupon-card {
+  background: linear-gradient(135deg, #c4bfbf, var(--secondary-color));
+  color: #000000;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+.logo {
+  width: 40px;
+  border-radius: 8px;
+}
+.coupon-card h3 {
+  font-size: 1.5rem;
+  line-height: 40px;
 }
 .coupon-card p {
   font-size: 1.2rem;
@@ -185,134 +185,160 @@
   flex-direction: row;
   align-items: center;
 }
-  
 
-@media only screen and (max-width: 1510px) { 
-    .input_container label, .account_container label {
-        font-size: 1.8rem;
-    }
+@media only screen and (max-width: 1510px) {
+  .input_container label,
+  .account_container label {
+    font-size: 1.8rem;
+  }
 
-    .input_container p, .account_container p{
-        font-size: 1.8rem;
-        margin: 10px 20px;
-    }
+  .input_container p,
+  .account_container p {
+    font-size: 1.8rem;
+    margin: 10px 20px;
+  }
 
-    .member_since {
-        grid-column-gap: 0;
-    }
+  .member_since {
+    grid-column-gap: 0;
+  }
 }
 
-@media only screen and (max-width: 1340px) { 
-    .premium p {
-        margin: 20px 30px 20px 40px;
-        align-items: center;
-        text-align: justify;
-        font-size: 1.8rem;
-    }
-    .input_container, .account_container{
-        margin: auto;
-    }
-    .member_since > h2 {
-        font-size: 1.8rem;
-    }
-
+@media only screen and (max-width: 1340px) {
+  .premium p {
+    margin: 20px 30px 20px 40px;
+    align-items: center;
+    text-align: justify;
+    font-size: 1.8rem;
+  }
+  .input_container,
+  .account_container {
+    margin: auto;
+  }
+  .member_since > h2 {
+    font-size: 1.8rem;
+  }
 }
 
-@media only screen and (max-width: 1250px) { 
+@media only screen and (max-width: 1250px) {
+  .input_container label,
+  .account_container label {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    font-size: 1.7rem;
+    margin: auto;
+  }
 
-    .input_container label, .account_container label {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-        font-size: 1.7rem;
-        margin: auto; 
-    }
+  .account_container label {
+    margin-left: 20px;
+  }
 
-    .account_container label {
-        margin-left: 20px;
-    }
+  .member_since {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    font-size: 1.8rem;
+    margin-top: 20px;
+  }
 
-    .member_since {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-        font-size: 1.8rem;
-        margin-top: 20px;
-    }
-
-    .member_since > p {
-        margin: 0 auto;
-    }
-    .email_container h2 {
-        text-align: left;
-    }
+  .member_since > p {
+    margin: 0 auto;
+  }
+  .email_container h2 {
+    text-align: left;
+  }
 }
-@media only screen and (max-width: 500px) { 
+@media only screen and (max-width: 500px) {
   .input_container input,
   .account_container input {
     width: 90%;
   }
-  .input_container label, .account_container label {
+  .input_container label,
+  .account_container label {
     font-size: 1.6rem;
     margin: 10px 0;
     padding: 0;
     width: 100%;
+  }
+  .logo {
+    width: 40px;
+    border-radius: 8px;
+  }
+  .coupon-card h3 {
+    font-size: 1.5rem;
+    line-height: 40px;
+  }
+  .coupon-card p {
+    font-size: 1.2rem;
+  }
+  .coupon-row {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin: 25px auto;
+    width: fit-content;
+  }
+  #cpnCode {
+    border: 1px dashed #fff;
+    padding: 10px 20px;
+  }
+  #cpnBtn {
+    border: 1px solid #fff;
+    background: #fff;
+    padding: 10px 20px;
+    color: #000000;
+    cursor: pointer;
+  }
+  .circle1,
+  .circle2 {
+    width: 50px;
+    height: 50px;
+  }
+  .circle1 {
+    left: -20px;
+  }
+  .circle2 {
+    right: -20px;
+  }
+  .logo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .member_since > h2 {
+    font-size: 1.7rem;
+    margin: 0;
+  }
+  .member_since > p {
+    font-size: 1.7rem;
+  }
+  .premium p {
+    margin: 10px 0 10px 10px;
+    align-items: center;
+    text-align: justify;
+    font-size: 1.8rem;
+  }
 }
-.logo {
-  width: 40px;
-  border-radius: 8px;
+.no-coupon-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
-.coupon-card h3 {
-  font-size: 1.5rem;
-  line-height: 40px;
+.no-coupon-container p {
+  font-size: 30px;
 }
-.coupon-card p {
-font-size: 1.2rem;
+.dino {
+  height: 50px;
+  opacity: 0.07;
 }
-.coupon-row {
-display: flex;
-flex-flow: column;
-align-items: center;
-margin: 25px auto;
-width: fit-content;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 }
-#cpnCode {
-border: 1px dashed #fff;
-padding: 10px 20px;
-}
-#cpnBtn {
-border: 1px solid #fff;
-background: #fff;
-padding: 10px 20px;
-color: #000000;
-cursor: pointer;
-}
-.circle1,
-.circle2 {
-width: 50px;
-height: 50px;
-}
-.circle1 {
-  left: -20px;
-}
-.circle2 {
-  right: -20px;
-}
-.logo-container {
+.dino-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  justify-content: end;
 }
-.member_since > h2 {
-  font-size: 1.7rem;
-  margin: 0;
-}
-.member_since > p {
-  font-size: 1.7rem;
-}
-.premium p {
-  margin: 10px 0 10px 10px;
-  align-items: center;
-  text-align: justify;
-  font-size: 1.8rem;
-}
-
+.dino:hover {
+  opacity: 1;
 }
