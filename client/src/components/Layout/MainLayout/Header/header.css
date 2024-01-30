@@ -2,7 +2,7 @@
     background-color: var(--primary-color);
     display: flex;
     justify-content: space-between;
-    max-width: 100vw;
+    width: 100%;
     height: 100px;
     border-bottom: 2px solid var(--smokey-black);
     box-shadow: 0 5px 10px var(--smokey-black);
@@ -21,7 +21,7 @@
     align-items: center;
     margin: 30px;
     height: fit-content;
-    width:max-content;
+    width: max-content;
     text-decoration: none;
     color: var(--smokey-black);
 }
@@ -35,6 +35,7 @@
     margin: auto 0 ;
     font-size: 1.7rem;
     letter-spacing: -1px;
+    width: fit-content;
 }
 
 .navbar {
@@ -42,9 +43,9 @@
     justify-content: space-evenly;
     align-items: center;
     color: var(--smokey-black);
-    margin-right: 100px;
     margin-top: 15px;
     width: 100%;
+    padding: 0;
 }
 
 nav ul {
@@ -64,9 +65,10 @@ nav li {
     text-align: center;
     border: none;
     height: 70px;
+    margin: 0 10px;
     width: fit-content;
     text-transform: uppercase;
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     cursor: pointer;
     transition-duration: 0.3s;
 }
@@ -83,9 +85,9 @@ nav li {
     border: none;
     width: max-content;
     height: 50px;
-    margin: 0 5px 5px;
+    margin: 0 15px 5px;
     padding: 10px 15px;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     text-transform: uppercase;
     transition-duration: 0.3s;
     box-shadow: 5px 8px var(--smokey-black);
@@ -129,7 +131,7 @@ nav li {
         width: max-content;
         left: 0;
         margin-bottom: 10px;
-        font-size: 1.8rem;
+        font-size: 1.7rem;
     }
 
     .hamburger_menu {
@@ -140,7 +142,7 @@ nav li {
         margin: 30px ;
         background-color: var(--primary-color);
         border: none;
-        font-size: 15pt;
+        font-size: 1.7rem;
         cursor: pointer;
         transition-duration: 0.3s;
     }
@@ -161,7 +163,7 @@ nav li {
         height: 100vh;
         width: 150px;
         z-index: 999;
-        background-color: #edc9af6d;
+        background-color: #f0efed5c;
         backdrop-filter: blur(10px);
         box-shadow: 3px 5px var(--smokey-black);
         flex-direction: column;
@@ -173,7 +175,7 @@ nav li {
         background-color: none;
         text-align: center;
         border: none;
-        font-size: 1.8rem;
+        font-size: 1.7rem;
         cursor: pointer;
         transition-duration: 0.3s;
         margin: 10px;
@@ -212,7 +214,7 @@ nav li {
         padding: 0;
     }
     .header {
-        width: 100dvw;
+        width: 100%;
     }
 }
 

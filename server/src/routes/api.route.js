@@ -5,7 +5,7 @@ import adminRouter from './admin.route';
 import profileRouter from './profile.route';
 import contactRouter from './contact.route';
 import userDataRouter from './userData.route';
-import newsletterRouter from './newsletter.route'
+import newsletterRouter from './newsletter.route';
 
 const router = Router();
 

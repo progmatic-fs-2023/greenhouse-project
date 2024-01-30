@@ -25,7 +25,6 @@ function QuizHandler({ nextQuestionIndex, isCorrectPresent, multiSelect, onSubmi
       >
         Next Question
       </button>
-
     </div>
   );
 }

@@ -30,7 +30,7 @@ const login = async (req, res) => {
 
   try {
     const user = await findUserByUsername(username);
-    console.log(user)
+    console.log(user);
     const { password: passwordHash, ...userWithoutPassword } = user;
 
     const result = await comparePassword(password, user.password);

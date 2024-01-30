@@ -13,8 +13,8 @@
     justify-content: center;
     flex-flow: column;
     align-items: center;
-    margin-top: 2rem;
-    padding: 5%;
+    margin-top: 0rem;
+    padding: 2%;
     width: 100%;
     background-color: var(--secondary-color);
     border-left: 3px solid var(--smokey-black);
@@ -33,22 +33,22 @@
 }
 
 .profile_header_container h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
 }
 
 .profile_header_container h2 {
-    font-size: 2.3rem;
+    font-size: 2rem;
     padding: 0 auto;
 }
 
 .profile_header_container h4 {
-    font-size: 1.8rem;
-    margin:  auto;
+    font-size: 1.6rem;
+    margin:  0 auto;
 }
 
 .rank_pic {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     margin: 0 10px -6px;
 }
 
@@ -57,7 +57,7 @@
     border: 3px solid var(--smokey-black);
     border-radius: 0 0 10px 10px;
     box-shadow: 10px 10px var(--smokey-black);
-    width: 110%;
+    width: 104%;
     min-height: max-content;
     background-color: #fdfaf3;
 }
@@ -148,12 +148,41 @@
     }
 
     .profile_navlink {
-        font-size: 22pt;
+        font-size: 2rem;
     }
 }
 
 @media only screen and (max-width: 800px) { 
     .profile_container {
         width: 75%;
+    }
+}
+@media only screen and (max-width: 500px) { 
+    .rank_pic {
+        width: 30px;
+        height: 30px;
+    }
+    .user_pic {
+        width: 90px;
+        height: 90px;
+    }
+    .profile_header_container h1 {
+        font-size: 3.5rem;
+    }
+    
+    .profile_header_container h2 {
+        font-size: 2.0rem;
+        padding: 0 auto;
+    }
+    
+    .profile_header_container h4 {
+        font-size: 1.6rem;
+        margin:  auto;
+    }
+    .profile_navlink {
+        font-size: 1.7rem;
+    }
+    .profile_container {
+        margin: 2% auto;
     }
 }

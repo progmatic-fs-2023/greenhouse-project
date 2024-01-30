@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { API_URL } from '../../constants';
-import {useAuth} from '../../contexts/AuthContext'
+import { useAuth } from '../../contexts/AuthContext';
 import './profileMenu.css';
 
-
 export default function Notifications() {
-const {userEmail, subscribed, setSubscribed, userId} = useAuth();
-console.log(subscribed)
+  const { userEmail, setSubscribed, userId } = useAuth();
+
 
   const [isSubscribed, setIsSubscribed] = useState();
   const [message, setMessage] = useState('');
@@ -19,14 +18,14 @@ console.log(subscribed)
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({email: userEmail, isSubscribed}),
+        body: JSON.stringify({ email: userEmail, isSubscribed }),
       });
 
       const result = await response.json();
-      console.log(result);
+
       setSubscribed(result.isSubscribed);
     } catch (error) {
-      console.error('Error submitting newsletter:', error);
+      throw new Error('Error submitting newsletter:', error);
     }
   };
 
@@ -41,17 +40,15 @@ console.log(subscribed)
 
   return (
     <form className="container" onSubmit={handleNewsletterSubmit}>
-      <div className="input_container" id='notifications'>
+      <div className="input_container" id="notifications">
         <label htmlFor="subscription" className="subscription">
           Subscribe to newsletter:
           <br />
-          <button type="submit" className='account_btn' onClick={handleClick}>
+          <button type="submit" className="account_btn" onClick={handleClick}>
             {isSubscribed ? 'Unsubscribe' : 'Subscribe'}
           </button>
         </label>
-        <div>
-        {message ? <p>{message}</p> : ""}
-        </div>
+        <div>{message ? <p>{message}</p> : ''}</div>
       </div>
     </form>
   );

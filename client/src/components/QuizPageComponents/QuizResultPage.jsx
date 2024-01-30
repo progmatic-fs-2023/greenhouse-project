@@ -48,7 +48,7 @@ function QuizResultPage({ totalQuestions, correctAnswers }) {
         <div className="quiz-results-heading">Quiz Results</div>
         <p className="quiz-results-text">Total Questions: {totalQuestions}</p>
         <p className="quiz-results-text">Correct Answers: {correctAnswers}</p>
-        <div className="quiz-result-score" style={{ fontSize: 50 }}>
+        <div className="quiz-result-score">
           <p>
             {correctAnswers} / {totalQuestions}
           </p>

@@ -26,9 +26,9 @@ export function AuthProvider({ children }) {
   const [userCreationDate, setUserCreationDate] = useState('');
   const [currentUserXp, setCurrentUserXp] = useState(undefined);
   const [errorState, setErrorState] = useState('');
-  const [subscribed, setSubscribed] = useState()
+  const [subscribed, setSubscribed] = useState();
   const [startGameUserXp, setStartGameUserXp] = useState(null);
-  console.log(subscribed, userCreationDate)
+
 
   useEffect(() => {
     if (token) {

@@ -4,7 +4,6 @@ import 'dotenv/config';
 
 const prisma = new PrismaClient();
 
-
 const transporter = nodemailer.createTransport({
   host: 'smtp-mail.outlook.com',
   port: 587,
@@ -16,33 +15,33 @@ const transporter = nodemailer.createTransport({
 });
 
 export default async (email, isSubscribed, userId) => {
-    const subscribing = await prisma.user.update({
-      where: {
-        id: userId,
-      },
-      data: {
-        subscribe: isSubscribed,
-      }
-    })
+  const subscribing = await prisma.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      subscribe: isSubscribed,
+    },
+  });
 
-    const subject = subscribing ? 'thank you' : 'unsubscribed';
-    const text = subscribing ? 'Thank you for your subscription, good to have you onboard!' : 'You have succesfully unsubscribed, sad to see you go.'
+  const subject = subscribing ? 'thank you' : 'unsubscribed';
+  const text = subscribing
+    ? 'Thank you for your subscription, good to have you onboard!'
+    : 'You have succesfully unsubscribed, sad to see you go.';
 
-    const newsletterMailOptions = {
-      from: process.env.EMAILUSERNAME,
-      to: email,
-      subject,
-      text,
-    };
-  
-    try {
-      const info = await transporter.sendMail(newsletterMailOptions);
-      console.log(`Email sent: ${info.response}`);
-      return subscribing;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-
+  const newsletterMailOptions = {
+    from: process.env.EMAILUSERNAME,
+    to: email,
+    subject,
+    text,
   };
-  
+
+  try {
+    const info = await transporter.sendMail(newsletterMailOptions);
+    console.log(`Email sent: ${info.response}`);
+    return subscribing;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};

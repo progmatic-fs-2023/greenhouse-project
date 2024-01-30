@@ -13,7 +13,7 @@
     grid-template-columns: 1fr 1fr;
     align-items: center;
     margin: 10px 20px; 
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .input_container input,
@@ -47,7 +47,7 @@
 }
 
 .member_since > h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin: 0 0 0 20px;
 }
 
@@ -61,18 +61,18 @@
 
 .account_btn {
     background-color: darkgray;
-    width: 150px;
+    width: 130px;
     margin: 30px auto;
     padding: 5px 10px;
     box-shadow: 4px 5px var(--smokey-black);
     border-radius: 10px;
     border: none;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     transition-duration: 0.3s;
 }
 
 .account_container p {
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .input_container p {
@@ -81,9 +81,9 @@
 }
 
 .premium p {
-  margin: 150px 50px;
+  margin: 130px 50px;
   align-items: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .account_btn:hover {
@@ -209,13 +209,9 @@
         text-align: justify;
         font-size: 1.8rem;
     }
-
     .input_container, .account_container{
         margin: auto;
     }
-
-
-
     .member_since > h2 {
         font-size: 1.8rem;
     }
@@ -248,4 +244,75 @@
     .email_container h2 {
         text-align: left;
     }
+}
+@media only screen and (max-width: 500px) { 
+  .input_container input,
+  .account_container input {
+    width: 90%;
+  }
+  .input_container label, .account_container label {
+    font-size: 1.6rem;
+    margin: 10px 0;
+    padding: 0;
+    width: 100%;
+}
+.logo {
+  width: 40px;
+  border-radius: 8px;
+}
+.coupon-card h3 {
+  font-size: 1.5rem;
+  line-height: 40px;
+}
+.coupon-card p {
+font-size: 1.2rem;
+}
+.coupon-row {
+display: flex;
+flex-flow: column;
+align-items: center;
+margin: 25px auto;
+width: fit-content;
+}
+#cpnCode {
+border: 1px dashed #fff;
+padding: 10px 20px;
+}
+#cpnBtn {
+border: 1px solid #fff;
+background: #fff;
+padding: 10px 20px;
+color: #000000;
+cursor: pointer;
+}
+.circle1,
+.circle2 {
+width: 50px;
+height: 50px;
+}
+.circle1 {
+  left: -20px;
+}
+.circle2 {
+  right: -20px;
+}
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.member_since > h2 {
+  font-size: 1.7rem;
+  margin: 0;
+}
+.member_since > p {
+  font-size: 1.7rem;
+}
+.premium p {
+  margin: 10px 0 10px 10px;
+  align-items: center;
+  text-align: justify;
+  font-size: 1.8rem;
+}
+
 }
