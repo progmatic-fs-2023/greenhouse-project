@@ -5,7 +5,6 @@ import { useAuth } from '../../contexts/AuthContext';
 import { API_URL } from '../../constants';
 import './account.css';
 
-
 export default function Account() {
   const { userId, userEmail, setUserEmail, userCreationDate, logout } = useAuth();
   const [errorState, setErrorState] = useState('');

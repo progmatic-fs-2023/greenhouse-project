@@ -5,9 +5,7 @@ import x from '../../../../assets/x.svg';
 import ig from '../../../../assets/insta.svg';
 import linkedIn from '../../../../assets/linkedin.svg';
 
-
 function Footer() {
-
   return (
     <footer className="footer">
       <div className="text_container">
@@ -19,7 +17,7 @@ function Footer() {
             <button type="button">Contact us</button>
           </NavLink>
         </div>
-                <div className="icons_container">
+        <div className="icons_container">
           <img src={fb} alt="Facebook" />
           <img src={x} alt="X" />
           <img src={ig} alt="Instagram" />
