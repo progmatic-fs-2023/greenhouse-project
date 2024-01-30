@@ -4,7 +4,7 @@
     align-items: center;
     flex-flow: column;
     margin: auto;
-    padding: 3px 0 5%;
+    padding: 1% 0 5%;
     width: 60%;
 }
 
@@ -25,24 +25,24 @@
 }
 
 .user_pic {
-    width: 130px;
-    height: 130px;
+    width: 110px;
+    height: 110px;
     border: 8px solid var(--smokey-black);
     border-radius: 50%;
     background-color: white;
 }
 
 .profile_header_container h1 {
-    font-size: 50pt;
+    font-size: 4rem;
 }
 
 .profile_header_container h2 {
-    font-size: 30pt;
+    font-size: 2.3rem;
     padding: 0 auto;
 }
 
 .profile_header_container h4 {
-    font-size: 22pt;
+    font-size: 1.8rem;
     margin:  auto;
 }
 
@@ -58,7 +58,7 @@
     border-radius: 0 0 10px 10px;
     box-shadow: 10px 10px var(--smokey-black);
     width: 110%;
-    height: 400px;
+    min-height: max-content;
     background-color: #fdfaf3;
 }
 
@@ -73,7 +73,7 @@
 
 .profile_navlink {
     list-style: none;
-    font-size: 25pt;
+    font-size: 2rem;
     padding: 10px;
     transition-duration: 0.3s;
     letter-spacing: 0.2px;
@@ -98,7 +98,7 @@
 
 .status-bar {
     height: 20px;
-    width: 300px;
+    width: 100%;
     background-color: #eee;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -106,7 +106,7 @@
   }
 
   .xp p {
-    font-size: 18pt;
+    font-size: 1.5rem;
     text-align: center;
   }
 
@@ -154,6 +154,6 @@
 
 @media only screen and (max-width: 800px) { 
     .profile_container {
-        width: 400px;
+        width: 75%;
     }
 }

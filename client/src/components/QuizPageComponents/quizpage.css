@@ -172,7 +172,7 @@
 
   .quiz_answer button {
     margin: 5px auto;
-    width: 480px;
+    width: 30rem;
   }
 
   .handler button {
@@ -180,13 +180,19 @@
   }
 }
 
-@media only screen and (max-width: 560px) {
-  .quiz_answer button {
-    margin: 5px 50px 5px 0;
-    width: 20rem;
-  }
+@media only screen and (max-width: 500px) {
 
   .handler button {
-    margin: 10px 50px 10px 0;
+    margin: 10px auto;
+  }
+
+  .quiz_answer {
+    width: 100%;
+    padding: 10px 0;
+    margin: auto;
+  }
+  .quiz_answer button {
+    margin: 0;
+    width: 18rem;
   }
 }

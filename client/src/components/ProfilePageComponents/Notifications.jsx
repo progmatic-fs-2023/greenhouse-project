@@ -45,7 +45,7 @@ console.log(subscribed)
         <label htmlFor="subscription" className="subscription">
           Subscribe to newsletter:
           <br />
-          <button type="submit" onClick={handleClick}>
+          <button type="submit" className='account_btn' onClick={handleClick}>
             {isSubscribed ? 'Unsubscribe' : 'Subscribe'}
           </button>
         </label>

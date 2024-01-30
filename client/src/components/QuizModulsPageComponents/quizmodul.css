@@ -153,3 +153,8 @@
   transition-timing-function: 0.1s ease-in-out;
   cursor: pointer;
 }
+@media only screen and (max-width: 500px) {
+  .card {
+    width: 90%;
+  }
+}

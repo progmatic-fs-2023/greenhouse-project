@@ -78,7 +78,7 @@ export default function Password() {
       </div>
       {newPasswordChanged && <p>{newPasswordChanged}</p>}
       {error && <p className="error">{error}</p>}
-      <button type="submit" onClick={handleSaveClick}>
+      <button type="submit" className='account_btn' onClick={handleSaveClick}>
         Save
       </button>
     </div>

@@ -11,7 +11,7 @@ footer {
   background-color: var(--secondary-color);
   border-top: 2px solid var(--smokey-black);
   box-shadow: 0 -5px 10px var(--smokey-black);
-  font-size: 18pt;
+  font-size: 1.5rem;
 }
 
 footer img {
@@ -50,7 +50,7 @@ footer img:hover {
   background-color: var(--secondary-color);
   border: none;
   outline: none;
-  font-size: 18pt;
+  font-size: 1.5rem;
   transition-duration: 0.3s;
   text-transform: uppercase;
 }
@@ -71,5 +71,15 @@ footer img:hover {
 
   footer img {
     margin-top: 10px;
+  }
+
+  @media only screen and (max-width: 500px) { 
+    .links_container {
+      flex-flow: row wrap;
+    }
+    .contact {
+      border-right: none;
+      margin: 10px 0;
+    }
   }
 }
