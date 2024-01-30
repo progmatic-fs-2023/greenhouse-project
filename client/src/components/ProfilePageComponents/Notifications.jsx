@@ -4,7 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import './profileMenu.css';
 
 export default function Notifications() {
-  const { userEmail, setSubscribed, userId } = useAuth();
+  const { userEmail, setSubscribed, userId, token } = useAuth();
 
   const [isSubscribed, setIsSubscribed] = useState();
   const [message, setMessage] = useState('');
@@ -16,6 +16,7 @@ export default function Notifications() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: token ? `Bearer ${token}` : undefined,
         },
         body: JSON.stringify({ email: userEmail, isSubscribed }),
       });

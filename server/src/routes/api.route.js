@@ -5,7 +5,6 @@ import adminRouter from './admin.route';
 import profileRouter from './profile.route';
 import contactRouter from './contact.route';
 import userDataRouter from './userData.route';
-import newsletterRouter from './newsletter.route';
 
 const router = Router();
 
@@ -19,8 +18,6 @@ router.use('/auth', authRouter);
 router.use('/admin', adminRouter);
 
 router.use('/profile', profileRouter);
-
-router.use('/profile', newsletterRouter);
 
 router.use('/contact', contactRouter);
 
