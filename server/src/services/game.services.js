@@ -63,7 +63,15 @@ export const checkCorrectAnswer = async (answerIds, questionId) => {
 export const getTopicsFromDB = async () => {
   try {
     const topics = await prisma.topic.findMany();
-    return topics;
+
+    const maxNumOfQuestions =
+      await prisma.$queryRaw`select  name, level, count(level)::int from topic join question on question.topic_id = topic.id group by topic.name, question.level;`;
+    return topics.map(topic => ({
+      ...topic,
+      maxNumOfQuestions: maxNumOfQuestions.filter(
+        maxNumOfQuestion => topic.name === maxNumOfQuestion.name,
+      ),
+    }));
   } catch (error) {
     throw new Error(`Error in getTopicsFromDB: ${error.message}`);
   }
