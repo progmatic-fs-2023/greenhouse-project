@@ -107,6 +107,7 @@ function ContactPage() {
             <div>
               <label htmlFor="subject">
                 Subject:
+                <br />
                 {reportedId ? (
                   <input type="text" id="subject" value={reportedId} readOnly />
                 ) : (

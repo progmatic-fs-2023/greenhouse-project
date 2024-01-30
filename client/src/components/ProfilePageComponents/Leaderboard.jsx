@@ -95,7 +95,7 @@ export default function Leaderboard() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   boxShadow:
-                    user.id === userId ? '0 0 15px 5px red' : '0 4px 8px 0 rgba(0,0,0,0.2)',
+                    user.id === userId ? '0 0 15px 5px green' : '0 4px 8px 0 rgba(0,0,0,0.2)',
                 }}
               >
                 <p>{placeNames[index]}</p>

@@ -10,14 +10,16 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  width: 800px;
+  width: 1100px;
+  height: max-content;
 }
 
 .quiz_question_container {
   display: flex;
   flex-flow: column;
   justify-content: center;
-  width: 800px;
+  width: 1100px;
+  height: 100%;
 }
 
 .quiz_question_title {
@@ -35,7 +37,7 @@
 
 .quiz_question_text {
   text-align: center;
-  padding: 30px 0;
+  padding: 20px 0;
   font-size: 20pt;
   width: 100%;
   background-color: white;
@@ -55,9 +57,9 @@
   align-items: center;
   justify-content: space-evenly;
   flex-flow: row wrap;
-  width: 800px;
-  height: 300px;
-  padding: 10px 0;
+  width: 1100px;
+  height: 100%;
+  padding: 10px 0 20px;
   margin-left: 6px;
   background-color: var(--secondary-color);
   border-radius: 0 0 10px 10px;
@@ -67,23 +69,24 @@
 
 .quiz_answer {
   display: flex;
+  justify-content: center;
   flex-flow: row wrap;
-  width: 300px;
+  width: 500px;
   padding: 10px 0;
-  margin: 0;
+  margin: auto;
 }
 
 .quiz_answer button {
   padding: 10px;
-  width: 320px;
-  height: fit-content;
+  width: 500px;
+  height: 180px;
   border: 3px solid var(--smokey-black);
   box-shadow: 3px 5px var(--smokey-black);
   border-radius: 10px;
   background-color: white;
-  font-size: 15pt;
+  font-size: 18pt;
   transition-duration: 0.4s;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 .quiz_answer button:hover {
@@ -102,7 +105,7 @@
 }
 
 .handler button {
-  margin: 0 20px;
+  margin: 20px;
 }
 
 @media only screen and (max-width: 430px) {
@@ -140,7 +143,7 @@
   }
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 1150px) {
   .quiz_container {
     width: 90vw;
   }
@@ -156,54 +159,40 @@
 
   .quiz_question_text {
     width: 90vw;
-    font-size: 15pt;
+    font-size: 18pt;
     margin: 0;
     padding: 10px 0;
   }
 
   .quiz_answer_container {
     width: 90vw;
-    height: fit-content;
     justify-content: center;
-    margin-left: 6px;
+    flex-flow: column wrap;
   }
 
   .quiz_answer button {
-    margin: 5px 25px;
-    width: 250px;
-  }
-
-  .handler {
-    flex-flow: row wrap;
-    justify-content: center;
+    margin: 5px auto;
+    width: 30rem;
   }
 
   .handler button {
-    margin: 10px 10px;
+    margin: 10px;
   }
 }
 
-@media only screen and (min-width: 501px) {
-  .quiz_question_text {
-    font-size: 18pt;
-  }
-}
-.quiz_answer label {
-  padding: 10px;
-  width: 320px;
-  height: fit-content;
-  border: 3px solid var(--smokey-black);
-  box-shadow: 3px 5px var(--smokey-black);
-  border-radius: 10px;
-  background-color: white;
-  font-size: 15pt;
-  transition-duration: 0.4s;
-  margin: 0 auto;
-  text-decoration: none;
-}
+@media only screen and (max-width: 500px) {
 
-.quiz_answer label:hover {
-  background-color: #9c9c9c;
-  cursor: pointer;
-  transition-timing-function: 0.4s ease-in-out;
+  .handler button {
+    margin: 10px auto;
+  }
+
+  .quiz_answer {
+    width: 100%;
+    padding: 10px 0;
+    margin: auto;
+  }
+  .quiz_answer button {
+    margin: 0;
+    width: 18rem;
+  }
 }

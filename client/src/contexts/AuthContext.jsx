@@ -26,6 +26,7 @@ export function AuthProvider({ children }) {
   const [userCreationDate, setUserCreationDate] = useState('');
   const [currentUserXp, setCurrentUserXp] = useState(undefined);
   const [errorState, setErrorState] = useState('');
+  const [subscribed, setSubscribed] = useState();
   const [startGameUserXp, setStartGameUserXp] = useState(null);
 
   useEffect(() => {
@@ -53,6 +54,7 @@ export function AuthProvider({ children }) {
           setUsername(responseData.username);
           setUserEmail(responseData.email);
           setUserCreationDate(responseData.createdAt);
+          setSubscribed(responseData.subscribe);
           setCurrentUserXp(responseData.score.xp);
         } catch (error) {
           setErrorState(error.message);
@@ -61,7 +63,7 @@ export function AuthProvider({ children }) {
     }
 
     fetchUserData();
-  }, [token, isLoggedIn]);
+  }, [token, isLoggedIn, subscribed]);
 
   async function fetchUserScore() {
     if (token && isLoggedIn) {
@@ -126,6 +128,9 @@ export function AuthProvider({ children }) {
       setUserEmail,
       setUsername,
       errorState,
+      fetchUserScore,
+      subscribed,
+      setSubscribed,
       currentUserXp,
       startGameUserXp,
       fetchStartGameUserXp,
@@ -142,6 +147,8 @@ export function AuthProvider({ children }) {
       setUserEmail,
       setUsername,
       errorState,
+      fetchUserScore,
+      subscribed,
       currentUserXp,
       startGameUserXp,
     ],

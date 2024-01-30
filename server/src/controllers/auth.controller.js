@@ -30,6 +30,7 @@ const login = async (req, res) => {
 
   try {
     const user = await findUserByUsername(username);
+    console.log(user);
     const { password: passwordHash, ...userWithoutPassword } = user;
 
     const result = await comparePassword(password, user.password);
@@ -41,6 +42,7 @@ const login = async (req, res) => {
         role: user.role,
         email: user.email,
         createdAt: user.createdAt,
+        subscribed: user.subscribe,
       };
 
       const token = await createToken(payload);

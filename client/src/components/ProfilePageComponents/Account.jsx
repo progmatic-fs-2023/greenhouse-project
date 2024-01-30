@@ -80,8 +80,10 @@ export default function Account() {
   return (
     <form className="account" onSubmit={handleSubmit}>
       <div className="account_container">
-        <p>Member since: </p> <p>{formattedDate}</p>
-        <div>
+        <div className="member_since">
+          <h2>Member since: </h2> <p>{formattedDate}</p>
+        </div>
+        <div className="email_container ">
           <label htmlFor="email" className="email_label">
             Email address:
             <input
@@ -94,13 +96,15 @@ export default function Account() {
             />
           </label>
         </div>
+
+        <button type="submit" className="account_btn save_button">
+          Save
+        </button>
+
+        <button type="button" className="delete_button" onClick={() => setIsDeleteModalOpen(true)}>
+          Delete profile
+        </button>
       </div>
-
-      <button type="submit">Save</button>
-
-      <button type="button" id="delete_button" onClick={() => setIsDeleteModalOpen(true)}>
-        Delete profile
-      </button>
 
       <Modal
         isOpen={isDeleteModalOpen}
@@ -110,10 +114,10 @@ export default function Account() {
       >
         <h2>Delete profile</h2>
         <p>Are you sure want to delete this profile?</p>
-        <button type="button" onClick={handleDeleteConfirm}>
+        <button type="button" className="account_btn" onClick={handleDeleteConfirm}>
           Yes, do it!
         </button>
-        <button type="button" onClick={() => setIsDeleteModalOpen(false)}>
+        <button type="button" className="account_btn" onClick={() => setIsDeleteModalOpen(false)}>
           Nope!
         </button>
       </Modal>

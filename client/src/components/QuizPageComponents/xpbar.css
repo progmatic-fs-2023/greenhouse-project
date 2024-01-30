@@ -1,7 +1,7 @@
 .xp-bar {
   width: 360px;
   height: 360px;
-  background-color: #edc9af;
+  margin: 30px 10px;
 }
 
 .customModal {
@@ -14,4 +14,10 @@
   background-color: white;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width: 500px) {
+  .xp-bar {
+    width: 90%;
+  }
 }

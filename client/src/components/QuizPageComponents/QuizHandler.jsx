@@ -10,6 +10,13 @@ function QuizHandler({ nextQuestionIndex, isCorrectPresent, multiSelect, onSubmi
 
   return (
     <div className="handler">
+      {multiSelect ? (
+        <button type="button" onClick={onSubmit} disabled={isSubmitted}>
+          Submit
+        </button>
+      ) : (
+        ''
+      )}
       <button
         type="button"
         onClick={nextQuestionIndex}
@@ -18,13 +25,6 @@ function QuizHandler({ nextQuestionIndex, isCorrectPresent, multiSelect, onSubmi
       >
         Next Question
       </button>
-      {multiSelect ? (
-        <button type="button" onClick={onSubmit} disabled={isSubmitted}>
-          Submit
-        </button>
-      ) : (
-        ''
-      )}
     </div>
   );
 }
