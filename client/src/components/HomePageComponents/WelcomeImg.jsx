@@ -1,4 +1,4 @@
-import welcome from '../../assets/welcomepic.png';
+import welcome from '../../assets/welcome_transp.png';
 
 function WelcomeImg() {
   return (

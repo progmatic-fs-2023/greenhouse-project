@@ -1,5 +1,5 @@
-import './footer.css';
 import { NavLink } from 'react-router-dom';
+import './footer.css';
 import fb from '../../../../assets/fb.svg';
 import x from '../../../../assets/x.svg';
 import ig from '../../../../assets/insta.svg';
