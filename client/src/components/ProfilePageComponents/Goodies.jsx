@@ -1,8 +1,8 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import img from '../../assets/potted_plant.svg';
 import './profileMenu.css';
-import { NavLink } from 'react-router-dom';
 import dino from '../../assets/dinosaur-svgrepo-com.svg';
 
 function Goodies() {
@@ -59,7 +59,14 @@ function Goodies() {
         )}
       </div>
       <div className="dino-container" style={{}}>
-        <NavLink to='/404'>{<img src={dino} alt="dinosaur" className="dino" title='Are you tired of Quizing? Lets rest with another game!' />}</NavLink>
+        <NavLink to="/404">
+          <img
+            src={dino}
+            alt="dinosaur"
+            className="dino"
+            title="Are you tired of Quizing? Lets rest with another game!"
+          />
+        </NavLink>
       </div>
     </div>
   );
