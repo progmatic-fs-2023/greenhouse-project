@@ -68,13 +68,14 @@ function Login() {
             />
           </label>
           <br />
+          {error || ''}
+          <br />
           <button type="submit">Login</button>
           <h3>OR</h3>
           <NavLink to="/register">
             <button type="button">Create account</button>
           </NavLink>
         </form>
-        {error || ''}
       </div>
     </div>
   );

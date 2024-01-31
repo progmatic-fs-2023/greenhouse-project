@@ -27,7 +27,11 @@ function LanguageCard({ title, language, maxNumOfQuestions }) {
   };
 
   const handleNumQuestionsChange = (e) => {
-    setNumQuestions(Number(e.target.value));
+    if (maxNumOfQuestionsButton < Number(e.target.value)) {
+      setNumQuestions(maxNumOfQuestionsButton);
+    } else {
+      setNumQuestions(Number(e.target.value));
+    }
   };
 
   return (
