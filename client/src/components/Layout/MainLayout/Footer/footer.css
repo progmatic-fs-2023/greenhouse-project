@@ -7,9 +7,7 @@ footer {
   position: relative;
   bottom: 0;
   padding: 10px;
-  background-color: var(--secondary-color);
-  border-top: 2px solid var(--smokey-black);
-  box-shadow: 0 -5px 10px var(--smokey-black);
+  background-color: #9eb17f;
   font-size: 1.5rem;
 }
 
@@ -46,7 +44,7 @@ footer img:hover {
 }
 
 .contact button {
-  background-color: var(--secondary-color);
+  background-color: #9eb17f;
   border: none;
   outline: none;
   font-size: 1.5rem;

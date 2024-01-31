@@ -106,6 +106,7 @@
 
 .handler button {
   margin: 20px;
+  width: 180px;
 }
 
 @media only screen and (max-width: 430px) {
@@ -171,8 +172,8 @@
   }
 
   .quiz_answer button {
-    margin: 5px auto;
-    width: 30rem;
+    margin: 5px 0;
+    width: 26.5rem;
   }
 
   .handler button {
