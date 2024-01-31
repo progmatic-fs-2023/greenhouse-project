@@ -6,8 +6,6 @@ import ig from '../../../../assets/insta.svg';
 import linkedIn from '../../../../assets/linkedin.svg';
 
 function Footer() {
-
-
   return (
     <footer className="footer">
       <div className="text_container">

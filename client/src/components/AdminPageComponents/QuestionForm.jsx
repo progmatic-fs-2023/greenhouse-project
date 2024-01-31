@@ -168,7 +168,6 @@ function QuestionForm({
         </label>
 
         <label htmlFor="topic">
-
           Topic:
           <select id="topic" value={topic} onChange={handleTopicChange}>
             <option value="" disabled>
