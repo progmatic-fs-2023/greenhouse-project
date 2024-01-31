@@ -225,7 +225,7 @@
   padding: 5px 5px 5px 10px;
 }
 
-.question-form-container button{
+.question-form-container button {
   margin: 30px auto 0;
 }
 
@@ -285,28 +285,34 @@
   }
 }
 
-
-@media only screen and (max-width: 800px) { 
-  .admin, .edit_question_container, .new_question {
+@media only screen and (max-width: 800px) {
+  .admin,
+  .edit_question_container,
+  .new_question {
     width: 400px;
   }
 
-  @media only screen and (max-width: 500px) { 
-    .admin, .edit_question_container, .new_question {
+  @media only screen and (max-width: 500px) {
+    .admin,
+    .edit_question_container,
+    .new_question {
       width: 90%;
-  }
-  .question-container,
-  .edit_question_main_container,
-  .admin_main_container {
-    padding: 10% 0;
-  }
-  .answer-group {
-    display: flex;
-    flex-flow: row wrap;
-    margin: 10% 0;
-  }
-  .answer-group label {
-    font-size: 1.7rem;
+    }
+    .question-container,
+    .edit_question_main_container,
+    .admin_main_container {
+      padding: 10% 0;
+    }
+    .answer-group {
+      display: flex;
+      flex-flow: row wrap;
+      margin: 10% 0;
+    }
+    .answer-group label {
+      font-size: 1.7rem;
+    }
   }
 }
+#ok-message {
+  background-color: white;
 }

@@ -65,7 +65,7 @@ export const getTopicsFromDB = async () => {
     const topics = await prisma.topic.findMany();
 
     const maxNumOfQuestions =
-      await prisma.$queryRaw`select  name, level, count(level)::int from topic join question on question.topic_id = topic.id group by topic.name, question.level;`;
+      await prisma.$queryRaw`select  name, level, count(level)::int from topic join question on question.topic_id = topic.id where "isActive"=true group by topic.name, question.level;`;
     return topics.map(topic => ({
       ...topic,
       maxNumOfQuestions: maxNumOfQuestions.filter(
