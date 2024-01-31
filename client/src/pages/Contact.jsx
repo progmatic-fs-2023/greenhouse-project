@@ -75,7 +75,15 @@ function ContactPage() {
       <div className="contact_container">
         <h2>Contact Us</h2>
         {sending && <p>Sending...</p>}
-        {sent && <p>Message sent!</p>}
+        {sent && (
+          <p className="message_sent">
+            Thank you for reaching out to us! We will get back to you as soon as possible. 🙂 <br />
+            <br /> Get{' '}
+            <a href="/quizmoduls" style={{ textDecoration: 'underline' }}>
+              quizzing.
+            </a>
+          </p>
+        )}
         {error && <p className="error">Error: {error}</p>}
         {!sent && !error && (
           <form onSubmit={handleSubmit}>
