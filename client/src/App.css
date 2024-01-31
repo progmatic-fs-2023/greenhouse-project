@@ -1,11 +1,12 @@
 :root {
   /*--primary-color: #EDC9AF;*/
-  --accent-color: #BF5700;
+  --accent-color: #ae5e1c;
   --button-hover-color: #af4128;
-  --primary-color: #f0efed; 
-  --secondary-color: #88B183;
-  --smokey-black: #100C08;
+  --primary-color: #deccb1; 
+  --secondary-color: #7da874;
+  --smokey-black: #0d120cd0;
   --grey-background: #e1e1e1;
+  --black: rgb(12, 12, 12);
 
   /* 2.verzio */
   /*--accent-color: #d9a873; */

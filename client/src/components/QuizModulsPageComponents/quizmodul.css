@@ -1,21 +1,20 @@
 .description_container {
     display: flex;
-    justify-content: center;
     flex-flow: row wrap;
-    width: 90%;
-    text-align: center;
-    margin: 0 auto;
+    width: 50%;
+    text-align: left;
+    margin-left: 9%;
     padding: 2% 0;
 }
 
 .description_container h1 {
 
-    font-size: 45pt;
+    font-size: 3.5rem;
 }
 
 .description_container p {
     width: 90%;
-    font-size: 20pt;
+    font-size: 1.8em;
     padding: 0 auto;
 }
 
@@ -117,6 +116,7 @@
 
   .description_container h1 {
     padding-top: 20px;
+
   }
 
   .description_container p {
@@ -126,8 +126,9 @@
 
 @media only screen and (max-width: 1000px) {
   .description_container {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
+    text-align: center;
   }
 }
 
@@ -157,4 +158,10 @@
   .card {
     width: 90%;
   }
+}
+
+@media only screen and (max-width: 1550px) {
+  .description_container {
+    width: 80%;
+    }
 }

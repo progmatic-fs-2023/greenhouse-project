@@ -36,6 +36,7 @@
     font-size: 1.7rem;
     letter-spacing: -1px;
     width: fit-content;
+    color: rgb(10, 10, 10);
 }
 
 .navbar {
@@ -160,14 +161,14 @@ nav li {
         position: fixed;
         top: 0;
         right: 0;
-        height: 100vh;
-        width: 150px;
+        height: 340px;
+        padding: 0 auto 10px;
+        width: 200px;
         z-index: 999;
-        background-color: #f0efed5c;
-        backdrop-filter: blur(10px);
-        box-shadow: 3px 5px var(--smokey-black);
-        flex-direction: column;
-        justify-content: flex-start;
+        background-color: #c0bc92;
+        border-radius: 0 0 0 50%;
+        flex-direction: column wrap;
+        text-align: center;
         align-items: center;
     }
 
@@ -178,9 +179,13 @@ nav li {
         font-size: 1.7rem;
         cursor: pointer;
         transition-duration: 0.3s;
-        margin: 10px;
+        margin: 5px 0 5px 45px;
         background-color: #edc9af00;
-
+    }
+    .sidebar_btn:hover {
+        color: #2c2c2c;
+        transition-duration: 0.3s;
+        letter-spacing: 0.2px;
     }
 
     .signinBtn {
@@ -191,16 +196,18 @@ nav li {
         height: max-content;
         text-transform: uppercase;
         transition-duration: 0.3s;
-        margin-left: 10px;
+        margin: 5px 0 5px 45px;
         font-size: 1.2rem;
         box-shadow: 3px 5px var(--smokey-black);
+        cursor: pointer;
     }
     .close {
         display: block;
         width: 4vw;
-        margin: 20px 20px 0 5px;
-        background-color: var(--primary-color);
+        margin: 5px 0 0 55px;
+        background-color: #c0bc92;
         border: none;
+        cursor: pointer;
     }
 }
 @media only screen and (max-width: 500px) { 

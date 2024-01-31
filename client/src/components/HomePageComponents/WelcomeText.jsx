@@ -1,4 +1,4 @@
-import welcome from '../../assets/welcome_transp.png';
+import welcome from '../../assets/welcimg.png';
 
 function Welcome() {
   return (
@@ -6,9 +6,8 @@ function Welcome() {
       <div className="welcome_text">
         <div>
           <h1>
-            Welcome to <b>Greenhouse!</b>
+            Welcome to Greenhouse!✨
           </h1>
-          <h3>Green Dreams, Blooming Realities: Your Green Oasis of Growth.</h3>
         </div>
         <div id="welcome_img">
           <img src={welcome} alt="placeholder_img" />
@@ -20,7 +19,7 @@ function Welcome() {
           enlighten. Whether you&apos;re here to sharpen your skills or explore new horizons,
           you&apos;re in for an exciting learning adventure. Ready to begin? Click &apos;Start
           Quiz&apos; and let the quest for knowledge commence! Remember: It&apos;s not just a quiz;
-          it&apos;s a journey of discovery. Happy quizzing! ✨
+          it&apos;s a journey of discovery. Happy quizzing! 
         </p>
       </div>
     </div>
