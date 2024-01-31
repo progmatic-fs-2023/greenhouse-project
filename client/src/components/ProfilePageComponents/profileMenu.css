@@ -33,14 +33,15 @@
     'email'
     'save'
     'delete';
+    margin: 100px 20px;
 }
 
 .member_since {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 90px;
-  align-items: center;
-  grid-area: 'member';
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 50px;
+    align-items: center;
+    grid-area: 'member';
 }
 
 .member_since > p {

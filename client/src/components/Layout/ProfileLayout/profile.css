@@ -16,6 +16,7 @@
     margin-top: 0rem;
     padding: 2%;
     width: 100%;
+    background-image: url('./../../../assets/prbg.svg');
     background-color: var(--secondary-color);
     border-left: 3px solid var(--smokey-black);
     border-top: 3px solid var(--smokey-black);
@@ -27,7 +28,7 @@
 .user_pic {
     width: 110px;
     height: 110px;
-    border: 8px solid var(--smokey-black);
+    border: 8px solid var(--black);
     border-radius: 50%;
     background-color: white;
 }
@@ -78,7 +79,7 @@
     transition-duration: 0.3s;
     letter-spacing: 0.2px;
     text-decoration: none;
-    color: var(--smokey-black);
+    color: var(--black);
 }
 
 .profile_navlink:hover {
@@ -100,7 +101,7 @@
     height: 20px;
     width: 100%;
     background-color: #eee;
-    border-radius: 5px;
+    border-radius: 10px;
     margin-bottom: 10px;
     overflow: hidden;
   }
@@ -116,7 +117,7 @@
   
   .status-bar-fill {
     height: 100%;
-    background-color: var(--smokey-black);
+    background-color: var(--black);
   }
 
   .xp {

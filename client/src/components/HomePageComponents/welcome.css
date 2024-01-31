@@ -6,7 +6,7 @@
   height: 100%;
   width: 90%;
   font-style: normal;
-  margin: 0 auto 100px;
+  margin: 20px auto 100px;
 }
 
 .content {
@@ -37,23 +37,14 @@
   width: 100%;
   text-align: left;
   grid-area: text;
-  margin-top: 40px;
+  margin-top: 100px;
   margin-bottom: -20px;
 }
 
-.welcome_text h3 {
-  text-align: left;
-  font-size: 24pt;
-  background-color: #066f3037;
-  padding: 5px;
-  border-radius: 7px;
-  grid-area: desc;
-}
-
 .welcome_text p {
-  font-size: 2rem;
+  font-size: 1.7rem;
   grid-area: desc;
-  margin-top: 1rem;
+  margin-top: -2rem;
 }
 
 
@@ -72,7 +63,8 @@
 @media only screen and (max-width: 1500px) {
 
   .welcome_text {
-    margin: 0;
+    width: 100%;
+    margin-top: -100px;
     padding: 0;
     grid-template-areas: 
     "text"
@@ -129,11 +121,12 @@
 }
 }
 @media only screen and (max-width: 500px) { 
-  .content, .welcome_text{
+  .content {
     width: 90%;
     padding: 0 auto;
   }
   .welcome_div {
     width: 95%;
   }
+
 }

@@ -84,7 +84,7 @@ export default function Leaderboard() {
               <div
                 key={user.username}
                 style={{
-                  border: user.id === userId ? '5px solid green' : '1px solid #ccc',
+                  border: user.id === userId ? '5px solid #aab584' : '1px solid #ccc',
                   borderRadius: '5px',
                   padding: '10px',
                   margin: '0 10px',
@@ -95,7 +95,7 @@ export default function Leaderboard() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   boxShadow:
-                    user.id === userId ? '0 0 15px 5px green' : '0 4px 8px 0 rgba(0,0,0,0.2)',
+                    user.id === userId ? '0 0 15px 5px #aab584' : '0 4px 8px 0 rgba(0,0,0,0.2)',
                 }}
               >
                 <p>{placeNames[index]}</p>
