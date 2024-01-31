@@ -29,7 +29,7 @@ function QuizResultPage({ totalQuestions, correctAnswers }) {
       setStat(calculateRanks(currentUserXp));
       const xpWithinRange = currentUserXp - lowerThreshold;
       const range = upperThreshold - lowerThreshold;
-      setXpPercentage(Math.max(5, Math.min((xpWithinRange / range) * 100, 100)));
+      setXpPercentage(Math.max(1, Math.min((xpWithinRange / range) * 100, 100)));
       if (startGameUserXp === undefined || currentRank === startGameRank) {
         setReachedNextRank(false);
       } else {

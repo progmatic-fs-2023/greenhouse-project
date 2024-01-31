@@ -129,11 +129,6 @@
     margin-left: 6px;
   }
 
-  .quiz_answer button {
-    margin: 5px 25px;
-    width: 250px;
-  }
-
   .handler {
     flex-flow: row wrap;
     justify-content: center;
@@ -142,6 +137,25 @@
   .handler button {
     margin: 10px 10px;
   }
+}
+
+@media only screen and (max-width: 500px) {
+
+  .handler button {
+    margin: 10px auto;
+  }
+
+  .quiz_answer {
+    width: 100%;
+    padding: 10px 0;
+    margin: auto;
+  }
+  
+  .quiz_answer button {
+    margin: 5px;
+    width: 300px;
+  }
+
 }
 
 @media only screen and (max-width: 1150px) {
@@ -173,27 +187,9 @@
 
   .quiz_answer button {
     margin: 5px 0;
-    width: 26.5rem;
   }
 
   .handler button {
     margin: 10px;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-
-  .handler button {
-    margin: 10px auto;
-  }
-
-  .quiz_answer {
-    width: 100%;
-    padding: 10px 0;
-    margin: auto;
-  }
-  .quiz_answer button {
-    margin: 0;
-    width: 18rem;
   }
 }
