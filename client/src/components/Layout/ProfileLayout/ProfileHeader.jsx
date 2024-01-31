@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import Avatar from 'react-nice-avatar';
 import { useAuth } from '../../../contexts/AuthContext';
 import { API_URL } from '../../../constants';
 import ranks from '../../../utils/ranks';
 import calculateRanks from '../../QuizPageComponents/CalculateRanks';
-import Profilepic from '../../../assets/profilepic.svg';
 import plant from '../../../assets/plant.svg';
 import pottedPlant from '../../../assets/potted_plant.svg';
 import spa from '../../../assets/spa.svg';
@@ -81,7 +81,7 @@ function ProfileHeader() {
 
   return (
     <div className="profile_header_container">
-      <img src={Profilepic} alt="Profile" className="user_pic" />
+      <Avatar className="user_pic" />
       <h1>{username}</h1>
       <h2>
         <img src={icon} alt="rank-icon" className="rank_pic" />
